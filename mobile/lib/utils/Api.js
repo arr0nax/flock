@@ -1,12 +1,22 @@
+import { AsyncStorage } from "react-native"
+
 class Api {
-  static headers(jwt = null) {
-    if (sessionStorage.getItem('jwtToken')) {
+
+  static async headers() {
+    try {
+      const value = await AsyncStorage.getItem('jwtToken');
+      if (value !== null) {
+        return {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + value,
+        }
+      }
       return {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + sessionStorage.getItem('jwtToken'),
-      }
-    } else {
+      };
+    } catch (error) {
       return {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -14,32 +24,32 @@ class Api {
     }
   }
 
-  static get(route, jwt = null) {
-    return this.xhr(route, null, 'GET', jwt);
+  static get(route) {
+    return this.xhr(route, null, 'GET');
   }
 
-  static put(route, params, jwt = null) {
-    return this.xhr(route, params, 'PUT', jwt);
+  static put(route, params) {
+    return this.xhr(route, params, 'PUT');
   }
 
-  static post(route, params, jwt = null) {
-    return this.xhr(route, params, 'POST', jwt);
+  static post(route, params) {
+    return this.xhr(route, params, 'POST');
   }
 
-  static patch(route, params, jwt = null) {
-    return this.xhr(route, params, 'PATCH', jwt);
+  static patch(route, params) {
+    return this.xhr(route, params, 'PATCH');
   }
 
-  static delete(route, jwt = null) {
-    return this.xhr(route, null, 'DELETE', jwt);
+  static delete(route) {
+    return this.xhr(route, null, 'DELETE');
   }
 
-  static xhr(route, params, verb, jwt = null) {
+  static async xhr(route, params, verb) {
     const options = Object.assign(
       { method: verb },
       params ? { body: JSON.stringify(params) } : null,
     );
-    options.headers = Api.headers(jwt);
+    options.headers = await Api.headers();
     console.log(options);
     var request = new Request(route, options);
     console.log(request);
@@ -48,6 +58,9 @@ class Api {
         return {error: resp};
       }
       return resp.json().then(data => {
+        if (data.token) {
+          AsyncStorage.setItem('jwtToken', data.token);
+        }
         return data;
       })
     });

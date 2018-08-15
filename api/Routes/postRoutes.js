@@ -2,7 +2,7 @@ var express = require('express'),
     expressJwt = require('express-jwt'),
     authenticate = expressJwt({secret : 'server secret'});
 
-var routes = (Post, Comment, User) => {
+var routes = (Post, Comment, User, Reply, React) => {
   var router = express.Router();
   router.route('/Posts')
     .get(function(req,res){
@@ -21,7 +21,8 @@ var routes = (Post, Comment, User) => {
 
     router.post('/posts', authenticate, function(req, res) {
       var post = new Post(req.body);
-      post._user = req.user._id;
+      console.log(req.user);
+      post._user = req.user.id;
       post.save();
       res.status(201).send(post);
     });
@@ -76,6 +77,7 @@ var routes = (Post, Comment, User) => {
       .get((req,res) => {
         var query = {_post: req.post._id};
         Comment.find(query, (err, comments) => {
+          console.log(comments);
           if(err) {
             res.status(500).send(err);
           } else {
@@ -89,16 +91,172 @@ var routes = (Post, Comment, User) => {
         if(err) {
           res.status(500).send(err);
         } else if(post) {
-          console.log(post);
           var comment = new Comment({
             text: req.body.text,
             _post: post._id,
             _user: req.user.id,
           });
+          console.log(comment);
           comment.save();
           res.status(201).send(comment);
         } else {
           res.status(404).send('no post found');
+        }
+      })
+    });
+
+    router.route('/Posts/:postId/reacts')
+      .get((req,res) => {
+        var query = {_item: req.post._id, kind: "Post"};
+        React.find(query, (err, reacts) => {
+          console.log(reacts);
+          if(err) {
+            res.status(500).send(err);
+          } else {
+            res.json(reacts)
+          }
+        })
+      })
+
+    router.post('/posts/:postId/reacts', authenticate, function(req, res) {
+      Post.findById(req.params.postId, function(err,post){
+        if(err) {
+          res.status(500).send(err);
+        } else if(post) {
+          var react = new React({
+            react: req.body.react,
+            kind: "Post",
+            _item: post.id,
+            _user: req.user.id,
+          });
+          react.save();
+          res.status(201).send(react);
+        } else {
+          res.status(404).send('no post found');
+        }
+      })
+    });
+
+    router.use('/Posts/:postId/comments/:commentId', function(req,res,next){
+      Comment.findById(req.params.commentId, function(err,comment){
+        if(err) {
+          res.status(500).send(err);
+        } else if(comment) {
+          req.comment = comment;
+          next();
+        } else {
+          res.status(404).send('no post found');
+        }
+      })
+    })
+
+    router.route('/Posts/:postId/comments/:commentId/replies')
+      .get((req,res) => {
+        var query = {_comment: req.comment._id};
+        Reply.find(query, (err, replies) => {
+          console.log(replies);
+          if(err) {
+            res.status(500).send(err);
+          } else {
+            res.json(replies)
+          }
+        })
+      })
+
+    router.post('/posts/:postId/comments/:commentId/replies', authenticate, function(req, res) {
+      Comment.findById(req.params.commentId, function(err,comment){
+        if(err) {
+          res.status(500).send(err);
+        } else if(comment) {
+          var reply = new Reply({
+            text: req.body.text,
+            _comment: comment._id,
+            _user: req.user.id,
+          });
+          console.log(reply);
+          reply.save();
+          res.status(201).send(reply);
+        } else {
+          res.status(404).send('no comment found');
+        }
+      })
+    });
+
+    router.route('/Posts/:postId/comments/:commentId/reacts')
+      .get((req,res) => {
+        var query = {_item: req.comment._id, kind: "Comment"};
+        React.find(query, (err, reacts) => {
+          console.log(reacts);
+          if(err) {
+            res.status(500).send(err);
+          } else {
+            res.json(reacts)
+          }
+        })
+      })
+
+    router.post('/posts/:postId/comments/:commentId/reacts', authenticate, function(req, res) {
+      Comment.findById(req.params.commentId, function(err,comment){
+        if(err) {
+          res.status(500).send(err);
+        } else if(comment) {
+          var react = new React({
+            react: req.body.react,
+            kind: "Comment",
+            _item: comment._id,
+            _user: req.user.id,
+          });
+          console.log(react);
+          react.save();
+          res.status(201).send(react);
+        } else {
+          res.status(404).send('no comment found');
+        }
+      })
+    });
+
+    router.use('/Posts/:postId/comments/:commentId/replies/:replyId', function(req,res,next){
+      Reply.findById(req.params.replyId, function(err,reply){
+        if(err) {
+          res.status(500).send(err);
+        } else if(reply) {
+          req.reply = reply;
+          next();
+        } else {
+          res.status(404).send('no post found');
+        }
+      })
+    })
+
+    router.route('/Posts/:postId/comments/:commentId/replies/:replyId/reacts')
+      .get((req,res) => {
+        var query = {_item: req.reply._id, kind: "Reply"};
+        React.find(query, (err, reacts) => {
+          console.log(reacts);
+          if(err) {
+            res.status(500).send(err);
+          } else {
+            res.json(reacts)
+          }
+        })
+      })
+
+    router.post('/posts/:postId/comments/:commentId/replies/:replyId/reacts', authenticate, function(req, res) {
+      Reply.findById(req.params.replyId, function(err,reply){
+        if(err) {
+          res.status(500).send(err);
+        } else if(reply) {
+          var react = new React({
+            react: req.body.react,
+            kind: "Reply",
+            _item: reply._id,
+            _user: req.user.id,
+          });
+          console.log(react);
+          react.save();
+          res.status(201).send(react);
+        } else {
+          res.status(404).send('no comment found');
         }
       })
     });

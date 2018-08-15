@@ -16,7 +16,6 @@ const executePostLogin = (payload) => {
 function* postLogin(payload, action) {
   try {
     const login = yield call(executePostLogin, payload);
-    sessionStorage.setItem('jwtToken', login.token);
     if (login.error) {
       yield put({type: POST_LOGIN_FAILURE, payload: login.error});
     } else {

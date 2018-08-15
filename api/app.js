@@ -9,6 +9,8 @@ var db = mongoose.connect('mongodb://localhost/flockAPI');
 var Post = require('./models/post');
 var User = require('./models/user');
 var Comment = require('./models/comment');
+var Reply = require('./models/reply');
+var React = require('./models/react');
 
 var app = express();
 
@@ -27,7 +29,7 @@ var port = process.env.PORT || 3000;
 
 
 
-var postRouter = require('./Routes/postRoutes.js')(Post, Comment, User);
+var postRouter = require('./Routes/postRoutes.js')(Post, Comment, User, Reply, React);
 var userRouter = require('./Routes/userRoutes.js')(User, Comment);
 
 app.use('/api', postRouter);

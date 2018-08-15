@@ -48,6 +48,9 @@ class Api {
         return {error: resp};
       }
       return resp.json().then(data => {
+        if (data.token) {
+          sessionStorage.setItem('jwtToken', data.token);
+        }
         return data;
       })
     });
