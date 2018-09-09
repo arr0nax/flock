@@ -37,7 +37,7 @@ export function comments(state = DEFAULT_COMMENTS_STATE, action) {
   switch (action.type) {
     case GET_POSTS_SUCCESS:
       const newComments1 = {...state.comments};
-      action.payload.map(post => newComments1[post._id] = []);
+      action.payload.map(post => newComments1[post.id] = []);
       return Object.assign({}, {...state}, {
         requested: true,
         comments: newComments1,
@@ -45,7 +45,7 @@ export function comments(state = DEFAULT_COMMENTS_STATE, action) {
 
     case POST_COMMENT_SUCCESS:
       const newComments3 = {...state.comments};
-      newComments3[action.payload._post].push(action.payload);
+      newComments3[action.payload.post_id].push(action.payload);
       return Object.assign({}, {...state}, {
         requested: true,
         comments: newComments3,
@@ -58,7 +58,7 @@ export function comments(state = DEFAULT_COMMENTS_STATE, action) {
 
     case GET_COMMENTS_SUCCESS:
       const newComments2 = {...state.comments};
-      newComments2[action.payload.postId] = action.payload.comments;
+      newComments2[action.payload.post_id] = action.payload.comments;
       return Object.assign({}, {...state}, {
         requested: false,
         comments: newComments2,

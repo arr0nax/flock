@@ -8,10 +8,17 @@ import {
   GET_REACTS_FAILURE,
   GET_REPLIES_REQUEST,
 } from '../lib/constants/actions';
-import Api from '../lib/utils/Api';
+import Api from '../lib/utils/Api'; import { API_ENDPOINT } from '../lib/constants/api';
 
 const executePostReact = (payload) => {
-  const root = `http://localhost:3000/api/posts/${payload.payload.postId}/reacts`
+  let root = '';
+  if (payload.payload.parent_id) {
+    root = `http://localhost:3000/api/posts/${payload.payload.parent_id}/comments/${payload.payload.item._comment}/replies/${payload.payload.item.id}/reacts`
+  } else if (payload.payload.item._post) {
+    root = `http://localhost:3000/api/posts/${payload.payload.item._post}/comments/${payload.payload.item.id}/reacts`
+  } else {
+    root = `http://localhost:3000/api/posts/${payload.payload.item.id}/reacts`
+  }
   return Api.post(root, {
       react: payload.payload.react
     }).then((val) => {
@@ -34,7 +41,14 @@ function* postReact(payload, action) {
 }
 
 const executeGetReacts = (payload) => {
-  const root = `http://localhost:3000/api/posts/${payload.payload.postId}/reacts`
+  let root = '';
+  if (payload.payload.replyId) {
+    root = `http://localhost:3000/api/posts/${payload.payload.post_id}/comments/${payload.payload.commentId}/replies/${payload.payload.replyId}/reacts`
+  } else if (payload.payload.commentId) {
+    root = `http://localhost:3000/api/posts/${payload.payload.post_id}/comments/${payload.payload.commentId}/reacts`
+  } else {
+    root = `http://localhost:3000/api/posts/${payload.payload.post_id}/reacts`
+  }
   return Api.get(root).then((val) => {
     return val;
   });

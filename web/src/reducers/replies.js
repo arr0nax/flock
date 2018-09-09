@@ -38,14 +38,14 @@ export function replies(state = DEFAULT_REPLIES_STATE, action) {
   switch (action.type) {
     case GET_COMMENTS_SUCCESS:
       const newReplies1 = {...state.replies};
-      action.payload.comments.map(comment => newReplies1[comment._id] = []);
+      action.payload.comments.map(comment => newReplies1[comment.id] = []);
       return Object.assign({}, {...state}, {
         requested: true,
         replies: newReplies1,
       });
     case POST_COMMENT_SUCCESS:
       const newReplies4 = {...state.replies};
-      newReplies4[action.payload._id] = [];
+      newReplies4[action.payload.id] = [];
       return Object.assign({}, {...state}, {
         requested: true,
         replies: newReplies4,

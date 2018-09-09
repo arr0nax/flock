@@ -1,0 +1,11 @@
+{
+  "retainLines": true,
+  "sourceMaps": true,
+  "presets": ["@babel/preset-env"],
+  "plugins": [
+    ["@babel/transform-runtime", {
+      "regenerator": true
+    }],
+    "@babel/plugin-proposal-class-properties"
+  ]
+}

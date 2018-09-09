@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import logo from './logo.svg';
 import './App.css';
 import actions from './actions';
+import ReactCarousel from './components/react-carousel';
 
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      email: '',
       password: '',
       post: '',
       comment: {},
@@ -18,8 +19,8 @@ class App extends Component {
     this.props.dispatch(actions.getPosts());
   }
 
-  handleChangeUsername(event) {
-    this.setState({username: event.target.value});
+  handleChangeEmail(event) {
+    this.setState({email: event.target.value});
   }
 
   handleChangePassword(event) {
@@ -34,7 +35,7 @@ class App extends Component {
     var newComment = {
       ...this.state.comment
     };
-    newComment[post._id] = event.target.value;
+    newComment[post.id] = event.target.value;
     this.setState({comment: newComment});
   }
 
@@ -42,13 +43,13 @@ class App extends Component {
     var newReply = {
       ...this.state.reply
     };
-    newReply[comment._id] = event.target.value;
+    newReply[comment.id] = event.target.value;
     this.setState({reply: newReply});
   }
 
   handleLogin() {
     this.props.dispatch(actions.login({
-      username: this.state.username,
+      email: this.state.email,
       password: this.state.password,
     }));
   }
@@ -59,62 +60,83 @@ class App extends Component {
 
   handleRegister() {
     this.props.dispatch(actions.register({
-      username: this.state.username,
+      email: this.state.email,
       password: this.state.password,
     }))
   }
 
   handlePost() {
     this.props.dispatch(actions.post({
-      content: this.state.post
+      text: this.state.post
     }))
   }
 
   handleComment(post) {
     this.props.dispatch(actions.comment({
-      content: this.state.comment[post._id],
-      postId: post._id,
+      text: this.state.comment[post.id],
+      post_id: post.id,
     }))
     var newComment = {
       ...this.state.comment
     };
-    newComment[post._id] = '';
+    newComment[post.id] = '';
     this.setState({comment: newComment});
   }
 
   handleReply(post, comment) {
     this.props.dispatch(actions.reply({
-      content: this.state.reply[comment._id],
-      postId: post._id,
-      commentId: comment._id,
+      content: this.state.reply[comment.id],
+      post_id: post.id,
+      commentId: comment.id,
     }))
     var newReply = {
       ...this.state.reply
     };
-    newReply[comment._id] = '';
+    newReply[comment.id] = '';
     this.setState({reply: newReply});
+  }
+
+  handleReact(react, item, parent_id = null) {
+    this.props.dispatch(actions.react({
+      react,
+      item,
+      parent_id,
+    }))
   }
 
   replies(comment) {
     if (comment) {
-      return this.props.replies.replies[comment._id].map(reply => (<text>{reply.text}</text>));
+      return this.props.replies.replies[comment.id].map(reply => (
+        <div className="reply">
+          <text>{reply.text}</text>
+          {this.reacts(reply)}
+          <ReactCarousel react={this.handleReact.bind(this)} item={reply} parent_id={comment._post}/>
+        </div>
+      ));
     }
   }
 
   reacts(item) {
-    if (item) {
-      return <text>{this.props.reacts.reacts[item._id].react}</text>;
-    }
+    // if (item) {
+    //   this.props.reacts.reacts.[item.id]
+    //   return this.props.reacts.reacts[item.id].map(react => {
+    //     return <text>{react.react}</text>;
+    //   })
+    // }
   }
 
   comments(post) {
-    return this.props.comments.comments[post._id].map(comment => {
+    return this.props.comments.comments[post.id].map(comment => {
       return (
         <div className="comment">
           <text>{comment.text}</text>
+          <div className="reacts">
+            {this.reacts(comment)}
+          </div>
+          <ReactCarousel react={this.handleReact.bind(this)} item={comment}/>
           <div className="replies">
             {this.replies(comment)}
-            <input value={this.state.reply[comment._id]} onChange={(e) => this.handleChangeReply(e, comment)} />
+            <input value={this.state.reply[comment.id]} onChange={(e) => this.handleChangeReply(e, comment)} />
             <div className="button" onClick={() => this.handleReply(post, comment)}>
               <text>reply</text>
             </div>
@@ -128,13 +150,14 @@ class App extends Component {
     return this.props.posts.posts.map(post => {
       return (
         <div className="post">
-          <text>{post.content}</text>
+          <text>{post.text}</text>
           <div className="reacts">
             {this.reacts(post)}
           </div>
+          <ReactCarousel react={this.handleReact.bind(this)} item={post}/>
           <div className="comments">
             {this.comments(post)}
-            <input value={this.state.comment[post._id]} onChange={(e) => this.handleChangeComment(e, post)} />
+            <input value={this.state.comment[post.id]} onChange={(e) => this.handleChangeComment(e, post)} />
             <div className="button" onClick={() => this.handleComment(post)}>
               <text>comment</text>
             </div>
@@ -155,7 +178,7 @@ class App extends Component {
         null
       )}
         <div>
-          <input value={this.state.username} onChange={(e) => this.handleChangeUsername(e)}/>
+          <input value={this.state.email} onChange={(e) => this.handleChangeEmail(e)}/>
           <input type="password" value={this.state.password} onChange={(e) => this.handleChangePassword(e)}/>
           <div className="button" onClick={() => this.handleLogin()}>
             <text>login</text>

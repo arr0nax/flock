@@ -1,4 +1,4 @@
-import { call, put, takeLatest, takeEvery } from 'redux-saga/effects';
+import { call, put, all, takeLatest, takeEvery } from 'redux-saga/effects';
 import {
   POST_POST_REQUEST,
   POST_POST_SUCCESS,
@@ -6,6 +6,8 @@ import {
   GET_POSTS_REQUEST,
   GET_POSTS_SUCCESS,
   GET_POSTS_FAILURE,
+  GET_COMMENTS_REQUEST,
+  GET_REACTS_REQUEST,
 } from '../lib/constants/actions';
 import Api from '../lib/utils/Api';
 
@@ -45,6 +47,12 @@ function* getPosts(payload, action) {
       yield put({type: GET_POSTS_FAILURE, payload: posts.error});
     } else {
       yield put({type: GET_POSTS_SUCCESS, payload: posts});
+      yield all(posts.map(post => {
+        return put({type: GET_COMMENTS_REQUEST, payload: {postId: post._id}})
+      }))
+      yield all(posts.map(post => {
+        return put({type: GET_REACTS_REQUEST, payload: {postId: post._id}})
+      }))
     }
   } catch (error) {
     yield put({type: GET_POSTS_FAILURE, payload: error});

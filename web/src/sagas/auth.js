@@ -12,9 +12,10 @@ import {
   GET_POSTS_REQUEST,
 } from '../lib/constants/actions';
 import Api from '../lib/utils/Api';
+import { API_ENDPOINT } from '../lib/constants/api';
 
 const executePostLogin = (payload) => {
-  const root = 'http://localhost:3000/api/login'
+  const root = API_ENDPOINT+'/login'
   return Api.post(root, payload.payload).then((val) => {
     return val;
   });
@@ -55,7 +56,7 @@ function* postLogout(payload, action) {
 }
 
 const executePostRegister = (payload) => {
-  const root = 'http://localhost:3000/api/register'
+  const root = API_ENDPOINT+'/register'
   return Api.post(root, payload.payload).then((val) => {
     return val;
   });

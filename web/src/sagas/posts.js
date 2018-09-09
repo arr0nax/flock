@@ -9,10 +9,10 @@ import {
   GET_COMMENTS_REQUEST,
   GET_REACTS_REQUEST,
 } from '../lib/constants/actions';
-import Api from '../lib/utils/Api';
+import Api from '../lib/utils/Api'; import { API_ENDPOINT } from '../lib/constants/api';
 
 const executePostPost = (payload) => {
-  const root = 'http://localhost:3000/api/posts'
+  const root = API_ENDPOINT+'/posts'
   return Api.post(root, payload.payload).then((val) => {
     return val;
   });
@@ -34,7 +34,7 @@ function* postPost(payload, action) {
 }
 
 const executeGetPosts = (payload) => {
-  const root = 'http://localhost:3000/api/posts'
+  const root = API_ENDPOINT+'/posts'
   return Api.get(root).then((val) => {
     return val;
   });
@@ -48,10 +48,11 @@ function* getPosts(payload, action) {
     } else {
       yield put({type: GET_POSTS_SUCCESS, payload: posts});
       yield all(posts.map(post => {
-        return put({type: GET_COMMENTS_REQUEST, payload: {postId: post._id}})
+        console.log(post);
+        return put({type: GET_COMMENTS_REQUEST, payload: {post_id: post.id}})
       }))
       yield all(posts.map(post => {
-        return put({type: GET_REACTS_REQUEST, payload: {postId: post._id}})
+        return put({type: GET_REACTS_REQUEST, payload: {post_id: post.id}})
       }))
     }
   } catch (error) {

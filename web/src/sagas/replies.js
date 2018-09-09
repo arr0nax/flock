@@ -1,4 +1,4 @@
-import { call, put, takeLatest, takeEvery } from 'redux-saga/effects';
+import { call, put, all, takeLatest, takeEvery } from 'redux-saga/effects';
 import {
   POST_REPLY_REQUEST,
   POST_REPLY_SUCCESS,
@@ -6,11 +6,12 @@ import {
   GET_REPLIES_REQUEST,
   GET_REPLIES_SUCCESS,
   GET_REPLIES_FAILURE,
+  GET_REACTS_REQUEST,
 } from '../lib/constants/actions';
-import Api from '../lib/utils/Api';
+import Api from '../lib/utils/Api'; import { API_ENDPOINT } from '../lib/constants/api';
 
 const executePostReply = (payload) => {
-  const root = `http://localhost:3000/api/posts/${payload.payload.postId}/comments/${payload.payload.commentId}/replies`
+  const root = `http://localhost:3000/api/posts/${payload.payload.post_id}/comments/${payload.payload.commentId}/replies`
   return Api.post(root, {
       text: payload.payload.content
     }).then((val) => {
@@ -33,7 +34,7 @@ function* postReply(payload, action) {
 }
 
 const executeGetReplies = (payload) => {
-  const root = `http://localhost:3000/api/posts/${payload.payload.postId}/comments/${payload.payload.commentId}/replies`
+  const root = `http://localhost:3000/api/posts/${payload.payload.post_id}/comments/${payload.payload.commentId}/replies`
   return Api.get(root).then((val) => {
     return val;
   });
@@ -41,11 +42,14 @@ const executeGetReplies = (payload) => {
 
 function* getReplies(payload, action) {
   try {
-    const posts = yield call(executeGetReplies, payload);
-    if (posts.error) {
-      yield put({type: GET_REPLIES_FAILURE, payload: posts.error});
+    const replies = yield call(executeGetReplies, payload);
+    if (replies.error) {
+      yield put({type: GET_REPLIES_FAILURE, payload: replies.error});
     } else {
-      yield put({type: GET_REPLIES_SUCCESS, payload: {replies: posts, postId: payload.payload.postId, commentId: payload.payload.commentId}});
+      yield put({type: GET_REPLIES_SUCCESS, payload: {replies: replies, post_id: payload.payload.post_id, commentId: payload.payload.commentId}});
+      yield all(replies.map(reply => {
+        return put({type: GET_REACTS_REQUEST, payload: {post_id: payload.payload.post_id, commentId: payload.payload.commentId, replyId: reply.id}})
+      }))
     }
   } catch (error) {
     yield put({type: GET_REPLIES_FAILURE, payload: error});
