@@ -25,7 +25,6 @@ function* postPost(payload, action) {
       yield put({type: POST_POST_FAILURE, payload: post.error});
     } else {
       yield put({type: POST_POST_SUCCESS, payload: post});
-      yield put({type: GET_POSTS_REQUEST})
     }
   } catch (error) {
     yield put({type: POST_POST_FAILURE, payload: error});
@@ -52,7 +51,7 @@ function* getPosts(payload, action) {
         return put({type: GET_COMMENTS_REQUEST, payload: {post_id: post.id}})
       }))
       yield all(posts.map(post => {
-        return put({type: GET_REACTS_REQUEST, payload: {post_id: post.id}})
+        return put({type: GET_REACTS_REQUEST, payload: {item_id: post.id, type: 'posts'}})
       }))
     }
   } catch (error) {

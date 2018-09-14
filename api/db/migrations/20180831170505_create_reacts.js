@@ -1,7 +1,8 @@
 exports.up = knex => knex.schema.createTable('reacts', (table) => {
   table.increments('id').unsigned().primary();
 
-  table.string('table').notNull();
+  table.string('react').notNull();
+  table.string('type').notNull();
   table.integer('user_id')
     .notNull()
     .unsigned()

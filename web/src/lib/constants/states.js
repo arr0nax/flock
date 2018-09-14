@@ -25,5 +25,7 @@ export const DEFAULT_REPLIES_STATE = {
 
 export const DEFAULT_REACTS_STATE = {
   requested: false,
-  reacts: {},
+  post_reacts: {},
+  comment_reacts: {},
+  reply_reacts: {},
 }

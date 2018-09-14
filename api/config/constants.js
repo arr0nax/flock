@@ -7,6 +7,7 @@ const constants = {
   },
   AUTH_STRATEGIES: {
     SESSION: 'jwt-with-session',
+    OWNER: 'session-user-owns-item',
   },
 };
 

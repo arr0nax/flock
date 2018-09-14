@@ -11,9 +11,9 @@ import {
 import Api from '../lib/utils/Api'; import { API_ENDPOINT } from '../lib/constants/api';
 
 const executePostReply = (payload) => {
-  const root = `http://localhost:3000/api/posts/${payload.payload.post_id}/comments/${payload.payload.commentId}/replies`
+  const root = `${API_ENDPOINT}/comments/${payload.payload.comment_id}/replies`
   return Api.post(root, {
-      text: payload.payload.content
+      text: payload.payload.text
     }).then((val) => {
       return val;
   });
@@ -34,7 +34,7 @@ function* postReply(payload, action) {
 }
 
 const executeGetReplies = (payload) => {
-  const root = `http://localhost:3000/api/posts/${payload.payload.post_id}/comments/${payload.payload.commentId}/replies`
+  const root = `${API_ENDPOINT}/comments/${payload.payload.comment_id}/replies`
   return Api.get(root).then((val) => {
     return val;
   });
@@ -46,9 +46,9 @@ function* getReplies(payload, action) {
     if (replies.error) {
       yield put({type: GET_REPLIES_FAILURE, payload: replies.error});
     } else {
-      yield put({type: GET_REPLIES_SUCCESS, payload: {replies: replies, post_id: payload.payload.post_id, commentId: payload.payload.commentId}});
+      yield put({type: GET_REPLIES_SUCCESS, payload: {replies: replies, post_id: payload.payload.post_id, comment_id: payload.payload.comment_id}});
       yield all(replies.map(reply => {
-        return put({type: GET_REACTS_REQUEST, payload: {post_id: payload.payload.post_id, commentId: payload.payload.commentId, replyId: reply.id}})
+        return put({type: GET_REACTS_REQUEST, payload: {item_id: reply.id, type: 'replies'}})
       }))
     }
   } catch (error) {

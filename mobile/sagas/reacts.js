@@ -4,23 +4,20 @@ import {
   POST_REACT_SUCCESS,
   POST_REACT_FAILURE,
   GET_REACTS_REQUEST,
-  GET_REACTS_SUCCESS,
+  GET_POST_REACTS_SUCCESS,
+  GET_COMMENT_REACTS_SUCCESS,
+  GET_REPLY_REACTS_SUCCESS,
   GET_REACTS_FAILURE,
   GET_REPLIES_REQUEST,
 } from '../lib/constants/actions';
-import Api from '../lib/utils/Api';
+import Api from '../lib/utils/Api'; import { API_ENDPOINT } from '../lib/constants/api';
 
 const executePostReact = (payload) => {
-  let root = '';
-  if (payload.payload.parent_id) {
-    root = `http://localhost:3000/api/posts/${payload.payload.parent_id}/comments/${payload.payload.item._comment}/replies/${payload.payload.item._id}/reacts`
-  } else if (payload.payload.item._post) {
-    root = `http://localhost:3000/api/posts/${payload.payload.item._post}/comments/${payload.payload.item._id}/reacts`
-  } else {
-    root = `http://localhost:3000/api/posts/${payload.payload.item._id}/reacts`
-  }
+  let root = `${API_ENDPOINT}/reacts`
   return Api.post(root, {
-      react: payload.payload.react
+      react: payload.payload.react,
+      type: payload.payload.type,
+      item_id: payload.payload.item_id,
     }).then((val) => {
       return val;
   });
@@ -41,14 +38,7 @@ function* postReact(payload, action) {
 }
 
 const executeGetReacts = (payload) => {
-  let root = '';
-  if (payload.payload.replyId) {
-    root = `http://localhost:3000/api/posts/${payload.payload.postId}/comments/${payload.payload.commentId}/replies/${payload.payload.replyId}/reacts`
-  } else if (payload.payload.commentId) {
-    root = `http://localhost:3000/api/posts/${payload.payload.postId}/comments/${payload.payload.commentId}/reacts`
-  } else {
-    root = `http://localhost:3000/api/posts/${payload.payload.postId}/reacts`
-  }
+  let root = `${API_ENDPOINT}/${payload.payload.type}/${payload.payload.item_id}/reacts`
   return Api.get(root).then((val) => {
     return val;
   });
@@ -61,7 +51,14 @@ function* getReacts(payload, action) {
       yield put({type: GET_REACTS_FAILURE, payload: reacts.error});
     } else {
       yield all(reacts.map(react => {
-        return put({type: GET_REACTS_SUCCESS, payload: react})
+        switch (payload.payload.type) {
+          case 'posts':
+            return put({type: GET_POST_REACTS_SUCCESS, payload: react})
+          case 'comments':
+            return put({type: GET_COMMENT_REACTS_SUCCESS, payload: react})
+          case 'replies':
+            return put({type: GET_REPLY_REACTS_SUCCESS, payload: react})
+        }
       }))
     }
   } catch (error) {

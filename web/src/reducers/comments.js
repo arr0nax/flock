@@ -1,6 +1,7 @@
 import {
   POST_COMMENT_REQUEST,
   POST_COMMENT_SUCCESS,
+  POST_POST_SUCCESS,
   POST_COMMENT_FAILURE,
   GET_COMMENTS_REQUEST,
   GET_COMMENTS_SUCCESS,
@@ -41,6 +42,14 @@ export function comments(state = DEFAULT_COMMENTS_STATE, action) {
       return Object.assign({}, {...state}, {
         requested: true,
         comments: newComments1,
+      });
+
+    case POST_POST_SUCCESS:
+      const newComments4 = {...state.comments};
+      newComments4[action.payload.id] = [];
+      return Object.assign({}, {...state}, {
+        requested: true,
+        comments: newComments4,
       });
 
     case POST_COMMENT_SUCCESS:

@@ -11,10 +11,6 @@ class Post extends BaseModel {
     return TABLE_NAME;
   }
 
-  comments() {
-    return this.hasMany(Comment);
-  }
-
   static byUser(id) {
     return this.query().where('user_id', id);
   }

@@ -10,11 +10,12 @@ import {
   GET_REACTS_REQUEST,
 } from '../lib/constants/actions';
 import Api from '../lib/utils/Api';
+import { API_ENDPOINT } from '../lib/constants/api';
 
 const executePostComment = (payload) => {
-  const root = `http://localhost:3000/api/posts/${payload.payload.postId}/comments`
+  const root = `${API_ENDPOINT}/posts/${payload.payload.post_id}/comments`
   return Api.post(root, {
-      text: payload.payload.content
+      text: payload.payload.text
     }).then((val) => {
       return val;
   });
@@ -35,7 +36,7 @@ function* postComment(payload, action) {
 }
 
 const executeGetComments = (payload) => {
-  const root = `http://localhost:3000/api/posts/${payload.payload.postId}/comments`
+  const root = `${API_ENDPOINT}/posts/${payload.payload.post_id}/comments`
   return Api.get(root).then((val) => {
     return val;
   });
@@ -47,12 +48,12 @@ function* getComments(payload, action) {
     if (comments.error) {
       yield put({type: GET_COMMENTS_FAILURE, payload: comments.error});
     } else {
-      yield put({type: GET_COMMENTS_SUCCESS, payload: {comments: comments, postId: payload.payload.postId}});
+      yield put({type: GET_COMMENTS_SUCCESS, payload: {comments: comments, post_id: payload.payload.post_id}});
       yield all(comments.map(comment => {
-        return put({type: GET_REPLIES_REQUEST, payload: {postId: payload.payload.postId, commentId: comment._id}})
+        return put({type: GET_REPLIES_REQUEST, payload: {post_id: payload.payload.post_id, comment_id: comment.id}})
       }))
       yield all(comments.map(comment => {
-        return put({type: GET_REACTS_REQUEST, payload: {postId: payload.payload.postId, commentId: comment._id}})
+        return put({type: GET_REACTS_REQUEST, payload: {item_id: comment.id, type: "comments"}})
       }))
     }
   } catch (error) {

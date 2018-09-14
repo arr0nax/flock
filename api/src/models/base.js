@@ -28,19 +28,18 @@ class BaseModel extends DB.Model {
     });
   }
 //
-//   static destroyById(id, options = {}) {
-//     return this.forge({
-//       [this.prototype.idAttribute]: id,
-//     })
-//       .destroy(options);
-//   }
+  static destroyById(id, options = {}) {
+    return this.forge({
+      [this.prototype.idAttribute]: id,
+    })
+      .destroy(options);
+  }
 //
-//   static updateById(id, data, options = {}) {
-//     return this.forge({
-//       [this.prototype.idAttribute]: id,
-//     }).fetch(options)
-//       .then(model => (model ? model.save(data, options) : undefined));
-//   }
+  static updateById(id, data, options = {}) {
+    return this.forge({
+      [this.prototype.idAttribute]: id,
+    }).save(data, options);
+  }
 //
 //   static async upsert(selectData, updateData) {
 //     const existingModel = await this.findOne(selectData);

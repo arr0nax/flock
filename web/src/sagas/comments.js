@@ -50,10 +50,10 @@ function* getComments(payload, action) {
     } else {
       yield put({type: GET_COMMENTS_SUCCESS, payload: {comments: comments, post_id: payload.payload.post_id}});
       yield all(comments.map(comment => {
-        return put({type: GET_REPLIES_REQUEST, payload: {post_id: payload.payload.post_id, commentId: comment.id}})
+        return put({type: GET_REPLIES_REQUEST, payload: {post_id: payload.payload.post_id, comment_id: comment.id}})
       }))
       yield all(comments.map(comment => {
-        return put({type: GET_REACTS_REQUEST, payload: {post_id: payload.payload.post_id, commentId: comment.id}})
+        return put({type: GET_REACTS_REQUEST, payload: {item_id: comment.id, type: "comments"}})
       }))
     }
   } catch (error) {

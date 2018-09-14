@@ -6,10 +6,10 @@ const Controller = require('./controller');
 const Routes = {
   config: [{
     method: 'GET',
-    path: '/posts/{id}/comments',
+    path: '/comments/{comment_id}/replies',
     handler: Controller.fetchAll,
     config: {
-      description: 'Get a list of comments on a post',
+      description: 'Get a list of replies on a comment',
       notes: 'Get session user info',
       tags: ['api'],
       // validate: {
@@ -29,11 +29,11 @@ const Routes = {
 
   {
     method: 'POST',
-    path: '/posts/{id}/comments',
+    path: '/comments/{comment_id}/replies',
     handler: Controller.create,
     config: {
-      description: 'Create a new comment on a post',
-      notes: 'Create a new post record; scope [Admin, SuperAdmin]',
+      description: 'Create a new reply on a comment',
+      notes: 'Create a new reply record; scope [Admin, SuperAdmin]',
       tags: ['api'],
       // validate: {
       //   payload: {
@@ -62,10 +62,10 @@ const Routes = {
   },
   {
     method: 'PATCH',
-    path: '/comments/{id}',
+    path: '/replies/{id}',
     handler: Controller.update,
     config: {
-      description: 'Update a comment',
+      description: 'Update a reply',
       notes: 'Create a new post record; scope [Admin, SuperAdmin]',
       tags: ['api'],
       // validate: {
@@ -95,7 +95,7 @@ const Routes = {
   },
   {
     method: 'DELETE',
-    path: '/comments/{id}',
+    path: '/replies/{id}',
     handler: Controller.destroy,
     config: {
       description: 'Destroy a post',

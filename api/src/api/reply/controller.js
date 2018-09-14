@@ -1,18 +1,18 @@
 import Boom from 'boom';
 import Comment from '../../models/comment';
-import Post from '../../models/post';
+import Reply from '../../models/reply';
 
-const CONTROLLER = 'CommentController';
+const CONTROLLER = 'ReplyController';
 
-class CommentController {
+class ReplyController {
   async create(request) {
     try {
-      const comment = await Comment.create({
+      const reply = await Reply.create({
         text: request.payload.text,
         user_id: request.auth.credentials.user_id,
-        post_id: request.params.id
+        comment_id: request.params.comment_id
       });
-      return comment;
+      return reply;
     } catch (err) {
       return Boom.forbidden(err.message);
     }
@@ -20,7 +20,7 @@ class CommentController {
 
   async update(request) {
     try {
-      return Comment.updateById(request.params.id, {
+      return Reply.updateById(request.params.id, {
         text: request.payload.text,
       });
     } catch (err) {
@@ -30,7 +30,7 @@ class CommentController {
 
   async destroy(request) {
     try {
-      return Comment.destroyById(request.params.id);
+      return Reply.destroyById(request.params.id);
     } catch (err) {
       return Boom.forbidden(err.message);
     }
@@ -40,7 +40,7 @@ class CommentController {
     try {
       // const post = await Post.findByID(request.params.id);
       // console.log(post);
-      return Comment.byPost(request.params.id);
+      return Reply.byComment(request.params.comment_id);
     } catch (err) {
       return Boom.forbidden(err.message);
     }
@@ -48,4 +48,4 @@ class CommentController {
 
 }
 
-module.exports = new CommentController();
+module.exports = new ReplyController();

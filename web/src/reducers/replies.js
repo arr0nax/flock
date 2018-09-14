@@ -53,7 +53,7 @@ export function replies(state = DEFAULT_REPLIES_STATE, action) {
 
     case POST_REPLY_SUCCESS:
       const newReplies3 = {...state.replies};
-      newReplies3[action.payload._comment].push(action.payload);
+      newReplies3[action.payload.comment_id].push(action.payload);
       return Object.assign({}, {...state}, {
         requested: true,
         replies: newReplies3,
@@ -66,7 +66,7 @@ export function replies(state = DEFAULT_REPLIES_STATE, action) {
 
     case GET_REPLIES_SUCCESS:
       const newReplies2 = {...state.replies};
-      newReplies2[action.payload.commentId] = action.payload.replies;
+      newReplies2[action.payload.comment_id] = action.payload.replies;
       return Object.assign({}, {...state}, {
         requested: false,
         replies: newReplies2,

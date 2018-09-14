@@ -29,7 +29,7 @@ const Routes = {
 
   {
     method: 'POST',
-    path: '/users',
+    path: '/register',
     handler: UserController.create,
     config: {
       description: 'Create a new user',

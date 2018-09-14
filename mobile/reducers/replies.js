@@ -38,14 +38,14 @@ export function replies(state = DEFAULT_REPLIES_STATE, action) {
   switch (action.type) {
     case GET_COMMENTS_SUCCESS:
       const newReplies1 = {...state.replies};
-      action.payload.comments.map(comment => newReplies1[comment._id] = []);
+      action.payload.comments.map(comment => newReplies1[comment.id] = []);
       return Object.assign({}, {...state}, {
         requested: true,
         replies: newReplies1,
       });
     case POST_COMMENT_SUCCESS:
       const newReplies4 = {...state.replies};
-      newReplies4[action.payload._id] = [];
+      newReplies4[action.payload.id] = [];
       return Object.assign({}, {...state}, {
         requested: true,
         replies: newReplies4,
@@ -53,7 +53,7 @@ export function replies(state = DEFAULT_REPLIES_STATE, action) {
 
     case POST_REPLY_SUCCESS:
       const newReplies3 = {...state.replies};
-      newReplies3[action.payload._comment].push(action.payload);
+      newReplies3[action.payload.comment_id].push(action.payload);
       return Object.assign({}, {...state}, {
         requested: true,
         replies: newReplies3,
@@ -66,7 +66,7 @@ export function replies(state = DEFAULT_REPLIES_STATE, action) {
 
     case GET_REPLIES_SUCCESS:
       const newReplies2 = {...state.replies};
-      newReplies2[action.payload.commentId] = action.payload.replies;
+      newReplies2[action.payload.comment_id] = action.payload.replies;
       return Object.assign({}, {...state}, {
         requested: false,
         replies: newReplies2,

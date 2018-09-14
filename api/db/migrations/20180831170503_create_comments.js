@@ -11,7 +11,8 @@ exports.up = knex => knex.schema.createTable('comments', (table) => {
     .notNull()
     .unsigned()
     .references('id')
-    .inTable('posts');
+    .inTable('posts')
+    .onDelete('CASCADE');
 });
 
 exports.down = knex => knex.schema.dropTable('comments');

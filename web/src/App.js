@@ -85,9 +85,9 @@ class App extends Component {
 
   handleReply(post, comment) {
     this.props.dispatch(actions.reply({
-      content: this.state.reply[comment.id],
+      text: this.state.reply[comment.id],
       post_id: post.id,
-      commentId: comment.id,
+      comment_id: comment.id,
     }))
     var newReply = {
       ...this.state.reply
@@ -96,11 +96,11 @@ class App extends Component {
     this.setState({reply: newReply});
   }
 
-  handleReact(react, item, parent_id = null) {
+  handleReact(react, item_id, type) {
     this.props.dispatch(actions.react({
       react,
-      item,
-      parent_id,
+      item_id,
+      type,
     }))
   }
 
@@ -109,20 +109,29 @@ class App extends Component {
       return this.props.replies.replies[comment.id].map(reply => (
         <div className="reply">
           <text>{reply.text}</text>
-          {this.reacts(reply)}
-          <ReactCarousel react={this.handleReact.bind(this)} item={reply} parent_id={comment._post}/>
+          {this.reacts(reply, 'reply')}
+          <ReactCarousel react={this.handleReact.bind(this)} item_id={reply.id} type="reply"/>
         </div>
       ));
     }
   }
 
-  reacts(item) {
-    // if (item) {
-    //   this.props.reacts.reacts.[item.id]
-    //   return this.props.reacts.reacts[item.id].map(react => {
-    //     return <text>{react.react}</text>;
-    //   })
-    // }
+  reacts(item, type) {
+    if (item) {
+      if (type === 'post') {
+        return this.props.reacts.post_reacts[item.id].map(react => {
+          return <text>{react.react}</text>;
+        })
+      } else if (type === 'comment') {
+        return this.props.reacts.comment_reacts[item.id].map(react => {
+          return <text>{react.react}</text>;
+        })
+      } else if (type === 'reply') {
+        return this.props.reacts.reply_reacts[item.id].map(react => {
+          return <text>{react.react}</text>;
+        })
+      }
+    }
   }
 
   comments(post) {
@@ -131,9 +140,9 @@ class App extends Component {
         <div className="comment">
           <text>{comment.text}</text>
           <div className="reacts">
-            {this.reacts(comment)}
+            {this.reacts(comment, 'comment')}
           </div>
-          <ReactCarousel react={this.handleReact.bind(this)} item={comment}/>
+          <ReactCarousel react={this.handleReact.bind(this)} item_id={comment.id} type="comment"/>
           <div className="replies">
             {this.replies(comment)}
             <input value={this.state.reply[comment.id]} onChange={(e) => this.handleChangeReply(e, comment)} />
@@ -152,9 +161,9 @@ class App extends Component {
         <div className="post">
           <text>{post.text}</text>
           <div className="reacts">
-            {this.reacts(post)}
+            {this.reacts(post, 'post')}
           </div>
-          <ReactCarousel react={this.handleReact.bind(this)} item={post}/>
+          <ReactCarousel react={this.handleReact.bind(this)} item_id={post.id} type="post"/>
           <div className="comments">
             {this.comments(post)}
             <input value={this.state.comment[post.id]} onChange={(e) => this.handleChangeComment(e, post)} />

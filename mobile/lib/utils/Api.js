@@ -50,9 +50,7 @@ class Api {
       params ? { body: JSON.stringify(params) } : null,
     );
     options.headers = await Api.headers();
-    console.log(options);
     var request = new Request(route, options);
-    console.log(request);
     return fetch(request).then(resp => {
       if (resp.status === 400 || resp.status === 401 || resp.status === 404 || resp.status === 500) {
         return {error: resp};

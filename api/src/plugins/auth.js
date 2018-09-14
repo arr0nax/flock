@@ -89,6 +89,19 @@ class AuthPlugin {
         };
       },
     });
+
+    server.auth.scheme('owner', (server, options) => {
+      return {
+        authenticate: async function (request, h) {
+          console.log(request);
+          return {
+            isValid: true, credentials: {canEdit: true}
+          }
+        }
+      }
+    })
+
+    server.auth.strategy(Constants.AUTH_STRATEGIES.OWNER, 'owner');
   }
 
   static customForbiddenMessage(server) {

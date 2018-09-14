@@ -39,6 +39,14 @@ export function posts(state = DEFAULT_POSTS_STATE, action) {
         requested: true
       });
 
+    case POST_POST_SUCCESS:
+      const newPosts = [...state.posts];
+      newPosts.push(action.payload);
+      return Object.assign({}, {...state}, {
+        requested: true,
+        posts: newPosts,
+      });
+
     case GET_POSTS_SUCCESS:
       return Object.assign({}, {...state}, {
         requested: false,

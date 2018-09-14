@@ -16,6 +16,24 @@ class PostController {
     }
   }
 
+  async destroy(request) {
+    try {
+      return Post.destroyById(request.params.id);
+    } catch (err) {
+      return Boom.forbidden(err.message);
+    }
+  }
+
+  async update(request) {
+    try {
+      return Post.updateById(request.params.id, {
+        text: request.payload.text,
+      });
+    } catch (err) {
+      return Boom.forbidden(err.message);
+    }
+  }
+
   async fetchAll(request) {
     try {
       return Post.fetchAll();
