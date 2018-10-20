@@ -38,9 +38,8 @@ class CommentController {
 
   async fetchAll(request) {
     try {
-      // const post = await Post.findByID(request.params.id);
-      // console.log(post);
-      return Comment.byPost(request.params.id);
+      const post = await Post.findByID(request.params.id);
+      return post.getComments();
     } catch (err) {
       return Boom.forbidden(err.message);
     }

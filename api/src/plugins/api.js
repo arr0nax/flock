@@ -1,7 +1,13 @@
 import extend from 'extend';
 import path from 'path';
 import glob from 'glob';
+import HapiSwagger from 'hapi-swagger';
+import Inert from 'inert';
+import Vision from 'vision';
+import url from 'url';
 
+import GeneralUtil from '../utils/general';
+import to from '../utils/to';
 import Config from '../../config/config';
 
 class APIPlugin {
@@ -10,6 +16,39 @@ class APIPlugin {
   constructor() {
     this.registerApi = this.registerApi.bind(this);
     this.register = this.register.bind(this);
+  }
+
+  async registerHapiSwagger(server, config) {
+    console.log('register-HapiSwagger');
+    const [err, packageJson] = await to(GeneralUtil.readJson('../../package.json'));
+
+    if (err) {
+      this.log.error(err);
+    }
+
+    const apiURLString = config.get('apiURL');
+    const apiURL = new url.URL(apiURLString);
+    const scheme = apiURL.protocol.replace(':', '');
+    const {
+      host,
+    } = apiURL;
+
+    await server.register([
+      Inert,
+      Vision,
+      {
+      plugin: HapiSwagger,
+      options: {
+        schemes: [scheme],
+        host,
+        info: {
+          title: `${config.get('projectName')} Docs`,
+          version: packageJson.version,
+        },
+      },
+    }]);
+
+    console.log('HapiSwagger plugin registered');
   }
 
   registerApi(server, config) {
@@ -40,6 +79,8 @@ class APIPlugin {
 
     const config = Config;
     extend(true, config, options.config);
+
+    await this.registerHapiSwagger(server, config);
 
     return this.registerApi(server, config);
   }

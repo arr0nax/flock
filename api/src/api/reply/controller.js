@@ -38,9 +38,8 @@ class ReplyController {
 
   async fetchAll(request) {
     try {
-      // const post = await Post.findByID(request.params.id);
-      // console.log(post);
-      return Reply.byComment(request.params.comment_id);
+      const comment = await Comment.findByID(request.params.id);
+      return comment.getReplies();
     } catch (err) {
       return Boom.forbidden(err.message);
     }

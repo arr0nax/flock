@@ -1,4 +1,4 @@
-import Boom from 'boom';
+ import Boom from 'boom';
 import Bcrypt from 'bcryptjs';
 import User from '../../models/user';
 import Post from '../../models/post';
@@ -31,9 +31,21 @@ class UserController {
     }
   }
 
+  async fetchOne(request) {
+    try {
+      return User.getInfo(request.params.id);
+    } catch (err) {
+      return Boom.forbidden(err.message);
+    }
+  }
+
   async getPosts(request) {
     try {
-      return Post.byUser(request.auth.credentials.user_id);
+      const user = await User.findByID(request.params.id);
+      const posts = await user.getPosts();
+      const comments = await user.getComments();
+      const replies = await user.getReplies();
+      return { posts, comments, replies };
     } catch (err) {
       return Boom.forbidden(err.message);
     }

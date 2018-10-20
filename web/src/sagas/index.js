@@ -5,6 +5,7 @@ import watchPosts from './posts.js';
 import watchComments from './comments.js'
 import watchReplies from './replies.js'
 import watchReacts from './reacts.js'
+import watchUsers from './users.js'
 
 
 export default function* rootSaga() {
@@ -14,5 +15,6 @@ export default function* rootSaga() {
     watchComments(),
     watchReplies(),
     watchReacts(),
+    watchUsers(),
   ]);
 }

@@ -8,6 +8,7 @@ import {
   GET_POSTS_FAILURE,
   GET_COMMENTS_REQUEST,
   GET_REACTS_REQUEST,
+  GET_USER_REQUEST,
 } from '../lib/constants/actions';
 import Api from '../lib/utils/Api'; import { API_ENDPOINT } from '../lib/constants/api';
 
@@ -47,8 +48,10 @@ function* getPosts(payload, action) {
     } else {
       yield put({type: GET_POSTS_SUCCESS, payload: posts});
       yield all(posts.map(post => {
-        console.log(post);
         return put({type: GET_COMMENTS_REQUEST, payload: {post_id: post.id}})
+      }))
+      yield all(posts.map(post => {
+        return put({type: GET_USER_REQUEST, payload: post.user_id})
       }))
       yield all(posts.map(post => {
         return put({type: GET_REACTS_REQUEST, payload: {item_id: post.id, type: 'posts'}})

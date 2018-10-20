@@ -36,7 +36,18 @@ class PostController {
 
   async fetchAll(request) {
     try {
+      // const posts = await Post.fetchAll();
+      // const newPosts = posts.map(async (post) => {
+      //   const user = await post.getUser();
+      //   console.log(user);
+      //   return {
+      //     post,
+      //     user,
+      //   }
+      // });
       return Post.fetchAll();
+
+      return Promise.all(newPosts).then(completed => completed)
     } catch (err) {
       return Boom.forbidden(err.message);
     }

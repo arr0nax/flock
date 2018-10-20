@@ -1,5 +1,6 @@
 import Joi from 'joi';
 import Constants from '../../../config/constants';
+import Post from '../../models/post';
 
 const Controller = require('./controller');
 
@@ -35,21 +36,12 @@ const Routes = {
       description: 'Create a new post',
       notes: 'Create a new post record; scope [Admin, SuperAdmin]',
       tags: ['api'],
-      // validate: {
-      //   payload: {
-      //     uuid: Joi.string().required(),
-      //     first_name: Joi.string().required(),
-      //     last_name: Joi.string().required(),
-      //     title: Joi.string().allow(null).empty(''),
-      //     profile_image_url: Joi.string().allow(null).empty(''),
-      //     email: Joi.string().required(),
-      //     password: Joi.string().required(),
-      //     scope: Joi.string().allow(null).empty(''),
-      //   },
-      //   headers: Joi.object({
-      //     authorization: Joi.string().required(),
-      //   }).unknown(),
-      // },
+      validate: {
+        payload: Post.validation,
+        headers: Joi.object({
+          authorization: Joi.string().required(),
+        }).unknown()
+      },
       auth: {
         strategy: Constants.AUTH_STRATEGIES.SESSION,
         // scope: ['Admin'],

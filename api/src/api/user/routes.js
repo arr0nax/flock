@@ -26,6 +26,28 @@ const Routes = {
       // },
     },
   },
+  {
+    method: 'GET',
+    path: '/users/{id}',
+    handler: UserController.fetchOne,
+    config: {
+      description: 'Get a single user',
+      notes: 'get a single user',
+      tags: ['api'],
+      // validate: {
+      //   headers: Joi.object({
+      //     authorization: Joi.string().required(),
+      //   }).unknown(),
+      // },
+      // auth: {
+      //   strategy: constants.AUTH_STRATEGIES.SESSION,
+      //   scope: false,
+      // },
+      // plugins: {
+      //   policies: ['is-logged-in'],
+      // },
+    },
+  },
 
   {
     method: 'POST',
@@ -62,7 +84,7 @@ const Routes = {
   },
   {
     method: 'GET',
-    path: '/me/posts',
+    path: '/users/{id}/all',
     handler: UserController.getPosts,
     config: {
       description: 'Create a new user',
@@ -83,11 +105,11 @@ const Routes = {
       //     authorization: Joi.string().required(),
       //   }).unknown(),
       // },
-      auth: {
-        strategy: constants.AUTH_STRATEGIES.SESSION,
-        // scope: ['Admin'],
-        scope: false,
-      },
+      // auth: {
+      //   strategy: constants.AUTH_STRATEGIES.SESSION,
+      //   // scope: ['Admin'],
+      //   scope: false,
+      // },
       // plugins: {
       //   policies: ['is-admin'],
       // },

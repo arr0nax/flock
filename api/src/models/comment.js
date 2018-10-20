@@ -1,7 +1,17 @@
 import BaseModel from './base';
+import Post from './post';
+import User from './user';
+import Reply from './reply';
+import bookshelf from './db';
+import Joi from 'joi';
+
 const TABLE_NAME = 'comments';
 
 class Comment extends BaseModel {
+  static validation = {
+    text: Joi.string().required(),
+  }
+
   static get TABLE_NAME() {
     return TABLE_NAME;
   }
@@ -10,9 +20,30 @@ class Comment extends BaseModel {
     return TABLE_NAME;
   }
 
-  static byPost(id) {
-    return this.query().where('post_id', id);
+  post() {
+    return this.belongsTo(Post);
+  }
+
+  getPost() {
+    return this.post().fetch();
+  }
+
+  user() {
+    return this.belongsTo(User);
+  }
+
+  getUser() {
+    return this.user().fetch();
+  }
+
+  replies() {
+    return this.hasMany(Reply);
+  }
+
+  getReplies() {
+    return this.replies().fetch();
   }
 }
 
-module.exports = Comment;
+
+module.exports = bookshelf.model('Comment', Comment);

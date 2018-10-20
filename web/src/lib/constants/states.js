@@ -13,6 +13,11 @@ export const DEFAULT_POSTS_STATE = {
   posts: [],
 }
 
+export const DEFAULT_USERS_STATE = {
+  requested: false,
+  users: [],
+}
+
 export const DEFAULT_COMMENTS_STATE = {
   requested: false,
   comments: {},
