@@ -1,6 +1,7 @@
 import Boom from 'boom';
 import Comment from '../../models/comment';
 import Post from '../../models/post';
+import Notification from '../../models/notification';
 
 const CONTROLLER = 'CommentController';
 
@@ -12,6 +13,16 @@ class CommentController {
         user_id: request.auth.credentials.user_id,
         post_id: request.params.id
       });
+      const post = await Post.findByID(request.params.id);
+      const postUser = post.attributes.user_id;
+      console.log(comment, post);
+      Notification.create({
+        item_id: comment.attributes.id,
+        item_type: 'comment',
+        parent_id: request.params.id,
+        user_id: postUser,
+        made_by: request.auth.credentials.user_id,
+      })
       return comment;
     } catch (err) {
       return Boom.forbidden(err.message);

@@ -10,6 +10,7 @@ import {
   GET_USER_REQUEST,
   GET_USER_SUCCESS,
   GET_USER_FAILURE,
+  POST_LOGIN_SUCCESS,
 } from '../lib/constants/actions';
 import { DEFAULT_USERS_STATE } from '../lib/constants/states';
 
@@ -65,6 +66,14 @@ export function users(state = DEFAULT_USERS_STATE, action) {
       return Object.assign({}, {...state}, {
         requested: false,
         error: action.payload.error
+      });
+
+    case POST_LOGIN_SUCCESS:
+      const newUsers5 = {...state.users};
+      newUsers5[action.payload.user.id] = action.payload.user;
+      return Object.assign({}, {...state}, {
+        requested: false,
+        users: newUsers5
       });
 
     default:

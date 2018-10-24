@@ -1,5 +1,6 @@
 import Boom from 'boom';
 import Comment from '../../models/comment';
+import Notification from '../../models/notification';
 import Reply from '../../models/reply';
 
 const CONTROLLER = 'ReplyController';
@@ -10,8 +11,17 @@ class ReplyController {
       const reply = await Reply.create({
         text: request.payload.text,
         user_id: request.auth.credentials.user_id,
-        comment_id: request.params.comment_id
+        comment_id: request.params.id
       });
+      const comment = await Comment.findByID(request.params.id);
+      const commentUser = comment.attributes.user_id;
+      Notification.create({
+        item_id: reply.attributes.id,
+        item_type: 'reply',
+        user_id: commentUser,
+        parent_id: request.params.id,
+        made_by: request.auth.credentials.user_id,
+      })
       return reply;
     } catch (err) {
       return Boom.forbidden(err.message);

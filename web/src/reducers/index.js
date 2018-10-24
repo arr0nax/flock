@@ -6,6 +6,7 @@ import { comment, comments } from './comments';
 import { reply, replies } from './replies';
 import { react, reacts } from './reacts';
 import { users } from './users';
+import { notifications } from './notifications';
 
 
 const rootReducer = combineReducers({
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   react,
   reacts,
   users,
+  notifications,
 });
 
 

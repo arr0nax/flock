@@ -65,11 +65,11 @@ class User extends BaseModel {
 
   static async getInfo(id) {
     const user = await this.findByID(id);
-    console.log(user);
     return {
       first_name: user.attributes.first_name,
       last_name: user.attributes.last_name,
       id: id,
+      image_url: user.attributes.image_url,
     }
   }
 
@@ -91,6 +91,17 @@ class User extends BaseModel {
       }
     });
   }
+
+  static updateProfileImage(data, url) {
+    console.log(data, url);
+    return this.forge({
+      'id': data.user_id,
+    }).fetch()
+      .then(model => (model
+        ? model.save({ image_url: url }, { patch: true }) : undefined),
+      );
+  }
+
 }
 
 module.exports = bookshelf.model('User', User);

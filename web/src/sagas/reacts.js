@@ -16,7 +16,7 @@ const executePostReact = (payload) => {
   let root = `${API_ENDPOINT}/reacts`
   return Api.post(root, {
       react: payload.payload.react,
-      type: payload.payload.type,
+      item_type: payload.payload.type,
       item_id: payload.payload.item_id,
     }).then((val) => {
       return val;

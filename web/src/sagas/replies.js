@@ -7,6 +7,7 @@ import {
   GET_REPLIES_SUCCESS,
   GET_REPLIES_FAILURE,
   GET_REACTS_REQUEST,
+  GET_USER_REQUEST,
 } from '../lib/constants/actions';
 import Api from '../lib/utils/Api'; import { API_ENDPOINT } from '../lib/constants/api';
 
@@ -49,6 +50,9 @@ function* getReplies(payload, action) {
       yield put({type: GET_REPLIES_SUCCESS, payload: {replies: replies, post_id: payload.payload.post_id, comment_id: payload.payload.comment_id}});
       yield all(replies.map(reply => {
         return put({type: GET_REACTS_REQUEST, payload: {item_id: reply.id, type: 'replies'}})
+      }))
+      yield all(replies.map(reply => {
+        return put({type: GET_USER_REQUEST, payload: reply.user_id})
       }))
     }
   } catch (error) {

@@ -59,7 +59,7 @@ export function auth(state = DEFAULT_AUTH_STATE, action) {
       return Object.assign({}, {...state}, {
         requested: false,
         auth: action.payload,
-        logged_in: true,
+        logged_in: false,
       });
 
     case POST_REGISTER_FAILURE:

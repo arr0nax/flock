@@ -10,6 +10,7 @@ import {
   POST_LOGOUT_SUCCESS,
   POST_LOGOUT_FAILURE,
   GET_POSTS_REQUEST,
+  GET_NOTIFICATIONS_REQUEST,
 } from '../lib/constants/actions';
 import Api from '../lib/utils/Api';
 import { API_ENDPOINT } from '../lib/constants/api';
@@ -29,6 +30,7 @@ function* postLogin(payload, action) {
     } else {
       yield put({type: POST_LOGIN_SUCCESS, payload: login});
       yield put({type: GET_POSTS_REQUEST})
+      yield put({type: GET_NOTIFICATIONS_REQUEST})
     }
   } catch (error) {
     yield put({type: POST_LOGIN_FAILURE, payload: error});

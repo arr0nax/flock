@@ -9,7 +9,7 @@ class ReactController {
       const react = await React.create({
         react: request.payload.react,
         user_id: request.auth.credentials.user_id,
-        type: request.payload.type,
+        item_type: request.payload.item_type,
         item_id: request.payload.item_id,
       });
       return react;

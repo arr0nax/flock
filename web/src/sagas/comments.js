@@ -8,6 +8,7 @@ import {
   GET_COMMENTS_FAILURE,
   GET_REPLIES_REQUEST,
   GET_REACTS_REQUEST,
+  GET_USER_REQUEST,
 } from '../lib/constants/actions';
 import Api from '../lib/utils/Api';
 import { API_ENDPOINT } from '../lib/constants/api';
@@ -51,6 +52,9 @@ function* getComments(payload, action) {
       yield put({type: GET_COMMENTS_SUCCESS, payload: {comments: comments, post_id: payload.payload.post_id}});
       yield all(comments.map(comment => {
         return put({type: GET_REPLIES_REQUEST, payload: {post_id: payload.payload.post_id, comment_id: comment.id}})
+      }))
+      yield all(comments.map(comment => {
+        return put({type: GET_USER_REQUEST, payload: comment.user_id})
       }))
       yield all(comments.map(comment => {
         return put({type: GET_REACTS_REQUEST, payload: {item_id: comment.id, type: "comments"}})

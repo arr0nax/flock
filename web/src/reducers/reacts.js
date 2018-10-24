@@ -134,28 +134,28 @@ export function reacts(state = DEFAULT_REACTS_STATE, action) {
 
     case POST_REACT_SUCCESS:
       let newReacts6;
-      if (action.payload.type === "post") {
+      if (action.payload.item_type === "post") {
         newReacts6 = {...state.post_reacts};
-      } else if (action.payload.type === "comment") {
+      } else if (action.payload.item_type === "comment") {
         newReacts6 = {...state.comment_reacts};
-      } else if (action.payload.type === "reply") {
+      } else if (action.payload.item_type === "reply") {
         newReacts6 = {...state.reply_reacts};
       }
       newReacts6[action.payload.item_id] = [
         ...newReacts6[action.payload.item_id],
         action.payload,
       ];
-      if (action.payload.type === "post") {
+      if (action.payload.item_type === "post") {
         return Object.assign({}, {...state}, {
           requested: false,
           post_reacts: newReacts6,
         });
-      } else if (action.payload.type === "comment") {
+      } else if (action.payload.item_type === "comment") {
         return Object.assign({}, {...state}, {
           requested: false,
           comment_reacts: newReacts6,
         });
-      } else if (action.payload.type === "reply") {
+      } else if (action.payload.item_type === "reply") {
         return Object.assign({}, {...state}, {
           requested: false,
           reply_reacts: newReacts6,

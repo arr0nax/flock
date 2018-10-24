@@ -7,7 +7,7 @@ import Joi from 'joi';
 class React extends BaseModel {
   static validation = {
     react: Joi.string().required(),
-    type: Joi.string().required(),
+    item_type: Joi.string().required(),
     item_id: Joi.number().required(),
   }
 
@@ -20,15 +20,15 @@ class React extends BaseModel {
   }
 
   static byPost(id) {
-    return this.query().where({type: 'post', item_id: id});
+    return this.query().where({item_type: 'post', item_id: id});
   }
 
   static byComment(id) {
-    return this.query().where({type: 'comment', item_id: id});
+    return this.query().where({item_type: 'comment', item_id: id});
   }
 
   static byReply(id) {
-    return this.query().where({type: 'reply', item_id: id});
+    return this.query().where({item_type: 'reply', item_id: id});
   }
 
   user() {

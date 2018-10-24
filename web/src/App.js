@@ -4,6 +4,8 @@ import logo from './logo.svg';
 import './App.css';
 import actions from './actions';
 import ReactCarousel from './components/react-carousel';
+import FileUpload from './components/file-upload';
+import UserSummary from './components/user-summary';
 
 
 class App extends Component {
@@ -62,6 +64,8 @@ class App extends Component {
     this.props.dispatch(actions.register({
       email: this.state.email,
       password: this.state.password,
+      first_name: 'double',
+      last_name: 'chicken',
     }))
   }
 
@@ -104,10 +108,18 @@ class App extends Component {
     }))
   }
 
+  notifications() {
+    return this.props.notifications.notifications.map(notif => (
+      <div className="notification">
+        <text>{notif.made_by} left a {notif.item_type} on your {notif.parent_id}</text>
+      </div>
+    ))};
+
   replies(comment) {
     if (comment) {
       return this.props.replies.replies[comment.id].map(reply => (
         <div className="reply">
+          <UserSummary user={this.props.users.users[reply.user_id]} />
           <text>{reply.text}</text>
           {this.reacts(reply, 'reply')}
           <ReactCarousel react={this.handleReact.bind(this)} item_id={reply.id} type="reply"/>
@@ -138,6 +150,7 @@ class App extends Component {
     return this.props.comments.comments[post.id].map(comment => {
       return (
         <div className="comment">
+          <UserSummary user={this.props.users.users[comment.user_id]} />
           <text>{comment.text}</text>
           <div className="reacts">
             {this.reacts(comment, 'comment')}
@@ -159,6 +172,7 @@ class App extends Component {
     return this.props.posts.posts.map(post => {
       return (
         <div className="post">
+          <UserSummary user={this.props.users.users[post.user_id]} />
           <text>{post.text}</text>
           <div className="reacts">
             {this.reacts(post, 'post')}
@@ -180,8 +194,14 @@ class App extends Component {
     return (
       <div className="App">
       {this.props.auth.logged_in ? (
-        <div className="button" onClick={() => this.handleLogout()}>
-          <text>logout</text>
+        <div>
+          <div className="button" onClick={() => this.handleLogout()}>
+            <text>{this.props.auth.auth.user.first_name} {this.props.auth.auth.user.last_name}</text>
+            <img src={this.props.auth.auth.user.image_url} />
+            <text>logout</text>
+          </div>
+          <FileUpload item_id={this.props.auth.auth.user.id}/>
+          {this.notifications()}
         </div>
       ) : (
         null
@@ -213,10 +233,12 @@ class App extends Component {
 function mapStateToProps(state) {
   return {
     auth: state.auth,
+    users: state.users,
     posts: state.posts,
     comments: state.comments,
     replies: state.replies,
     reacts: state.reacts,
+    notifications: state.notifications,
   }
 }
 

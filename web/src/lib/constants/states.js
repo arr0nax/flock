@@ -1,16 +1,25 @@
 export const DEFAULT_AUTH_STATE = {
-  name: "",
-  id: null,
   logged_in: false,
   requested: false,
   auth: {
-
-  }
+    token: '',
+    user: {
+      first_name: '',
+      last_name: '',
+      id: null,
+      image_url: '',
+    }
+  },
 }
 
 export const DEFAULT_POSTS_STATE = {
   requested: false,
   posts: [],
+}
+
+export const DEFAULT_NOTIFICATIONS_STATE = {
+  requested: false,
+  notifications: [],
 }
 
 export const DEFAULT_USERS_STATE = {
