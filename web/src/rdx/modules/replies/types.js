@@ -1,0 +1,4 @@
+export default {
+  GET_REPLIES_REQUEST: 'GET_REPLIES_REQUEST',
+  SET_REPLIES: 'SET_REPLIES',
+};

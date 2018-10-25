@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import logo from './logo.svg';
 import './App.css';
-import actions from './actions';
+
+import { getRdxActionMapper, getRdxSelectionMapper } from 'rdx/utils/propsMapping';
+
 import ReactCarousel from './components/react-carousel';
 import FileUpload from './components/file-upload';
 import UserSummary from './components/user-summary';
@@ -18,7 +22,7 @@ class App extends Component {
       comment: {},
       reply: {}
     }
-    this.props.dispatch(actions.getPosts());
+    this.props.getPosts();
   }
 
   handleChangeEmail(event) {
@@ -50,36 +54,36 @@ class App extends Component {
   }
 
   handleLogin() {
-    this.props.dispatch(actions.login({
+    this.props.requestLogin({
       email: this.state.email,
       password: this.state.password,
-    }));
+    });
   }
 
   handleLogout() {
-    this.props.dispatch(actions.logout());
+    this.props.requestLogout();
   }
 
   handleRegister() {
-    this.props.dispatch(actions.register({
+    this.props.register({
       email: this.state.email,
       password: this.state.password,
       first_name: 'double',
       last_name: 'chicken',
-    }))
+    })
   }
 
   handlePost() {
-    this.props.dispatch(actions.post({
+    this.props.postPost({
       text: this.state.post
-    }))
+    })
   }
 
   handleComment(post) {
-    this.props.dispatch(actions.comment({
+    this.props.postComment({
       text: this.state.comment[post.id],
       post_id: post.id,
-    }))
+    })
     var newComment = {
       ...this.state.comment
     };
@@ -88,11 +92,11 @@ class App extends Component {
   }
 
   handleReply(post, comment) {
-    this.props.dispatch(actions.reply({
+    this.props.reply({
       text: this.state.reply[comment.id],
       post_id: post.id,
       comment_id: comment.id,
-    }))
+    })
     var newReply = {
       ...this.state.reply
     };
@@ -101,11 +105,11 @@ class App extends Component {
   }
 
   handleReact(react, item_id, type) {
-    this.props.dispatch(actions.react({
+    this.props.react({
       react,
       item_id,
       type,
-    }))
+    })
   }
 
   notifications() {
@@ -117,9 +121,9 @@ class App extends Component {
 
   replies(comment) {
     if (comment) {
-      return this.props.replies.replies[comment.id].map(reply => (
+      return this.props.replies[comment.id] && this.props.replies[comment.id].map(reply => (
         <div className="reply">
-          <UserSummary user={this.props.users.users[reply.user_id]} />
+          {/*<UserSummary user={this.props.users.users[reply.user_id]} />*/}
           <text>{reply.text}</text>
           {this.reacts(reply, 'reply')}
           <ReactCarousel react={this.handleReact.bind(this)} item_id={reply.id} type="reply"/>
@@ -131,15 +135,15 @@ class App extends Component {
   reacts(item, type) {
     if (item) {
       if (type === 'post') {
-        return this.props.reacts.post_reacts[item.id].map(react => {
+        return this.props.post_reacts[item.id] && this.props.post_reacts[item.id].map(react => {
           return <text>{react.react}</text>;
         })
       } else if (type === 'comment') {
-        return this.props.reacts.comment_reacts[item.id].map(react => {
+        return this.props.comment_reacts[item.id] && this.props.comment_reacts[item.id].map(react => {
           return <text>{react.react}</text>;
         })
       } else if (type === 'reply') {
-        return this.props.reacts.reply_reacts[item.id].map(react => {
+        return this.props.reply_reacts[item.id] && this.props.reply_reacts[item.id].map(react => {
           return <text>{react.react}</text>;
         })
       }
@@ -147,10 +151,10 @@ class App extends Component {
   }
 
   comments(post) {
-    return this.props.comments.comments[post.id].map(comment => {
+    return this.props.comments[post.id] && this.props.comments[post.id].map(comment => {
       return (
         <div className="comment">
-          <UserSummary user={this.props.users.users[comment.user_id]} />
+          {/*<UserSummary user={this.props.users.users[comment.user_id]} /> */}
           <text>{comment.text}</text>
           <div className="reacts">
             {this.reacts(comment, 'comment')}
@@ -169,10 +173,10 @@ class App extends Component {
   }
 
   posts() {
-    return this.props.posts.posts.map(post => {
+    return this.props.posts.map(post => {
       return (
         <div className="post">
-          <UserSummary user={this.props.users.users[post.user_id]} />
+          {/* <UserSummary user={this.props.users.users[post.user_id]} */}
           <text>{post.text}</text>
           <div className="reacts">
             {this.reacts(post, 'post')}
@@ -193,15 +197,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      {this.props.auth.logged_in ? (
+      {this.props.logged_in ? (
         <div>
           <div className="button" onClick={() => this.handleLogout()}>
-            <text>{this.props.auth.auth.user.first_name} {this.props.auth.auth.user.last_name}</text>
-            <img src={this.props.auth.auth.user.image_url} />
+            <text>{this.props.user.first_name} {this.props.user.last_name}</text>
+            <img src={this.props.user.image_url} />
             <text>logout</text>
           </div>
-          <FileUpload item_id={this.props.auth.auth.user.id}/>
-          {this.notifications()}
+          <FileUpload item_id={this.props.user.id}/>
+          {/* this.notifications() */}
         </div>
       ) : (
         null
@@ -242,4 +246,36 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(App);
+App.propTypes = {
+
+};
+
+App.defaultProps = {
+  getPosts: () => {},
+  postLogin: () => {},
+  postLogout: () => {},
+  auth: {},
+  posts: {posts: []}
+};
+
+const actionsMapper = getRdxActionMapper([
+  'getPosts',
+  'requestLogin',
+  'requestLogout',
+  'postPost',
+  'postComment',
+]);
+
+const stateMapper = getRdxSelectionMapper({
+  auth: 'getAuth',
+  user: 'getUser',
+  logged_in: 'getLoggedIn',
+  posts: 'getPosts',
+  comments: 'getComments',
+  replies: 'getReplies',
+  post_reacts: 'getPostReacts',
+  comment_reacts: 'getCommentReacts',
+  reply_reacts: 'getReplyReacts',
+});
+
+export default connect(stateMapper, actionsMapper)(App);

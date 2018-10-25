@@ -3,18 +3,49 @@
   "version": "0.1.1",
   "private": true,
   "dependencies": {
+    "classnames": "^2.2.6",
+    "connected-react-router": "^4.3.0",
+    "history": "^4.7.2",
+    "isomorphic-fetch": "^2.2.1",
+    "lodash": "^4.17.10",
+    "moment": "^2.22.2",
+    "node-sass-chokidar": "^1.3.0",
+    "npm-run-all": "^4.1.3",
+    "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
-    "react-scripts": "1.1.4",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "^2.0.5",
     "redux": "^4.0.0",
+    "redux-devtools-extension": "^2.13.5",
     "redux-logger": "^3.0.6",
-    "redux-saga": "^0.16.0"
+    "redux-persist": "^5.10.0",
+    "redux-saga": "^0.16.0",
+    "reselect": "^4.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start-js": "react-scripts start",
+    "start": "npm-run-all -p watch-css start-js",
+    "build-js": "react-scripts build",
+    "build": "npm-run-all build-css build-js",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+    "eject": "react-scripts eject",
+    "generate": "./node_modules/.bin/plop --plopfile internals/generators/index.js",
+    "build-css": "./node_modules/.bin/node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css": "npm run build-css && ./node_modules/.bin/node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "lint-js": "./node_modules/.bin/eslint src/ --fix",
+    "lint-sass": "./node_modules/.bin/sass-lint -c .sass-lint.yml -v -q"
+  },
+  "devDependencies": {
+    "plop": "^2.1.0",
+    "sass-lint": "^1.12.1"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

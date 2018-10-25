@@ -41,6 +41,9 @@ const Routes = {
         params: {
           id: Joi.number().min(1),
         },
+        headers: Joi.object({
+          authorization: Joi.string().required(),
+        }).unknown(),
       },
       auth: {
         strategy: Constants.AUTH_STRATEGIES.SESSION,
