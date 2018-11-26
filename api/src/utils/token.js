@@ -38,7 +38,7 @@ class Token {
     },
     this.tokenSecret, {
       algorithm: Token.ALGO,
-      expiresIn: Constants.EXPIRATION_PERIOD.MEDIUM,
+      expiresIn: Constants.EXPIRATION_PERIOD.LONG,
     },
     );
     return token;

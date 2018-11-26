@@ -1,5 +1,9 @@
 import Boom from 'boom';
 import React from '../../models/react';
+import Post from '../../models/post';
+import Comment from '../../models/comment';
+import Reply from '../../models/reply';
+import Notification from '../../models/notification';
 
 const CONTROLLER = 'ReactController';
 
@@ -12,6 +16,47 @@ class ReactController {
         item_type: request.payload.item_type,
         item_id: request.payload.item_id,
       });
+
+      //////Notification
+      switch(request.payload.item_type) {
+        case 'post':
+          const post = await Post.findByID(request.payload.item_id);
+          const postUser = post.attributes.user_id;
+          Notification.create({
+            item_id: react.attributes.id,
+            item_type: 'react',
+            user_id: postUser,
+            parent_id: post.attributes.id,
+            parent_type: request.payload.item_type,
+            made_by: request.auth.credentials.user_id,
+          });
+          break;
+        case 'comment':
+          const comment = await Comment.findByID(request.payload.item_id);
+          const commentUser = comment.attributes.user_id;
+          Notification.create({
+            item_id: react.attributes.id,
+            item_type: 'react',
+            user_id: commentUser,
+            parent_id: comment.attributes.id,
+            parent_type: request.payload.item_type,
+            made_by: request.auth.credentials.user_id,
+          });
+          break;
+        case 'reply':
+          const reply = await Reply.findByID(request.payload.item_id);
+          const replyUser = reply.attributes.user_id;
+          Notification.create({
+            item_id: react.attributes.id,
+            item_type: 'react',
+            user_id: replyUser,
+            parent_id: reply.attributes.id,
+            parent_type: request.payload.item_type,
+            made_by: request.auth.credentials.user_id,
+          });
+          break;
+      }
+
       return react;
     } catch (err) {
       return Boom.forbidden(err.message);

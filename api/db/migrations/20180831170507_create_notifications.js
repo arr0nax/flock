@@ -11,8 +11,13 @@ exports.up = knex => knex.schema.createTable('notifications', (table) => {
     .references('id')
     .inTable('users');
   table.integer('parent_id')
+    .unsigned()
+    .notNull();
+  table.string('parent_type')
+    .notNull();
+  table.boolean('new')
     .notNull()
-    .unsigned();
+    .defaultTo(true)
 
   table.string('item_type').notNull();
   table.integer('item_id')

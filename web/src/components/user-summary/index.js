@@ -11,11 +11,20 @@ class UserSummary extends React.Component {
   render() {
     return (
       <div className="user-summary">
-        <text>{this.props.user.first_name} {this.props.user.last_name}</text>
         <img src={this.props.user.image_url} />
+        <text>{this.props.user.first_name} {this.props.user.last_name}</text>
       </div>
     );
   }
 }
+
+UserSummary.propTypes = {
+
+};
+
+UserSummary.defaultProps = {
+  user: {},
+};
+
 
 export default UserSummary;

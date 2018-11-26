@@ -1,16 +1,14 @@
 import actions from 'rdx/actions';
 
-// const clearAuthTokenAction = actions.setAuthToken('');
-
 export default ({ error, target, message }) => {
-  // if (error.statusCode === 401) {
-  //   const unauthorizedErr = { text: 'Your session has expired, please log in again' };
-  //   return [
-  //     clearAuthTokenAction,
-  //     actions.newErrorEvent(unauthorizedErr),
-  //   ];
-  // }
+  console.log('hello', error, target, message);
+  if (error.statusCode === 401 || error.text === 'Expired token' || error.text
+=== 'Invalid credentials') {
+    const unauthorizedErr = { text: 'Your session has expired, please log in again' };
+    console.log('hello');
+    return actions.setAuthToken('')
+  }
   const newErr = { ...error, target };
   if (message) newErr.message = message;
-  return [actions.newErrorEvent(newErr)];
+  return null;
 };

@@ -1,5 +1,6 @@
 import Joi from 'joi';
 import User from '../../models/user';
+import Constants from '../../../config/constants.js';
 
 const AuthController = require('./controller');
 
@@ -14,17 +15,27 @@ const Routes = {
       tags: ['api'],
       validate: {
         payload: User.validation.login,
-        // headers: Joi.object({
-        //   authorization: Joi.string().required(),
-        // }).unknown(),
       },
-      // auth: {
-      //   strategy: constants.AUTH_STRATEGIES.SESSION,
-      //   // scope: ['Admin'],
-      //   scope: false,
-      // },
+    },
+  },   {
+    method: 'GET',
+    path: '/logout',
+    handler: AuthController.logout,
+    config: {
+      description: 'Logout and remove session',
+      notes: 'Remove the session',
+      tags: ['api'],
+      validate: {
+        headers: Joi.object({
+          authorization: Joi.string().required(),
+        }).unknown(),
+      },
+      auth: {
+        strategy: Constants.AUTH_STRATEGIES.SESSION,
+        scope: false,
+      },
       // plugins: {
-      //   policies: ['is-admin'],
+      //   policies: [AuditLog.create({})],
       // },
     },
   }]

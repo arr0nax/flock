@@ -11,9 +11,9 @@ function* getPosts(action) {
     yield all(data.map(post => {
       return put(actions.getComments(post.id))
     }))
-    // yield all(posts.map(post => {
-    //   return put({type: GET_USER_REQUEST, payload: post.user_id})
-    // }))
+    yield all(data.map(post => {
+      return put(actions.getUser(post.user_id))
+    }))
     yield all(data.map(post => {
       return put(actions.getReacts({item_id: post.id, type: 'posts'}))
     }))

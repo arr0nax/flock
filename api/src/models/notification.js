@@ -19,7 +19,18 @@ class Notification extends BaseModel {
   }
 
   static byUser(id) {
-    return this.query().where({user_id: id});
+    return this.query().where({user_id: id}).orderBy(id, 'DESC');
+  }
+
+  static markSeenByUser(id) {
+    return this.forge({
+      'user_id': id,
+    }).fetchAll()
+      .then(models => {
+        console.log('models', models);
+        models.map(model => model ? model.save({ new: false }, { patch: true }) : undefined)
+      }
+    );
   }
 
   user() {

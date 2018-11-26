@@ -11,6 +11,12 @@ function* getComments(action) {
     yield all(data.map(comment => {
       return put(actions.getReplies(comment.id))
     }))
+    yield all(data.map(post => {
+      return put(actions.getReacts({item_id: post.id, type: 'comments'}))
+    }))
+    yield all(data.map(post => {
+      return put(actions.getUser(post.user_id))
+    }))
   } else {
     return getErrorActions({ error });
   }

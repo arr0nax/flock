@@ -16,6 +16,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      first_name: '',
+      last_name: '',
       email: '',
       password: '',
       post: '',
@@ -23,6 +25,15 @@ class App extends Component {
       reply: {}
     }
     this.props.getPosts();
+    if (this.props.logged_in) this.props.getNotifications();
+  }
+
+  handleChangeFirstName(event) {
+    this.setState({first_name: event.target.value});
+  }
+
+  handleChangeLastName(event) {
+    this.setState({last_name: event.target.value});
   }
 
   handleChangeEmail(event) {
@@ -65,11 +76,11 @@ class App extends Component {
   }
 
   handleRegister() {
-    this.props.register({
+    this.props.requestRegister({
       email: this.state.email,
       password: this.state.password,
-      first_name: 'double',
-      last_name: 'chicken',
+      first_name: this.state.first_name,
+      last_name: this.state.last_name,
     })
   }
 
@@ -92,7 +103,7 @@ class App extends Component {
   }
 
   handleReply(post, comment) {
-    this.props.reply({
+    this.props.postReply({
       text: this.state.reply[comment.id],
       post_id: post.id,
       comment_id: comment.id,
@@ -104,26 +115,44 @@ class App extends Component {
     this.setState({reply: newReply});
   }
 
-  handleReact(react, item_id, type) {
-    this.props.react({
+  handleReact(react, item_id, item_type) {
+    this.props.postReact({
       react,
       item_id,
-      type,
+      item_type,
     })
   }
 
   notifications() {
-    return this.props.notifications.notifications.map(notif => (
-      <div className="notification">
-        <text>{notif.made_by} left a {notif.item_type} on your {notif.parent_id}</text>
+    return this.props.notifications.map(notif => (
+      <div className={`notification ${notif.new ? 'new' : ''}`}>
+        <text>{notif.made_by} left a {notif.item_type} on your {notif.parent_type}</text>
       </div>
     ))};
+
+  reacts(item, item_type) {
+    if (item) {
+      if (item_type === 'post') {
+        return this.props.post_reacts[item.id] && this.props.post_reacts[item.id].map(react => {
+          return <text>{react.react}</text>;
+        })
+      } else if (item_type === 'comment') {
+        return this.props.comment_reacts[item.id] && this.props.comment_reacts[item.id].map(react => {
+          return <text>{react.react}</text>;
+        })
+      } else if (item_type === 'reply') {
+        return this.props.reply_reacts[item.id] && this.props.reply_reacts[item.id].map(react => {
+          return <text>{react.react}</text>;
+        })
+      }
+    }
+  }
 
   replies(comment) {
     if (comment) {
       return this.props.replies[comment.id] && this.props.replies[comment.id].map(reply => (
         <div className="reply">
-          {/*<UserSummary user={this.props.users.users[reply.user_id]} />*/}
+          <UserSummary user={this.props.users[reply.user_id]} />
           <text>{reply.text}</text>
           {this.reacts(reply, 'reply')}
           <ReactCarousel react={this.handleReact.bind(this)} item_id={reply.id} type="reply"/>
@@ -132,29 +161,11 @@ class App extends Component {
     }
   }
 
-  reacts(item, type) {
-    if (item) {
-      if (type === 'post') {
-        return this.props.post_reacts[item.id] && this.props.post_reacts[item.id].map(react => {
-          return <text>{react.react}</text>;
-        })
-      } else if (type === 'comment') {
-        return this.props.comment_reacts[item.id] && this.props.comment_reacts[item.id].map(react => {
-          return <text>{react.react}</text>;
-        })
-      } else if (type === 'reply') {
-        return this.props.reply_reacts[item.id] && this.props.reply_reacts[item.id].map(react => {
-          return <text>{react.react}</text>;
-        })
-      }
-    }
-  }
-
   comments(post) {
     return this.props.comments[post.id] && this.props.comments[post.id].map(comment => {
       return (
         <div className="comment">
-          {/*<UserSummary user={this.props.users.users[comment.user_id]} /> */}
+          <UserSummary user={this.props.users[comment.user_id]} />
           <text>{comment.text}</text>
           <div className="reacts">
             {this.reacts(comment, 'comment')}
@@ -176,7 +187,7 @@ class App extends Component {
     return this.props.posts.map(post => {
       return (
         <div className="post">
-          {/* <UserSummary user={this.props.users.users[post.user_id]} */}
+          <UserSummary user={this.props.users[post.user_id]} />
           <text>{post.text}</text>
           <div className="reacts">
             {this.reacts(post, 'post')}
@@ -204,22 +215,25 @@ class App extends Component {
             <img src={this.props.user.image_url} />
             <text>logout</text>
           </div>
-          <FileUpload item_id={this.props.user.id}/>
-          {/* this.notifications() */}
+          <FileUpload item_id={this.props.user.id} auth={this.props.auth}/>
+          {this.notifications()}
         </div>
       ) : (
-        null
-      )}
         <div>
-          <input value={this.state.email} onChange={(e) => this.handleChangeEmail(e)}/>
-          <input type="password" value={this.state.password} onChange={(e) => this.handleChangePassword(e)}/>
-          <div className="button" onClick={() => this.handleLogin()}>
-            <text>login</text>
+          <div>
+            <input placeholder="first name" value={this.state.first_name} onChange={(e) => this.handleChangeFirstName(e)}/>
+            <input placeholder="last name" value={this.state.last_name} onChange={(e) => this.handleChangeLastName(e)}/>
           </div>
-          <div className="button" onClick={() => this.handleRegister()}>
-            <text>register</text>
+          <div>
+            <input placeholder="email" value={this.state.email} onChange={(e) => this.handleChangeEmail(e)}/>
+            <input placeholder="password" type="password" value={this.state.password} onChange={(e) => this.handleChangePassword(e)}/>
+          </div>
+          <div>
+            <text onClick={() => this.handleLogin()}>login</text>
+            <text onClick={() => this.handleRegister()}>register</text>
           </div>
         </div>
+      )}
         <div>
           <input value={this.state.post} onChange={(e) => this.handleChangePost(e)} />
           <div className="button" onClick={() => this.handlePost()}>
@@ -264,11 +278,16 @@ const actionsMapper = getRdxActionMapper([
   'requestLogout',
   'postPost',
   'postComment',
+  'postReply',
+  'postReact',
+  'getNotifications',
+  'requestRegister'
 ]);
 
 const stateMapper = getRdxSelectionMapper({
-  auth: 'getAuth',
+  auth: 'getAuthToken',
   user: 'getUser',
+  users: 'getUsers',
   logged_in: 'getLoggedIn',
   posts: 'getPosts',
   comments: 'getComments',
@@ -276,6 +295,7 @@ const stateMapper = getRdxSelectionMapper({
   post_reacts: 'getPostReacts',
   comment_reacts: 'getCommentReacts',
   reply_reacts: 'getReplyReacts',
+  notifications: 'getNotifications',
 });
 
 export default connect(stateMapper, actionsMapper)(App);

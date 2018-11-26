@@ -6,7 +6,9 @@ const CONTROLLER = 'ReactController';
 class NotificationController {
   async fetchNotifications(request) {
     try {
-      return Notification.byUser(request.auth.credentials.user_id,);
+      const notifications = await Notification.byUser(request.auth.credentials.user_id);
+      const notificationsSeen = await Notification.markSeenByUser(request.auth.credentials.user_id);
+      return notifications;
     } catch (err) {
       return Boom.forbidden(err.message);
     }

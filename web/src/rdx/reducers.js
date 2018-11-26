@@ -5,6 +5,9 @@ import activerequestsReducers from 'rdx/modules/activeRequests/reducers';
 import commentsReducers from 'rdx/modules/comments/reducers';
 import repliesReducers from 'rdx/modules/replies/reducers';
 import reactsReducers from 'rdx/modules/reacts/reducers';
+import usersReducers from 'rdx/modules/users/reducers';
+import notificationsReducers from 'rdx/modules/notifications/reducers';
+import attachmentsReducers from 'rdx/modules/attachments/reducers';
 // IMPORT_PT (for script -- do not remove!)
 
 export const reducers = {
@@ -14,6 +17,9 @@ export const reducers = {
   ...commentsReducers,
   ...repliesReducers,
   ...reactsReducers,
+  ...usersReducers,
+  ...notificationsReducers,
+  ...attachmentsReducers,
 // INSERTION_PT (for script -- do not remove!)
 };
 

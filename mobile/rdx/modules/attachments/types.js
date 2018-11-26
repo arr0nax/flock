@@ -1,0 +1,3 @@
+export default {
+  POST_ATTACHMENT_REQUEST: 'POST_ATTACHMENT_REQUEST',
+};

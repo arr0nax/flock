@@ -9,5 +9,11 @@ export default {
       newState[action.payload.parent_id] = action.payload.data;
       return newState;
     },
+    [types.ADD_REPLY](state, action) {
+      var newState = {...state};
+      newState[action.payload.parent_id] ? newState[action.payload.parent_id].push(action.payload.data) :
+      newState[action.payload.parent_id] = [action.payload.data];
+      return newState;
+    },
   }),
 };

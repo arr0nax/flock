@@ -9,15 +9,39 @@ export default {
       newState[action.payload.parent_id] = action.payload.data;
       return newState;
     },
+    [types.ADD_POST_REACT](state, action) {
+      let newState = {...state}
+      console.log(newState, state);
+      newState[action.payload.item_id] ? newState[action.payload.item_id].unshift(action.payload) : newState[action.payload.item_id] = [action.payload];
+      return newState;
+    },
   }),
   comment_reacts: createReducer(states.DEFAULT_COMMENT_REACTS_STATE, {
     [types.SET_COMMENT_REACTS](state, action) {
-      return state;
+      var newState = {...state};
+      newState[action.payload.parent_id] = action.payload.data;
+      return newState;
+    },
+    [types.ADD_COMMENT_REACT](state, action) {
+      console.log(state, action);
+      let newState = {...state}
+      console.log(newState, state);
+      newState[action.payload.item_id] ? newState[action.payload.item_id].unshift(action.payload) : newState[action.payload.item_id] = [action.payload];
+      return newState;
     },
   }),
   reply_reacts: createReducer(states.DEFAULT_REPLY_REACTS_STATE, {
     [types.SET_REPLY_REACTS](state, action) {
-      return state;
+      var newState = {...state};
+      newState[action.payload.parent_id] = action.payload.data;
+      return newState;
+    },
+    [types.ADD_REPLY_REACT](state, action) {
+      console.log(state, action);
+      let newState = {...state}
+      console.log(newState, state);
+      newState[action.payload.item_id] ? newState[action.payload.item_id].unshift(action.payload) : newState[action.payload.item_id] = [action.payload];
+      return newState;
     },
   }),
 };

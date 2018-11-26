@@ -1,10 +1,9 @@
-import React from 'react';
+import {default as React} from 'react';
 import { StyleSheet, View, Button } from 'react-native';
 
 class ReactCarousel extends React.Component {
   constructor(props) {
     super(props);
-    console.log('hello');
     this.state = {};
   }
 

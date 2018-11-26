@@ -28,12 +28,13 @@ class FileUpload extends React.Component {
       success: false,
     });
 
+    console.log(this.fileInput.files[0]);
 
     fetch(`${API_ENDPOINT}/attachments`, {
       method: 'POST',
       body: data,
       headers: {
-        'Authorization': 'Bearer ' + sessionStorage.getItem('jwtToken'),
+        'Authorization': 'Bearer ' + this.props.auth,
       }
 
     }).then((response) => {

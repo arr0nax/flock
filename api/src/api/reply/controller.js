@@ -20,6 +20,7 @@ class ReplyController {
         item_type: 'reply',
         user_id: commentUser,
         parent_id: request.params.id,
+        parent_type: 'comment',
         made_by: request.auth.credentials.user_id,
       })
       return reply;

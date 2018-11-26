@@ -41,6 +41,13 @@ class UserController {
       return Boom.forbidden(err.message);
     }
   }
+
+  logout(request) {
+    console.log('logout');
+    const creds = request.auth.credentials;
+    return Session.destroyById(creds.sessionId);
+  }
+
 }
 
 module.exports = new UserController();

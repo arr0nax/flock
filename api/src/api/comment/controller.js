@@ -20,6 +20,7 @@ class CommentController {
         item_id: comment.attributes.id,
         item_type: 'comment',
         parent_id: request.params.id,
+        parent_type: 'post',
         user_id: postUser,
         made_by: request.auth.credentials.user_id,
       })
