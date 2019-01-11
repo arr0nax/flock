@@ -1,6 +1,7 @@
 import extend from 'extend';
 import path from 'path';
 import glob from 'glob';
+import Mrhorse from 'mrhorse';
 import HapiSwagger from 'hapi-swagger';
 import Inert from 'inert';
 import Vision from 'vision';
@@ -18,6 +19,31 @@ class APIPlugin {
     this.register = this.register.bind(this);
   }
 
+  async registerMrHorse(server, config) {
+    console.log('register-MrHorse');
+    const policyPath = config.get('policyPath');
+    console.log(`policyPath ${policyPath}`);
+
+    await server.register([
+      Inert,
+      Vision,
+      {
+        plugin: Mrhorse,
+        options: {
+          policyDirectory: policyPath,
+        },
+      },
+    ]);
+
+    if (config.enablePolicies) {
+      await server.plugins.mrhorse.loadPolicies(server, {
+        policyDirectory: path.join(__dirname, '/policies'),
+      });
+    }
+
+    console.log('MrHorse plugin registered');
+  }
+
   async registerHapiSwagger(server, config) {
     console.log('register-HapiSwagger');
     const [err, packageJson] = await to(GeneralUtil.readJson('../../package.json'));
@@ -33,10 +59,7 @@ class APIPlugin {
       host,
     } = apiURL;
 
-    await server.register([
-      Inert,
-      Vision,
-      {
+    await server.register([{
       plugin: HapiSwagger,
       options: {
         schemes: [scheme],
@@ -81,6 +104,8 @@ class APIPlugin {
     extend(true, config, options.config);
 
     await this.registerHapiSwagger(server, config);
+
+    await this.registerMrHorse(server, config);
 
     return this.registerApi(server, config);
   }

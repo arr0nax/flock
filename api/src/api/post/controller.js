@@ -1,14 +1,21 @@
 import Boom from 'boom';
 import Post from '../../models/post';
+import User from '../../models/user';
+import Group from '../../models/group';
 
 const CONTROLLER = 'PostController';
 
 class PostController {
   async create(request) {
     try {
+      const forbidden = await Post.findForbidden(request.payload.text);
+      console.log(forbidden);
+      if (forbidden) return Boom.forbidden('Post contains restricted language');
+      const user = await User.findByID(request.auth.credentials.user_id);
       const post = await Post.create({
         text: request.payload.text,
         user_id: request.auth.credentials.user_id,
+        group_id: user.attributes.group_id,
       });
       return post;
     } catch (err) {
@@ -45,7 +52,9 @@ class PostController {
       //     user,
       //   }
       // });
-      return Post.fetchAll();
+      const user = await User.findByID(request.auth.credentials.user_id);
+      const group = await Group.findByID(user.attributes.group_id);
+      return group.fetchAllPosts();
 
       return Promise.all(newPosts).then(completed => completed)
     } catch (err) {

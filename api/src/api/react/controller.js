@@ -10,12 +10,27 @@ const CONTROLLER = 'ReactController';
 class ReactController {
   async create(request) {
     try {
-      const react = await React.create({
-        react: request.payload.react,
+      let react = await new React({
         user_id: request.auth.credentials.user_id,
         item_type: request.payload.item_type,
-        item_id: request.payload.item_id,
-      });
+        item_id: request.payload.item_id
+      }).fetch();
+
+      console.log(react);
+
+      if (react && (react.attributes.react === request.payload.react)) {
+        react.destroy();
+      } else if (react) {
+        react
+          .save({react: request.payload.react}, {patch: true})
+      } else {
+        react = await React.create({
+          react: request.payload.react,
+          user_id: request.auth.credentials.user_id,
+          item_type: request.payload.item_type,
+          item_id: request.payload.item_id,
+        });
+      }
 
       //////Notification
       switch(request.payload.item_type) {

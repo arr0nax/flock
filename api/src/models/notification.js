@@ -27,7 +27,6 @@ class Notification extends BaseModel {
       'user_id': id,
     }).fetchAll()
       .then(models => {
-        console.log('models', models);
         models.map(model => model ? model.save({ new: false }, { patch: true }) : undefined)
       }
     );

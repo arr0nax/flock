@@ -13,15 +13,15 @@ const Routes = {
       description: 'Get a list of posts',
       notes: 'Get session user info',
       tags: ['api'],
-      // validate: {
-      //   headers: Joi.object({
-      //     authorization: Joi.string().required(),
-      //   }).unknown(),
-      // },
-      // auth: {
-      //   strategy: constants.AUTH_STRATEGIES.SESSION,
-      //   scope: false,
-      // },
+      validate: {
+        headers: Joi.object({
+          authorization: Joi.string().required(),
+        }).unknown(),
+      },
+      auth: {
+        strategy: Constants.AUTH_STRATEGIES.SESSION,
+        scope: false,
+      },
       // plugins: {
       //   policies: ['is-logged-in'],
       // },
@@ -60,29 +60,25 @@ const Routes = {
       description: 'Update a post',
       notes: 'Create a new post record; scope [Admin, SuperAdmin]',
       tags: ['api'],
-      // validate: {
-      //   payload: {
-      //     uuid: Joi.string().required(),
-      //     first_name: Joi.string().required(),
-      //     last_name: Joi.string().required(),
-      //     title: Joi.string().allow(null).empty(''),
-      //     profile_image_url: Joi.string().allow(null).empty(''),
-      //     email: Joi.string().required(),
-      //     password: Joi.string().required(),
-      //     scope: Joi.string().allow(null).empty(''),
-      //   },
-      //   headers: Joi.object({
-      //     authorization: Joi.string().required(),
-      //   }).unknown(),
-      // },
+      validate: {
+        payload: {
+          text: Joi.string().required(),
+        },
+        headers: Joi.object({
+          authorization: Joi.string().required(),
+        }).unknown(),
+        params: {
+          id: Joi.number().min(1),
+        },
+      },
       auth: {
-        strategies: [Constants.AUTH_STRATEGIES.SESSION, Constants.AUTH_STRATEGIES.OWNER],
+        strategy: Constants.AUTH_STRATEGIES.SESSION,
         // scope: ['Admin'],
         scope: false,
       },
-      // plugins: {
-      //   policies: ['is-admin'],
-      // },
+      plugins: {
+        policies: ['isOwner'],
+      },
     },
   },
   {
@@ -113,9 +109,9 @@ const Routes = {
         // scope: ['Admin'],
         scope: false,
       },
-      // plugins: {
-      //   policies: ['is-admin'],
-      // },
+      plugins: {
+        policies: ['isOwner'],
+      },
     },
   }]
 }

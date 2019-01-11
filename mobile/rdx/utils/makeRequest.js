@@ -3,12 +3,12 @@ import Api from 'mobile/rdx/utils/Api';
 
 import authSelectors from 'mobile/rdx/modules/auth/selectors';
 
-import { API_ENDPOINT, ENVIRONMENT } from 'react-native-dotenv'
+import Env from 'mobile/env.js';
 
 export const formatServerConnectionError = (e) => {
   // some sort of connection error
   console.log('connection error');
-  if (ENVIRONMENT === 'DEVELOPMENT') console.warn(e);
+  if (Env.ENVIRONMENT === 'DEVELOPMENT') console.warn(e);
   const error = { text: 'There was an error connecting with the server' };
   return { success: false, data: null, error };
 };
@@ -24,7 +24,7 @@ export const formatResponse = (response) => {
 
 const composeRequestManager = (verb) => {
   function* manageRequest(route, params) {
-    const url = API_ENDPOINT + route;
+    const url = Env.API_ENDPOINT + route;
     console.log(url);
     const authToken = yield select(authSelectors.getAuthToken);
     try {

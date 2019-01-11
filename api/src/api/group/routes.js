@@ -1,19 +1,44 @@
 import Joi from 'joi';
 import Constants from '../../../config/constants';
-import Comment from '../../models/comment';
+import Group from '../../models/group';
 
 const Controller = require('./controller');
 
 const Routes = {
   config: [{
     method: 'GET',
-    path: '/posts/{id}/comments',
+    path: '/groups',
     handler: Controller.fetchAll,
     config: {
-      description: 'Get a list of comments on a post',
-      notes: 'Get session user info',
+      description: 'Get a list of groups',
+      notes: 'Get a list of groups',
+      tags: ['api'],
+      // validate: {
+      //   headers: Joi.object({
+      //     authorization: Joi.string().required(),
+      //   }).unknown(),
+      // },
+      // auth: {
+      //   strategy: constants.AUTH_STRATEGIES.SESSION,
+      //   scope: false,
+      // },
+      // plugins: {
+      //   policies: ['is-logged-in'],
+      // },
+    },
+  },
+  {
+    method: 'GET',
+    path: '/groups/{id}/users',
+    handler: Controller.fetchUsers,
+    config: {
+      description: 'Get a list users in a group',
+      notes: 'Get a list users in a group',
       tags: ['api'],
       validate: {
+      //   headers: Joi.object({
+      //     authorization: Joi.string().required(),
+      //   }).unknown(),
         params: {
           id: Joi.number().min(1),
         },
@@ -27,41 +52,37 @@ const Routes = {
       // },
     },
   },
-
   {
     method: 'POST',
-    path: '/posts/{id}/comments',
+    path: '/groups',
     handler: Controller.create,
     config: {
-      description: 'Create a new comment on a post',
-      notes: 'Create a new post record; scope [Admin, SuperAdmin]',
+      description: 'Create a new group',
+      notes: 'Create a new group record; scope [Admin, SuperAdmin]',
       tags: ['api'],
       validate: {
-        params: {
-          id: Joi.number().min(1),
-        },
-        payload: Comment.validation,
+        payload: Group.validation,
         headers: Joi.object({
           authorization: Joi.string().required(),
-        }).unknown(),
+        }).unknown()
       },
       auth: {
         strategy: Constants.AUTH_STRATEGIES.SESSION,
         // scope: ['Admin'],
         scope: false,
       },
-      // plugins: {
-      //   policies: ['is-admin'],
-      // },
+      plugins: {
+        policies: ['isAdmin'],
+      },
     },
   },
   {
     method: 'PATCH',
-    path: '/comments/{id}',
+    path: '/groups/{id}',
     handler: Controller.update,
     config: {
-      description: 'Update a comment',
-      notes: 'Create a new post record; scope [Admin, SuperAdmin]',
+      description: 'Update a group',
+      notes: 'Create a new group record; scope [Admin, SuperAdmin]',
       tags: ['api'],
       // validate: {
       //   payload: {
@@ -79,22 +100,22 @@ const Routes = {
       //   }).unknown(),
       // },
       auth: {
-        strategy: Constants.AUTH_STRATEGIES.SESSION,
+        strategies: [Constants.AUTH_STRATEGIES.SESSION],
         // scope: ['Admin'],
         scope: false,
       },
-      plugins: {
-        policies: ['isOwner'],
-      },
+      // plugins: {
+      //   policies: ['is-admin'],
+      // },
     },
   },
   {
     method: 'DELETE',
-    path: '/comments/{id}',
+    path: '/groups/{id}',
     handler: Controller.destroy,
     config: {
-      description: 'Destroy a post',
-      notes: 'Create a new post record; scope [Admin, SuperAdmin]',
+      description: 'Destroy a group',
+      notes: 'Create a new group record; scope [Admin, SuperAdmin]',
       tags: ['api'],
       // validate: {
       //   payload: {
@@ -107,9 +128,6 @@ const Routes = {
       //     password: Joi.string().required(),
       //     scope: Joi.string().allow(null).empty(''),
       //   },
-        // params: {
-        //   id: Joi.number().min(1),
-        // },
       //   headers: Joi.object({
       //     authorization: Joi.string().required(),
       //   }).unknown(),

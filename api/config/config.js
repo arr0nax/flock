@@ -71,11 +71,11 @@ const config = convict({
     format: String,
     default: path.join(__dirname, '/../src/api'),
   },
-  // policyPath: {
-  //   doc: 'Root of policies',
-  //   format: String,
-  //   default: path.join(__dirname, '/../src/policies'),
-  // },
+  policyPath: {
+    doc: 'Root of policies',
+    format: String,
+    default: path.join(__dirname, '/../src/policies'),
+  },
   files: {
     uploadSize: {
       doc: 'Upload File Size Limit',
@@ -116,6 +116,7 @@ const config = convict({
       default: 5432,
       env: 'DB_PORT',
     },
+    client: 'pg',
   },
 
   // JWT

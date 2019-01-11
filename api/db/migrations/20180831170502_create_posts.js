@@ -7,6 +7,11 @@ exports.up = knex => knex.schema.createTable('posts', (table) => {
     .unsigned()
     .references('id')
     .inTable('users');
+  table.integer('group_id')
+    .notNull()
+    .unsigned()
+    .references('id')
+    .inTable('groups');
 });
 
 exports.down = knex => knex.schema.dropTable('posts');

@@ -1,3 +1,4 @@
+console.disableYellowBox = true;
 import {default as React} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux'

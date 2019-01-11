@@ -11,7 +11,6 @@ export default {
     },
     [types.ADD_POST_REACT](state, action) {
       let newState = {...state}
-      console.log(newState, state);
       newState[action.payload.item_id] ? newState[action.payload.item_id].unshift(action.payload) : newState[action.payload.item_id] = [action.payload];
       return newState;
     },
@@ -23,9 +22,7 @@ export default {
       return newState;
     },
     [types.ADD_COMMENT_REACT](state, action) {
-      console.log(state, action);
       let newState = {...state}
-      console.log(newState, state);
       newState[action.payload.item_id] ? newState[action.payload.item_id].unshift(action.payload) : newState[action.payload.item_id] = [action.payload];
       return newState;
     },
@@ -37,9 +34,7 @@ export default {
       return newState;
     },
     [types.ADD_REPLY_REACT](state, action) {
-      console.log(state, action);
       let newState = {...state}
-      console.log(newState, state);
       newState[action.payload.item_id] ? newState[action.payload.item_id].unshift(action.payload) : newState[action.payload.item_id] = [action.payload];
       return newState;
     },

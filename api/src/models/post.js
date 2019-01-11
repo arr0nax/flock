@@ -1,6 +1,7 @@
 import BaseModel from './base';
 import Comment from './comment';
 import User from './user';
+import Group from './group';
 import Joi from 'joi';
 
 const TABLE_NAME = 'posts';
@@ -24,6 +25,10 @@ class Post extends BaseModel {
     return this.belongsTo('User');
   }
 
+  group() {
+    return this.belongsTo('Group')
+  }
+
   comments() {
     return this.hasMany(Comment);
   }
@@ -34,6 +39,18 @@ class Post extends BaseModel {
 
   getComments() {
     return this.comments().fetch();
+  }
+
+  static async findForbidden(text) {
+    const words = text.split(' ');
+    const array = await Promise.all(words.map(word => Group.findByCode(word))).then(values => {
+      return values;
+    })
+    for(let i=0; i<array.length; i++) {
+      if (array[i] !== null) return true;
+    }
+    return false;
+
   }
 }
 

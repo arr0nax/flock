@@ -2,7 +2,7 @@ require('es6-promise').polyfill();
 require('fetch-everywhere');
 import * as React from 'react';
 import { StyleSheet, View, Button, Text } from 'react-native';
-import { API_ENDPOINT } from 'react-native-dotenv';
+import Env from 'mobile/env';
 import { ImagePicker } from 'expo';
 
 class ImageUpload
@@ -35,10 +35,10 @@ class ImageUpload
 
   uploadFile(image) {
     const data = new FormData();
-    data.append('file', image);
+    data.append('file', {uri: image.uri, name: 'image.jpg', type: 'multipart/form-data'});
     data.append('filename', 'image');
     data.append('item_type', 'user');
-    data.append('item_id', this.props.item_id);
+    data.append('item_id', 0);
     // const { postFile } = this.props;
     // postFile(data);
     this.setState({
@@ -48,7 +48,7 @@ class ImageUpload
 
     console.log(image);
 
-    fetch(`${API_ENDPOINT}/attachments`, {
+    fetch(`${Env.API_ENDPOINT}/attachments`, {
       method: 'POST',
       body: data,
       headers: {

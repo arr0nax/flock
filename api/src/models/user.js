@@ -3,6 +3,8 @@ import Post from './post';
 import Comment from './comment';
 import Reply from './reply';
 import React from './react';
+import Group from './group';
+import Role from './role';
 import Bcrypt from 'bcryptjs';
 import Boom from 'boom';
 import Joi from 'joi';
@@ -47,6 +49,14 @@ class User extends BaseModel {
     return this.hasMany(React);
   }
 
+  group() {
+    return this.belongsTo(Group);
+  }
+
+  role() {
+    return this.belongsTo(Role);
+  }
+
   getPosts() {
     return this.posts().fetch();
   }
@@ -63,6 +73,14 @@ class User extends BaseModel {
     return this.reacts().fetch();
   }
 
+  getGroup() {
+    return this.group().fetch();
+  }
+
+  getRole() {
+    return this.role().fetch();
+  }
+
   static async getInfo(id) {
     const user = await this.findByID(id);
     return {
@@ -71,6 +89,11 @@ class User extends BaseModel {
       id: id,
       image_url: user.attributes.image_url,
     }
+  }
+
+  static async getRole(id) {
+    const user = await User.findByID(request.auth.credentials.user_id);
+    return user.getRole();
   }
 
   static findByEmail(email) {
@@ -93,7 +116,6 @@ class User extends BaseModel {
   }
 
   static updateProfileImage(data, url) {
-    console.log(data, url);
     return this.forge({
       'id': data.user_id,
     }).fetch()

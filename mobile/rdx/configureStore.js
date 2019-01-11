@@ -4,6 +4,8 @@ import { persistStore, persistReducer } from 'redux-persist';
 import { default as storage} from 'redux-persist/lib/storage'; // localStorage
 import { default as createSagaMiddleware} from 'redux-saga';
 import { createLogger } from 'redux-logger';
+import Env from 'mobile/env.js';
+
 // import { connectRouter, routerMiddleware } from 'connected-react-router';
 
 import compileReducers from 'mobile/rdx/reducers';
@@ -51,7 +53,7 @@ const configureStore = () => {
 
   const persistor = persistStore(store);
 
-  if (false) {
+  if (Env.ENABLE_PERSISTOR_PURGE) {
     persistor.purge();
   }
 

@@ -11,13 +11,13 @@ function* postReacts(action) {
     // yield put(actions.setReplies({data, parent_id: action.payload}));
     switch (data.item_type) {
       case 'post':
-        yield put(actions.addPostReact(data));
+        yield put(actions.getReacts({type: 'posts', item_id: data.item_id}));
         break;
       case 'comment':
-        yield put(actions.addCommentReact(data));
+        yield put(actions.getReacts({type: 'comments', item_id: data.item_id}));
         break;
       case 'reply':
-        yield put(actions.addReplyReact(data));
+        yield put(actions.getReacts({type: 'replies', item_id: data.item_id}));
         break;
     }
   } else {

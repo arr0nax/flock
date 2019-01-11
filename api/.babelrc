@@ -1,11 +1,11 @@
 {
   "retainLines": true,
   "sourceMaps": true,
-  "presets": ["@babel/preset-env"],
+  "presets": ["env", "stage-2"],
   "plugins": [
-    ["@babel/transform-runtime", {
+    ["transform-runtime", {
+      "polyfill": false,
       "regenerator": true
-    }],
-    "@babel/plugin-proposal-class-properties"
+    }]
   ]
 }

@@ -123,9 +123,9 @@ const Routes = {
         // scope: ['Admin'],
         scope: false,
       },
-      // plugins: {
-      //   policies: ['is-admin'],
-      // },
+      plugins: {
+        policies: ['isOwner'],
+      },
     },
   },
   {
