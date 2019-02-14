@@ -1,5 +1,5 @@
-import { get } from 'lodash';
+import get from 'lodash/get';
 
 export default {
-  getNotifications: state => state['notifications'],
+  getNotifications: state => get(state, 'notifications.data'),
 };

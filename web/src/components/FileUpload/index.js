@@ -59,26 +59,26 @@ class FileUpload extends React.Component {
     return (
       <div className="react-carousel">
         <input ref={(ref) => { this.fileInput = ref; }} type="file" name="file" encType="multipart/form-data" />
-        <text onClick={this.uploadFile}>upload</text>
+        <p onClick={this.uploadFile}>upload</p>
         <div className="feedback">
           {loading ? (
-            <text>
+            <p>
               Loading...
-            </text>
+            </p>
           ) : (
             null
           )}
           {success ? (
-            <text>
+            <p>
               Success!
-            </text>
+            </p>
           ) : (
             null
           )}
           {error ? (
-            <text>
+            <p>
               {error}
-            </text>
+            </p>
           ) : (
             null
           )}

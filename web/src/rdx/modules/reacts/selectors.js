@@ -1,7 +1,7 @@
-import { get } from 'lodash';
+import get from 'lodash/get';
 
 export default {
-  getPostReacts: state => state['post_reacts'],
-  getCommentReacts: state => state['comment_reacts'],
-  getReplyReacts: state => state['reply_reacts'],
+  getPostReacts: state => get(state, 'post_reacts.data'),
+  getCommentReacts: state => get(state, 'comment_reacts.data'),
+  getReplyReacts: state => get(state, 'reply_reacts.data'),
 };

@@ -1,5 +1,5 @@
-import { get } from 'lodash';
+import get from 'lodash/get';
 
 export default {
-  getReplies: state => state['replies'],
+  getReplies: state => get(state, 'replies.data'),
 };

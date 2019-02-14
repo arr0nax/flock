@@ -1,5 +1,5 @@
 import { put } from 'redux-saga/effects';
-import { get } from 'lodash';
+import get from 'lodash/get';
 
 import makeRequest from 'rdx/utils/makeRequest';
 import getErrorActions from 'rdx/utils/getErrorActions';

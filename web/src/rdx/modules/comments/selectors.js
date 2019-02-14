@@ -1,5 +1,5 @@
-import { get } from 'lodash';
+import get from 'lodash/get';
 
 export default {
-  getComments: state => state['comments'],
+  getComments: state => get(state, 'comments.data'),
 };

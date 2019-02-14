@@ -1,3 +1,5 @@
 export default {
-  EXAMPLE_DEFAULT_STATE: {},
+  EXAMPLE_DEFAULT_STATE: {
+
+  },
 }

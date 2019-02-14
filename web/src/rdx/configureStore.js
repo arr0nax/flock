@@ -5,6 +5,7 @@ import storage from 'redux-persist/lib/storage'; // localStorage
 import createSagaMiddleware from 'redux-saga';
 import { createLogger } from 'redux-logger';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
+import actions from 'rdx/modules/activeRequests/types'
 
 import compileReducers from 'rdx/reducers';
 import rootSaga from 'rdx/sagas';
@@ -12,7 +13,9 @@ import rootSaga from 'rdx/sagas';
 const initialState = {};
 
 // middlewares
-const loggerMiddleware = createLogger();
+const loggerMiddleware = createLogger({
+  predicate: (getState, action) => (action.type !== actions.ADD_ACTIVE_REQUEST) && (action.type !== actions.REMOVE_ACTIVE_REQUEST)
+});
 const sagaMiddleware = createSagaMiddleware();
 
 const persistConfig = {

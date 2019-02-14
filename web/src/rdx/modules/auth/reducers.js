@@ -1,6 +1,7 @@
 import createReducer from 'rdx/utils/createReducer';
 import types from 'rdx/modules/auth/types';
 import states from 'rdx/modules/auth/states';
+import cloneDeep from 'lodash/cloneDeep';
 
 export default {
   authToken: createReducer(states.authToken, {
@@ -15,7 +16,11 @@ export default {
   }),
   user: createReducer(states.user, {
     [types.SET_USER](state, action) {
-      return action.payload;
+      return {
+        data: action.payload,
+        errors: state.errors,
+        requested: false,
+      };
     },
   }),
 };

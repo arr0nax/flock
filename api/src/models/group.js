@@ -28,6 +28,11 @@ class Group extends BaseModel {
     return this.hasMany('Post')
   }
 
+  static size(group_id) {
+    let qb = BaseModel.query();
+    return qb.select().from('users').where({group_id}).count('id');
+  }
+
   getUsers() {
     return this.users().fetch({columns: ['first_name', 'last_name', 'image_url', 'id']})
   }

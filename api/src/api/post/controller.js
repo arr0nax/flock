@@ -54,6 +54,8 @@ class PostController {
       // });
       const user = await User.findByID(request.auth.credentials.user_id);
       const group = await Group.findByID(user.attributes.group_id);
+      const count = await Group.size(1);
+      console.log(count);
       return group.fetchAllPosts();
 
       return Promise.all(newPosts).then(completed => completed)

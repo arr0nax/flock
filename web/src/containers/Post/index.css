@@ -1,0 +1,10 @@
+.post-rct-component {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid lightgrey;
+  border-radius: 20px;
+  padding: 8px;
+  margin-bottom: 20px; }
+  .post-rct-component h3 {
+    padding: 0px 0px 0px 8px; }

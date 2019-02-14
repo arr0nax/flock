@@ -1,3 +1,7 @@
 export default {
-  DEFAULT_REPLIES_STATE: {},
+  DEFAULT_REPLIES_STATE: {
+    data: {},
+    errors: {},
+    requested: false,
+  },
 }

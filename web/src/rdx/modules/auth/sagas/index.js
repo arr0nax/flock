@@ -7,7 +7,7 @@ import logout from 'rdx/modules/auth/sagas/logout';
 import register from 'rdx/modules/auth/sagas/register';
 
 function* watchAuthSagas() {
-  yield trackRequests(takeLatest, types.REQUEST_LOGIN, login);
+  yield trackRequests(takeLatest, types.LOGIN_REQUEST, login);
   yield trackRequests(takeLatest, types.REQUEST_LOGOUT, logout);
   yield trackRequests(takeLatest, types.REQUEST_REGISTER, register);
 }

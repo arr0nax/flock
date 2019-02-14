@@ -1,0 +1,72 @@
+// @import 'src/styles/_index';
+
+.react-carousel-container {
+  position: relative;
+  height: 0px;
+  .react-carousel {
+    height: 0px;
+    overflow: hidden;
+    position: absolute;
+    bottom: -7px;
+    left: 0px;
+    background: white;
+    width: 170px;
+    display: flex;
+    flex-direction: row;
+    padding: 0px 0px 0px 8px;
+    transition: height 150ms, padding 150ms;
+    .react-container {
+      width: 27px;
+      height: 27px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    p {
+      font-size: 1.5em;
+      padding: 0px;
+      margin: 0px 1px;
+      cursor: pointer;
+      transition: font-size 150ms;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    p:hover {
+      border-left: 1px;
+      border-right: 1px;
+      border-color: black;
+      font-size: 1.8em;
+    }
+
+    &.open {
+      height: 25px;
+      padding: 2px 0px 1px 8px;
+      border-radius: 50px;
+      border: 1px solid lightgrey;
+    }
+  }
+
+  &.comment {
+    position: absolute;
+    top: -37px;
+    left: -22px;
+    background: lightgreen;
+    height: 18px;
+    width: 18px;
+    max-width: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+
+    .icon {
+      position: absolute;
+      left: 2px;
+      top: -3px;
+      font-size: 0.9em;
+    }
+  }
+}

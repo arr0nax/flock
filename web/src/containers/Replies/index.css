@@ -1,0 +1,10 @@
+.replies-rct-component {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column; }
+  .replies-rct-component .reply-input-container .reply-input {
+    width: 360px;
+    border-radius: 12px;
+    border: 1px solid lightgrey;
+    padding: 5px 12px 5px 16px;
+    outline: none; }

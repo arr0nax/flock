@@ -10,9 +10,12 @@ class UserSummary extends React.Component {
 
   render() {
     return (
-      <div className="user-summary">
+      <div className={`user-summary ${this.props.className}`}>
         <img src={this.props.user.image_url} />
-        <text>{this.props.user.first_name} {this.props.user.last_name}</text>
+        <div className='text'>
+          <p>{this.props.user.first_name} {this.props.user.last_name}</p>
+          <p>{this.props.subtext}</p>
+        </div>
       </div>
     );
   }
