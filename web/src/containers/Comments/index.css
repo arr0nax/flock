@@ -11,8 +11,7 @@
       flex-direction: row;
       align-items: center;
       width: 100%;
-      position: relative;
-      margin: 0px 0px 10px 0px; }
+      position: relative; }
       .comments-rct-component .comment-container .comment .comment-text {
         font-size: 1em;
         position: absolute;
@@ -20,3 +19,6 @@
         top: 14px;
         word-wrap: break-word;
         max-width: 90%; }
+    .comments-rct-component .comment-container .new-comment {
+      display: flex;
+      flex-direction: column; }

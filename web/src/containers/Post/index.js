@@ -19,8 +19,8 @@ class Post extends React.Component {
       <div className="post-rct-component">
         <UserSummary user={this.props.users[post.user_id]} className="white"/>
         <h3>{post.text}</h3>
-        <Reacts item={post} item_type={'post'} />
         {allowReact && <ReactCarousel item_id={post.id} type="post"/>}
+        <Reacts item={post} item_type={'post'} />
         <Comments
           post_id={post.id}
           showComments

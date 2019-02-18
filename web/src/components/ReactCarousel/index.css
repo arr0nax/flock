@@ -1,11 +1,14 @@
 .react-carousel-container {
   position: relative;
-  height: 0px; }
+  display: flex;
+  flex-direction: column; }
+  .react-carousel-container .react-button {
+    position: relative;
+    font-size: 0.9em; }
   .react-carousel-container .react-carousel {
     height: 0px;
     overflow: hidden;
     position: absolute;
-    bottom: -7px;
     left: 0px;
     background: white;
     width: 170px;
@@ -39,20 +42,3 @@
       padding: 2px 0px 1px 8px;
       border-radius: 50px;
       border: 1px solid lightgrey; }
-  .react-carousel-container.comment {
-    position: absolute;
-    top: -37px;
-    left: -22px;
-    background: lightgreen;
-    height: 18px;
-    width: 18px;
-    max-width: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%; }
-    .react-carousel-container.comment .icon {
-      position: absolute;
-      left: 2px;
-      top: -3px;
-      font-size: 0.9em; }

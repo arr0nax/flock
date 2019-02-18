@@ -4,8 +4,11 @@ import Boom from 'boom';
 
 const isAdmin = async function(request, h) {
   try {
+    // return h.continue;
+    console.log('user_id', request.auth.credentials.user_id);
     const role = await User.getRole(request.auth.credentials.user_id);
-    if (role && role === 'admin') {
+    console.log('role', role);
+    if (role && role.attributes.name === 'admin') {
       return h.continue;
     }
     return Boom.forbidden('You must be an admin to do this');

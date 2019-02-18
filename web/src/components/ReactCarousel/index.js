@@ -31,7 +31,7 @@ class ReactCarousel extends React.Component {
   render() {
     return (
       <div className={`react-carousel-container ${this.props.className}`}>
-        <p onClick={() => this.handleOpenReactCarousel()} className="icon">🐑</p>
+        <p onClick={() => this.handleOpenReactCarousel()} className="react-button">react</p>
         <div className={`react-carousel ${this.state.open && 'open'}`}>
           <div className="react-container">
             <p onClick={() => this.handleReact('like', this.props.item_id, this.props.type)}>👍</p>

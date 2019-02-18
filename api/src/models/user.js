@@ -92,7 +92,7 @@ class User extends BaseModel {
   }
 
   static async getRole(id) {
-    const user = await User.findByID(request.auth.credentials.user_id);
+    const user = await User.findByID(id);
     return user.getRole();
   }
 

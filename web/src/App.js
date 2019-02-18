@@ -88,6 +88,12 @@ class App extends Component {
     })
   }
 
+  handlePost() {
+    this.props.postPost({
+      text: this.state.post
+    })
+  }
+
   posts() {
     return this.props.posts.map(post => {
       return (
