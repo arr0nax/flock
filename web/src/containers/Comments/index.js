@@ -50,8 +50,10 @@ class Comments extends React.Component {
             <UserSummary user={this.props.users[comment.user_id]} className='smallName'/>
             <p className="comment-text">{comment.text}</p>
           </div>
-          <Reacts item={comment} item_type={'comment'} />
-          <ReactCarousel item_id={comment.id} type="comment" className="comment"/>
+          <div className='comment-react-container'>
+            <ReactCarousel item_id={comment.id} type="comment" className="comment"/>
+            <Reacts item={comment} item_type={'comment'} />
+          </div>
           <Replies
             comment_id={comment.id}
             showReplies

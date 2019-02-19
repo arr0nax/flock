@@ -8,13 +8,12 @@
   .comment-container {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    // width: 100%;
 
     .comment {
       display: flex;
       flex-direction: row;
       align-items: center;
-      width: 100%;
       position: relative;
       // margin: 0px 0px 10px 0px;
       .comment-text {
@@ -25,6 +24,13 @@
         word-wrap: break-word;
         max-width: 90%;
       }
+    }
+
+    .comment-react-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
     }
 
     .new-comment {

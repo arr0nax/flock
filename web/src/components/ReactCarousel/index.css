@@ -4,7 +4,8 @@
   flex-direction: column; }
   .react-carousel-container .react-button {
     position: relative;
-    font-size: 0.9em; }
+    font-size: 0.9em;
+    margin: 0px 6px 0px 0px; }
   .react-carousel-container .react-carousel {
     height: 0px;
     overflow: hidden;

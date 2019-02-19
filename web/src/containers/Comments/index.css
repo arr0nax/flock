@@ -4,13 +4,11 @@
   flex-direction: column; }
   .comments-rct-component .comment-container {
     display: flex;
-    flex-direction: column;
-    width: 100%; }
+    flex-direction: column; }
     .comments-rct-component .comment-container .comment {
       display: flex;
       flex-direction: row;
       align-items: center;
-      width: 100%;
       position: relative; }
       .comments-rct-component .comment-container .comment .comment-text {
         font-size: 1em;
@@ -19,6 +17,11 @@
         top: 14px;
         word-wrap: break-word;
         max-width: 90%; }
+    .comments-rct-component .comment-container .comment-react-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center; }
     .comments-rct-component .comment-container .new-comment {
       display: flex;
       flex-direction: column; }
