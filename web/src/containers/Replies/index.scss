@@ -1,23 +1,50 @@
-// @import 'src/styles/_index';
+@import 'src/styles/_index';
 
 .replies-rct-component {
   padding-left: 20px;
   display: flex;
   flex-direction: column;
 
-  .reply-container {
+  .show-replies {
+    cursor: pointer;
+    position: relative;
+    top: -15px;
+    left: 20px;
+    @include small-clickable;
 
+  }
+
+  .reply-container {
+    @include container;
+    // width: 100%;
+
+    .reply {
+      @include comment;
+
+      .reply-text-container {
+        @include text-container;
+        .reply-text {
+          @include text;
+        }
+        .reacts-rct-component {
+          @include reacts-component;
+        }
+      }
+    }
+
+    .reply-react-container {
+      @include react-container;
+    }
+
+    .new-reply {
+      @include new-comment;
+    }
   }
 
   .reply-input-container {
     .reply-input{
 
-        width: 360px;
-      //   height: 17px;
-        border-radius: 12px;
-        border: 1px solid lightgrey;
-        padding: 5px 12px 5px 16px;
-        outline: none;
+
     }
   }
 }

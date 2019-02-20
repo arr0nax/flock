@@ -10,13 +10,19 @@
       flex-direction: row;
       align-items: center;
       position: relative; }
-      .comments-rct-component .comment-container .comment .comment-text {
-        font-size: 1em;
-        position: absolute;
-        left: 46px;
-        top: 14px;
-        word-wrap: break-word;
-        max-width: 90%; }
+      .comments-rct-component .comment-container .comment .comment-text-container {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        margin: 18px 0px 0px 10px;
+        align-items: center;
+        justify-content: flex-start; }
+        .comments-rct-component .comment-container .comment .comment-text-container .comment-text {
+          font-size: 1em;
+          word-wrap: break-word; }
+        .comments-rct-component .comment-container .comment .comment-text-container .reacts-rct-component {
+          position: relative;
+          left: 8px; }
     .comments-rct-component .comment-container .comment-react-container {
       display: flex;
       flex-direction: row;

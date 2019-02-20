@@ -1,4 +1,5 @@
 import React from 'react';
+import ExpandingTextInput from 'components/ExpandingTextInput';
 // import PropTypes from 'prop-types';
 // import customPropTypes from 'lib/customPropTypes';
 // import classNames from 'classnames';
@@ -20,7 +21,7 @@ class Comments extends React.Component {
     };
   }
 
-  handleChangeComment(event, post_id) {
+  handleChangeComment = (event, post_id) => {
     var newComment = {
       ...this.state.comment
     };
@@ -28,7 +29,7 @@ class Comments extends React.Component {
     this.setState({comment: newComment});
   }
 
-  handleComment(post_id) {
+  handleComment = (post_id) => {
     this.props.postComment({
       text: this.state.comment[post_id],
       post_id: post_id,
@@ -48,11 +49,13 @@ class Comments extends React.Component {
         <div className="comment-container" key={`comment${comment.id}`}>
           <div className="comment">
             <UserSummary user={this.props.users[comment.user_id]} className='smallName'/>
-            <p className="comment-text">{comment.text}</p>
+            <div className="comment-text-container">
+              <p className="comment-text">{comment.text}</p>
+              <Reacts item={comment} item_type={'comment'} />
+            </div>
           </div>
           <div className='comment-react-container'>
             <ReactCarousel item_id={comment.id} type="comment" className="comment"/>
-            <Reacts item={comment} item_type={'comment'} />
           </div>
           <Replies
             comment_id={comment.id}
@@ -68,10 +71,13 @@ class Comments extends React.Component {
     const { post_id } = this.props;
     return (
       <div className="new-comment">
-        <input value={this.state.comment[post_id]} onChange={(e) => this.handleChangeComment(e, post_id)} />
-        <div className="button" onClick={() => this.handleComment(post_id)}>
-          <p>comment</p>
-        </div>
+        <ExpandingTextInput
+          value={this.state.comment[post_id]}
+          handleChange={this.handleChangeComment}
+          handleSubmit={this.handleComment}
+          id={post_id}
+          placeholder={'comment'}
+        />
       </div>
     )
 

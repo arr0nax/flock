@@ -1,13 +1,15 @@
-// @import 'src/styles/_index';
+@import 'src/styles/_index';
 
 .react-carousel-container {
   position: relative;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
+  z-index: 10;
 
   .react-button {
     position: relative;
-    font-size: 0.9em;
+    @include small-clickable;
     margin: 0px 6px 0px 0px;
   }
 
@@ -15,7 +17,6 @@
     height: 0px;
     overflow: hidden;
     position: absolute;
-    // bottom: -7px;
     left: 0px;
     background: white;
     width: 170px;

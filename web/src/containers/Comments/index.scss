@@ -1,4 +1,4 @@
-// @import 'src/styles/_index';
+@import 'src/styles/_index';
 
 .comments-rct-component {
   padding-left: 20px;
@@ -6,36 +6,28 @@
   flex-direction: column;
 
   .comment-container {
-    display: flex;
-    flex-direction: column;
-    // width: 100%;
+    @include container;
 
     .comment {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      position: relative;
-      // margin: 0px 0px 10px 0px;
-      .comment-text {
-        font-size: 1em;
-        position: absolute;
-        left: 46px;
-        top: 14px;
-        word-wrap: break-word;
-        max-width: 90%;
+      @include comment;
+      .comment-text-container {
+        @include text-container;
+        .comment-text {
+          @include text;
+        }
+
+        .reacts-rct-component {
+          @include reacts-component;
+        }
       }
     }
 
     .comment-react-container {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: center;
+      @include react-container;
     }
 
     .new-comment {
-      display: flex;
-      flex-direction: column;
+      @include new-comment;
     }
   }
 }

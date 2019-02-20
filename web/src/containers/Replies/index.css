@@ -2,9 +2,39 @@
   padding-left: 20px;
   display: flex;
   flex-direction: column; }
-  .replies-rct-component .reply-input-container .reply-input {
-    width: 360px;
-    border-radius: 12px;
-    border: 1px solid lightgrey;
-    padding: 5px 12px 5px 16px;
-    outline: none; }
+  .replies-rct-component .show-replies {
+    cursor: pointer;
+    position: relative;
+    top: -15px;
+    left: 20px;
+    color: lightblue;
+    font-size: .8em; }
+  .replies-rct-component .reply-container {
+    display: flex;
+    flex-direction: column; }
+    .replies-rct-component .reply-container .reply {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      position: relative; }
+      .replies-rct-component .reply-container .reply .reply-text-container {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        margin: 18px 0px 0px 10px;
+        align-items: center;
+        justify-content: flex-start; }
+        .replies-rct-component .reply-container .reply .reply-text-container .reply-text {
+          font-size: 1em;
+          word-wrap: break-word; }
+        .replies-rct-component .reply-container .reply .reply-text-container .reacts-rct-component {
+          position: relative;
+          left: 8px; }
+    .replies-rct-component .reply-container .reply-react-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center; }
+    .replies-rct-component .reply-container .new-reply {
+      display: flex;
+      flex-direction: column; }

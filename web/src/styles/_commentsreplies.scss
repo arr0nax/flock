@@ -1,0 +1,42 @@
+@mixin container {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin comment {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+
+@mixin text-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  margin: 18px 0px 0px 10px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+@mixin text {
+  font-size: 1em;
+  word-wrap: break-word;
+}
+
+@mixin reacts-component {
+  position: relative;
+  left: 8px;
+}
+
+@mixin react-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+@mixin new-comment {
+  display: flex;
+  flex-direction: column;
+}

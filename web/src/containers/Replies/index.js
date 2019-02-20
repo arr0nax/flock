@@ -1,5 +1,6 @@
 import React from 'react';
 import Textarea from 'react-textarea-autosize';
+import ExpandingTextInput from 'components/ExpandingTextInput';
 // import PropTypes from 'prop-types';
 // import customPropTypes from 'lib/customPropTypes';
 // import classNames from 'classnames';
@@ -16,24 +17,24 @@ class Replies extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      reply: {}
+      reply: {},
+      open: false,
     };
   }
 
-  handleChangeReply(event, comment_id) {
+  handleChangeReply = (event, id) => {
     var newReply = {
       ...this.state.reply
     };
-    newReply[comment_id] = event.target.value;
+    newReply[id] = event.target.value;
     this.setState({reply: newReply});
   }
 
-  checkForSubmit(event, comment_id) {
-    console.log(event);
-    
+  toggleOpen = () => {
+    this.setState({open: !this.state.open})
   }
 
-  handleReply(comment_id) {
+  handleReply = (comment_id) => {
     this.props.postReply({
       text: this.state.reply[comment_id],
       comment_id: comment_id,
@@ -51,12 +52,16 @@ class Replies extends React.Component {
     return this.props.replies[comment_id].map(reply => {
       return (
         <div className="reply-container" key={`reply${reply.id}`}>
-          <div className="comment">
+          <div className="reply">
             <UserSummary user={this.props.users[reply.user_id]} className="smallName"/>
-            <p className="comment-text">{reply.text}</p>
+            <div className="reply-text-container">
+            <p className="reply-text">{reply.text}</p>
+            <Reacts item={reply} item_type={'reply'} />
+            </div>
           </div>
-          <Reacts item={reply} item_type={'reply'} />
-          <ReactCarousel item_id={reply.id} type="reply" className="comment"/>
+          <div className='reply-react-container'>
+            <ReactCarousel item_id={reply.id} type="reply" className="comment"/>
+          </div>
         </div>
       );
     });
@@ -66,18 +71,29 @@ class Replies extends React.Component {
     const { comment_id } = this.props;
     return (
       <div className="reply-input-container">
-        <Textarea className="reply-input" value={this.state.reply[comment_id]} onChange={(e) => this.handleChangeReply(e, comment_id)} onKeyPress={(e) => this.checkForSubmit(e, comment_id)}/>
+        <ExpandingTextInput
+          value={this.state.reply[comment_id]}
+          handleChange={this.handleChangeReply}
+          handleSubmit={this.handleReply}
+          id={comment_id}
+          placeholder={'reply'}
+        />
       </div>
     )
   }
 
 
   render() {
-    const {showReplies, allowReply} = this.props;
+    const {showReplies, allowReply, comment_id} = this.props;
     return (
-      <div className="replies-rct-component">
-        {showReplies && this.replies()}
-        {allowReply && this.reply()}
+      <div className={`replies-rct-component ${this.state.open ? 'open' : ''}`}>
+        <p onClick={this.toggleOpen} className="show-replies">{(!this.props.replies[comment_id] || !this.props.replies[comment_id].length) ? 'reply' : `${this.state.open ? 'hide' : 'show'} replies`}</p>
+        {this.state.open &&
+            <div className="replies-container">
+              {showReplies && this.replies()}
+              {allowReply && this.reply()}
+            </div>
+        }
       </div>
     )
   }

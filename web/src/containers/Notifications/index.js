@@ -8,13 +8,34 @@ import { getRdxActionMapper, getRdxSelectionMapper } from 'rdx/utils/propsMappin
 import './index.css';
 
 class Notifications extends React.Component {
-  render() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false
+    }
+  }
+
+  toggleOpen = () => {
+    this.setState({open: !this.state.open})
+  }
+
+  notifications = () => {
     if (!this.props.notifications || !this.props.notifications.length) return null;
     return this.props.notifications.map(notif => (
       <div className={`notification ${notif.new ? 'new' : ''}`} key={`notif${notif.id}`}>
         <p>{notif.made_by} left a {notif.item_type} on your {notif.parent_type}</p>
       </div>
     ));
+  }
+  render() {
+    return (
+      <div className="notifications-rct-component">
+        <button onClick={this.toggleOpen}>notifications</button>
+        {this.state.open && (
+          this.notifications()
+        )}
+      </div>
+    )
   }
 }
 
