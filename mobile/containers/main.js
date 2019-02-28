@@ -7,6 +7,7 @@ import {default as Notifications} from 'mobile/components/notifications';
 import {default as Reacts} from 'mobile/containers/reacts';
 import {default as Replies} from 'mobile/containers/replies';
 import {default as Comments} from 'mobile/containers/comments';
+import {default as Posts} from 'mobile/containers/posts';
 import { getRdxActionMapper, getRdxSelectionMapper } from 'mobile/rdx/utils/propsMapping';
 import {default as ImageUpload} from 'mobile/components/image-upload';
 
@@ -22,24 +23,9 @@ class Main extends React.Component {
       refreshing: false,
       shownotifications: false,
     }
-
-    if (this.props.logged_in) this._onRefresh();
   }
 
-  componentDidUpdate(prevProps) {
-  // Typical usage (don't forget to compare props):
-    if ((prevProps.postsRequested || prevProps.notificationsRequested) && (!this.props.postsRequested && !this.props.notificationsRequested)) {
-      this.setState({refreshing: false})
-    }
-  }
 
-  _onRefresh = () => {
-    this.setState({refreshing: true});
-    console.log('hello refreshing', );
-    console.log(this.props.postsRequested);
-    this.props.getPosts();
-    if (this.props.logged_in) this.props.getNotifications();
-  }
 
 
 
@@ -111,21 +97,6 @@ class Main extends React.Component {
     return <Comments post={post} />
   }
 
-  posts = (item) => {
-    const post = item.item;
-    return (
-      <View className="post" key={`post${post.id}`}>
-        <Text>{post.text}</Text>
-        <View style={styles.reacts}>
-          {this.reacts(post, 'post')}
-        </View>
-        <ReactCarousel item_id={post.id} type="post"/>
-        <View className="comments">
-          {this.comments(post)}
-        </View>
-      </View>
-    )
-  }
 
 
   render() {
@@ -177,17 +148,7 @@ class Main extends React.Component {
             color="#841584"
           />
         </View>
-        <FlatList
-          style={{flex: 1}}
-          data={this.props.posts}
-          renderItem={this.posts}
-          refreshControl={
-            <RefreshControl
-              refreshing={this.state.refreshing}
-              onRefresh={this._onRefresh}
-            />
-          }
-        />
+        <Posts />
       </View>
     );
   }
