@@ -1,0 +1,4 @@
+.new-post-rct-component {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column; }

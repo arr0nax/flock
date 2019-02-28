@@ -6,7 +6,6 @@ import actions from 'rdx/actions';
 
 function* postReacts(action) {
   const { success, data, error } = yield* makeRequest.post(`/reacts`, action.payload);
-  console.log(data);
   if (success && data) {
     // yield put(actions.setReplies({data, parent_id: action.payload}));
     switch (data.item_type) {

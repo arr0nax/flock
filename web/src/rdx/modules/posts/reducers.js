@@ -14,7 +14,6 @@ export default {
     },
     [types.ADD_POST](state, action) {
       let newState = cloneDeep(state)
-      console.log(newState, state);
       newState.data.unshift(action.payload)
       return newState;
     },

@@ -51,7 +51,7 @@ class Comments extends React.Component {
             <UserSummary user={this.props.users[comment.user_id]} className='smallName'/>
             <div className="comment-text-container">
               <p className="comment-text">{comment.text}</p>
-              <Reacts item={comment} item_type={'comment'} />
+              <Reacts item={comment} item_type={'comment'} className='comment'/>
             </div>
           </div>
           <div className='comment-react-container'>

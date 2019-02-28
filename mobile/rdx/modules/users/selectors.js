@@ -1,5 +1,5 @@
-import { get } from 'lodash';
+import get from 'lodash/get';
 
 export default {
-  getUsers: state => state['users'],
+  getUsers: state => get(state, 'users.data'),
 };

@@ -9,7 +9,6 @@ import './index.css';
 
 class Reacts extends React.Component {
   getReact(react) {
-    console.log(react);
     switch(react) {
       case 'like':
         return '👍';
@@ -28,7 +27,6 @@ class Reacts extends React.Component {
 
   getReacts() {
     const { item, item_type } = this.props;
-    console.log(item);
     if (item) {
       if (item_type === 'post' && this.props.post_reacts[item.id]) {
         return this.props.post_reacts[item.id].map(react => {
@@ -49,9 +47,8 @@ class Reacts extends React.Component {
   }
 
   render() {
-    console.log('hello');
     return (
-      <div className="reacts-rct-component">
+      <div className={`reacts-rct-component ${this.props.className}`}>
         {this.getReacts()}
       </div>
     )

@@ -13,7 +13,6 @@ class ReactCarousel extends React.Component {
   }
 
   handleReact(react, item_id, item_type) {
-    console.log(this.state);
     this.setState({open: false});
     this.props.postReact({
       react,

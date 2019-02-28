@@ -25,7 +25,6 @@ export const formatResponse = (response) => {
 const composeRequestManager = (verb) => {
   function* manageRequest(route, params) {
     const url = Env.API_ENDPOINT + route;
-    console.log(url);
     const authToken = yield select(authSelectors.getAuthToken);
     try {
       const response = yield call(Api.xhr, url, verb, params, authToken);

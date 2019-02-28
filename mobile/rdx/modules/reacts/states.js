@@ -1,5 +1,17 @@
 export default {
-  DEFAULT_POST_REACTS_STATE: {},
-  DEFAULT_COMMENT_REACTS_STATE: {},
-  DEFAULT_REPLY_REACTS_STATE: {},
+  DEFAULT_POST_REACTS_STATE: {
+    data: [{}],
+    errors: {},
+    requested: false,
+  },
+  DEFAULT_COMMENT_REACTS_STATE: {
+    data: [{}],
+    errors: {},
+    requested: false,
+  },
+  DEFAULT_REPLY_REACTS_STATE: {
+    data: [{}],
+    errors: {},
+    requested: false,
+  },
 }

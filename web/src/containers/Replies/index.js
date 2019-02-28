@@ -56,7 +56,7 @@ class Replies extends React.Component {
             <UserSummary user={this.props.users[reply.user_id]} className="smallName"/>
             <div className="reply-text-container">
             <p className="reply-text">{reply.text}</p>
-            <Reacts item={reply} item_type={'reply'} />
+            <Reacts item={reply} item_type={'reply'} className='reply'/>
             </div>
           </div>
           <div className='reply-react-container'>

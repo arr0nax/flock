@@ -1,3 +1,7 @@
 export default {
-  DEFAULT_NOTIFICATION_STATE: [],
+  DEFAULT_NOTIFICATION_STATE: {
+    data: [],
+    errors: {},
+    requested: false,
+  },
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+
 import logo from './logo.svg';
 import './App.css';
 
@@ -13,6 +14,7 @@ import UserSummary from './components/UserSummary';
 import UpdateGroup from './components/UpdateGroup';
 import LoginForm from './containers/LoginForm';
 import Post from './containers/Post';
+import NewPost from './containers/NewPost';
 import Notifications from './containers/Notifications';
 
 
@@ -48,9 +50,7 @@ class App extends Component {
     this.setState({password: event.target.value});
   }
 
-  handleChangePost(event) {
-    this.setState({post: event.target.value});
-  }
+
 
   handleChangeComment(event, post) {
     var newComment = {
@@ -88,11 +88,6 @@ class App extends Component {
     })
   }
 
-  handlePost() {
-    this.props.postPost({
-      text: this.state.post
-    })
-  }
 
   posts() {
     return this.props.posts.map(post => {
@@ -113,11 +108,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <div className="header">
+        </div>
       {this.props.logged_in ? (
         <div>
+          <UserSummary user={this.props.user} />
           <div className="button" onClick={() => this.handleLogout()}>
-            <p>{this.props.user.first_name} {this.props.user.last_name}</p>
-            <img src={this.props.user.image_url} />
             <p>logout</p>
           </div>
           <FileUpload item_id={this.props.user.id} auth={this.props.auth}/>
@@ -129,11 +125,8 @@ class App extends Component {
           <LoginForm />
         </div>
       )}
-        <div>
-          <input value={this.state.post} onChange={(e) => this.handleChangePost(e)} />
-          <div className="button" onClick={() => this.handlePost()}>
-            <p>post</p>
-          </div>
+        <div className="new-post">
+          <NewPost />
         </div>
         <div className="posts">
           {this.posts()}
@@ -170,7 +163,6 @@ const actionsMapper = getRdxActionMapper([
   'getPosts',
   'requestLogin',
   'requestLogout',
-  'postPost',
   'postComment',
   'postReply',
   'postReact',

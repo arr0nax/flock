@@ -1,8 +1,16 @@
 // @import 'src/styles/_index';
 
- .reacts-rct-component {
+.reacts-rct-component {
   p {
+    position: relative;
     padding: 0px;
     margin: 0px;
   }
- }
+}
+
+.reacts-rct-component.comment, .reacts-rct-component.reply {
+  p {
+    bottom: -4px;
+    font-size: 10px;
+  }
+}

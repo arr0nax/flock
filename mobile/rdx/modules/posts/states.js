@@ -1,3 +1,7 @@
 export default {
-  posts: [{}]
+  posts: {
+    data: [{}],
+    errors: {},
+    requested: false,
+  }
 }

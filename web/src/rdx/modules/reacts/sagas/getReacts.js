@@ -6,7 +6,6 @@ import actions from 'rdx/actions';
 
 function* getReacts(action) {
   const { success, data, error } = yield* makeRequest.get(`/${action.payload.type}/${action.payload.item_id}/reacts`);
-  console.log(data);
   if (success) {
     // yield put(actions.setReplies({data, parent_id: action.payload}));
     switch (action.payload.type) {
