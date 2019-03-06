@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import { StyleSheet, View, Button, Text, TextInput } from 'react-native';
 import {default as Reacts} from 'mobile/containers/reacts';
 import {default as Replies} from 'mobile/containers/replies';
+import {default as UserSummary} from 'mobile/components/user-summary';
 import {default as ReactCarousel} from 'mobile/components/react-carousel';
 import { getRdxActionMapper, getRdxSelectionMapper } from 'mobile/rdx/utils/propsMapping';
 
@@ -48,13 +49,18 @@ class Comments extends React.Component {
       return this.props.comments[this.props.post.id] && this.props.comments[this.props.post.id].map(comment => {
         return (
           <View className="comment" key={`comment${comment.id}`}>
-            <Text>{comment.text}</Text>
-            <View style={styles.reacts}>
-              <Reacts item={comment} type={'comment'}/>
+            <View className="comment-box" style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-start'}}>
+              <UserSummary user={this.props.users[comment.user_id]} smallname/>
+              <View style={{flex: 1, flexDirection: 'row', position: 'relative', alignItems: 'flex-end', marginTop: 10, marginLeft: 7}} >
+                <Text style={{fontSize: 16}}>{comment.text}</Text>
+                <View style={[styles.reacts, {position: 'relative', bottom: -5}]}>
+                  <Reacts item={comment} type={'comment'}/>
+                </View>
+              </View>
             </View>
-            <ReactCarousel item_id={comment.id} type="comment"/>
+            <ReactCarousel item_id={comment.id} item_type="comment" enableScroll={this.props.enableScroll} disableScroll={this.props.disableScroll}/>
             <View className="replies">
-              <Replies comment={comment}/>
+              <Replies comment={comment} enableScroll={this.props.enableScroll} disableScroll={this.props.disableScroll}/>
             </View>
           </View>
         )
@@ -66,7 +72,7 @@ class Comments extends React.Component {
 
   render() {
     return (
-      <View>
+      <View  style={{marginLeft: 20}}>
         {this.comments()}
         {this.comment()}
       </View>
@@ -92,6 +98,7 @@ const actionsMapper = getRdxActionMapper([
 
 const stateMapper = getRdxSelectionMapper({
   comments: 'getComments',
+  users: 'getUsers',
 });
 
 export default connect(stateMapper, actionsMapper)(Comments);

@@ -4,9 +4,6 @@ import { StyleSheet, Text, View, Image, TextInput, Button, ScrollView, RefreshCo
 import actions from '../actions';
 import {default as ReactCarousel} from 'mobile/components/react-carousel';
 import {default as Notifications} from 'mobile/components/notifications';
-import {default as Reacts} from 'mobile/containers/reacts';
-import {default as Replies} from 'mobile/containers/replies';
-import {default as Comments} from 'mobile/containers/comments';
 import {default as Posts} from 'mobile/containers/posts';
 import { getRdxActionMapper, getRdxSelectionMapper } from 'mobile/rdx/utils/propsMapping';
 import {default as ImageUpload} from 'mobile/components/image-upload';
@@ -18,16 +15,8 @@ class Main extends React.Component {
       email: "",
       password: "",
       post: "",
-      comment: {},
-      reply: {},
-      refreshing: false,
-      shownotifications: false,
     }
   }
-
-
-
-
 
   handleLogin() {
     this.props.requestLogin({
@@ -53,55 +42,14 @@ class Main extends React.Component {
     })
   }
 
-  handleComment(post) {
-    this.props.postComment({
-      text: this.state.comment[post.id],
-      post_id: post.id,
-    })
-    var newComment = {
-      ...this.state.comment
-    };
-    newComment[post.id] = '';
-    this.setState({comment: newComment});
-  }
-
-
-
-
-
   handleChangePost(event) {
     this.setState({post: event.target.value});
   }
 
-  handleChangeComment(event, post) {
-    var newComment = {
-      ...this.state.comment
-    };
-    newComment[post.id] = event;
-    this.setState({comment: newComment});
-  }
-
-
-
-
-
-  reacts(item, type) {
-    return <Reacts item={item} type={type} />
-  }
-
-  replies(comment) {
-    return <Replies comment={comment} />
-  }
-
-  comments(post) {
-    return <Comments post={post} />
-  }
-
-
 
   render() {
     return (
-      <View>
+      <View style={{marginTop: 150}}>
         {
           this.props.logged_in ? (
             <View>
@@ -152,17 +100,19 @@ class Main extends React.Component {
       </View>
     );
   }
+
+  /*
+  render() {
+    return (
+      <GestureResponder />
+    )
+  }
+  */
 }
 
 function mapStateToProps(state) {
   return {
     auth: state.auth,
-    users: state.users,
-    posts: state.posts,
-    comments: state.comments,
-    replies: state.replies,
-    reacts: state.reacts,
-    notifications: state.notifications,
   }
 }
 
@@ -171,40 +121,22 @@ Main.propTypes = {
 };
 
 Main.defaultProps = {
-  getPosts: () => {},
   postLogin: () => {},
   postLogout: () => {},
   auth: {},
-  posts: {posts: []}
 };
 
 const actionsMapper = getRdxActionMapper([
-  'getPosts',
   'requestLogin',
   'requestLogout',
   'postPost',
-  'postComment',
-  'postReply',
-  'postReact',
-  'getNotifications',
   'requestRegister'
 ]);
 
 const stateMapper = getRdxSelectionMapper({
   auth: 'getAuthToken',
   user: 'getUser',
-  users: 'getUsers',
   logged_in: 'getLoggedIn',
-  posts: 'getPosts',
-  postsRequested: 'getPostsRequested',
-  comments: 'getComments',
-  replies: 'getReplies',
-  post_reacts: 'getPostReacts',
-  comment_reacts: 'getCommentReacts',
-  reply_reacts: 'getReplyReacts',
-  notifications: 'getNotifications',
-  notificationsRequested: 'getNotificationsRequested',
-  activeRequests: 'getActiveRequests'
 });
 
 const styles = StyleSheet.create({

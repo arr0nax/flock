@@ -2,6 +2,7 @@ import {default as React} from 'react';
 import {connect} from 'react-redux';
 import { StyleSheet, View, Button, Text, FlatList, RefreshControl } from 'react-native';
 import {default as ReactCarousel} from 'mobile/components/react-carousel';
+import {default as UserSummary} from 'mobile/components/user-summary';
 import {default as Comments} from 'mobile/containers/comments';
 import {default as Reacts} from 'mobile/containers/reacts';
 import { getRdxActionMapper, getRdxSelectionMapper } from 'mobile/rdx/utils/propsMapping';
@@ -12,6 +13,7 @@ class Posts extends React.Component {
     super(props);
     this.state = {
       refreshing: false,
+      scroll: true,
     };
   }
 
@@ -24,23 +26,32 @@ class Posts extends React.Component {
 
   _onRefresh = () => {
     this.setState({refreshing: true});
-    console.log('hello refreshing', );
-    console.log(this.props.postsRequested);
     this.props.getPosts();
     if (this.props.logged_in) this.props.getNotifications();
+  }
+
+  enableScroll = () => {
+    this.setState({scroll: true})
+  }
+
+  disableScroll = () => {
+    this.setState({scroll: false})
   }
 
   posts = (item) => {
     const post = item.item;
     return (
       <View className="post" key={`post${post.id}`}>
-        <Text>{post.text}</Text>
-        <View style={styles.reacts}>
-          <Reacts item={post} type="post"/>
+        <UserSummary user={this.props.users[post.user_id]} />
+        <View style={{paddingLeft: 10}}>
+          <Text style={{fontSize: 22}}>{post.text}</Text>
+          <View style={styles.reacts}>
+            <Reacts item={post} type="post"/>
+          </View>
         </View>
-        <ReactCarousel item_id={post.id} type="post"/>
+        <ReactCarousel item_id={post.id} item_type="post" enableScroll={this.enableScroll} disableScroll={this.disableScroll}/>
         <View className="comments">
-          <Comments post={post} />
+          <Comments post={post} enableScroll={this.enableScroll} disableScroll={this.disableScroll}/>
         </View>
       </View>
     )
@@ -50,10 +61,16 @@ class Posts extends React.Component {
   render() {
     return (
       <View>
+        <Button
+          onPress={() => this._onRefresh()}
+          title="refresh"
+          color="#841584"
+        />
         <FlatList
           style={{flex: 1}}
           data={this.props.posts}
           renderItem={this.posts}
+          scrollEnabled={this.state.scroll}
           refreshControl={
             <RefreshControl
               refreshing={this.state.refreshing}
@@ -73,6 +90,7 @@ const actionsMapper = getRdxActionMapper([
 const stateMapper = getRdxSelectionMapper({
   posts: 'getPosts',
   postsRequested: 'getPostsRequested',
+  users: 'getUsers',
 });
 
 const styles = StyleSheet.create({

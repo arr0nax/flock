@@ -10,6 +10,7 @@ class Notifications extends React.Component {
     this.state = {
       open: false
     };
+    props.getNotifications();
   }
 
   notifications() {
