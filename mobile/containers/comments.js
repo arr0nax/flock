@@ -48,7 +48,7 @@ class Comments extends React.Component {
     if (this.props.post &&  this.props.post.id) {
       return this.props.comments[this.props.post.id] && this.props.comments[this.props.post.id].map(comment => {
         return (
-          <View className="comment" key={`comment${comment.id}`}>
+          <View className="comment" key={`comment${comment.id}`} style={{marginBottom: 20}}>
             <View className="comment-box" style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-start'}}>
               <UserSummary user={this.props.users[comment.user_id]} smallname/>
               <View style={{flex: 1, flexDirection: 'row', position: 'relative', alignItems: 'flex-end', marginTop: 10, marginLeft: 7}} >

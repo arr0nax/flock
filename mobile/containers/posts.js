@@ -50,7 +50,7 @@ class Posts extends React.Component {
           </View>
         </View>
         <ReactCarousel item_id={post.id} item_type="post" enableScroll={this.enableScroll} disableScroll={this.disableScroll}/>
-        <View className="comments">
+        <View className="comments" style={{marginTop: 20}}>
           <Comments post={post} enableScroll={this.enableScroll} disableScroll={this.disableScroll}/>
         </View>
       </View>

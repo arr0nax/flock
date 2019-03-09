@@ -35,7 +35,7 @@ class Replies extends React.Component {
   replies() {
     if (this.props.comment) {
       return this.props.replies[this.props.comment.id] && this.props.replies[this.props.comment.id].map(reply => (
-        <View className="reply" key={`reply${reply.id}`}>
+        <View className="reply" key={`reply${reply.id}`} style={{marginBottom: 20}}>
           <View className="reply-box" style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-start'}}>
             <UserSummary user={this.props.users[reply.user_id]} smallname/>
             <View style={{flex: 1, flexDirection: 'row', position: 'relative', alignItems: 'flex-end', marginTop: 10, marginLeft: 7}} >
@@ -45,7 +45,7 @@ class Replies extends React.Component {
               </View>
             </View>
           </View>
-          <ReactCarousel item_id={reply.id} item_type="reply" enableScroll={this.props.enableScroll} disableScroll={this.props.disableScroll}/>
+          <ReactCarousel item_id={reply.id} item_type="reply" enableScroll={this.props.enableScroll} disableScroll={this.props.disableScroll} />
         </View>
       ));
     }
@@ -67,8 +67,8 @@ class Replies extends React.Component {
   render() {
     return (
       <View style={{marginLeft: 20}}>
-        <Text onPress={this.toggleOpen}>{this.state.open ? 'hide replies' : 'show replies'}</Text>
-        <View style={ this.state.open ? { display:'auto'} : {display: 'none'} }>
+        <Text onPress={this.toggleOpen} style={{position: 'absolute', top: -20, left: 80}}>{this.state.open ? 'hide replies' : 'show replies'}</Text>
+        <View style={ [(this.state.open ? { display:'auto'} : {display: 'none'}), {marginTop: 20}] }>
           {this.replies()}
           {this.reply()}
         </View>

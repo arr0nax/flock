@@ -68,7 +68,7 @@ class ReactCarousel extends Component {
 
   render() {
     return (
-      <View style={[{position: 'relative', height: 20, width: 50}]} {...this._panResponder.panHandlers}>
+      <View style={[{position: 'relative', height: 20, width: 50}, ((this.props.item_type === 'reply' || this.props.item_type === 'comment') && {marginLeft: 50})]} {...this._panResponder.panHandlers}>
         <View style={[{position: 'absolute', top: 0}]}>
           <Animated.View style={{
             borderWidth: this._border,

@@ -13,7 +13,7 @@ class UserSummary extends React.Component {
       <View style={[styles.container, (this.props.smallname && styles.smallnamemain)]}>
         <Image source={{ uri: this.props.user.image_url }} style={{ width: 42, height: 42, borderRadius: 21 }} />
         <View style={[{ flex: 1, flexDirection: 'column' }, (this.props.smallname && styles.smallnamecontainer)]}>
-          <Text style={(this.props.smallname && styles.smallnametext)}>{this.props.user.first_name} {this.props.user.last_name}</Text>
+          <Text style={[{fontSize: 16}, (this.props.smallname && styles.smallnametext)]}>{this.props.user.first_name} {this.props.user.last_name}</Text>
           <Text></Text>
         </View>
       </View>
@@ -30,13 +30,15 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     backgroundColor: '#fff',
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
+    alignItems: 'center',
+    justifyContent: 'flex-start'
   },
 
   smallnamemain: {
     position: 'relative',
     maxWidth: 42,
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
   },
   smallnamecontainer: {
     position: 'absolute',
@@ -44,7 +46,7 @@ const styles = StyleSheet.create({
     top: -5,
   },
   smallnametext: {
-
+    fontSize: 12
   },
 });
 
