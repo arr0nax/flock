@@ -16,5 +16,24 @@ export default {
       newState.data[action.payload.parent_id] = [action.payload.data];
       return newState;
     },
+    [types.GET_REPLIES_REQUEST](state, action) {
+      return {
+        ...state,
+        requested: true,
+      };
+    },
+    [types.GET_REPLIES_SUCCESS](state, action) {
+      return {
+        ...state,
+        requested: false,
+      };
+    },
+    [types.GET_REPLIES_FAILURE](state, action) {
+      return {
+        ...state,
+        errors: action.payload,
+        requested: false,
+      };
+    },
   }),
 };

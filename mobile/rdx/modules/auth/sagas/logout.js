@@ -9,7 +9,9 @@ function* logout() {
   if (success) {
     yield put(actions.setUser(data));
     yield put(actions.setAuthToken(''));
+    yield put(actions.logoutSuccess());
   } else {
+    yield put(actions.logoutFailure(error));
     return getErrorActions({ error });
   }
   return null;

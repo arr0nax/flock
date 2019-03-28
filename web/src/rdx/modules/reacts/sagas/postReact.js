@@ -20,7 +20,17 @@ function* postReacts(action) {
         break;
     }
   } else {
-    return getErrorActions({ error });
+    switch (action.payload.item_type) {
+      case 'post':
+        yield put(actions.postPostReactFailure({item_id: action.payload.item_id, error}));
+        break;
+      case 'comment':
+        yield put(actions.postCommentReactFailure({item_id: action.payload.item_id, error}));
+        break;
+      case 'reply':
+        yield put(actions.postReplyReactFailure({item_id: action.payload.item_id, error}));
+        break;
+    }
   }
   return null;
 }

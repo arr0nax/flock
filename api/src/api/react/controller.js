@@ -37,6 +37,9 @@ class ReactController {
         case 'post':
           const post = await Post.findByID(request.payload.item_id);
           const postUser = post.attributes.user_id;
+          Post.updateById(request.params.id, {
+            interactions: post.attributes.interactions + 1,
+          });
           Notification.create({
             item_id: react.attributes.id,
             item_type: 'react',

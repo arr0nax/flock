@@ -1,0 +1,12 @@
+// @import 'src/styles/_index';
+
+.profile {
+  .details {
+    height: 0px;
+    overflow: hidden;
+  }
+
+  .details.open {
+    height: auto;
+  }
+}

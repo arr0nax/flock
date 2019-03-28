@@ -21,6 +21,10 @@ class Post extends BaseModel {
     return TABLE_NAME;
   }
 
+  get hasTimestamps() {
+    return true;
+  }
+
   user() {
     return this.belongsTo('User');
   }

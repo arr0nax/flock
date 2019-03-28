@@ -7,9 +7,10 @@ import actions from 'rdx/actions';
 function* getNotifications(action) {
   const { success, data, error } = yield* makeRequest.get(`/notifications`);
   if (success && data) {
+    yield put(actions.getNotificationsSuccess(data));
     yield put(actions.setNotifications(data));
   } else {
-    return getErrorActions({ error });
+    yield put(actions.getNotificationsFailure({ error }));
   }
   return null;
 }

@@ -18,6 +18,10 @@ class Notification extends BaseModel {
     return TABLE_NAME;
   }
 
+  get hasTimestamps() {
+    return true;
+  }
+
   static byUser(id) {
     return this.query().where({user_id: id}).orderBy(id, 'DESC');
   }

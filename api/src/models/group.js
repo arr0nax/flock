@@ -1,6 +1,7 @@
 import BaseModel from './base';
 import User from './user';
 import Post from './post';
+import Report from './report';
 import Joi from 'joi';
 
 const TABLE_NAME = 'groups';
@@ -20,12 +21,20 @@ class Group extends BaseModel {
     return TABLE_NAME;
   }
 
+  get hasTimestamps() {
+    return true;
+  }
+
   users() {
     return this.hasMany('User');
   }
 
   posts() {
     return this.hasMany('Post')
+  }
+
+  reports() {
+    return this.hasMany('Report')
   }
 
   static size(group_id) {
@@ -37,8 +46,10 @@ class Group extends BaseModel {
     return this.users().fetch({columns: ['first_name', 'last_name', 'image_url', 'id']})
   }
 
-  fetchAllPosts() {
-    return this.posts().fetch();
+  async fetchAllPosts(pagination = {}) {
+    // const posts = await this.posts().fetchPage(pagination);
+    // console.log(posts);
+    return this.posts().orderBy('-updated_at').fetchPage(pagination);
   }
 
   static findByCode(code) {

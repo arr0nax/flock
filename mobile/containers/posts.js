@@ -30,6 +30,12 @@ class Posts extends React.Component {
     if (this.props.logged_in) this.props.getNotifications();
   }
 
+  _onEndReached = () => {
+    if (!this.props.postsRequested) {
+      this.props.getMorePosts({page: (this.props.postsPagination.page + 1)});
+    }
+  }
+
   enableScroll = () => {
     this.setState({scroll: true})
   }
@@ -41,7 +47,7 @@ class Posts extends React.Component {
   posts = (item) => {
     const post = item.item;
     return (
-      <View className="post" key={`post${post.id}`}>
+      <View className="post" key={`post${post.id}`} style={{flex: 1}}>
         <UserSummary user={this.props.users[post.user_id]} />
         <View style={{paddingLeft: 10}}>
           <Text style={{fontSize: 22}}>{post.text}</Text>
@@ -60,17 +66,18 @@ class Posts extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         <Button
           onPress={() => this._onRefresh()}
           title="refresh"
           color="#841584"
         />
         <FlatList
-          style={{flex: 1}}
+          style={{flex: 1, flexDirection: 'column'}}
           data={this.props.posts}
           renderItem={this.posts}
           scrollEnabled={this.state.scroll}
+          onEndReached={this._onEndReached}
           refreshControl={
             <RefreshControl
               refreshing={this.state.refreshing}
@@ -85,11 +92,13 @@ class Posts extends React.Component {
 
 const actionsMapper = getRdxActionMapper([
   'getPosts',
+  'getMorePosts',
 ]);
 
 const stateMapper = getRdxSelectionMapper({
   posts: 'getPosts',
   postsRequested: 'getPostsRequested',
+  postsPagination: 'getPostsPagination',
   users: 'getUsers',
 });
 

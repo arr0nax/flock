@@ -13,12 +13,60 @@ export default {
     [types.SET_AUTH_TOKEN](state, action) {
       return !!action.payload;
     },
+    [types.LOGOUT_SUCCESS](state, action) {
+      return false;
+    },
   }),
   user: createReducer(states.user, {
     [types.SET_USER](state, action) {
       return {
         data: action.payload,
         errors: state.errors,
+        requested: false,
+      };
+    },
+    [types.LOGIN_REQUEST](state, action) {
+      var newState = cloneDeep(state);
+      return {
+        ...state,
+        requested: true,
+      };
+    },
+    [types.LOGIN_SUCCESS](state, action) {
+      var newState = cloneDeep(state);
+      return {
+        data: action.payload,
+        errors: {...state.errors},
+        requested: false,
+      };
+    },
+    [types.LOGIN_FAILURE](state, action) {
+      var newState = cloneDeep(state);
+      return {
+        data: {...state.data},
+        action: action.payload,
+        requested: false,
+      };
+    },
+  }),
+  register: createReducer(states.register, {
+    [types.REGISTER_REQUEST](state, action) {
+      return {
+        ...state,
+        requested: true,
+      };
+    },
+    [types.REGISTER_SUCCESS](state, action) {
+      return {
+        data: action.payload,
+        errors: {...state.errors},
+        requested: false,
+      };
+    },
+    [types.REGISTER_FAILURE](state, action) {
+      return {
+        data: {...state.data},
+        action: action.payload,
         requested: false,
       };
     },

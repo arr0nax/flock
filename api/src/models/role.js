@@ -15,6 +15,10 @@ class Role extends BaseModel {
     return TABLE_NAME;
   }
 
+  get hasTimestamps() {
+    return true;
+  }
+
   users() {
     return this.hasMany(User);
   }

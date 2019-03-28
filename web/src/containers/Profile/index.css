@@ -1,0 +1,6 @@
+.profile .details {
+  height: 0px;
+  overflow: hidden; }
+
+.profile .details.open {
+  height: auto; }

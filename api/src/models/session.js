@@ -18,6 +18,10 @@ class Session extends BaseModel {
     return TABLE_NAME;
   }
 
+  get hasTimestamps() {
+    return true;
+  }
+
   // Relations
   user() {
     return this.belongsTo(User);

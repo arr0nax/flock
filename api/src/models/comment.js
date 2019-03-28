@@ -20,6 +20,10 @@ class Comment extends BaseModel {
     return TABLE_NAME;
   }
 
+  get hasTimestamps() {
+    return true;
+  }
+
   post() {
     return this.belongsTo(Post);
   }

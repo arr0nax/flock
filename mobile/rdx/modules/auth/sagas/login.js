@@ -13,10 +13,12 @@ function* login({ payload }) {
   if (success && token) {
     yield put(actions.setAuthToken(token));
     yield put(actions.setUser(user));
+    yield put(actions.loginSuccess(user));
     yield put(actions.addUser(user));
     yield put(actions.getNotifications());
   } else {
     console.log(error);
+    yield put(actions.loginFailure(error))
     return getErrorActions({ error });
   }
   return null;

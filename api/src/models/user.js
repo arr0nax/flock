@@ -33,6 +33,10 @@ class User extends BaseModel {
     return TABLE_NAME;
   }
 
+  get hasTimestamps() {
+    return true;
+  }
+
   posts() {
     return this.hasMany(Post);
   }

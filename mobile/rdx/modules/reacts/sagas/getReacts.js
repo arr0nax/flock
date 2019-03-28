@@ -7,7 +7,7 @@ import actions from 'mobile/rdx/actions';
 function* getReacts(action) {
   const { success, data, error } = yield* makeRequest.get(`/${action.payload.type}/${action.payload.item_id}/reacts`);
   if (success) {
-    // yield put(actions.setReplies({data, parent_id: action.payload}));
+    yield put(actions.getReactsSuccess());
     switch (action.payload.type) {
       case 'posts':
         yield put(actions.setPostReacts({parent_id: action.payload.item_id, data}))
@@ -20,9 +20,9 @@ function* getReacts(action) {
         break;
     }
   } else {
-    return getErrorActions({ error });
+    return actions.getReactsFailure({ error });
   }
-  return null;
+  return actions.getReactsFailure({ error });
 }
 
 export default getReacts;

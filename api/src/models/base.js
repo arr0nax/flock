@@ -5,8 +5,11 @@ class BaseModel extends DB.Model {
     return this.forge(data).save(null, options);
   }
 
-  static findAll() {
-    return this.fetchAll();
+  static findAll(filter = {}, pagination = {}) {
+      return this.forge()
+        .where(filter)
+        .fetchPage(pagination);
+    // return this.fetchAll();
   }
 //
 //   // Find Model by some properties

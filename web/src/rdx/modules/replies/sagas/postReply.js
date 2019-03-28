@@ -11,7 +11,7 @@ function* postReplies(action) {
   if (success && data) {
     yield put(actions.addReply({data, parent_id: action.payload.comment_id}));
   } else {
-    return getErrorActions({ error });
+    yield put(actions.postReplyFailure(error));
   }
   return null;
 }

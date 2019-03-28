@@ -7,6 +7,7 @@ import actions from 'rdx/actions';
 function* getReplies(action) {
   const { success, data, error } = yield* makeRequest.get(`/comments/${action.payload}/replies`);
   if (success && data) {
+    yield put(actions.getRepliesSuccess({data, parent_id: action.payload}));
     yield put(actions.setReplies({data, parent_id: action.payload}));
     yield all(data.map(reply => {
       return put(actions.getReacts({item_id: reply.id, type: 'replies'}))
@@ -15,7 +16,7 @@ function* getReplies(action) {
       return put(actions.getUser(reply.user_id))
     }))
   } else {
-    return getErrorActions({ error });
+    yield put(actions.getRepliesFailure(error));
   }
   return null;
 }

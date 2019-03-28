@@ -15,6 +15,7 @@ exports.up = knex => knex.schema.createTable('users', (table) => {
     .references('id')
     .inTable('roles')
     .defaultsTo(1);
+  table.timestamps([true], [true])
 });
 
 exports.down = knex => knex.schema.dropTable('users');

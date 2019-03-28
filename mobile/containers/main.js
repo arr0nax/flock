@@ -49,7 +49,7 @@ class Main extends React.Component {
 
   render() {
     return (
-      <View style={{marginTop: 150}}>
+      <View style={{flex: 1}}>
         {
           this.props.logged_in ? (
             <View>
@@ -65,7 +65,7 @@ class Main extends React.Component {
               <Notifications />
             </View>
           ) : (
-            <View style={{marginTop: 50}}>
+            <View>
               <TextInput
                 style={{height: 40, width: 140, borderColor: 'gray', borderWidth: 1}}
                 onChangeText={(email) => this.setState({email})}

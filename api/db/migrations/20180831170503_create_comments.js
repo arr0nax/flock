@@ -13,6 +13,11 @@ exports.up = knex => knex.schema.createTable('comments', (table) => {
     .references('id')
     .inTable('posts')
     .onDelete('CASCADE');
+  table.boolean('reported')
+    .notNull()
+    .defaultTo(false);
+  table.timestamps([true], [true])
+
 });
 
 exports.down = knex => knex.schema.dropTable('comments');

@@ -20,6 +20,10 @@ class Reply extends BaseModel {
     return TABLE_NAME;
   }
 
+  get hasTimestamps() {
+    return true;
+  }
+
   comment() {
     return this.belongsTo(Comment);
   }

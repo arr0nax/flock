@@ -4,4 +4,6 @@ export default {
   getAuthToken: state => get(state, 'authToken', ''),
   getUser: state => get(state, 'user.data', ''),
   getLoggedIn: state => get(state, 'logged_in', ''),
+  getLoginRequested: state => get(state, 'user.requested', ''),
+  getRegisterRequested: state => get(state, 'register.requested', ''),
 };

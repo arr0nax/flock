@@ -11,7 +11,7 @@ function* postComments(action) {
   if (success && data) {
     yield put(actions.addComment({data, parent_id: action.payload.post_id}));
   } else {
-    return getErrorActions({ error });
+    yield put(actions.postCommentFailure(error));
   }
   return null;
 }

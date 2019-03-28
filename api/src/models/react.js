@@ -19,6 +19,10 @@ class React extends BaseModel {
     return TABLE_NAME;
   }
 
+  get hasTimestamps() {
+    return true;
+  }
+
   static byPost(id) {
     return this.query().where({item_type: 'post', item_id: id});
   }

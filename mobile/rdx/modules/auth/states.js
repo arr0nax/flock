@@ -6,4 +6,14 @@ export default {
     errors: {},
     requested: false,
   },
+  register: {
+    data: {},
+    errors: {},
+    requested: false,
+  },
+  login: {
+    data: {},
+    errors: {},
+    requested: false,
+  }
 }

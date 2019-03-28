@@ -7,6 +7,7 @@ import actions from 'rdx/actions';
 function* getComments(action) {
   const { success, data, error } = yield* makeRequest.get(`/posts/${action.payload}/comments`);
   if (success && data) {
+    yield put(actions.getCommentsSuccess({data, parent_id: action.payload}));
     yield put(actions.setComments({data, parent_id: action.payload}));
     yield all(data.map(comment => {
       return put(actions.getReplies(comment.id))
@@ -18,7 +19,7 @@ function* getComments(action) {
       return put(actions.getUser(post.user_id))
     }))
   } else {
-    return getErrorActions({ error });
+    yield put(actions.getCommentsFailure({ error }));
   }
   return null;
 }

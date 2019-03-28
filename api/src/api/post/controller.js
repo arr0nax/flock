@@ -9,13 +9,14 @@ class PostController {
   async create(request) {
     try {
       const forbidden = await Post.findForbidden(request.payload.text);
-      console.log(forbidden);
       if (forbidden) return Boom.forbidden('Post contains restricted language');
       const user = await User.findByID(request.auth.credentials.user_id);
       const post = await Post.create({
         text: request.payload.text,
         user_id: request.auth.credentials.user_id,
         group_id: user.attributes.group_id,
+        interactions: 1,
+        reported: false,
       });
       return post;
     } catch (err) {
@@ -54,11 +55,11 @@ class PostController {
       // });
       const user = await User.findByID(request.auth.credentials.user_id);
       const group = await Group.findByID(user.attributes.group_id);
-      const count = await Group.size(1);
-      console.log(count);
-      return group.fetchAllPosts();
+      // const count = await Group.size(1);
+      // console.log(count);
+      const posts = await group.fetchAllPosts(request.query);
+      return {posts: posts.models, pagination: posts.pagination}
 
-      return Promise.all(newPosts).then(completed => completed)
     } catch (err) {
       return Boom.forbidden(err.message);
     }

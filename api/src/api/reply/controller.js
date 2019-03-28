@@ -1,5 +1,6 @@
 import Boom from 'boom';
 import Comment from '../../models/comment';
+import Post from '../../models/post';
 import Notification from '../../models/notification';
 import Reply from '../../models/reply';
 
@@ -11,10 +12,16 @@ class ReplyController {
       const reply = await Reply.create({
         text: request.payload.text,
         user_id: request.auth.credentials.user_id,
-        comment_id: request.params.id
+        comment_id: request.params.id,
+        reported: f
       });
       const comment = await Comment.findByID(request.params.id);
       const commentUser = comment.attributes.user_id;
+      const post = await Post.findByID(comment.attributes.post_id);
+      console.log(comment, post);
+      Post.updateById(comment.attributes.post_id, {
+        interactions: post.attributes.interactions + 1,
+      });
       Notification.create({
         item_id: reply.attributes.id,
         item_type: 'reply',

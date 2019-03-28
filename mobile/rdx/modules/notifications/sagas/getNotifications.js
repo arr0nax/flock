@@ -7,11 +7,12 @@ import actions from 'mobile/rdx/actions';
 function* getNotifications(action) {
   const { success, data, error } = yield* makeRequest.get(`/notifications`);
   if (success && data) {
+    yield put(actions.getNotificationsSuccess(data));
     yield put(actions.setNotifications(data));
   } else {
-    return getErrorActions({ error });
+    return actions.getNotificationsFailure({ error });
   }
-  return null;
+  return actions.getNotificationsFailure({ error });
 }
 
 export default getNotifications;

@@ -11,6 +11,7 @@ exports.up = knex => knex.schema.createTable('reacts', (table) => {
   table.integer('item_id')
     .notNull()
     .unsigned();
+  table.timestamps([true], [true])
 });
 
 exports.down = knex => knex.schema.dropTable('reacts');

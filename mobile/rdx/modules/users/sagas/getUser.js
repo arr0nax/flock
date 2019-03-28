@@ -8,10 +8,11 @@ function* getUser(action) {
   const { success, data, error } = yield* makeRequest.get(`/users/${action.payload}`);
   if (success && data) {
     yield put(actions.addUser(data));
+    yield put(actions.getUserSuccess(data))
   } else {
-    return getErrorActions({ error });
+    return actions.getUserSuccess({ error });
   }
-  return null;
+  return actions.getUserSuccess({ error });
 }
 
 export default getUser;

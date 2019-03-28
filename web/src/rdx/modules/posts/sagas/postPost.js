@@ -4,12 +4,14 @@ import makeRequest from 'rdx/utils/makeRequest';
 import getErrorActions from 'rdx/utils/getErrorActions';
 import actions from 'rdx/actions';
 
-function* postPosts(action) {
+function* postPost(action) {
   const { success, data, error } = yield* makeRequest.post(`/posts`, {
     ...action.payload
   });
   if (success && data) {
     yield put(actions.addPost(data));
+    yield put(actions.postPostSuccess(data));
+
     // yield all(data.map(post => {
     //   return put(actions.getComments(post.id))
     // }))
@@ -20,9 +22,9 @@ function* postPosts(action) {
     //   return put(actions.getReacts({item_id: post.id, type: 'posts'}))
     // }))
   } else {
-    return getErrorActions({ error });
+    yield put(actions.postPostFailure(error));
   }
   return null;
 }
 
-export default postPosts;
+export default postPost;

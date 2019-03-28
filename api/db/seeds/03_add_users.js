@@ -2,12 +2,22 @@ const password = require('../../src/utils/password');
 
 const seedUsers = (knex, Promise) => Promise.all([
   knex('users').insert({
+    first_name: 'anonymous',
+    last_name: 'sheep',
+    email: null,
+    password: null,
+    image_url: null,
+    role_id: 1,
+    id: 0,
+  }).returning('id'),
+  knex('users').insert({
     first_name: 'string',
     last_name: 'sheep',
     email: 'string',
     password: password.generatePassword('string'),
     image_url: 'string',
     role_id: 1,
+    group_id: 1,
   }).returning('id'),
   knex('users').insert({
     first_name: 'admin',

@@ -12,5 +12,25 @@ export default {
         errors: state.errors,
       };
     },
+    [types.GET_NOTIFICATIONS_REQUEST](state, action) {
+      return {
+        ...state,
+        requested: true,
+      };
+    },
+    [types.GET_NOTIFICATIONS_SUCCESS](state, action) {
+      return {
+        data: action.payload,
+        errors: {...state.errors},
+        requested: false,
+      };
+    },
+    [types.GET_NOTIFICATIONS_FAILURE](state, action) {
+      return {
+        data: {...state.data},
+        action: action.payload,
+        requested: false,
+      };
+    },
   }),
 };

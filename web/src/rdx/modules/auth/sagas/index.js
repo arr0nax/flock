@@ -8,8 +8,8 @@ import register from 'rdx/modules/auth/sagas/register';
 
 function* watchAuthSagas() {
   yield trackRequests(takeLatest, types.LOGIN_REQUEST, login);
-  yield trackRequests(takeLatest, types.REQUEST_LOGOUT, logout);
-  yield trackRequests(takeLatest, types.REQUEST_REGISTER, register);
+  yield trackRequests(takeLatest, types.LOGOUT_REQUEST, logout);
+  yield trackRequests(takeLatest, types.REGISTER_REQUEST, register);
 }
 
 export default watchAuthSagas;
