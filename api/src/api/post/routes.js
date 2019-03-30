@@ -27,7 +27,31 @@ const Routes = {
       // },
     },
   },
-
+  {
+    method: 'GET',
+    path: '/posts/{id}',
+    handler: Controller.fetchOne,
+    config: {
+      description: 'Get a post by id',
+      notes: 'Uses fetchOne',
+      tags: ['api'],
+      validate: {
+        headers: Joi.object({
+          authorization: Joi.string().required(),
+        }).unknown(),
+        params: {
+          id: Joi.number().min(1),
+        },
+      },
+      auth: {
+        strategy: Constants.AUTH_STRATEGIES.SESSION,
+        scope: false,
+      },
+      // plugins: {
+      //   policies: ['is-logged-in'],
+      // },
+    },
+  },
   {
     method: 'POST',
     path: '/posts',

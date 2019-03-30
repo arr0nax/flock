@@ -7,6 +7,11 @@ export default {
   getPostsFailure: payload => createAction(types.GET_POSTS_FAILURE, payload),
   setPosts: payload => createAction(types.SET_POSTS, payload),
 
+  getPost: payload => createAction(types.GET_POST_REQUEST, payload),
+  getPostSuccess: payload => createAction(types.GET_POST_SUCCESS, payload),
+  getPostFailure: payload => createAction(types.GET_POST_FAILURE, payload),
+  setPosts: payload => createAction(types.SET_POSTS, payload),
+
   getMorePosts: payload => createAction(types.GET_MORE_POSTS_REQUEST, payload),
   getMorePostsSuccess: payload => createAction(types.GET_MORE_POSTS_SUCCESS, payload),
   getMorePostsFailure: payload => createAction(types.GET_MORE_POSTS_FAILURE, payload),

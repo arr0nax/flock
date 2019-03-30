@@ -11,13 +11,13 @@ class NewPost extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      post: ''
+      newPost: ''
     }
   }
 
   handlePost = () => {
     this.props.postPost({
-      text: this.props.post
+      text: this.props.newPost
     })
   }
 
@@ -25,11 +25,11 @@ class NewPost extends React.Component {
     this.props.composePost(event.target.value);
   }
   render() {
-    console.log(this.props.post);
+    console.log(this.props.newPost);
     return (
       <div className="new-post-rct-component">
-        <ExpandingTextInput value={this.props.post} handleChange={(e) => this.handleChangePost(e)} rows={3} handleSubmit={this.handlePost}/>
-        {this.props.postRequested ? (
+        <ExpandingTextInput value={this.props.newPost} handleChange={(e) => this.handleChangePost(e)} rows={3} handleSubmit={this.handlePost}/>
+        {this.props.newPostRequested ? (
           <p>loading</p>
         ) : (
           <button className="button" onClick={() => this.handlePost()} >
@@ -37,8 +37,8 @@ class NewPost extends React.Component {
           </button>
         )
         }
-        {Object.keys(this.props.postError).map(key => {
-          return <p>{this.props.postError[key]}</p>
+        {Object.keys(this.props.newPostError).map(key => {
+          return <p>{this.props.newPostError[key]}</p>
         })}
       </div>
     );
@@ -57,9 +57,9 @@ const actionsMapper = getRdxActionMapper([
 ]);
 
 const stateMapper = getRdxSelectionMapper({
-  post: 'getPost',
-  postRequested: 'getPostRequested',
-  postError: 'getPostErrors',
+  newPost: 'getNewPost',
+  newPostRequested: 'getNewPostRequested',
+  newPostError: 'getNewPostErrors',
 });
 
 export default connect(stateMapper, actionsMapper)(NewPost);

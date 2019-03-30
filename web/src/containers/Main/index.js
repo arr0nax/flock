@@ -11,6 +11,7 @@ import { getRdxActionMapper, getRdxSelectionMapper } from 'rdx/utils/propsMappin
 
 import Post from 'containers/Post';
 import Profile from 'containers/Profile';
+import Reports from 'containers/Reports';
 import NewPost from 'containers/NewPost';
 
 
@@ -50,6 +51,7 @@ class Main extends Component {
         <div className="header">
         </div>
         <Profile />
+        <Reports />
         <div className="new-post">
           <NewPost />
         </div>

@@ -7,6 +7,7 @@ import reactsSelectors from 'rdx/modules/reacts/selectors';
 import usersSelectors from 'rdx/modules/users/selectors';
 import notificationsSelectors from 'rdx/modules/notifications/selectors';
 import attachmentsSelectors from 'rdx/modules/attachments/selectors';
+import reportsSelectors from 'rdx/modules/reports/selectors';
 // IMPORT_PT (for script -- do not remove!)
 
 const selectors = {
@@ -19,6 +20,7 @@ const selectors = {
   ...usersSelectors,
   ...notificationsSelectors,
   ...attachmentsSelectors,
+  ...reportsSelectors,
 // INSERTION_PT (for script -- do not remove!)
 };
 

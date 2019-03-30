@@ -56,6 +56,28 @@ export default {
     },
   }),
   post: createReducer(states.post, {
+    [types.GET_POST_REQUEST](state, action) {
+      return {
+        ...state,
+        requested: true,
+      };
+    },
+    [types.GET_POST_SUCCESS](state, action) {
+      return {
+        ...state,
+        requested: false,
+        data: action.payload,
+      };
+    },
+    [types.GET_POST_FAILURE](state, action) {
+      return {
+        ...state,
+        errors: action.payload,
+        requested: false,
+      };
+    },
+  }),
+  new_post: createReducer(states.new_post, {
     [types.COMPOSE_POST](state, action) {
       return {
         ...state,
@@ -70,7 +92,7 @@ export default {
     },
     [types.POST_POST_SUCCESS](state, action) {
       return {
-        ...states.post,
+        ...states.new_post,
       };
     },
     [types.POST_POST_FAILURE](state, action) {

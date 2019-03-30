@@ -7,6 +7,7 @@ import reactsActions from 'rdx/modules/reacts/actions';
 import usersActions from 'rdx/modules/users/actions';
 import notificationsActions from 'rdx/modules/notifications/actions';
 import attachmentsActions from 'rdx/modules/attachments/actions';
+import reportsActions from 'rdx/modules/reports/actions';
 // IMPORT_PT (for script -- do not remove!)
 
 const actions = {
@@ -19,6 +20,7 @@ const actions = {
   ...usersActions,
   ...notificationsActions,
   ...attachmentsActions,
+  ...reportsActions,
 // INSERTION_PT (for script -- do not remove!)
 };
 

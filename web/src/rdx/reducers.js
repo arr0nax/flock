@@ -8,6 +8,7 @@ import reactsReducers from 'rdx/modules/reacts/reducers';
 import usersReducers from 'rdx/modules/users/reducers';
 import notificationsReducers from 'rdx/modules/notifications/reducers';
 import attachmentsReducers from 'rdx/modules/attachments/reducers';
+import reportsReducers from 'rdx/modules/reports/reducers';
 // IMPORT_PT (for script -- do not remove!)
 
 export const reducers = {
@@ -20,6 +21,7 @@ export const reducers = {
   ...usersReducers,
   ...notificationsReducers,
   ...attachmentsReducers,
+  ...reportsReducers,
 // INSERTION_PT (for script -- do not remove!)
 };
 

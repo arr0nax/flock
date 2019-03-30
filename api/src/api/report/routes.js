@@ -7,24 +7,21 @@ const Controller = require('./controller');
 const Routes = {
   config: [{
     method: 'GET',
-    path: '/reports/{group_id}',
+    path: '/reports',
     handler: Controller.fetchReports,
     config: {
       description: 'Get a list of reports by group',
       notes: 'Get session user info',
       tags: ['api'],
       validate: {
-        params: {
-          group_id: Joi.number().min(1),
-        },
         headers: Joi.object({
           authorization: Joi.string().required(),
         }).unknown(),
       },
-      // auth: {
-      //   strategy: constants.AUTH_STRATEGIES.SESSION,
-      //   scope: false,
-      // },
+      auth: {
+        strategy: Constants.AUTH_STRATEGIES.SESSION,
+        // scope: false,
+      },
       // plugins: {
       //   policies: ['is-logged-in'],
       // },

@@ -2,6 +2,8 @@ const seedReports = (knex, Promise) => Promise.all([
   knex('reports').insert({
     item_id: 2,
     item_type: 'post',
+    item_text: 'reported post :(',
+    user_id: 1,
     group_id: 1,
   }).returning('id'),
 ]);

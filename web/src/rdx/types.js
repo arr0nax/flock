@@ -7,6 +7,7 @@ import reactsTypes from 'rdx/modules/reacts/types';
 import usersTypes from 'rdx/modules/users/types';
 import notificationsTypes from 'rdx/modules/notifications/types';
 import attachmentsTypes from 'rdx/modules/attachments/types';
+import reportsTypes from 'rdx/modules/reports/types';
 // IMPORT_PT (for script -- do not remove!)
 
 const types = {
@@ -19,6 +20,7 @@ const types = {
   ...usersTypes,
   ...notificationsTypes,
   ...attachmentsTypes,
+  ...reportsTypes,
 // INSERTION_PT (for script -- do not remove!)
 };
 

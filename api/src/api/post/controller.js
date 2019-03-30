@@ -65,6 +65,10 @@ class PostController {
     }
   }
 
+  async fetchOne(request)  {
+    return Post.findByID(request.params.id)
+  }
+
 }
 
 module.exports = new PostController();

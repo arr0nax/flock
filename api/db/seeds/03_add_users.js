@@ -4,8 +4,8 @@ const seedUsers = (knex, Promise) => Promise.all([
   knex('users').insert({
     first_name: 'anonymous',
     last_name: 'sheep',
-    email: null,
-    password: null,
+    email: '',
+    password: '',
     image_url: null,
     role_id: 1,
     id: 0,

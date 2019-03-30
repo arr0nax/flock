@@ -5,7 +5,12 @@ exports.up = knex => knex.schema.createTable('reports', (table) => {
     .unsigned()
     .references('id')
     .inTable('groups');
-
+  table.integer('user_id')
+    .notNull()
+    .unsigned()
+    .references('id')
+    .inTable('users');
+  table.string('item_text').notNull();
   table.string('item_type').notNull();
   table.integer('item_id')
     .notNull()

@@ -33,7 +33,9 @@ class ReportController {
           report = await Report.create({
             item_id: post.attributes.id,
             item_type: 'post',
+            item_text: post.attributes.text,
             group_id: postUser.attributes.group_id,
+            user_id: postUser.attributes.id,
           });
           Notification.create({
             item_id: report.attributes.id,
@@ -52,7 +54,9 @@ class ReportController {
           report = await Report.create({
             item_id: comment.attributes.id,
             item_type: 'comment',
+            item_text: comment.attributes.text,
             group_id: commentUser.attributes.group_id,
+            user_id: commentUser.attributes.id,
           });
           Notification.create({
             item_id: report.attributes.id,
@@ -70,7 +74,9 @@ class ReportController {
           report = await Report.create({
             item_id: reply.attributes.id,
             item_type: 'reply',
+            item_text: reply.attributes.text,
             group_id: replyUser.attributes.group_id,
+            user_id: replyUser.attributes.id,
           });
           Notification.create({
             item_id: report.attributes.id,
@@ -109,7 +115,9 @@ class ReportController {
 
   async fetchReports(request) {
     try {
-      return Report.byGroup(request.params.group_id);
+      const user = await User.findByID(request.auth.credentials.user_id)
+      if (!user.attributes.group_id) return Boom.forbidden("User must belong to a group to collect reports");
+      return Report.byGroup(user.attributes.group_id);
     } catch (err) {
       return Boom.forbidden(err.message);
     }
