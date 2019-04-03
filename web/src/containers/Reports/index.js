@@ -2,6 +2,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 // import customPropTypes from 'lib/customPropTypes';
 // import classNames from 'classnames';
+import { push } from 'connected-react-router'
 import { connect } from 'react-redux';
 import { getRdxActionMapper, getRdxSelectionMapper } from 'rdx/utils/propsMapping';
 
@@ -19,6 +20,10 @@ class Reports extends React.Component {
 
   toggleOpen = () => {
     this.setState({open: !this.state.open})
+  }
+
+  viewOriginal(report) {
+    this.props.navigate(`/details/post/${report.item_id}`);
   }
 
   voteKeep(id) {
@@ -40,6 +45,7 @@ class Reports extends React.Component {
     return this.props.reports.map(report => (
       <div className={`report ${report.new ? 'new' : ''}`} key={`report${report.id}`}>
         <p>{report.item_text}</p>
+        <button onClick={() => this.viewOriginal(report)}>view</button>
         <button onClick={() => this.voteKeep(report.id)}>keep</button>
         <button onClick={() => this.voteDelete(report.id)}>delete</button>
       </div>
@@ -65,7 +71,8 @@ Reports.defaultProps = {
 
 const actionsMapper = getRdxActionMapper([
   'getReports',
-  'postReportVote'
+  'postReportVote',
+  'navigate'
 ]);
 
 const stateMapper = getRdxSelectionMapper({
