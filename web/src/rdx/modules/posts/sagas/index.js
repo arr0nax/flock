@@ -9,7 +9,7 @@ import postPost from 'rdx/modules/posts/sagas/postPost';
 
 function* watchPostsSagas() {
   yield trackRequests(takeEvery, types.GET_POSTS_REQUEST, getPosts);
-  // yield trackRequests(takeEvery, types.GET_POST_REQUEST, getPost);
+  yield trackRequests(takeEvery, types.GET_POST_REQUEST, getPost);
   yield trackRequests(takeEvery, types.GET_MORE_POSTS_REQUEST, getMorePosts);
   yield trackRequests(takeEvery, types.POST_POST_REQUEST, postPost);
 }
