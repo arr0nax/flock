@@ -9,6 +9,7 @@ import UserSummary from 'components/UserSummary';
 import ReactCarousel from 'components/ReactCarousel';
 import Reacts from 'containers/Reacts';
 import Comments from 'containers/Comments';
+import ReportContentButton from 'components/ReportContentButton';
 
 import './index.css';
 
@@ -20,6 +21,7 @@ class Post extends React.Component {
         <UserSummary user={this.props.users[post.user_id]} className="white"/>
         <h3>{post.text}</h3>
         {allowReact && <ReactCarousel item_id={post.id} type="post"/>}
+        <ReportContentButton item_id={post.id} item_type={'post'} />
         <Reacts item={post} item_type={'post'} />
         <Comments
           post_id={post.id}

@@ -26,9 +26,7 @@ class ReportController {
       switch(request.payload.item_type) {
         case 'post':
           const post = await Post.findByID(request.payload.item_id);
-          console.log(post);
           const postUser = await User.findByID(post.attributes.user_id);
-          console.log(postUser);
           const newPost = await post.save({reported: true}, {patch: true})
           report = await Report.create({
             item_id: post.attributes.id,
@@ -48,7 +46,7 @@ class ReportController {
           break;
         case 'comment':
           const comment = await Comment.findByID(request.payload.item_id);
-          const commentUser = User.findByID(comment.attributes.user_id);
+          const commentUser = await User.findByID(comment.attributes.user_id);
           const newComment = await comment.save({reported: true}, {patch: true})
 
           report = await Report.create({
@@ -69,7 +67,7 @@ class ReportController {
           break;
         case 'reply':
           const reply = await Reply.findByID(request.payload.item_id);
-          const replyUser = User.findByID(reply.attributes.user_id);
+          const replyUser = await User.findByID(reply.attributes.user_id);
           const newReply = await reply.save({reported: true}, {patch: true})
           report = await Report.create({
             item_id: reply.attributes.id,

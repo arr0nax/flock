@@ -9,6 +9,7 @@ import notificationsActions from 'rdx/modules/notifications/actions';
 import attachmentsActions from 'rdx/modules/attachments/actions';
 import reportsActions from 'rdx/modules/reports/actions';
 import routerActions from 'rdx/modules/router/actions';
+import reportvotesActions from 'rdx/modules/reportVotes/actions';
 // IMPORT_PT (for script -- do not remove!)
 
 const actions = {
@@ -23,6 +24,7 @@ const actions = {
   ...attachmentsActions,
   ...reportsActions,
   ...routerActions,
+  ...reportvotesActions,
 // INSERTION_PT (for script -- do not remove!)
 };
 

@@ -10,6 +10,8 @@ import { getRdxActionMapper, getRdxSelectionMapper } from 'rdx/utils/propsMappin
 import UserSummary from 'components/UserSummary';
 import ReactCarousel from 'components/ReactCarousel';
 import Reacts from 'containers/Reacts';
+import ReportContentButton from 'components/ReportContentButton';
+
 
 import './index.css';
 
@@ -62,6 +64,7 @@ class Replies extends React.Component {
           <div className='reply-react-container'>
             <ReactCarousel item_id={reply.id} type="reply" className="comment"/>
           </div>
+          <ReportContentButton item_id={reply.id} item_type={'reply'} />
         </div>
       );
     });

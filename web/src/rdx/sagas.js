@@ -9,6 +9,7 @@ import watchUsersSagas from 'rdx/modules/users/sagas';
 import watchNotificationsSagas from 'rdx/modules/notifications/sagas';
 import watchAttachmentsSagas from 'rdx/modules/attachments/sagas';
 import watchReportsSagas from 'rdx/modules/reports/sagas';
+import watchReportvotesSagas from 'rdx/modules/reportVotes/sagas';
 // IMPORT_PT (for script -- do not remove!)
 
 function* rootSaga() {
@@ -22,6 +23,7 @@ function* rootSaga() {
     watchNotificationsSagas(),
     watchAttachmentsSagas(),
     watchReportsSagas(),
+    watchReportvotesSagas(),
     // INSERTION_PT (for script -- do not remove!)
   ]);
 }

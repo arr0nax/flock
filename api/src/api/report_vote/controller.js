@@ -61,6 +61,15 @@ class ReportVoteController {
     }
   }
 
+  async fetchUserVotes(request) {
+    try {
+      const user = await User.findByID(request.auth.credentials.user_id);
+      return user.getReportVotes();
+    } catch (err) {
+      return Boom.forbidden(err.message);
+    }
+  }
+
 }
 
 module.exports = new ReportVoteController();

@@ -15,6 +15,7 @@ class Reports extends React.Component {
       open: false
     }
     this.props.getReports();
+    this.props.getReportVotes();
 
   }
 
@@ -71,6 +72,7 @@ Reports.defaultProps = {
 
 const actionsMapper = getRdxActionMapper([
   'getReports',
+  'getReportVotes',
   'postReportVote',
   'navigate'
 ]);

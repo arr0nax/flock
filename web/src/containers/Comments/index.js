@@ -10,6 +10,7 @@ import UserSummary from 'components/UserSummary';
 import ReactCarousel from 'components/ReactCarousel';
 import Reacts from 'containers/Reacts';
 import Replies from 'containers/Replies';
+import ReportContentButton from 'components/ReportContentButton';
 
 import './index.css';
 
@@ -57,6 +58,7 @@ class Comments extends React.Component {
           <div className='comment-react-container'>
             <ReactCarousel item_id={comment.id} type="comment" className="comment"/>
           </div>
+          <ReportContentButton item_id={comment.id} item_type={'comment'} />
           <Replies
             comment_id={comment.id}
             showReplies

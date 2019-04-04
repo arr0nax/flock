@@ -2,6 +2,7 @@ import BaseModel from './base';
 import Post from './post';
 import Comment from './comment';
 import Reply from './reply';
+import ReportVote from './report_vote';
 import React from './react';
 import Group from './group';
 import Role from './role';
@@ -53,6 +54,10 @@ class User extends BaseModel {
     return this.hasMany(React);
   }
 
+  report_votes() {
+    return this.hasMany(ReportVote);
+  }
+
   group() {
     return this.belongsTo(Group);
   }
@@ -79,6 +84,10 @@ class User extends BaseModel {
 
   getGroup() {
     return this.group().fetch();
+  }
+
+  getReportVotes() {
+    return this.report_votes().fetch();
   }
 
   getRole() {

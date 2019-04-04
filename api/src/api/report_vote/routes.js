@@ -31,6 +31,28 @@ const Routes = {
     },
   },
   {
+    method: 'GET',
+    path: '/votes',
+    handler: Controller.fetchUserVotes,
+    config: {
+      description: 'Get a list of votes made by user',
+      notes: 'Uses id from authorization. used to display active votes that the user is participating in currently',
+      tags: ['api'],
+      validate: {
+        headers: Joi.object({
+          authorization: Joi.string().required(),
+        }).unknown(),
+      },
+      auth: {
+        strategy: Constants.AUTH_STRATEGIES.SESSION,
+        scope: false,
+      },
+      // plugins: {
+      //   policies: ['is-logged-in'],
+      // },
+    },
+  },
+  {
     method: 'POST',
     path: '/reports/{id}/votes',
     handler: Controller.create,

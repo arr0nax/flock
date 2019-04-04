@@ -7,7 +7,6 @@ import ReportVote from './report_vote';
 
 class Report extends BaseModel {
   static validation = {
-    group_id: Joi.number().required(),
     item_type: Joi.string().required(),
     item_id: Joi.number().required(),
   }

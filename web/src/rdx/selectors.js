@@ -9,6 +9,7 @@ import notificationsSelectors from 'rdx/modules/notifications/selectors';
 import attachmentsSelectors from 'rdx/modules/attachments/selectors';
 import reportsSelectors from 'rdx/modules/reports/selectors';
 import routerSelectors from 'rdx/modules/router/selectors';
+import reportvotesSelectors from 'rdx/modules/reportVotes/selectors';
 // IMPORT_PT (for script -- do not remove!)
 
 const selectors = {
@@ -23,6 +24,7 @@ const selectors = {
   ...attachmentsSelectors,
   ...reportsSelectors,
   ...routerSelectors,
+  ...reportvotesSelectors,
 // INSERTION_PT (for script -- do not remove!)
 };
 
