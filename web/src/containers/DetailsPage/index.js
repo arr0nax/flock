@@ -23,10 +23,10 @@ class DetailsPage extends React.Component {
         props.getPost(item_id);
         break;
       case 'comment':
-        props.getComment(item_id); // not written yet!
+        props.getCommentPost(item_id); // not written yet!
         break;
       case 'reply':
-        props.getReply(item_id); // not written yet!
+        props.getReplyComment(item_id); // not written yet!
         break;
     }
     // props.getPost()
@@ -57,8 +57,8 @@ DetailsPage.defaultProps = {
 
 const actionsMapper = getRdxActionMapper([
   'getPost',
-  'getComment',
-  'getReply',
+  'getCommentPost',
+  'getReplyComment',
 ]);
 
 const stateMapper = getRdxSelectionMapper({
