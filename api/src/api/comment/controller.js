@@ -61,6 +61,10 @@ class CommentController {
     }
   }
 
+  async fetchOne(request)  {
+    return Comment.findByID(request.params.id)
+  }
+
 }
 
 module.exports = new CommentController();

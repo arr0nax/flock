@@ -19,11 +19,16 @@ class Notifications extends React.Component {
     this.setState({open: !this.state.open})
   }
 
+  goToDetails = (notif) => {
+    this.props.navigate(`details/${notif.item_type}/${notif.item_id}`);
+  }
+
   notifications = () => {
     if (!this.props.notifications || !this.props.notifications.length) return null;
     return this.props.notifications.map(notif => (
       <div className={`notification ${notif.new ? 'new' : ''}`} key={`notif${notif.id}`}>
         <p>{notif.made_by} left a {notif.item_type} on your {notif.parent_type}</p>
+        <button onClick={() => this.goToDetails(notif)}>view</button>
       </div>
     ));
   }
@@ -46,6 +51,7 @@ Notifications.defaultProps = {
 };
 
 const actionsMapper = getRdxActionMapper([
+  'navigate',
 ]);
 
 const stateMapper = getRdxSelectionMapper({

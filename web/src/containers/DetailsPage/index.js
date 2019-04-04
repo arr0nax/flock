@@ -14,7 +14,21 @@ class DetailsPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-    props.getPost(props.match.params.item_id);
+    // props.getPost(props.match.params.item_id);
+    const item_id = props.match.params.item_id;
+    const item_type = props.match.params.item_type;
+    console.log(item_type);
+    switch (item_type) {
+      case 'post':
+        props.getPost(item_id);
+        break;
+      case 'comment':
+        props.getComment(item_id); // not written yet!
+        break;
+      case 'reply':
+        props.getReply(item_id); // not written yet!
+        break;
+    }
     // props.getPost()
   }
   render() {
@@ -43,6 +57,8 @@ DetailsPage.defaultProps = {
 
 const actionsMapper = getRdxActionMapper([
   'getPost',
+  'getComment',
+  'getReply',
 ]);
 
 const stateMapper = getRdxSelectionMapper({

@@ -23,7 +23,7 @@ class Reports extends React.Component {
   }
 
   viewOriginal(report) {
-    this.props.navigate(`/details/post/${report.item_id}`);
+    this.props.navigate(`/details/${report.item_type}/${report.item_id}`);
   }
 
   voteKeep(id) {

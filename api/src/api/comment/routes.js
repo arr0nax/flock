@@ -56,6 +56,28 @@ const Routes = {
     },
   },
   {
+    method: 'GET',
+    path: '/comments/{id}',
+    handler: Controller.fetchOne,
+    config: {
+      description: 'Get a comment',
+      notes: 'Gets a comment based on id',
+      tags: ['api'],
+      validate: {
+        params: {
+          id: Joi.number().min(1),
+        },
+        headers: Joi.object({
+          authorization: Joi.string().required(),
+        }).unknown(),
+      },
+      auth: {
+        strategy: Constants.AUTH_STRATEGIES.SESSION,
+        scope: false,
+      },
+    },
+  },
+  {
     method: 'PATCH',
     path: '/comments/{id}',
     handler: Controller.update,

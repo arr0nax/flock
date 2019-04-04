@@ -56,6 +56,28 @@ const Routes = {
     },
   },
   {
+    method: 'GET',
+    path: '/replies/{id}',
+    handler: Controller.fetchOne,
+    config: {
+      description: 'Get a reply',
+      notes: 'Gets a reply based on id',
+      tags: ['api'],
+      validate: {
+        params: {
+          id: Joi.number().min(1),
+        },
+        headers: Joi.object({
+          authorization: Joi.string().required(),
+        }).unknown(),
+      },
+      auth: {
+        strategy: Constants.AUTH_STRATEGIES.SESSION,
+        scope: false,
+      },
+    },
+  },
+  {
     method: 'PATCH',
     path: '/replies/{id}',
     handler: Controller.update,

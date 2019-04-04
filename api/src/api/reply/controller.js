@@ -13,7 +13,7 @@ class ReplyController {
         text: request.payload.text,
         user_id: request.auth.credentials.user_id,
         comment_id: request.params.id,
-        reported: f
+        reported: false,
       });
       const comment = await Comment.findByID(request.params.id);
       const commentUser = comment.attributes.user_id;
@@ -61,6 +61,10 @@ class ReplyController {
     } catch (err) {
       return Boom.forbidden(err.message);
     }
+  }
+
+  async fetchOne(request)  {
+    return Reply.findByID(request.params.id);
   }
 
 }
