@@ -47,9 +47,7 @@ class Group extends BaseModel {
   }
 
   async fetchAllPosts(pagination = {}) {
-    // const posts = await this.posts().fetchPage(pagination);
-    // console.log(posts);
-    return this.posts().orderBy('-updated_at').fetchPage(pagination);
+    return this.posts().orderBy('-updated_at').query('where', 'reported', '=', 'false').fetchPage(pagination);
   }
 
   static findByCode(code) {

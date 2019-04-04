@@ -1,7 +1,12 @@
 // @import 'src/styles/_index';
 
-.notifications-rct-component {
+.reports-rct-component {
   .new {
     background-color: rgba(173,216,230,0.5);
+  }
+
+  .highlight {
+    border-color: blue;
+    background-color: lightblue;
   }
 }

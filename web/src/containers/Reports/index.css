@@ -1,2 +1,6 @@
-.notifications-rct-component .new {
+.reports-rct-component .new {
   background-color: rgba(173, 216, 230, 0.5); }
+
+.reports-rct-component .highlight {
+  border-color: blue;
+  background-color: lightblue; }

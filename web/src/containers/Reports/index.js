@@ -43,14 +43,18 @@ class Reports extends React.Component {
 
   reports = () => {
     if (!this.props.reports || !this.props.reports.length) return null;
-    return this.props.reports.map(report => (
-      <div className={`report ${report.new ? 'new' : ''}`} key={`report${report.id}`}>
-        <p>{report.item_text}</p>
-        <button onClick={() => this.viewOriginal(report)}>view</button>
-        <button onClick={() => this.voteKeep(report.id)}>keep</button>
-        <button onClick={() => this.voteDelete(report.id)}>delete</button>
-      </div>
-    ));
+    return this.props.reports.map(report => {
+      const vote = this.props.reportVotes.find(vote => vote.report_id === report.id);
+      console.log(report, vote);
+      return (
+        <div className={`report ${report.new ? 'new' : ''}`} key={`report${report.id}`}>
+          <p>{report.item_text}</p>
+          <button onClick={() => this.viewOriginal(report)}>view</button>
+          <button className={`${(vote && (vote.vote === true)) && 'highlight'}`} onClick={() => this.voteKeep(report.id)}>keep</button>
+          <button className={`${(vote && (vote.vote === false)) && 'highlight'}`} onClick={() => this.voteDelete(report.id)}>delete</button>
+        </div>
+      )
+    });
   }
   render() {
     return (
@@ -78,7 +82,8 @@ const actionsMapper = getRdxActionMapper([
 ]);
 
 const stateMapper = getRdxSelectionMapper({
-  reports: 'getReports'
+  reports: 'getReports',
+  reportVotes: 'getReportVotes',
 });
 
 export default connect(stateMapper, actionsMapper)(Reports);
