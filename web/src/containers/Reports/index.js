@@ -27,18 +27,20 @@ class Reports extends React.Component {
     this.props.navigate(`/details/${report.item_type}/${report.item_id}`);
   }
 
-  voteKeep(id) {
-    this.props.postReportVote({
-      report_id: id,
-      vote: true,
-    });
-  }
-
-  voteDelete(id) {
-    this.props.postReportVote({
-      report_id: id,
-      vote: false,
-    });
+  sendVote(vote, existingVote, report_id) {
+    if (existingVote && (existingVote.vote === vote) ) {
+      this.props.deleteReportVote(existingVote.id)
+    } else if (existingVote) {
+      this.props.patchReportVote({
+        id: existingVote.id,
+        vote,
+      });
+    } else {
+      this.props.postReportVote({
+        report_id,
+        vote,
+      });
+    }
   }
 
   reports = () => {
@@ -50,8 +52,8 @@ class Reports extends React.Component {
         <div className={`report ${report.new ? 'new' : ''}`} key={`report${report.id}`}>
           <p>{report.item_text}</p>
           <button onClick={() => this.viewOriginal(report)}>view</button>
-          <button className={`${(vote && (vote.vote === true)) && 'highlight'}`} onClick={() => this.voteKeep(report.id)}>keep</button>
-          <button className={`${(vote && (vote.vote === false)) && 'highlight'}`} onClick={() => this.voteDelete(report.id)}>delete</button>
+          <button className={`${(vote && (vote.vote === true)) && 'highlight'}`} onClick={() => this.sendVote(true, vote, report.id)}>keep</button>
+          <button className={`${(vote && (vote.vote === false)) && 'highlight'}`} onClick={() => this.sendVote(false, vote, report.id)}>delete</button>
         </div>
       )
     });
@@ -78,6 +80,8 @@ const actionsMapper = getRdxActionMapper([
   'getReports',
   'getReportVotes',
   'postReportVote',
+  'patchReportVote',
+  'deleteReportVote',
   'navigate'
 ]);
 

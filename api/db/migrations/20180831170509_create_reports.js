@@ -15,6 +15,7 @@ exports.up = knex => knex.schema.createTable('reports', (table) => {
   table.integer('item_id')
     .notNull()
     .unsigned();
+  table.boolean('resolved').notNull().defaultTo(false);
 
   table.timestamps();
 });

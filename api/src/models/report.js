@@ -3,6 +3,9 @@ const TABLE_NAME = 'reports';
 import bookshelf from './db';
 import Joi from 'joi';
 import ReportVote from './report_vote';
+import Post from './post';
+import Comment from './comment';
+import Reply from './reply';
 
 
 class Report extends BaseModel {
@@ -24,7 +27,7 @@ class Report extends BaseModel {
   }
 
   static byGroup(id) {
-    return this.query().where({group_id: id});
+    return this.query().where({group_id: id, resolved: false});
   }
 
   user() {
@@ -40,7 +43,15 @@ class Report extends BaseModel {
   }
 
   getVotes() {
-    return this.votes().fetch()
+    return this.votes().fetch();
+  }
+
+  getTrueVotes() {
+    return this.votes().query('where', 'vote', '=', 'true').count('id');
+  }
+
+  getFalseVotes() {
+    return this.votes().query('where', 'vote', '=', 'false').count('id');
   }
 
 }

@@ -1,22 +1,30 @@
 import Boom from 'boom';
 import Report from '../../models/report';
+import ReportService from '../../services/report';
 import ReportVote from '../../models/report_vote';
 import User from '../../models/user';
 import Post from '../../models/post';
 import Comment from '../../models/comment';
 import Reply from '../../models/reply';
 import Notification from '../../models/notification';
+import BindAll from '../../utils/bind-all';
 
 const CONTROLLER = 'ReportVoteController';
 
 class ReportVoteController {
+  constructor() {
+    console.log(CONTROLLER);
+    console.log('ctor');
+    this.reportSvc = ReportService;
+    BindAll(this);
+  }
+
   async create(request) {
     try {
       let vote = await new ReportVote({
         user_id: request.auth.credentials.user_id,
         report_id: request.params.id
       }).fetch();
-      console.log(vote);
       if (vote) {
         vote = await vote
           .save({vote: request.payload.vote}, {patch: true})
@@ -28,6 +36,8 @@ class ReportVoteController {
         });
       }
 
+      const report = await Report.findByID(request.params.id);
+      this.reportSvc.evaluateReport(report.attributes.id);
       return vote;
     } catch (err) {
       return Boom.forbidden(err.message);
@@ -36,9 +46,13 @@ class ReportVoteController {
 
   async update(request) {
     try {
-      return ReportVote.updateById(request.params.id, {
+      const report_vote = await ReportVote.findByID(request.params.id);
+      const report = await Report.findByID(report_vote.attributes.report_id);
+      const updated = await ReportVote.updateById(request.params.id, {
         vote: request.payload.vote
       });
+      this.reportSvc.evaluateReport(report.attributes.id);
+      return updated;
     } catch (err) {
       return Boom.forbidden(err.message);
     }

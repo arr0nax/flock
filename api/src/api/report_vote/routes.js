@@ -88,6 +88,7 @@ const Routes = {
       notes: 'Create a new post record; scope [Admin, SuperAdmin]',
       tags: ['api'],
       validate: {
+        payload: ReportVote.validation,
         params: {
           id: Joi.number().min(1),
         },

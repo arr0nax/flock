@@ -5,6 +5,7 @@ const seedReports = (knex, Promise) => Promise.all([
     item_text: 'reported post :(',
     user_id: 1,
     group_id: 1,
+    resolved: false,
   }).returning('id'),
 ]);
 
