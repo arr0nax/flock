@@ -13,7 +13,8 @@ class ReportController {
     try {
       let reportExists = await new Report({
         item_type: request.payload.item_type,
-        item_id: request.payload.item_id
+        item_id: request.payload.item_id,
+        resolved: false,
       }).fetch();
 
       if (reportExists) {

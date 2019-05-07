@@ -32,7 +32,7 @@ class ReportService {
     const trueVotes = await report.getTrueVotes();
     const falseVotes = await report.getFalseVotes();
 
-    if (parseInt(falseVotes, 10) > 0) {
+    if (parseInt(falseVotes, 10) > 2) {
       switch(report.attributes.item_type) {
         case 'post':
            await report.save({resolved: true}, {patch: true});
@@ -52,6 +52,31 @@ class ReportService {
           await report.save({resolved: true}, {patch: true});
            Reply.forge({id: report.attributes.item_id}).fetch().then((model) => {
              return model.destroy()
+           });
+          break;
+        default:
+          return 'something has gone wrong';
+          break;
+      }
+    } else if  (parseInt(trueVotes, 10) > 2) {
+      switch(report.attributes.item_type) {
+        case 'post':
+           await report.save({resolved: true}, {patch: true});
+           Post.forge({id: report.attributes.item_id}).fetch().then((model) => {
+             model.save({reported: false}, {patch: true})
+           });
+          break;
+        case 'comment':
+          await report.save({resolved: true}, {patch: true});
+           Comment.forge({id: report.attributes.item_id}).fetch().then((model) => {
+             model.save({reported: false}, {patch: true})
+           });
+
+          break;
+        case 'reply':
+          await report.save({resolved: true}, {patch: true});
+           Reply.forge({id: report.attributes.item_id}).fetch().then((model) => {
+             model.save({reported: false}, {patch: true})
            });
           break;
         default:
