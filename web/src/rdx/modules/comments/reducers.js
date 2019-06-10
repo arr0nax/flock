@@ -30,8 +30,9 @@ export default {
       return newState;
     },
     [types.ADD_COMMENT](state, action) {
+      console.log(action);
       var newState = cloneDeep(state);
-      newState.data[action.payload.parent_id] ? newState.data[action.payload.parent_id].push(action.payload.data) : newState.data[action.payload.parent_id] = [action.payload.data];
+      newState.data[action.payload.post_id] ? newState.data[action.payload.post_id].push(action.payload) : newState.data[action.payload.post_id] = [action.payload];
       return newState;
     },
   }),

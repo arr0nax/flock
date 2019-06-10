@@ -23,7 +23,7 @@ const Routes = {
         scope: false,
       },
       // plugins: {
-      //   policies: ['is-logged-in'],
+      //   policies: ['shouldSendUpdate'],
       // },
     },
   },
@@ -35,6 +35,7 @@ const Routes = {
       description: 'Get a post by id',
       notes: 'Uses fetchOne',
       tags: ['api'],
+      id: 'get_post',
       validate: {
         headers: Joi.object({
           authorization: Joi.string().required(),
@@ -71,9 +72,9 @@ const Routes = {
         // scope: ['Admin'],
         scope: false,
       },
-      // plugins: {
-      //   policies: ['is-admin'],
-      // },
+      plugins: {
+        policies: ['shouldSendUpdate'],
+      },
     },
   },
   {

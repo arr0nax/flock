@@ -13,8 +13,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "babel-runtime": "^6.26.0",
     "aws-sdk": "^2.339.0",
+    "babel-runtime": "^6.26.0",
     "bcryptjs": "^2.4.3",
     "bluebird": "^3.5.2",
     "body-parser": "^1.18.3",
@@ -33,6 +33,7 @@
     "hapi": "^17.5.4",
     "hapi-auth-jwt2": "^8.1.0",
     "hapi-swagger": "^9.1.2",
+    "hapio": "^2.0.0",
     "hoek": "^5.0.4",
     "inert": "^5.1.0",
     "joi": "^13.6.0",

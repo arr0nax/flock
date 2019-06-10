@@ -9,7 +9,7 @@ function* postComments(action) {
     text: action.payload.text
   });
   if (success && data) {
-    yield put(actions.addComment({data, parent_id: action.payload.post_id}));
+    // yield put(actions.addComment({data, parent_id: action.payload.post_id}));
   } else {
     yield put(actions.postCommentFailure(error));
   }

@@ -25,7 +25,6 @@ class NewPost extends React.Component {
     this.props.composePost(event.target.value);
   }
   render() {
-    console.log(this.props.newPost);
     return (
       <div className="new-post-rct-component">
         <ExpandingTextInput value={this.props.newPost} handleChange={(e) => this.handleChangePost(e)} rows={3} handleSubmit={this.handlePost}/>

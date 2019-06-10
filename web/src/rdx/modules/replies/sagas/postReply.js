@@ -9,7 +9,7 @@ function* postReplies(action) {
     text: action.payload.text
   });
   if (success && data) {
-    yield put(actions.addReply({data, parent_id: action.payload.comment_id}));
+    // yield put(actions.addReply({data, parent_id: action.payload.comment_id}));
   } else {
     yield put(actions.postReplyFailure(error));
   }

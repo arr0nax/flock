@@ -8,17 +8,17 @@ function* postReacts(action) {
   const { success, data, error } = yield* makeRequest.post(`/reacts`, action.payload);
   if (success && data) {
     // yield put(actions.setReplies({data, parent_id: action.payload}));
-    switch (data.item_type) {
-      case 'post':
-        yield put(actions.getReacts({type: 'posts', item_id: data.item_id}));
-        break;
-      case 'comment':
-        yield put(actions.getReacts({type: 'comments', item_id: data.item_id}));
-        break;
-      case 'reply':
-        yield put(actions.getReacts({type: 'replies', item_id: data.item_id}));
-        break;
-    }
+    // switch (data.item_type) {
+    //   case 'post':
+    //     yield put(actions.getReacts({type: 'posts', item_id: data.item_id}));
+    //     break;
+    //   case 'comment':
+    //     yield put(actions.getReacts({type: 'comments', item_id: data.item_id}));
+    //     break;
+    //   case 'reply':
+    //     yield put(actions.getReacts({type: 'replies', item_id: data.item_id}));
+    //     break;
+    // }
   } else {
     switch (action.payload.item_type) {
       case 'post':

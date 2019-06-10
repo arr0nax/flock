@@ -43,7 +43,6 @@ class Profile extends Component {
 
 
   render() {
-    console.log(this.state.open);
     return (
       <div className='profile'>
         <div onClick={() => this.setState({open:!this.state.open})}>

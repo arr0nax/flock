@@ -15,7 +15,6 @@ class CommentController {
       });
       const post = await Post.findByID(request.params.id);
       const postUser = post.attributes.user_id;
-      console.log(comment, post);
       Post.updateById(request.params.id, {
         interactions: post.attributes.interactions + 1,
       });

@@ -9,7 +9,7 @@ function* postPost(action) {
     ...action.payload
   });
   if (success && data) {
-    yield put(actions.addPost(data));
+    // yield put(actions.addPost(data));
     yield put(actions.postPostSuccess(data));
 
     // yield all(data.map(post => {

@@ -12,8 +12,8 @@ export default {
     },
     [types.ADD_REPLY](state, action) {
       var newState = cloneDeep(state);
-      newState[action.payload.parent_id] ? newState[action.payload.parent_id].push(action.payload.data) :
-      newState.data[action.payload.parent_id] = [action.payload.data];
+      newState.data[action.payload.comment_id] ? newState.data[action.payload.comment_id].push(action.payload) :
+      newState.data[action.payload.comment_id] = [action.payload];
       return newState;
     },
     [types.GET_REPLIES_REQUEST](state, action) {

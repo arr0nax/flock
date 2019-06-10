@@ -5,6 +5,7 @@ import Mrhorse from 'mrhorse';
 import HapiSwagger from 'hapi-swagger';
 import Inert from 'inert';
 import Vision from 'vision';
+import Hapio from 'hapio'
 import url from 'url';
 
 import GeneralUtil from '../utils/general';
@@ -74,6 +75,12 @@ class APIPlugin {
     console.log('HapiSwagger plugin registered');
   }
 
+  async registerHapio(server, config) {
+    await server.register(Hapio, {});
+
+    console.log('Hapio plugin registered');
+  }
+
   registerApi(server, config) {
     const apiPath = config.get('apiPath');
     console.log(`reading apiPath ${apiPath}`);
@@ -106,6 +113,8 @@ class APIPlugin {
     await this.registerHapiSwagger(server, config);
 
     await this.registerMrHorse(server, config);
+
+    await this.registerHapio(server, config);
 
     return this.registerApi(server, config);
   }
