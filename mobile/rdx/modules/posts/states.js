@@ -10,6 +10,11 @@ export default {
     }
   },
   post: {
+    data: {},
+    errors: {},
+    requested: false,
+  },
+  new_post: {
     data: '',
     errors: {},
     requested: false,

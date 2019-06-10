@@ -19,9 +19,9 @@ function* getComments(action) {
       return put(actions.getUser(post.user_id))
     }))
   } else {
-    return actions.getCommentsFailure({ error });
+    yield put(actions.getCommentsFailure({ error }));
   }
-  return actions.getCommentsFailure({ error });
+  return null;
 }
 
 export default getComments;

@@ -20,9 +20,9 @@ function* getReacts(action) {
         break;
     }
   } else {
-    return actions.getReactsFailure({ error });
+    yield put(actions.getReactsFailure({ error }));
   }
-  return actions.getReactsFailure({ error });
+  return null;
 }
 
 export default getReacts;

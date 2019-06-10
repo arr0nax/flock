@@ -11,4 +11,8 @@ export default {
   postReplySuccess: payload => createAction(types.POST_REPLY_SUCCESS, payload),
   postReplyFailure: payload => createAction(types.POST_REPLY_FAILURE, payload),
   addReply: payload => createAction(types.ADD_REPLY, payload),
+
+  getReplyComment: payload => createAction(types.GET_REPLY_COMMENT_REQUEST, payload),
+  getReplyCommentSuccess: payload => createAction(types.GET_REPLY_COMMENT_SUCCESS, payload),
+  getReplyCommentFailure: payload => createAction(types.GET_REPLY_COMMENT_FAILURE, payload),
 };

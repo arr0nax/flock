@@ -9,7 +9,7 @@ function* postPost(action) {
     ...action.payload
   });
   if (success && data) {
-    yield put(actions.addPost(data));
+    // yield put(actions.addPost(data));
     yield put(actions.postPostSuccess(data));
 
     // yield all(data.map(post => {
@@ -22,9 +22,9 @@ function* postPost(action) {
     //   return put(actions.getReacts({item_id: post.id, type: 'posts'}))
     // }))
   } else {
-    return actions.postPostFailure({ error });
+    yield put(actions.postPostFailure(error));
   }
-  return actions.postPostFailure({ error });
+  return null;
 }
 
 export default postPost;

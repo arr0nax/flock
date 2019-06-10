@@ -8,8 +8,9 @@ function* patchUserGroup(action) {
   const { success, data, error } = yield* makeRequest.patch(`/users/group`, {code: action.payload});
   if (success && data) {
     // yield put(actions.addUser(data));
+    yield put(actions.getPosts())
   } else {
-    return getErrorActions({ error });
+    yield put(actions.patchUserGroupFailure);
   }
   return null;
 }

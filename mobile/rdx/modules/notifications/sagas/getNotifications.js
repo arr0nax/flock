@@ -10,9 +10,9 @@ function* getNotifications(action) {
     yield put(actions.getNotificationsSuccess(data));
     yield put(actions.setNotifications(data));
   } else {
-    return actions.getNotificationsFailure({ error });
+    yield put(actions.getNotificationsFailure({ error }));
   }
-  return actions.getNotificationsFailure({ error });
+  return null;
 }
 
 export default getNotifications;

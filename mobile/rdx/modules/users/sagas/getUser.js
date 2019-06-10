@@ -10,9 +10,9 @@ function* getUser(action) {
     yield put(actions.addUser(data));
     yield put(actions.getUserSuccess(data))
   } else {
-    return actions.getUserSuccess({ error });
+    yield put(actions.getUserSuccess(error));
   }
-  return actions.getUserSuccess({ error });
+  return null;
 }
 
 export default getUser;

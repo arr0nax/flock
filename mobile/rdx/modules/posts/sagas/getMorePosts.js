@@ -21,9 +21,9 @@ function* getMorePosts(action) {
       return put(actions.getReacts({item_id: post.id, type: 'posts'}))
     }))
   } else {
-    return actions.getMorePostsFailure({ error });
+    yield put(actions.getMorePostsFailure({ error }));
   }
-  return actions.getMorePostsFailure({ error });
+  return null;
 }
 
 export default getMorePosts;

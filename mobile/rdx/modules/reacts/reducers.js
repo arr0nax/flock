@@ -18,21 +18,29 @@ export default {
     [types.GET_REACTS_REQUEST](state, action) {
       var newState = cloneDeep(state);
       return {
-        ...state,
+        ...newState,
         requested: true,
       };
     },
     [types.GET_REACTS_SUCCESS](state, action) {
       var newState = cloneDeep(state);
       return {
-        ...state,
+        ...newState,
         requested: false,
       };
     },
     [types.GET_REACTS_FAILURE](state, action) {
       var newState = cloneDeep(state);
       return {
-        ...state,
+        ...newState,
+        errors: action.payload,
+        requested: false,
+      };
+    },
+    [types.POST_POST_REACT_FAILURE](state, action) {
+      var newState = cloneDeep(state);
+      return {
+        ...newState,
         errors: action.payload,
         requested: false,
       };
@@ -52,21 +60,21 @@ export default {
     [types.GET_REACTS_REQUEST](state, action) {
       var newState = cloneDeep(state);
       return {
-        ...state,
+        ...newState,
         requested: true,
       };
     },
     [types.GET_REACTS_SUCCESS](state, action) {
       var newState = cloneDeep(state);
       return {
-        ...state,
+        ...newState,
         requested: false,
       };
     },
     [types.GET_REACTS_FAILURE](state, action) {
       var newState = cloneDeep(state);
       return {
-        ...state,
+        ...newState,
         errors: action.payload,
         requested: false,
       };

@@ -21,9 +21,9 @@ function* getPosts(action) {
       return put(actions.getReacts({item_id: post.id, type: 'posts'}))
     }))
   } else {
-    return actions.getPostsFailure({ error });
+    yield put(actions.getPostsFailure({ error }));
   }
-  return actions.getPostsFailure({ error });
+  return null;
 }
 
 export default getPosts;

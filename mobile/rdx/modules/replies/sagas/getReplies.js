@@ -16,9 +16,9 @@ function* getReplies(action) {
       return put(actions.getUser(reply.user_id))
     }))
   } else {
-    return actions.getRepliesFailure({ error });
+    yield put(actions.getRepliesFailure(error));
   }
-  return actions.getRepliesFailure({ error });
+  return null;
 }
 
 export default getReplies;

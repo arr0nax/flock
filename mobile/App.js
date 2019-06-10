@@ -4,8 +4,11 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react';
 import {default as configureStore} from 'mobile/rdx/configureStore'
+import {default as configureSockets} from 'mobile/rdx/configureSockets'
 import {default as Main} from 'mobile/containers/main.js';
 import {default as Expo} from 'expo';
+const io = require('socket.io-client');
+const SocketEndpoint = 'http://localhost:8080';
 
 const { store, persistor } = configureStore();
 
@@ -28,6 +31,15 @@ async function getCameraRollAsync() {
 }
 
 export default class App extends React.Component {
+  componentDidMount() {
+    const socket = io(SocketEndpoint, {
+      transports: ['websocket'],
+    });
+    socket.on('connect', () => {
+      console.log('isConnected: true');
+    });
+    configureSockets(socket, store);
+  }
   render() {
     alertIfCameraRollDisabledAsync();
     return (
