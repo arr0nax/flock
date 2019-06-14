@@ -47,7 +47,7 @@ class Main extends Component {
 
   render() {
     return (
-      <div className="Main">
+      <div className="main-rct-component">
         <div className="header">
         </div>
         <Profile />

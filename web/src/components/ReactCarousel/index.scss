@@ -2,15 +2,15 @@
 
 .react-carousel-container {
   position: relative;
-  display: flex;
-  flex-direction: column;
   cursor: pointer;
   z-index: 10;
 
   .react-button {
     position: relative;
+    display: inline-block;
     @include small-clickable;
     margin: 0px 6px 0px 0px;
+
   }
 
   .react-carousel {

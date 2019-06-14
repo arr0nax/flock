@@ -1,0 +1,7 @@
+@import 'src/styles/_index';
+
+.delete-content-button-rct-component {
+  p {
+    @include small-clickable;
+  }
+}

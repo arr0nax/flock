@@ -7,47 +7,44 @@ import { getRdxActionMapper, getRdxSelectionMapper } from 'rdx/utils/propsMappin
 
 import './index.css';
 
-class ReportContentButton extends React.Component {
+class DeleteContentButton extends React.Component {
 
-  sendReport = () => {
+  deleteItem = () => {
     const {item_id, item_type} = this.props;
-    this.props.postReport({
-      item_id,
-      item_type,
-    })
+    this.props.deletePost(item_id);
   }
   render() {
     const { className, user_id, userID } = this.props;
-    if (user_id === userID) return null;
+    if (user_id !== userID) return null;
     return (
       <div className={classNames(
-        "report-content-button-rct-component",
+        "delete-content-button-rct-component",
         className,
       )}>
-        <p onClick={() => this.sendReport()}>report</p>
+        <p onClick={() => this.deleteItem()}>delete</p>
       </div>
     );
   }
 }
 
-ReportContentButton.propTypes = {
+DeleteContentButton.propTypes = {
   className: PropTypes.string,
   item_type: PropTypes.string,
   item_id: PropTypes.number
 };
 
-ReportContentButton.defaultProps = {
+DeleteContentButton.defaultProps = {
   className: '',
   item_type: '',
   item_id: 0,
 };
 
 const actionsMapper = getRdxActionMapper([
-  'postReport'
+  'deletePost'
 ]);
 
 const stateMapper = getRdxSelectionMapper({
   userID: 'getUserID'
 });
 
-export default connect(stateMapper, actionsMapper)(ReportContentButton);
+export default connect(stateMapper, actionsMapper)(DeleteContentButton);

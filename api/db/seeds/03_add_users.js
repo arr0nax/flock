@@ -27,6 +27,24 @@ const seedUsers = (knex, Promise) => Promise.all([
     image_url: 'string',
     role_id: 2,
   }).returning('id'),
+  knex('users').insert({
+    first_name: 'danger',
+    last_name: 'sheep',
+    email: 'danger',
+    password: password.generatePassword('string'),
+    image_url: 'string',
+    role_id: 1,
+    group_id: 1,
+  }).returning('id'),
+  knex('users').insert({
+    first_name: 'asdf',
+    last_name: 'sheep',
+    email: 'asdf',
+    password: password.generatePassword('asdf'),
+    image_url: 'string',
+    role_id: 1,
+    group_id: 1,
+  }).returning('id'),
 ]);
 
 exports.seed = async (knex, Promise) => Promise.all([

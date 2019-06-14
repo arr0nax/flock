@@ -10,6 +10,7 @@ import ReactCarousel from 'components/ReactCarousel';
 import Reacts from 'containers/Reacts';
 import Comments from 'containers/Comments';
 import ReportContentButton from 'components/ReportContentButton';
+import DeleteContentButton from 'components/DeleteContentButton';
 
 import './index.css';
 
@@ -18,10 +19,13 @@ class Post extends React.Component {
     const { post, allowReact, allowComment, showComments, allowReply, showReplies } = this.props;
     return (
       <div className="post-rct-component">
+        <DeleteContentButton item_id={post.id} item_type={'post'} user_id={post.user_id} className="post"/>
+        <ReportContentButton item_id={post.id} item_type={'post'} user_id={post.user_id} className="post"/>
         <UserSummary user={this.props.users[post.user_id]} className="white"/>
         <h3>{post.text}</h3>
-        {allowReact && <ReactCarousel item_id={post.id} type="post"/>}
-        <ReportContentButton item_id={post.id} item_type={'post'} />
+        <div className="action-bar">
+          {allowReact && <ReactCarousel item_id={post.id} type="post"/>}
+        </div>
         <Reacts item={post} item_type={'post'} />
         <Comments
           post_id={post.id}

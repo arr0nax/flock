@@ -1,8 +1,11 @@
-.reacts-rct-component p {
-  position: relative;
-  padding: 0px;
-  margin: 0px; }
+.reacts-rct-component {
+  display: flex;
+  flex-direction: row; }
+  .reacts-rct-component p {
+    position: relative;
+    padding: 0px;
+    margin: 0px; }
 
 .reacts-rct-component.comment p, .reacts-rct-component.reply p {
   bottom: -4px;
-  font-size: 10px; }
+  font-size: 12px; }

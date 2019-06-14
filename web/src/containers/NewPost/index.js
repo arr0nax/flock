@@ -27,7 +27,7 @@ class NewPost extends React.Component {
   render() {
     return (
       <div className="new-post-rct-component">
-        <ExpandingTextInput value={this.props.newPost} handleChange={(e) => this.handleChangePost(e)} rows={3} handleSubmit={this.handlePost}/>
+        <ExpandingTextInput value={this.props.newPost} handleChange={(e) => this.handleChangePost(e)} rows={3} handleSubmit={this.handlePost} noReturn/>
         {this.props.newPostRequested ? (
           <p>loading</p>
         ) : (

@@ -2,11 +2,19 @@
 
 .comments-rct-component {
   padding-left: 20px;
+  padding-top: 10px;
   display: flex;
   flex-direction: column;
 
   .comment-container {
     @include container;
+
+    .report-content-button-rct-component.comment {
+      position: relative;
+      bottom: -12px;
+      height: 0px;
+      left: 90px;
+    }
 
     .comment {
       @include comment;
@@ -23,6 +31,7 @@
     }
 
     .comment-react-container {
+      margin-top: 4px;
       @include react-container;
     }
 

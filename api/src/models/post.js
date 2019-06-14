@@ -42,7 +42,7 @@ class Post extends BaseModel {
   }
 
   getComments() {
-    return this.comments().fetch();
+    return this.comments().query('where', 'reported', '=', 'false').fetch();
   }
 
   static async findForbidden(text) {

@@ -7,10 +7,10 @@ import classNames from 'classnames';
 import './index.css';
 
 const ExpandingTextInput = (props) => {
-  const { className, value, handleChange, handleSubmit, id, placeholder, rows } = props;
+  const { className, value, handleChange, handleSubmit, id, placeholder, rows, noReturn } = props;
 
   const checkForSubmit = (event) => {
-    if (event.key === 'Enter' && !event.shiftKey) {
+    if (event.key === 'Enter' && !event.shiftKey && !noReturn) {
       handleSubmit(id);
     }
   }
@@ -19,7 +19,7 @@ const ExpandingTextInput = (props) => {
       "expanding-text-input-rct-component",
       className,
     )}>
-      <Textarea className="expanding-text-input" value={value} onChange={(e) => handleChange(e, id)} placeholder={placeholder} onKeyPress={checkForSubmit} style={{minHeight: rows ? `${17 * rows}px` : 'auto'}}/>
+      <Textarea className="expanding-text-input" value={value} onChange={(e) => handleChange(e, id)} placeholder={placeholder} onKeyUp={checkForSubmit} style={{minHeight: rows ? `${17 * rows}px` : 'auto'}}/>
     </div>
   );
 }

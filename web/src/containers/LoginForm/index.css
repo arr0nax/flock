@@ -1,0 +1,15 @@
+.login-form-rct-component {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+  .login-form-rct-component #main-logo {
+    height: 100px;
+    width: 100px;
+    margin: 25px;
+    border-radius: 50%; }
+  .login-form-rct-component form {
+    display: flex; }
+  .login-form-rct-component .errors p {
+    color: red;
+    font-size: .8em; }

@@ -49,7 +49,7 @@ class Main extends React.Component {
 
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View style={{flex: 1, marginTop: 100}}>
         {
           this.props.logged_in ? (
             <View>

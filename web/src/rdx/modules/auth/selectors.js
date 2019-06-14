@@ -5,5 +5,6 @@ export default {
   getUser: state => get(state, 'user.data', ''),
   getLoggedIn: state => get(state, 'logged_in', ''),
   getLoginRequested: state => get(state, 'user.requested', ''),
+  getLoginError: state => get(state, 'user.errors', ''),
   getRegisterRequested: state => get(state, 'register.requested', ''),
 };

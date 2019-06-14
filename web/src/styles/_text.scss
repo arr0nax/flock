@@ -3,6 +3,11 @@
   font-size: .8em;
 }
 
+@mixin small-red {
+  color: red;
+  font-size: .8em;
+}
+
 @mixin small-clickable {
   color: lightblue;
   font-size: .8em;

@@ -1,7 +1,7 @@
 exports.up = knex => knex.schema.createTable('replies', (table) => {
   table.increments('id').unsigned().primary();
 
-  table.string('text').notNull();
+  table.string('text', 1000).notNull();
   table.integer('user_id')
     .notNull()
     .unsigned()

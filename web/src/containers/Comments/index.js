@@ -55,10 +55,10 @@ class Comments extends React.Component {
               <Reacts item={comment} item_type={'comment'} className='comment'/>
             </div>
           </div>
+          <ReportContentButton item_id={comment.id} item_type={'comment'} className="comment"/>
           <div className='comment-react-container'>
             <ReactCarousel item_id={comment.id} type="comment" className="comment"/>
           </div>
-          <ReportContentButton item_id={comment.id} item_type={'comment'} />
           <Replies
             comment_id={comment.id}
             showReplies

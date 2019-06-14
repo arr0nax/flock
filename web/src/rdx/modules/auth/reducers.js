@@ -36,7 +36,7 @@ export default {
       var newState = cloneDeep(state);
       return {
         data: action.payload,
-        errors: {...state.errors},
+        errors: {},
         requested: false,
       };
     },
@@ -44,7 +44,7 @@ export default {
       var newState = cloneDeep(state);
       return {
         data: {...state.data},
-        action: action.payload,
+        errors: action.payload,
         requested: false,
       };
     },

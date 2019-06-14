@@ -1,10 +1,16 @@
 .comments-rct-component {
   padding-left: 20px;
+  padding-top: 10px;
   display: flex;
   flex-direction: column; }
   .comments-rct-component .comment-container {
     display: flex;
     flex-direction: column; }
+    .comments-rct-component .comment-container .report-content-button-rct-component.comment {
+      position: relative;
+      bottom: -12px;
+      height: 0px;
+      left: 90px; }
     .comments-rct-component .comment-container .comment {
       display: flex;
       flex-direction: row;
@@ -24,6 +30,7 @@
           position: relative;
           left: 8px; }
     .comments-rct-component .comment-container .comment-react-container {
+      margin-top: 4px;
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
