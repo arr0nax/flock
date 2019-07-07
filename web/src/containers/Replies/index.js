@@ -11,6 +11,8 @@ import UserSummary from 'components/UserSummary';
 import ReactCarousel from 'components/ReactCarousel';
 import Reacts from 'containers/Reacts';
 import ReportContentButton from 'components/ReportContentButton';
+import DeleteContentButton from 'components/DeleteContentButton';
+
 
 
 import './index.css';
@@ -64,7 +66,8 @@ class Replies extends React.Component {
           <div className='reply-react-container'>
             <ReactCarousel item_id={reply.id} type="reply" className="comment"/>
           </div>
-          <ReportContentButton item_id={reply.id} item_type={'reply'} className="reply"/>
+          <ReportContentButton item_id={reply.id} item_type={'reply'} user_id={reply.user_id} className="reply"/>
+          <DeleteContentButton item_id={reply.id} item_type={'reply'} user_id={reply.user_id} className="reply"/>
         </div>
       );
     });
@@ -90,7 +93,7 @@ class Replies extends React.Component {
     const {showReplies, allowReply, comment_id} = this.props;
     return (
       <div className={`replies-rct-component ${this.state.open ? 'open' : ''}`}>
-        <p onClick={this.toggleOpen} className="show-replies">{(!this.props.replies[comment_id] || !this.props.replies[comment_id].length) ? 'reply' : `replies`}</p>
+        <p onClick={this.toggleOpen} className="show-replies">{(!this.props.replies[comment_id] || !this.props.replies[comment_id].length) ? 'reply' : `${this.state.open ? 'hide' : 'show'} replies`}</p>
         {this.state.open &&
             <div className="replies-container">
               {showReplies && this.replies()}

@@ -30,12 +30,13 @@ class Comments extends React.Component {
   comment() {
     if (this.props.post &&  this.props.post.id) {
       return (
-        <View>
-          <TextInput style={{height: 40, width: 140, borderColor: 'gray', borderWidth: 1}} value={this.state.comment} onChangeText={(e) => this.handleChangeComment(e)} />
+        <View style={{flex: 1, flexDirection: 'row'}}>
+          <TextInput style={{height: 30, flex: 1, borderColor: 'gray', borderWidth: 1, borderRadius: 15, marginTop: 8, paddingLeft: 10}} value={this.state.comment} placeholder={'write a comment'} onChangeText={(e) => this.handleChangeComment(e)} />
           <Button
             onPress={() => this.handleComment()}
-            title="comment"
-            color="#841584"
+            title="post"
+            color="#add8e6"
+            style={{flex:1, width: 50, padding: 0}}
           />
         </View>
       )
@@ -51,9 +52,9 @@ class Comments extends React.Component {
           <View className="comment" key={`comment${comment.id}`} style={{marginBottom: 20}}>
             <View className="comment-box" style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-start'}}>
               <UserSummary user={this.props.users[comment.user_id]} smallname/>
-              <View style={{flex: 1, flexDirection: 'row', position: 'relative', alignItems: 'flex-end', marginTop: 10, marginLeft: 7}} >
+              <View style={{flex: 1, flexDirection: 'column', position: 'relative', marginTop: 15, marginLeft: 9, height: 'auto', height: 20}} >
                 <Text style={{fontSize: 16}}>{comment.text}</Text>
-                <View style={[styles.reacts, {position: 'relative', bottom: -5}]}>
+                <View style={[styles.reacts, {position: 'relative', height: 18}]}>
                   <Reacts item={comment} type={'comment'}/>
                 </View>
               </View>
@@ -72,7 +73,7 @@ class Comments extends React.Component {
 
   render() {
     return (
-      <View  style={{marginLeft: 20}}>
+      <View  style={{marginLeft: 20, marginBottom: 20}}>
         {this.comments()}
         {this.comment()}
       </View>

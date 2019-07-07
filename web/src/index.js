@@ -12,12 +12,13 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import io from 'socket.io-client';
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
 const history = createHistory();
 
 const { store, persistor } = configureStore(history);
 
-const socket = io('http://localhost:8080');
+const socket = io(API_ENDPOINT);
 configureSockets(socket, store);
 
 ReactDOM.render(

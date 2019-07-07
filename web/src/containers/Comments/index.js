@@ -11,6 +11,8 @@ import ReactCarousel from 'components/ReactCarousel';
 import Reacts from 'containers/Reacts';
 import Replies from 'containers/Replies';
 import ReportContentButton from 'components/ReportContentButton';
+import DeleteContentButton from 'components/DeleteContentButton';
+
 
 import './index.css';
 
@@ -55,7 +57,8 @@ class Comments extends React.Component {
               <Reacts item={comment} item_type={'comment'} className='comment'/>
             </div>
           </div>
-          <ReportContentButton item_id={comment.id} item_type={'comment'} className="comment"/>
+          <ReportContentButton item_id={comment.id} item_type={'comment'} user_id={comment.user_id} className="comment"/>
+          <DeleteContentButton item_id={comment.id} item_type={'comment'} user_id={comment.user_id} className="comment"/>
           <div className='comment-react-container'>
             <ReactCarousel item_id={comment.id} type="comment" className="comment"/>
           </div>

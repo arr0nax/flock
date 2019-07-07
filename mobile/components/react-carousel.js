@@ -52,6 +52,7 @@ class ReactCarousel extends Component {
   handleReact() {
     const {item_type, item_id} = this.props;
     const {react} = this.state;
+    console.log(react);
     this.props.postReact({
       react,
       item_id,
@@ -73,6 +74,7 @@ class ReactCarousel extends Component {
           <Animated.View style={{
             borderWidth: this._border,
             borderColor: 'black',
+            backgroundColor: '#fff',
             borderRadius: 50,
             height: this._height,
             maxHeight: this._height,
@@ -93,7 +95,7 @@ class ReactCarousel extends Component {
             <View style={[styles.box]}><Text style={[styles.text, {transform: [{scale: (this.state.react === 'angry' ? 1.5 : 1)}]}]}>😡</Text></View>
           </Animated.View>
 
-          <Text style={{position: 'relative', top: 0}}>{this.state.react}</Text>
+          <Text style={{position: 'relative', top: 0, color: '#add8e6'}}>{this.state.react}</Text>
 
         </View>
       </View>
@@ -111,7 +113,7 @@ const getDirectionAndColor = (locationX, locationY) => {
   const sad = locationX >= 220 && locationX < 270;
   const angry = locationX >= 270 && locationX < 320;
   const up = locationY < 0 && locationY > -70;
-  if (!up) return 'not yet';
+  if (!up) return 'react';
   if (like && up) {
     return 'like'
   } else if (love && up) {

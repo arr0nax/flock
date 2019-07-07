@@ -16,7 +16,7 @@ class ReactController {
         item_id: request.payload.item_id
       }).fetch();
 
-      console.log(react);
+      console.log('19', react);
 
       if (react && (react.attributes.react === request.payload.react)) {
         react.destroy();
@@ -37,9 +37,9 @@ class ReactController {
         case 'post':
           const post = await Post.findByID(request.payload.item_id);
           const postUser = post.attributes.user_id;
-          Post.updateById(request.params.id, {
+          post.save({
             interactions: post.attributes.interactions + 1,
-          });
+          }, {patch: true});
           Notification.create({
             item_id: react.attributes.id,
             item_type: 'react',

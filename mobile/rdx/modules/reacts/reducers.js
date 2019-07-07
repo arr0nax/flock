@@ -12,7 +12,16 @@ export default {
     },
     [types.ADD_POST_REACT](state, action) {
       let newState = cloneDeep(state)
-      newState.data[action.payload.item_id] ? newState.data[action.payload.item_id].unshift(action.payload) : newState.data[action.payload.item_id] = [action.payload];
+      if (newState.data[action.payload.item_id]) {
+        const index = newState.data[action.payload.item_id].findIndex(react => react.id === action.payload.id);
+        if (index === -1) {
+          newState.data[action.payload.item_id].unshift(action.payload);
+        } else {
+          newState.data[action.payload.item_id][index] = action.payload;
+        }
+      } else {
+        newState.data[action.payload.item_id] = [action.payload];
+      }
       return newState;
     },
     [types.GET_REACTS_REQUEST](state, action) {
@@ -54,7 +63,16 @@ export default {
     },
     [types.ADD_COMMENT_REACT](state, action) {
       let newState = cloneDeep(state)
-      newState.data[action.payload.item_id] ? newState.data[action.payload.item_id].unshift(action.payload) : newState.data[action.payload.item_id] = [action.payload];
+      if (newState.data[action.payload.item_id]) {
+        const index = newState.data[action.payload.item_id].findIndex(react => react.id === action.payload.id);
+        if (index === -1) {
+          newState.data[action.payload.item_id].unshift(action.payload);
+        } else {
+          newState.data[action.payload.item_id][index] = action.payload;
+        }
+      } else {
+        newState.data[action.payload.item_id] = [action.payload];
+      }
       return newState;
     },
     [types.GET_REACTS_REQUEST](state, action) {
@@ -88,7 +106,16 @@ export default {
     },
     [types.ADD_REPLY_REACT](state, action) {
       let newState = cloneDeep(state)
-      newState.data[action.payload.item_id] ? newState.data[action.payload.item_id].unshift(action.payload) : newState.data[action.payload.item_id] = [action.payload];
+      if (newState.data[action.payload.item_id]) {
+        const index = newState.data[action.payload.item_id].findIndex(react => react.id === action.payload.id);
+        if (index === -1) {
+          newState.data[action.payload.item_id].unshift(action.payload);
+        } else {
+          newState.data[action.payload.item_id][index] = action.payload;
+        }
+      } else {
+        newState.data[action.payload.item_id] = [action.payload];
+      }
       return newState;
     },
     [types.GET_REACTS_REQUEST](state, action) {
