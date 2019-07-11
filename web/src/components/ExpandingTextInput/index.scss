@@ -8,5 +8,20 @@
     border: 1px solid lightgrey;
     padding: 5px 12px 5px 16px;
     outline: none;
+
+    @media (max-width: 600px) {
+      width: 75vw;
+    }
   }
+
+  &.post {
+    width: 100%;
+    .expanding-text-input {
+      width: 588px;
+      @media (max-width: 600px) {
+        width: 90vw;
+      }
+    }
+  }
+
 }

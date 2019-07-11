@@ -61,6 +61,7 @@ class Main extends Component {
               loadMore={this.loadFunc}
               hasMore={(this.props.postsPagination.page < this.props.postsPagination.pageCount)}
               loader={<div className="loader" key={0}>Loading ...</div>}
+              style={{width: '100%'}}
           >
               {this.posts()}
           </InfiniteScroll>
