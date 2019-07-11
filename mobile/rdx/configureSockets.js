@@ -1,4 +1,4 @@
-import sockets from 'mobile/rdx/modules/sockets'
+import sockets from './modules/sockets'
 
 const configureSockets = (socket, store) => {
   socket.on('new_post', data => sockets.newPost(store, data))

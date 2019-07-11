@@ -1,6 +1,6 @@
 import { push } from 'connected-react-router';
-// import types from 'mobile/rdx/modules/router/types';
-// import createAction from 'mobile/rdx/utils/createAction';
+// import types from '../router/types';
+// import createAction from '../../../utils/createAction';
 
 export default {
   navigate: (url) => push(url),

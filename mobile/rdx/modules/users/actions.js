@@ -1,5 +1,5 @@
-import types from 'mobile/rdx/modules/users/types';
-import createAction from 'mobile/rdx/utils/createAction';
+import types from '../users/types';
+import createAction from '../../utils/createAction';
 
 export default {
   getUser: payload => createAction(types.GET_USER_REQUEST, payload),

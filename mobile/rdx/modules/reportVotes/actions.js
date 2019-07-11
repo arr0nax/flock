@@ -1,5 +1,5 @@
-import types from 'mobile/rdx/modules/reportVotes/types';
-import createAction from 'mobile/rdx/utils/createAction';
+import types from '../reportVotes/types';
+import createAction from '../../utils/createAction';
 
 export default {
   getReportVotes: payload => createAction(types.GET_REPORT_VOTES_REQUEST, payload),

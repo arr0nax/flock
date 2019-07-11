@@ -1,5 +1,5 @@
-import types from 'mobile/rdx/modules/notifications/types';
-import createAction from 'mobile/rdx/utils/createAction';
+import types from '../notifications/types';
+import createAction from '../../utils/createAction';
 
 export default {
   getNotifications: payload => createAction(types.GET_NOTIFICATIONS_REQUEST, payload),

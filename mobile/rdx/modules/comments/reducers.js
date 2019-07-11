@@ -1,6 +1,6 @@
-import createReducer from 'mobile/rdx/utils/createReducer';
-import types from 'mobile/rdx/modules/comments/types';
-import states from 'mobile/rdx/modules/comments/states';
+import createReducer from '../../utils/createReducer';
+import types from '../comments/types';
+import states from '../comments/states';
 import cloneDeep from 'lodash/cloneDeep';
 
 export default {

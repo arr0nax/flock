@@ -1,7 +1,7 @@
 import {default as React} from 'react';
 import {connect} from 'react-redux';
 import { StyleSheet, View, Button, Text } from 'react-native';
-import { getRdxActionMapper, getRdxSelectionMapper } from 'mobile/rdx/utils/propsMapping';
+import { getRdxActionMapper, getRdxSelectionMapper } from '../rdx/utils/propsMapping';
 
 
 class Reacts extends React.Component {

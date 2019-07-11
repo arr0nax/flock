@@ -1,11 +1,11 @@
 import { takeEvery } from 'redux-saga/effects';
-import trackRequests from 'mobile/rdx/utils/trackRequests';
+import trackRequests from '../../../utils/trackRequests';
 
-import types from 'mobile/rdx/modules/posts/types';
-import getPost from 'mobile/rdx/modules/posts/sagas/getPost';
-import getPosts from 'mobile/rdx/modules/posts/sagas/getPosts';
-import getMorePosts from 'mobile/rdx/modules/posts/sagas/getMorePosts';
-import postPost from 'mobile/rdx/modules/posts/sagas/postPost';
+import types from '../types';
+import getPost from './getPost';
+import getPosts from './getPosts';
+import getMorePosts from './getMorePosts';
+import postPost from './postPost';
 
 function* watchPostsSagas() {
   yield trackRequests(takeEvery, types.GET_POSTS_REQUEST, getPosts);

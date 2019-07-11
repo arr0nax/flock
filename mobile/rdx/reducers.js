@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
-import authReducers from 'mobile/rdx/modules/auth/reducers';
-import postsReducers from 'mobile/rdx/modules/posts/reducers';
-import activerequestsReducers from 'mobile/rdx/modules/activeRequests/reducers';
-import commentsReducers from 'mobile/rdx/modules/comments/reducers';
-import repliesReducers from 'mobile/rdx/modules/replies/reducers';
-import reactsReducers from 'mobile/rdx/modules/reacts/reducers';
-import usersReducers from 'mobile/rdx/modules/users/reducers';
-import notificationsReducers from 'mobile/rdx/modules/notifications/reducers';
-import attachmentsReducers from 'mobile/rdx/modules/attachments/reducers';
+import authReducers from './modules/auth/reducers';
+import postsReducers from './modules/posts/reducers';
+import activerequestsReducers from './modules/activeRequests/reducers';
+import commentsReducers from './modules/comments/reducers';
+import repliesReducers from './modules/replies/reducers';
+import reactsReducers from './modules/reacts/reducers';
+import usersReducers from './modules/users/reducers';
+import notificationsReducers from './modules/notifications/reducers';
+import attachmentsReducers from './modules/attachments/reducers';
 // IMPORT_PT (for script -- do not remove!)
 
 export const reducers = {

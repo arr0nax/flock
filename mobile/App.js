@@ -3,13 +3,13 @@ import {default as React} from 'react';
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react';
-import {default as configureStore} from 'mobile/rdx/configureStore'
-import {default as configureSockets} from 'mobile/rdx/configureSockets'
-import {default as Main} from 'mobile/containers/main.js';
-import {default as AuthGuard} from 'mobile/containers/authguard.js';
+import {default as configureStore} from './rdx/configureStore'
+import {default as configureSockets} from './rdx/configureSockets'
+import {default as Main} from './containers/main.js';
+import {default as AuthGuard} from './containers/authguard.js';
 import {default as Expo} from 'expo';
 import SocketIOClient from 'socket.io-client';
-import {default as Env} from 'mobile/env.js'
+import {default as Env} from './env.js'
 
 const { store, persistor } = configureStore();
 

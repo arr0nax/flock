@@ -1,10 +1,10 @@
 import { takeLatest } from 'redux-saga/effects';
-import trackRequests from 'mobile/rdx/utils/trackRequests';
+import trackRequests from '../../../utils/trackRequests';
 
-import types from 'mobile/rdx/modules/auth/types';
-import login from 'mobile/rdx/modules/auth/sagas/login';
-import logout from 'mobile/rdx/modules/auth/sagas/logout';
-import register from 'mobile/rdx/modules/auth/sagas/register';
+import types from '../types';
+import login from './login';
+import logout from './logout';
+import register from './register';
 
 function* watchAuthSagas() {
   yield trackRequests(takeLatest, types.LOGIN_REQUEST, login);

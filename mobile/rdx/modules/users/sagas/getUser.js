@@ -1,8 +1,8 @@
 import { put } from 'redux-saga/effects';
 
-import makeRequest from 'mobile/rdx/utils/makeRequest';
-import getErrorActions from 'mobile/rdx/utils/getErrorActions';
-import actions from 'mobile/rdx/actions';
+import makeRequest from '../../../utils/makeRequest';
+import getErrorActions from '../../../utils/getErrorActions';
+import actions from '../../../actions';
 
 function* getUser(action) {
   const { success, data, error } = yield* makeRequest.get(`/users/${action.payload}`);

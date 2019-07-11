@@ -1,10 +1,10 @@
 import { takeEvery } from 'redux-saga/effects';
-import trackRequests from 'mobile/rdx/utils/trackRequests';
+import trackRequests from '../../../utils/trackRequests';
 
-import types from 'mobile/rdx/modules/reportVotes/types';
-import getReportVotes from 'mobile/rdx/modules/reportVotes/sagas/getReportVotes';
-import patchReportVote from 'mobile/rdx/modules/reportVotes/sagas/patchReportVote';
-import deleteReportVote from 'mobile/rdx/modules/reportVotes/sagas/deleteReportVote';
+import types from '../types';
+import getReportVotes from './getReportVotes';
+import patchReportVote from './patchReportVote';
+import deleteReportVote from './deleteReportVote';
 
 function* watchReportVotesSagas() {
   yield trackRequests(takeEvery, types.GET_REPORT_VOTES_REQUEST, getReportVotes);

@@ -1,5 +1,5 @@
-import types from 'mobile/rdx/modules/replies/types';
-import createAction from 'mobile/rdx/utils/createAction';
+import types from '../replies/types';
+import createAction from '../../utils/createAction';
 
 export default {
   getReplies: payload => createAction(types.GET_REPLIES_REQUEST, payload),

@@ -1,12 +1,12 @@
 import {default as React} from 'react';
 import {connect} from 'react-redux';
 import { StyleSheet, View, Button, Text, FlatList, RefreshControl } from 'react-native';
-import {default as ReactCarousel} from 'mobile/components/react-carousel';
-import {default as UserSummary} from 'mobile/components/user-summary';
-import {default as Comments} from 'mobile/containers/comments';
-import {default as Reacts} from 'mobile/containers/reacts';
-import {default as NewPost} from 'mobile/containers/newpost';
-import { getRdxActionMapper, getRdxSelectionMapper } from 'mobile/rdx/utils/propsMapping';
+import {default as ReactCarousel} from '../components/react-carousel';
+import {default as UserSummary} from '../components/user-summary';
+import {default as Comments} from './comments';
+import {default as Reacts} from './reacts';
+import {default as NewPost} from './newpost';
+import { getRdxActionMapper, getRdxSelectionMapper } from '../rdx/utils/propsMapping';
 
 
 class Posts extends React.Component {

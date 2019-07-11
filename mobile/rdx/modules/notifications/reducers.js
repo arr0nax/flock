@@ -1,6 +1,6 @@
-import createReducer from 'mobile/rdx/utils/createReducer';
-import types from 'mobile/rdx/modules/notifications/types';
-import states from 'mobile/rdx/modules/notifications/states';
+import createReducer from '../../utils/createReducer';
+import types from '../notifications/types';
+import states from '../notifications/states';
 import cloneDeep from 'lodash/cloneDeep';
 
 export default {

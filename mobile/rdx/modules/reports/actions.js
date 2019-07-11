@@ -1,5 +1,5 @@
-import types from 'mobile/rdx/modules/reports/types';
-import createAction from 'mobile/rdx/utils/createAction';
+import types from '../reports/types';
+import createAction from '../../utils/createAction';
 
 export default {
   getReports: payload => createAction(types.GET_REPORTS_REQUEST, payload),

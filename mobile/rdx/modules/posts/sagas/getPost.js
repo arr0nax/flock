@@ -1,9 +1,9 @@
 import { put, all } from 'redux-saga/effects';
 
-import makeRequest from 'mobile/rdx/utils/makeRequest';
-import getErrorActions from 'mobile/rdx/utils/getErrorActions';
-import constructQueryParams from 'mobile/rdx/utils/constructQueryParams';
-import actions from 'mobile/rdx/actions';
+import makeRequest from '../../../utils/makeRequest';
+import getErrorActions from '../../../utils/getErrorActions';
+import constructQueryParams from '../../../utils/constructQueryParams';
+import actions from '../../../actions';
 
 function* getPost(action) {
   const { success, data, error } = yield* makeRequest.get(`/posts/${action.payload}`);

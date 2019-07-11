@@ -2,11 +2,11 @@ import {default as React} from 'react';
 import {connect} from 'react-redux';
 import { StyleSheet, Text, View, Image, TextInput, Button } from 'react-native';
 import actions from '../actions';
-import {default as ReactCarousel} from 'mobile/components/react-carousel';
-import {default as Notifications} from 'mobile/components/notifications';
-import {default as Posts} from 'mobile/containers/posts';
-import { getRdxActionMapper, getRdxSelectionMapper } from 'mobile/rdx/utils/propsMapping';
-import {default as ImageUpload} from 'mobile/components/image-upload';
+import {default as ReactCarousel} from '../components/react-carousel';
+import {default as Notifications} from '../components/notifications';
+import {default as Posts} from './posts';
+import { getRdxActionMapper, getRdxSelectionMapper } from '../rdx/utils/propsMapping';
+import {default as ImageUpload} from '../components/image-upload';
 
 class Login extends React.Component {
   constructor(props) {
@@ -51,7 +51,7 @@ class Login extends React.Component {
   render() {
     return (
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <Image source={require('../lib/images/smallsheepboi.png')} style={{ width: 50, height: 50, borderRadius: 25, backgroundColor: "#add8e6" }} />
+        <Image source={require('../lib/images/smallsheepboi.gif')} style={{ width: 50, height: 50, borderRadius: 25, backgroundColor: "#add8e6" }} />
         <TextInput
           style={{height: 40, width: '60%', borderColor: 'gray', borderWidth: 0, borderBottomWidth: 1}}
           onChangeText={(email) => this.setState({email})}

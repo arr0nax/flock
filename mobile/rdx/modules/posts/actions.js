@@ -1,5 +1,5 @@
-import types from 'mobile/rdx/modules/posts/types';
-import createAction from 'mobile/rdx/utils/createAction';
+import types from '../posts/types';
+import createAction from '../../utils/createAction';
 
 export default {
   getPosts: payload => createAction(types.GET_POSTS_REQUEST, payload),

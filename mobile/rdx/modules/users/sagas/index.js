@@ -1,9 +1,9 @@
 import { takeEvery } from 'redux-saga/effects';
-import trackRequests from 'mobile/rdx/utils/trackRequests';
+import trackRequests from '../../../utils/trackRequests';
 
-import types from 'mobile/rdx/modules/users/types';
-import getUser from 'mobile/rdx/modules/users/sagas/getUser';
-import patchUserGroup from 'mobile/rdx/modules/users/sagas/patchUserGroup';
+import types from '../types';
+import getUser from './getUser';
+import patchUserGroup from './patchUserGroup';
 
 function* watchUsersSagas() {
   yield trackRequests(takeEvery, types.GET_USER_REQUEST, getUser);

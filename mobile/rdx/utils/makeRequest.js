@@ -1,9 +1,9 @@
 import { all, call, select } from 'redux-saga/effects';
-import Api from 'mobile/rdx/utils/Api';
+import Api from './Api';
 
-import authSelectors from 'mobile/rdx/modules/auth/selectors';
+import authSelectors from '../modules/auth/selectors';
 
-import Env from 'mobile/env.js';
+import Env from '../../env.js';
 
 export const formatServerConnectionError = (e) => {
   // some sort of connection error

@@ -1,6 +1,6 @@
-// import createReducer from 'mobile/rdx/utils/createReducer';
-// import types from 'mobile/rdx/modules/attachments/types';
-// import states from 'mobile/rdx/modules/attachments/states';
+// import createReducer from '../../../utils/createReducer';
+// import types from '../attachments/types';
+// import states from '../attachments/states';
 
 export default {
   // attachments: createReducer(states.EXAMPLE_DEFAULT_STATE, {

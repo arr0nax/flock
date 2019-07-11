@@ -1,10 +1,10 @@
 import { takeEvery } from 'redux-saga/effects';
-import trackRequests from 'mobile/rdx/utils/trackRequests';
+import trackRequests from '../../../utils/trackRequests';
 
-import types from 'mobile/rdx/modules/comments/types';
-import getComments from 'mobile/rdx/modules/comments/sagas/getComments';
-import getCommentPost from 'mobile/rdx/modules/comments/sagas/getCommentPost';
-import postComment from 'mobile/rdx/modules/comments/sagas/postComment';
+import types from '../types';
+import getComments from './getComments';
+import getCommentPost from './getCommentPost';
+import postComment from './postComment';
 
 function* watchCommentsSagas() {
   yield trackRequests(takeEvery, types.GET_COMMENTS_REQUEST, getComments);

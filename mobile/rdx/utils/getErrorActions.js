@@ -1,4 +1,4 @@
-import actions from 'mobile/rdx/actions';
+import actions from '../actions';
 
 export default ({ error, target, message }) => {
   console.log(error, target, message);

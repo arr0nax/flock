@@ -1,5 +1,5 @@
-import types from 'mobile/rdx/modules/auth/types';
-import createAction from 'mobile/rdx/utils/createAction';
+import types from '../auth/types';
+import createAction from '../../utils/createAction';
 
 export default {
   setAuthToken: authToken => createAction(types.SET_AUTH_TOKEN, authToken),

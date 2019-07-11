@@ -2,9 +2,9 @@ import {default as React} from 'react';
 import {connect} from 'react-redux';
 import { StyleSheet, Text, View, Image, TextInput, Button, ScrollView, RefreshControl, FlatList } from 'react-native';
 import actions from '../actions';
-import {default as Posts} from 'mobile/containers/posts';
-import { getRdxActionMapper, getRdxSelectionMapper } from 'mobile/rdx/utils/propsMapping';
-import {default as ImageUpload} from 'mobile/components/image-upload';
+import {default as Posts} from './posts';
+import { getRdxActionMapper, getRdxSelectionMapper } from '../rdx/utils/propsMapping';
+import {default as ImageUpload} from '../components/image-upload';
 
 class Feed extends React.Component {
 

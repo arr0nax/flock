@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux';
 
-import actions from 'mobile/rdx/actions';
-import selectors from 'mobile/rdx/selectors';
+import actions from '../actions';
+import selectors from '../selectors';
 
 const getValidActions = (actionsRequested) => {
   const validActions = {};

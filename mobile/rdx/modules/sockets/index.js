@@ -1,7 +1,7 @@
-import posts from 'mobile/rdx/modules/sockets/posts.js';
-import comments from 'mobile/rdx/modules/sockets/comments.js';
-import replies from 'mobile/rdx/modules/sockets/replies.js';
-import reacts from 'mobile/rdx/modules/sockets/reacts.js';
+import posts from '../sockets/posts.js';
+import comments from '../sockets/comments.js';
+import replies from '../sockets/replies.js';
+import reacts from '../sockets/reacts.js';
 
 const sockets = {
   ...posts,

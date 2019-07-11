@@ -1,6 +1,6 @@
-import createReducer from 'mobile/rdx/utils/createReducer';
-import types from 'mobile/rdx/modules/reacts/types';
-import states from 'mobile/rdx/modules/reacts/states';
+import createReducer from '../../utils/createReducer';
+import types from '../reacts/types';
+import states from '../reacts/states';
 import cloneDeep from 'lodash/cloneDeep';
 
 export default {

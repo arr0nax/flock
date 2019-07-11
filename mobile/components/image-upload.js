@@ -2,7 +2,7 @@ require('es6-promise').polyfill();
 require('fetch-everywhere');
 import * as React from 'react';
 import { StyleSheet, View, Button, Text } from 'react-native';
-import Env from 'mobile/env';
+import Env from '../env';
 import { ImagePicker } from 'expo';
 
 class ImageUpload

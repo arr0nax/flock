@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Animated, StyleSheet, View, TouchableOpacity, Text, PanResponder, Dimensions } from 'react-native';
 import {connect} from 'react-redux';
-import { getRdxActionMapper, getRdxSelectionMapper } from 'mobile/rdx/utils/propsMapping';
+import { getRdxActionMapper, getRdxSelectionMapper } from '../rdx/utils/propsMapping';
 import {
   PanGestureHandler,
   LongPressGestureHandler,

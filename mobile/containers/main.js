@@ -1,9 +1,9 @@
 import React from "react";
 import { View, Text } from "react-native";
 import { createBottomTabNavigator, createAppContainer } from "react-navigation";
-import {default as Feed} from 'mobile/containers/feed';
-import {default as Notifications} from 'mobile/components/notifications';
-import {default as Settings} from 'mobile/containers/settings';
+import {default as Feed} from './feed';
+import {default as Notifications} from '../components/notifications';
+import {default as Settings} from './settings';
 
 
 const MainNavigator = createBottomTabNavigator({

@@ -1,4 +1,4 @@
-import types from 'mobile/rdx/types';
+import types from '../../types';
 import { createSelector } from 'reselect';
 
 const getActiveRequests = state => state.activeRequests;

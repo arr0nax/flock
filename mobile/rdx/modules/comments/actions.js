@@ -1,5 +1,5 @@
-import types from 'mobile/rdx/modules/comments/types';
-import createAction from 'mobile/rdx/utils/createAction';
+import types from '../comments/types';
+import createAction from '../../utils/createAction';
 
 export default {
   getComments: payload => createAction(types.GET_COMMENTS_REQUEST, payload),

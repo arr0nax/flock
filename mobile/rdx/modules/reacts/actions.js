@@ -1,5 +1,5 @@
-import types from 'mobile/rdx/modules/reacts/types';
-import createAction from 'mobile/rdx/utils/createAction';
+import types from '../reacts/types';
+import createAction from '../../utils/createAction';
 
 export default {
   getReacts: payload => createAction(types.GET_REACTS_REQUEST, payload),

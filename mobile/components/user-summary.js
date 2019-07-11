@@ -1,7 +1,7 @@
 import {default as React} from 'react';
 import {connect} from 'react-redux';
 import { StyleSheet, View, Button, Image, Text } from 'react-native';
-import sheepfault from 'mobile/lib/images/smallsheepboi.png';
+import sheepfault from '../lib/images/smallersheepboi.png';
 
 class UserSummary extends React.Component {
   constructor(props) {
@@ -30,7 +30,7 @@ class UserSummary extends React.Component {
   render() {
     return (
       <View style={[styles.container, (this.props.smallname && styles.smallnamemain)]}>
-        <Image source={require('../lib/images/smallsheepboi.png')} style={{ width: 50, height: 50, borderRadius: 25, backgroundColor: this.state.color }} />
+        <Image source={require('../lib/images/smallersheepboi.png')} style={{ width: 50, height: 50, borderRadius: 25, backgroundColor: this.state.color }} />
         <View style={[{ flex: 1, flexDirection: 'column',  position: 'absolute', left: 55 }, (this.props.smallname && styles.smallnamecontainer)]}>
           <Text style={[{fontSize: 16}, (this.props.smallname && styles.smallnametext)]}>{this.props.user.first_name} {this.props.user.last_name}</Text>
           <Text></Text>

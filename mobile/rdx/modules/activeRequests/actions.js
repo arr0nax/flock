@@ -1,5 +1,5 @@
-import types from 'mobile/rdx/modules/activeRequests/types';
-import createAction from 'mobile/rdx/utils/createAction';
+import types from '../activeRequests/types';
+import createAction from '../../utils/createAction';
 
 export default {
   addActiveRequest: payload => createAction(types.ADD_ACTIVE_REQUEST, payload),

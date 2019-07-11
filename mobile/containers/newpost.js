@@ -2,7 +2,7 @@ import {default as React} from 'react';
 import {connect} from 'react-redux';
 import { StyleSheet, View, TextInput, Button } from 'react-native';
 import actions from '../actions';
-import { getRdxActionMapper, getRdxSelectionMapper } from 'mobile/rdx/utils/propsMapping';
+import { getRdxActionMapper, getRdxSelectionMapper } from '../rdx/utils/propsMapping';
 
 class NewPost extends React.Component {
 

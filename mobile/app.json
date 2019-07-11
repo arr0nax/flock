@@ -1,16 +1,30 @@
 {
   "expo": {
-   "name": "Your App Name",
-   "icon": "./lib/images/smallsheepboi.gif
-   ",
-   "version": "1.0.0",
-   "slug": "flock",
-   "sdkVersion": "31.0.0",
-   "ios": {
-     "bundleIdentifier": "com.pasturestudios.flock"
-   },
-   "android": {
-     "package": "com.pasturestudios.flock"
-   }
+    "name": "flock2",
+    "slug": "flock.zone",
+    "privacy": "public",
+    "sdkVersion": "33.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    }
   }
 }

@@ -1,8 +1,8 @@
 import {default as React} from 'react';
 import {connect} from 'react-redux';
 import {Modal, View } from 'react-native';
-import { default as Login } from 'mobile/containers/login.js'
-import { getRdxActionMapper, getRdxSelectionMapper } from 'mobile/rdx/utils/propsMapping';
+import { default as Login } from './login.js'
+import { getRdxActionMapper, getRdxSelectionMapper } from '../rdx/utils/propsMapping';
 
 class AuthGuard extends React.Component {
   render() {

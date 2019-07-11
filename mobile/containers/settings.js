@@ -2,11 +2,11 @@ import {default as React} from 'react';
 import {connect} from 'react-redux';
 import { StyleSheet, Text, View, Image, TextInput, Button, ScrollView, RefreshControl, FlatList } from 'react-native';
 import actions from '../actions';
-import {default as ReactCarousel} from 'mobile/components/react-carousel';
-import {default as Notifications} from 'mobile/components/notifications';
-import {default as Posts} from 'mobile/containers/posts';
-import { getRdxActionMapper, getRdxSelectionMapper } from 'mobile/rdx/utils/propsMapping';
-import {default as ImageUpload} from 'mobile/components/image-upload';
+import {default as ReactCarousel} from '../components/react-carousel';
+import {default as Notifications} from '../components/notifications';
+import {default as Posts} from './posts';
+import { getRdxActionMapper, getRdxSelectionMapper } from '../rdx/utils/propsMapping';
+import {default as ImageUpload} from '../components/image-upload';
 
 class Settings extends React.Component {
   constructor(props) {
