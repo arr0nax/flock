@@ -1,6 +1,6 @@
 import {default as React} from 'react';
 import {connect} from 'react-redux';
-import { StyleSheet, View, Button, Text, FlatList, RefreshControl } from 'react-native';
+import { Animated, StyleSheet, View, Button, Text, FlatList, RefreshControl, KeyboardAvoidingView } from 'react-native';
 import {default as ReactCarousel} from '../components/react-carousel';
 import {default as UserSummary} from '../components/user-summary';
 import {default as Comments} from './comments';
@@ -15,7 +15,11 @@ class Posts extends React.Component {
     this.state = {
       refreshing: false,
       scroll: true,
+      new_post_visible: true,
+      offset: '',
     };
+
+    this._newPostPosition = new Animated.Value(100)
   }
 
   componentDidUpdate(prevProps) {
@@ -34,6 +38,19 @@ class Posts extends React.Component {
   _onEndReached = () => {
     if (!this.props.postsRequested) {
       this.props.getMorePosts({page: (this.props.postsPagination.page + 1)});
+    }
+  }
+
+  _onScroll = (event) => {
+    var currentOffset = event.nativeEvent.contentOffset.y;
+    var direction = currentOffset > this.state.offset ? 'down' : 'up';
+    var magnitude = currentOffset - this.state.offset;
+    if ((magnitude < 1) && !this.state.new_post_visible) {
+      this.setState({new_post_visible: true, offset: currentOffset})
+      Animated.timing(this._newPostPosition, { toValue: 100 }).start();
+    } else if ((magnitude > 1) && this.state.new_post_visible) {
+      this.setState({new_post_visible: false, offset: currentOffset})
+      Animated.timing(this._newPostPosition, { toValue: 0 }).start();
     }
   }
 
@@ -67,14 +84,28 @@ class Posts extends React.Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <NewPost />
+      <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }} keyboardVerticalOffset={44}>
+        <Animated.View
+          style={{
+            position: 'relative',
+            height: this._newPostPosition,
+            overflow: 'hidden',
+          }}
+        >
+          <NewPost />
+        </Animated.View>
         <FlatList
           style={{flex: 1, flexDirection: 'column'}}
           data={this.props.posts}
           renderItem={this.posts}
           scrollEnabled={this.state.scroll}
+          onScroll={this._onScroll}
           onEndReached={this._onEndReached}
+          keyboardDismissMode={'interactive'}
+          maintainVisibleContentPosition= {{
+            minIndexForVisible: 0,
+            autoscrollToTopThreshold: 0
+          }}
           ListEmptyComponent={
             <Text style={{flex: 1, fontStyle: 'italic', color: 'grey', textAlign: 'center'}}>pull down to refresh!</Text>
           }
@@ -85,7 +116,7 @@ class Posts extends React.Component {
             />
           }
         />
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }

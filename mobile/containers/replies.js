@@ -38,7 +38,7 @@ class Replies extends React.Component {
         <View className="reply" key={`reply${reply.id}`} style={{marginBottom: 20}}>
           <View className="reply-box" style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-start'}}>
             <UserSummary user={this.props.users[reply.user_id]} smallname/>
-            <View style={{flex: 1, flexDirection: 'column', position: 'relative', marginTop: 15, marginLeft: 9, height: 'auto', height: 20}} >
+            <View style={{flex: 1, flexDirection: 'column', position: 'relative', marginTop: 15, marginLeft: 9, height: 'auto'}} >
               <Text style={{fontSize: 16}}>{reply.text}</Text>
               <View style={[styles.reacts, {position: 'relative', height: 18}]}>
                 <Reacts item={reply} type={'reply'}/>
@@ -54,7 +54,7 @@ class Replies extends React.Component {
   reply() {
     return (
       <View style={{flex: 1, flexDirection: 'row'}}>
-        <TextInput style={{height: 30, flex: 1, borderColor: 'gray', borderWidth: 1, borderRadius: 15, marginTop: 8, paddingLeft: 10}} value={this.state.reply} placeholder={'write a reply'} onChangeText={(e) => this.handleChangeReply(e)} />
+        <TextInput style={{height: 30, flex: 1, borderColor: 'gray', borderWidth: 1, borderRadius: 15, marginTop: 8, paddingLeft: 10}} value={this.state.reply} placeholder={'write a reply'} returnKeyType={'send'} onChangeText={(e) => this.handleChangeReply(e)} onSubmitEditing={() => this.handleReply()}/>
         <Button
           onPress={() => this.handleReply()}
           title="reply"

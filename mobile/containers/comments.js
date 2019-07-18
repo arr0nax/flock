@@ -31,7 +31,7 @@ class Comments extends React.Component {
     if (this.props.post &&  this.props.post.id) {
       return (
         <View style={{flex: 1, flexDirection: 'row'}}>
-          <TextInput style={{height: 30, flex: 1, borderColor: 'gray', borderWidth: 1, borderRadius: 15, marginTop: 8, paddingLeft: 10}} value={this.state.comment} placeholder={'write a comment'} onChangeText={(e) => this.handleChangeComment(e)} />
+          <TextInput style={{height: 30, flex: 1, borderColor: 'gray', borderWidth: 1, borderRadius: 15, marginTop: 8, paddingLeft: 10}} value={this.state.comment} returnKeyType={'send'} placeholder={'write a comment'} onChangeText={(e) => this.handleChangeComment(e)} onSubmitEditing={() => this.handleComment()}/>
           <Button
             onPress={() => this.handleComment()}
             title="post"
@@ -52,7 +52,7 @@ class Comments extends React.Component {
           <View className="comment" key={`comment${comment.id}`} style={{marginBottom: 20}}>
             <View className="comment-box" style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-start'}}>
               <UserSummary user={this.props.users[comment.user_id]} smallname/>
-              <View style={{flex: 1, flexDirection: 'column', position: 'relative', marginTop: 15, marginLeft: 9, height: 'auto', height: 20}} >
+              <View style={{flex: 1, flexDirection: 'column', position: 'relative', marginTop: 15, marginLeft: 9, height: 'auto'}} >
                 <Text style={{fontSize: 16}}>{comment.text}</Text>
                 <View style={[styles.reacts, {position: 'relative', height: 18}]}>
                   <Reacts item={comment} type={'comment'}/>

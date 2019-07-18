@@ -1,0 +1,192 @@
+const seedReacts = (knex, Promise) => Promise.all([
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+  knex('reacts').insert({
+    react: 'love',
+    user_id: 0,
+    item_id: 1,
+    item_type: 'post',
+  }).returning('id'),
+]);
+
+exports.seed = async (knex, Promise) => Promise.all([
+  seedReacts(knex, Promise)
+]);
