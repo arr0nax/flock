@@ -6,7 +6,7 @@
 @mixin comment {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   position: relative;
 }
 

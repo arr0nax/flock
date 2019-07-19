@@ -10,17 +10,7 @@
     outline: none;
 
     @media (max-width: 600px) {
-      width: 75vw;
-    }
-  }
-
-  &.post {
-    width: 100%;
-    .expanding-text-input {
-      width: 588px;
-      @media (max-width: 600px) {
-        width: 90vw;
-      }
+      width: 70vw;
     }
   }
 

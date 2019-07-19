@@ -6,12 +6,4 @@
   outline: none; }
   @media (max-width: 600px) {
     .expanding-text-input-rct-component .expanding-text-input {
-      width: 75vw; } }
-
-.expanding-text-input-rct-component.post {
-  width: 100%; }
-  .expanding-text-input-rct-component.post .expanding-text-input {
-    width: 588px; }
-    @media (max-width: 600px) {
-      .expanding-text-input-rct-component.post .expanding-text-input {
-        width: 90vw; } }
+      width: 70vw; } }

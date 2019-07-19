@@ -1,6 +1,7 @@
 .reacts-rct-component {
   display: flex;
-  flex-direction: row; }
+  flex-direction: row;
+  overflow: scroll; }
   .reacts-rct-component p {
     position: relative;
     padding: 0px;

@@ -1,5 +1,5 @@
 import React from 'react';
-import sheepfault from 'lib/images/smallsheepboi.png'
+import sheepfault from 'lib/images/smallersheepboi.png'
 
 import './index.css';
 

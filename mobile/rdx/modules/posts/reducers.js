@@ -20,7 +20,12 @@ export default {
       return {
         ...state,
         requested: false,
-        data: action.payload.posts,
+        data: [
+          {
+            id: 0,
+          },
+          ...action.payload.posts
+        ],
         pagination: action.payload.pagination,
       };
     },

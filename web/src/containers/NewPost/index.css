@@ -1,5 +1,11 @@
 .new-post-rct-component {
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   flex-direction: column;
   width: 100%; }
+  .new-post-rct-component .new-post-input {
+    max-width: 620px;
+    width: 100%; }
+    .new-post-rct-component .new-post-input textarea {
+      width: 100%;
+      box-sizing: border-box; }

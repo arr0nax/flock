@@ -8,20 +8,21 @@
     top: -15px;
     left: 20px;
     color: lightblue;
-    font-size: .8em; }
+    font-size: .8em;
+    width: 80%; }
   .replies-rct-component .reply-container {
     display: flex;
     flex-direction: column;
     position: relative; }
     .replies-rct-component .reply-container .report-content-button-rct-component.reply, .replies-rct-component .reply-container .delete-content-button-rct-component.reply {
       position: absolute;
-      top: 10px;
+      top: 0px;
       height: 0px;
       right: 4px; }
     .replies-rct-component .reply-container .reply {
       display: flex;
       flex-direction: row;
-      align-items: center;
+      align-items: flex-start;
       position: relative; }
       .replies-rct-component .reply-container .reply .reply-text-container {
         position: relative;
@@ -38,6 +39,7 @@
           left: 8px; }
     .replies-rct-component .reply-container .reply-react-container {
       margin-top: 4px;
+      padding-bottom: 8px;
       display: flex;
       flex-direction: row;
       justify-content: flex-start;

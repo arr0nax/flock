@@ -26,11 +26,11 @@ class App extends Component {
         <div className="header">
         </div>
       {this.props.logged_in ? (
-        <div>
+        <div className="AppContainer">
           <RootRouter />
         </div>
       ) : (
-        <div>
+        <div className="AppContainer">
           <LoginForm />
         </div>
       )}

@@ -15,11 +15,8 @@ class Posts extends React.Component {
     this.state = {
       refreshing: false,
       scroll: true,
-      new_post_visible: true,
-      offset: '',
     };
 
-    this._newPostPosition = new Animated.Value(100)
   }
 
   componentDidUpdate(prevProps) {
@@ -41,19 +38,6 @@ class Posts extends React.Component {
     }
   }
 
-  _onScroll = (event) => {
-    var currentOffset = event.nativeEvent.contentOffset.y;
-    var direction = currentOffset > this.state.offset ? 'down' : 'up';
-    var magnitude = currentOffset - this.state.offset;
-    if ((magnitude < 1) && !this.state.new_post_visible) {
-      this.setState({new_post_visible: true, offset: currentOffset})
-      Animated.timing(this._newPostPosition, { toValue: 100 }).start();
-    } else if ((magnitude > 1) && this.state.new_post_visible) {
-      this.setState({new_post_visible: false, offset: currentOffset})
-      Animated.timing(this._newPostPosition, { toValue: 0 }).start();
-    }
-  }
-
   enableScroll = () => {
     this.setState({scroll: true})
   }
@@ -64,6 +48,9 @@ class Posts extends React.Component {
 
   posts = (item) => {
     const post = item.item;
+    if (post.id === 0) {
+      return <NewPost />
+    }
     return (
       <View className="post" key={`post${post.id}`} style={{flex: 1}}>
         <UserSummary user={this.props.users[post.user_id]} />
@@ -85,15 +72,6 @@ class Posts extends React.Component {
   render() {
     return (
       <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }} keyboardVerticalOffset={44}>
-        <Animated.View
-          style={{
-            position: 'relative',
-            height: this._newPostPosition,
-            overflow: 'hidden',
-          }}
-        >
-          <NewPost />
-        </Animated.View>
         <FlatList
           style={{flex: 1, flexDirection: 'column'}}
           data={this.props.posts}
@@ -101,7 +79,7 @@ class Posts extends React.Component {
           scrollEnabled={this.state.scroll}
           onScroll={this._onScroll}
           onEndReached={this._onEndReached}
-          keyboardDismissMode={'interactive'}
+          keyboardDismissMode={'onDrag'}
           maintainVisibleContentPosition= {{
             minIndexForVisible: 0,
             autoscrollToTopThreshold: 0

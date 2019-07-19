@@ -12,3 +12,7 @@ p {
 h3 {
   word-wrap: break-word;
 }
+
+div {
+  box-sizing: border-box;
+}
