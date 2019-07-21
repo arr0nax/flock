@@ -15,14 +15,14 @@
     .comments-rct-component .comment-container .comment {
       display: flex;
       flex-direction: row;
-      align-items: center;
+      align-items: flex-start;
       position: relative; }
       .comments-rct-component .comment-container .comment .comment-text-container {
         position: relative;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         margin: 18px 0px 0px 10px;
-        align-items: center;
+        align-items: flex-start;
         justify-content: flex-start; }
         .comments-rct-component .comment-container .comment .comment-text-container .comment-text {
           font-size: 1em;

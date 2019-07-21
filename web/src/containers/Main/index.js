@@ -51,7 +51,6 @@ class Main extends Component {
         <div className="header">
         </div>
         <Profile />
-        <Reports />
         <div className="new-post">
           <NewPost />
         </div>

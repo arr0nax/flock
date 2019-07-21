@@ -1,6 +1,6 @@
-.profile .details {
-  height: 0px;
-  overflow: hidden; }
-
-.profile .details.open {
-  height: auto; }
+.profile {
+  display: flex;
+  flex-direction: row; }
+  .profile img {
+    height: 40px;
+    width: 40px; }

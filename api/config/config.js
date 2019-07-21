@@ -82,6 +82,11 @@ const config = convict({
       format: Number,
       default: 209715200,
     },
+    path: {
+      doc: 'the path files are saved to',
+      format: String,
+      default: path.join('/usr/local/var/flock'),
+    }
   },
 
   // DB

@@ -12,6 +12,10 @@ export default {
   getPostFailure: payload => createAction(types.GET_POST_FAILURE, payload),
   setPosts: payload => createAction(types.SET_POSTS, payload),
 
+  getReportedPost: payload => createAction(types.GET_REPORTED_POST_REQUEST, payload),
+  getReportedPostSuccess: payload => createAction(types.GET_REPORTED_POST_SUCCESS, payload),
+  getReportedPostFailure: payload => createAction(types.GET_REPORTED_POST_FAILURE, payload),
+
   deletePost: payload => createAction(types.DELETE_POST_REQUEST, payload),
   deletePostSuccess: payload => createAction(types.DELETE_POST_SUCCESS, payload),
   deletePostFailure: payload => createAction(types.DELETE_POST_FAILURE, payload),

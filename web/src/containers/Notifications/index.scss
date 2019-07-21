@@ -1,7 +1,14 @@
-// @import 'src/styles/_index';
+@import 'src/styles/_index';
 
 .notifications-rct-component {
-  .new {
-    background-color: rgba(173,216,230,0.5);
+  .notification {
+    display: flex;
+    flex-direction: row;
+    p {
+      color: lightblue;
+    }
+    .new {
+      background-color: rgba(173,216,230,0.5);
+    }
   }
 }

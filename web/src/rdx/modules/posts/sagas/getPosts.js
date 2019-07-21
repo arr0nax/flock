@@ -20,6 +20,9 @@ function* getPosts(action) {
     yield all(posts.map(post => {
       return put(actions.getReacts({item_id: post.id, type: 'posts'}))
     }))
+    yield all(posts.map(post => {
+      return put(actions.getAttachments({item_id: post.id, type: 'posts'}))
+    }))
   } else {
     yield put(actions.getPostsFailure({ error }));
   }

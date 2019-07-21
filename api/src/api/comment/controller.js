@@ -60,6 +60,15 @@ class CommentController {
     }
   }
 
+  async fetchAllReported(request) {
+    try {
+      const post = await Post.findByID(request.params.id);
+      return post.getCommentsAll();
+    } catch (err) {
+      return Boom.forbidden(err.message);
+    }
+  }
+
   async fetchOne(request)  {
     return Comment.findByID(request.params.id)
   }

@@ -10,8 +10,18 @@ import './index.css';
 class DeleteContentButton extends React.Component {
 
   deleteItem = () => {
-    const {item_id, item_type} = this.props;
-    this.props.deletePost(item_id);
+    const {item_id, item_type, parent_id} = this.props;
+    switch (item_type) {
+      case 'post':
+        this.props.deletePost(item_id);
+        break;
+      case 'comment':
+        this.props.deleteComment({item_id, parent_id});
+        break;
+      case 'reply':
+        this.props.deleteReply({item_id, parent_id});
+        break;
+    }
   }
   render() {
     const { className, user_id, userID } = this.props;
@@ -40,7 +50,9 @@ DeleteContentButton.defaultProps = {
 };
 
 const actionsMapper = getRdxActionMapper([
-  'deletePost'
+  'deletePost',
+  'deleteComment',
+  'deleteReply',
 ]);
 
 const stateMapper = getRdxSelectionMapper({

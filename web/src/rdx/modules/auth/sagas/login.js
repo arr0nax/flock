@@ -17,6 +17,7 @@ function* login({ payload }) {
     yield put(actions.addUser(user));
     yield put(actions.getNotifications());
     yield put(actions.getPosts());
+    yield put(actions.navigate('/'));
   } else {
     console.log(error);
     yield put(actions.loginFailure(error))

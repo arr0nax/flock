@@ -23,10 +23,10 @@ class DetailsPage extends React.Component {
         props.getPost(item_id);
         break;
       case 'comment':
-        props.getCommentPost(item_id); // not written yet!
+        props.getCommentPost({item_id, reported: false}); // not written yet!
         break;
       case 'reply':
-        props.getReplyComment(item_id); // not written yet!
+        props.getReplyComment({item_id, reported: false}); // not written yet!
         break;
     }
     // props.getPost()

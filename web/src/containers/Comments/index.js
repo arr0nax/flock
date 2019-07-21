@@ -1,5 +1,5 @@
 import React from 'react';
-import ExpandingTextInput from 'components/ExpandingTextInput';
+import MultiMediaInput from 'components/MultiMediaInput';
 // import PropTypes from 'prop-types';
 // import customPropTypes from 'lib/customPropTypes';
 // import classNames from 'classnames';
@@ -12,6 +12,7 @@ import Reacts from 'containers/Reacts';
 import Replies from 'containers/Replies';
 import ReportContentButton from 'components/ReportContentButton';
 import DeleteContentButton from 'components/DeleteContentButton';
+import Image from 'components/Image';
 
 
 import './index.css';
@@ -20,9 +21,12 @@ class Comments extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      comment: {}
+      comment: {},
     };
   }
+
+
+  mediaRef = React.createRef();
 
   handleChangeComment = (event, post_id) => {
     var newComment = {
@@ -33,15 +37,19 @@ class Comments extends React.Component {
   }
 
   handleComment = (post_id) => {
+    console.log(this.mediaRef);
     this.props.postComment({
       text: this.state.comment[post_id],
       post_id: post_id,
+      attachment: this.mediaRef.current.files[0]
     })
     var newComment = {
       ...this.state.comment
     };
     newComment[post_id] = '';
     this.setState({comment: newComment});
+    console.log(this.mediaRef);
+    this.mediaRef.current.value = null;
   }
 
   comments() {
@@ -54,11 +62,16 @@ class Comments extends React.Component {
             <UserSummary user={this.props.users[comment.user_id]} className='smallName'/>
             <div className="comment-text-container">
               <p className="comment-text">{comment.text}</p>
+              {this.props.comment_attachments[comment.id] ? (
+                <Image source={`http://127.0.0.1:8081/comment/${comment.id}/${this.props.comment_attachments[comment.id].filename}`} />
+              ) : (
+                null
+              )}
               <Reacts item={comment} item_type={'comment'} className='comment'/>
             </div>
           </div>
           <ReportContentButton item_id={comment.id} item_type={'comment'} user_id={comment.user_id} className="comment"/>
-          <DeleteContentButton item_id={comment.id} item_type={'comment'} user_id={comment.user_id} className="comment"/>
+          <DeleteContentButton item_id={comment.id} item_type={'comment'} user_id={comment.user_id} parent_id={post_id} className="comment"/>
           <div className='comment-react-container'>
             <ReactCarousel item_id={comment.id} type="comment" className="comment"/>
           </div>
@@ -76,8 +89,9 @@ class Comments extends React.Component {
     const { post_id } = this.props;
     return (
       <div className="new-comment">
-        <ExpandingTextInput
+        <MultiMediaInput
           value={this.state.comment[post_id]}
+          ref={this.mediaRef}
           handleChange={this.handleChangeComment}
           handleSubmit={this.handleComment}
           id={post_id}
@@ -112,6 +126,7 @@ const actionsMapper = getRdxActionMapper([
 
 const stateMapper = getRdxSelectionMapper({
   comments: 'getComments',
+  comment_attachments: 'getCommentAttachments',
   users: 'getUsers',
 });
 

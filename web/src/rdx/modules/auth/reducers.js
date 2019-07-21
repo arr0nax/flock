@@ -59,14 +59,14 @@ export default {
     [types.REGISTER_SUCCESS](state, action) {
       return {
         data: action.payload,
-        errors: {...state.errors},
+        errors: {text: 'registration success! please log in'},
         requested: false,
       };
     },
     [types.REGISTER_FAILURE](state, action) {
       return {
         data: {...state.data},
-        action: action.payload,
+        errors: action.payload,
         requested: false,
       };
     },

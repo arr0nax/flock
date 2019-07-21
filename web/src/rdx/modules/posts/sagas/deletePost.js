@@ -7,7 +7,7 @@ import actions from 'rdx/actions';
 function* deletePost(action) {
   const { success, data, error } = yield* makeRequest.delete(`/posts/${action.payload}`);
   if (success && data) {
-    yield put(actions.deletePostSuccess(data));
+    yield put(actions.deletePostSuccess(action.payload));
   } else {
     yield put(actions.deletePostFailure(error));
   }

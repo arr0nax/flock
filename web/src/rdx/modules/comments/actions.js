@@ -16,6 +16,14 @@ export default {
   getCommentSuccess: payload => createAction(types.GET_COMMENT_SUCCESS, payload),
   getCommentFailure: payload => createAction(types.GET_COMMENT_FAILURE, payload),
 
+  getAllComments: payload => createAction(types.GET_ALL_COMMENTS_REQUEST, payload),
+  getAllCommentsSuccess: payload => createAction(types.GET_ALL_COMMENTS_SUCCESS, payload),
+  getAllCommentsFailure: payload => createAction(types.GET_ALL_COMMENTS_FAILURE, payload),
+
+  deleteComment: payload => createAction(types.DELETE_COMMENT_REQUEST, payload),
+  deleteCommentSuccess: payload => createAction(types.DELETE_COMMENT_SUCCESS, payload),
+  deleteCommentFailure: payload => createAction(types.DELETE_COMMENT_FAILURE, payload),
+
   getCommentPost: payload => createAction(types.GET_COMMENT_POST_REQUEST, payload),
   getCommentPostSuccess: payload => createAction(types.GET_COMMENT_POST_SUCCESS, payload),
   getCommentPostFailure: payload => createAction(types.GET_COMMENT_POST_FAILURE, payload),

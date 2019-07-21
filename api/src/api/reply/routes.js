@@ -27,7 +27,28 @@ const Routes = {
       // },
     },
   },
-
+  {
+    method: 'GET',
+    path: '/comments/{id}/replies/all',
+    handler: Controller.fetchAllReported,
+    config: {
+      description: 'Get a list of replies on a comment, including reported',
+      notes: 'Get session user info',
+      tags: ['api'],
+      validate: {
+        params: {
+          id: Joi.number().min(1),
+        },
+      },
+      // auth: {
+      //   strategy: constants.AUTH_STRATEGIES.SESSION,
+      //   scope: false,
+      // },
+      // plugins: {
+      //   policies: ['is-logged-in'],
+      // },
+    },
+  },
   {
     method: 'POST',
     path: '/comments/{id}/replies',

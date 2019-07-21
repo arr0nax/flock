@@ -45,6 +45,10 @@ class Post extends BaseModel {
     return this.comments().query('where', 'reported', '=', 'false').fetch();
   }
 
+  getCommentsAll() {
+    return this.comments().fetch();
+  }
+
   static async findForbidden(text) {
     const words = text.split(' ');
     const array = await Promise.all(words.map(word => Group.findByCode(word))).then(values => {

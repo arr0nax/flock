@@ -4,8 +4,10 @@ import Path from 'path';
 import BindAll from '../utils/bind-all';
 import Attachment from '../models/attachment';
 import User from '../models/user';
-import S3API from '../integrations/s3';
+// import S3API from '../integrations/s3';
 import Config from '../../config/config';
+const fs = require('fs');
+var Jimp = require('jimp');
 
 const S3_REGION = 'us-west-2';
 
@@ -23,45 +25,47 @@ class AttachmentService {
 
   constructor() {
     console.log(LOG_NAME);
-    this.s3API = S3API.createInstance();
-    this.bucketName = this.s3API.getBucketName();
     BindAll(this);
   }
 
-  static getUploadKey(type, filePath) {
-    const key = `${type}/${Date.now()}_${Path.basename(filePath)}`;
-    return key;
-  }
+  // static getUploadKey(type, filePath) {
+  //   const key = `${type}/${Date.now()}_${Path.basename(filePath)}`;
+  //   return key;
+  // }
 
-  async uploadDocument(user_id, fullPath, item_type, item_id, filePart = null) {
-    console.log(`uploadDocument ${fullPath}, ${item_type}, ${filePart}`);
-    const filenameOnly = filePart == null ? Path.basename(fullPath) : filePart;
-    const fileKey = await AttachmentService
-      .getUploadKey(item_type, filenameOnly);
+  async uploadDocument(user_id, file, item_type, item_id, filePart = null) {
 
-    // upload file to s3
-    console.log(this.bucketName);
-    await this.s3API.uploadFile(fullPath, this.bucketName, {
-      deleteAfter: true,
-      contentType: AttachmentService.mapContentType(item_type),
-      isPublic: true,
-    }, () => fileKey);
+    const filePath = `${Config.get('files.path')}/${item_type}/${item_id}`;
 
-    const data = {
-      name: filenameOnly,
-      key: fileKey,
+    Jimp.read(file.path, (err, image) => {
+      if (err) throw err;
+      var w = image.bitmap.width; // the width of the image
+      var h = image.bitmap.height; // the height of the image
+      if (w > 700 || h > 700) {
+        image
+          .scaleToFit(700, 700) // resize
+          .write(`${filePath}/${file.filename}`);
+      } else {
+        image
+          .write(`${filePath}/${file.filename}`);
+      }
+    });
+    // fs.mkdir(filePath, { recursive: true }, (err) => {
+    //   if (err) throw err;
+    //   fs.readFile(file.path, (err, data) => {
+    //     fs.writeFileSync(`${filePath}/${file.filename}`, data, (err) => {
+    //       if (err) throw err;
+    //       console.log('The file has been saved!');
+    //     })
+    //   })
+    // });
+
+    const attachment = await Attachment.create({
+      filename: file.filename,
       user_id,
-      item_id,
       item_type,
-    };
-
-    console.log(data);
-    const attachment = await Attachment.create(data);
-    const url = await this.getDownloadUrl(fileKey);
-    console.log(data);
-    if (item_type === 'user') {
-      const user = await User.updateProfileImage(data, url);
-    }
+      item_id,
+    })
 
     return attachment;
   }
@@ -88,13 +92,13 @@ class AttachmentService {
   async getDownloadUrl(fileKey, item_type) {
     // const attachs = await Attachment.getByApplicationIDType(applicationId, item_type);
       // return this.getSignedDownloadUrl(fileKey);
-    return `https://${this.bucketName}.s3.${S3_REGION}.amazonaws.com/${fileKey}`
+    // return `https://${this.bucketName}.s3.${S3_REGION}.amazonaws.com/${fileKey}`
   }
 
   // generate 10 mins download from Amazon S3
-  getSignedDownloadUrl(key) {
-    return this.s3API.getSignedUrl(key, this.bucketName);
-  }
+  // getSignedDownloadUrl(key) {
+  //   return this.s3API.getSignedUrl(key, this.bucketName);
+  // }
 }
 
 module.exports = AttachmentService.create();

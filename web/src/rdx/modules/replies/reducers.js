@@ -16,6 +16,13 @@ export default {
       newState.data[action.payload.comment_id] = [action.payload];
       return newState;
     },
+    [types.DELETE_REPLY_SUCCESS](state, action) {
+      console.log(action);
+      var newState = cloneDeep(state);
+      const reply_index = newState.data[action.payload.parent_id].findIndex(reply => reply.id === action.payload.item_id);
+      newState.data[action.payload.parent_id].splice(reply_index, 1);
+      return newState;
+    },
     [types.GET_REPLIES_REQUEST](state, action) {
       return {
         ...state,

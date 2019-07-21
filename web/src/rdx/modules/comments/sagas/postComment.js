@@ -10,6 +10,13 @@ function* postComments(action) {
   });
   if (success && data) {
     // yield put(actions.addComment({data, parent_id: action.payload.post_id}));
+    if (action.payload.attachment) {
+      yield put(actions.postAttachment({
+        attachment: action.payload.attachment,
+        item_id: data.id,
+        item_type: 'comment',
+      }))
+    }
   } else {
     yield put(actions.postCommentFailure(error));
   }

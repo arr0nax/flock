@@ -1,5 +1,7 @@
 // import EyeHapi from 'eye-hapi';
+import Boom from 'boom';
 import AttachmentService from '../../services/attachment';
+import Attachment from '../../models/attachment';
 import BindAll from '../../utils/bind-all';
 import FileUtil from '../../utils/file';
 
@@ -15,13 +17,37 @@ class AttachmentController {
 
   // upload a file with type of (ZIP, VID,IMG, URL, OTHER)
   uploadDocument(request) {
-    return FileUtil.fileUploader(request, f => this.attachmentSvc.uploadDocument(
+    return FileUtil.fileUploader(request, file => this.attachmentSvc.uploadDocument(
       request.auth.credentials.user_id,
-      f.path,
+      file,
       request.payload.item_type,
       request.payload.item_id,
       request.payload.file.filename,
     ));
+  }
+
+  async fetchPostAttachments(request) {
+    try {
+      return Attachment.byPost(request.params.id);
+    } catch (err) {
+      return Boom.forbidden(err.message);
+    }
+  }
+
+  async fetchCommentAttachments(request) {
+    try {
+      return Attachment.byComment(request.params.id);
+    } catch (err) {
+      return Boom.forbidden(err.message);
+    }
+  }
+
+  async fetchReplyAttachments(request) {
+    try {
+      return Attachment.byReply(request.params.id);
+    } catch (err) {
+      return Boom.forbidden(err.message);
+    }
   }
 
   // download all for application

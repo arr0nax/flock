@@ -1,0 +1,6 @@
+.profile {
+  display: flex;
+  flex-direction: column; }
+  .profile .details {
+    display: flex;
+    flex-direction: column; }

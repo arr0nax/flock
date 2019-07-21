@@ -6,7 +6,7 @@ import actions from 'rdx/actions';
 
 function* postPost(action) {
   const { success, data, error } = yield* makeRequest.post(`/posts`, {
-    ...action.payload
+    text: action.payload.text
   });
   if (success && data) {
     // yield put(actions.addPost(data));
@@ -21,6 +21,13 @@ function* postPost(action) {
     // yield all(data.map(post => {
     //   return put(actions.getReacts({item_id: post.id, type: 'posts'}))
     // }))
+    if (action.payload.attachment) {
+      yield put(actions.postAttachment({
+        attachment: action.payload.attachment,
+        item_id: data.id,
+        item_type: 'post',
+      }))
+    }
   } else {
     yield put(actions.postPostFailure(error));
   }

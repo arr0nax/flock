@@ -1,9 +1,15 @@
-.expanding-text-input-rct-component .expanding-text-input {
-  width: 360px;
-  border-radius: 12px;
-  border: 1px solid lightgrey;
-  padding: 5px 12px 5px 16px;
-  outline: none; }
-  @media (max-width: 600px) {
-    .expanding-text-input-rct-component .expanding-text-input {
-      width: 70vw; } }
+.expanding-text-input-rct-component {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; }
+  .expanding-text-input-rct-component .expanding-text-input {
+    width: 360px;
+    border-radius: 12px;
+    border: 1px solid lightgrey;
+    padding: 5px 12px 5px 16px;
+    outline: none; }
+    @media (max-width: 600px) {
+      .expanding-text-input-rct-component .expanding-text-input {
+        width: calc(100% - 34px); } }

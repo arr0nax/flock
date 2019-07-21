@@ -1,38 +1,47 @@
 import BaseModel from './base';
-
 const TABLE_NAME = 'attachments';
+import bookshelf from './db';
+import Joi from 'joi';
+
 
 class Attachment extends BaseModel {
+  static validation = {
+    item_type: Joi.string().required(),
+    item_id: Joi.number().required(),
+  }
+
   static get TABLE_NAME() {
     return TABLE_NAME;
   }
 
-  // static applications() {
-  //   return this.belongsTo(Application);
-  // }
-
-  // eslint-disable-next-line class-methods-use-this
   get tableName() {
     return TABLE_NAME;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   get hasTimestamps() {
     return true;
   }
 
-  // static getByApplicationID(appId) {
-  //   return this.findAll({
-  //     application_id: appId,
-  //   });
-  // }
+  static byPost(id) {
+    return this.query().where({item_type: 'post', item_id: id});
+  }
 
-  // static getByApplicationIDType(appId, type) {
-  //   return this.findAll({
-  //     application_id: appId,
-  //     type,
-  //   });
-  // }
+  static byComment(id) {
+    return this.query().where({item_type: 'comment', item_id: id});
+  }
+
+  static byReply(id) {
+    return this.query().where({item_type: 'reply', item_id: id});
+  }
+
+  user() {
+    return this.belongsTo(User);
+  }
+
+  getUser() {
+    return this.user().fetch();
+  }
+
 }
 
-export default Attachment;
+module.exports = bookshelf.model('Attachment', Attachment);

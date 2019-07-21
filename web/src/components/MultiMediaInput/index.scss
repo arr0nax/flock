@@ -1,0 +1,62 @@
+@import 'src/styles/_index';
+
+.multimedia-input-rct-component {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+
+  .input-row-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    .add-image-input {
+      width: 0.1px;
+      height: 0.1px;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: -1;
+    }
+
+    .add-image-label {
+      display: flex;
+      height: 25px;
+      min-height: 25px;
+      width: 25px;
+      min-width: 25px;
+      // border: 1px solid grey;
+      margin: 0px 4px 0px 0px;
+      background-image: url('../../lib/images/camera_icon.png');
+      background-size: 18px;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .submit-button {
+      @include small-clickable
+    }
+  }
+
+  .image-preview.show-preview {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    img {
+      height: auto;
+      width: auto;
+      max-width: 100px;
+      max-height: 100px;
+    }
+  }
+
+  .image-preview {
+    display: none
+  }
+
+
+
+}

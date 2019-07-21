@@ -16,6 +16,9 @@ function* getComments(action) {
       return put(actions.getReacts({item_id: post.id, type: 'comments'}))
     }))
     yield all(data.map(post => {
+      return put(actions.getAttachments({item_id: post.id, type: 'comments'}))
+    }))
+    yield all(data.map(post => {
       return put(actions.getUser(post.user_id))
     }))
   } else {

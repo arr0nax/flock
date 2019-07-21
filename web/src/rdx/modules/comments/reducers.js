@@ -35,5 +35,14 @@ export default {
       newState.data[action.payload.post_id] ? newState.data[action.payload.post_id].push(action.payload) : newState.data[action.payload.post_id] = [action.payload];
       return newState;
     },
+    [types.DELETE_COMMENT_SUCCESS](state, action) {
+      console.log(action);
+      var newState = cloneDeep(state);
+      const comment_index = newState.data[action.payload.parent_id].findIndex(comment => comment.id === action.payload.item_id);
+      newState.data[action.payload.parent_id].splice(comment_index, 1);
+      return newState;
+    },
   }),
 };
+
+///// fix delete methods to use parent id and item id!!!

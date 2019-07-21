@@ -47,6 +47,10 @@ class Comment extends BaseModel {
   getReplies() {
     return this.replies().query('where', 'reported', '=', 'false').fetch();
   }
+
+  getRepliesAll() {
+    return this.replies().fetch();
+  }
 }
 
 

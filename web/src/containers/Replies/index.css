@@ -27,9 +27,9 @@
       .replies-rct-component .reply-container .reply .reply-text-container {
         position: relative;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         margin: 18px 0px 0px 10px;
-        align-items: center;
+        align-items: flex-start;
         justify-content: flex-start; }
         .replies-rct-component .reply-container .reply .reply-text-container .reply-text {
           font-size: 1em;

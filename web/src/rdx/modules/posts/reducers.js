@@ -10,6 +10,12 @@ export default {
       newState.data.unshift(action.payload)
       return newState;
     },
+    [types.DELETE_POST_SUCCESS](state, action) {
+      let newState = cloneDeep(state)
+      const index = newState.data.findIndex(post => post.id === action.payload)
+      newState.data.splice(index, 1)
+      return newState;
+    },
     [types.GET_POSTS_REQUEST](state, action) {
       return {
         ...state,
@@ -63,6 +69,13 @@ export default {
       };
     },
     [types.GET_POST_SUCCESS](state, action) {
+      return {
+        ...state,
+        requested: false,
+        data: action.payload,
+      };
+    },
+    [types.GET_REPORTED_POST_SUCCESS](state, action) {
       return {
         ...state,
         requested: false,

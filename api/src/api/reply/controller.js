@@ -63,6 +63,15 @@ class ReplyController {
     }
   }
 
+  async fetchAllReported(request) {
+    try {
+      const comment = await Comment.findByID(request.params.id);
+      return comment.getRepliesAll();
+    } catch (err) {
+      return Boom.forbidden(err.message);
+    }
+  }
+
   async fetchOne(request)  {
     return Reply.findByID(request.params.id);
   }

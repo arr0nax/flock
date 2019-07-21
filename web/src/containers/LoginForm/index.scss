@@ -22,4 +22,21 @@
        @include small-red;
      }
    }
+
+   .successes {
+     p {
+       color: lightblue;
+     }
+   }
+
+   .input-row {
+     display: flex;
+     flex-direction: row;
+   }
+
+   @media (max-width: 400px) {
+     .input-row {
+       flex-direction: column;
+     }
+   }
  }

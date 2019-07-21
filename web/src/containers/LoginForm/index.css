@@ -13,3 +13,11 @@
   .login-form-rct-component .errors p {
     color: red;
     font-size: .8em; }
+  .login-form-rct-component .successes p {
+    color: lightblue; }
+  .login-form-rct-component .input-row {
+    display: flex;
+    flex-direction: row; }
+  @media (max-width: 400px) {
+    .login-form-rct-component .input-row {
+      flex-direction: column; } }

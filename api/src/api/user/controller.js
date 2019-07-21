@@ -17,6 +17,7 @@ class UserController {
         last_name: request.payload.last_name,
         email: request.payload.email,
         password: hash,
+        group_id: 1, // temporary until there are enough people 
       });
       return user;
     } catch (err) {

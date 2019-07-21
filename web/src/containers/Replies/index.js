@@ -1,6 +1,6 @@
 import React from 'react';
 import Textarea from 'react-textarea-autosize';
-import ExpandingTextInput from 'components/ExpandingTextInput';
+import MultiMediaInput from 'components/MultiMediaInput';
 // import PropTypes from 'prop-types';
 // import customPropTypes from 'lib/customPropTypes';
 // import classNames from 'classnames';
@@ -12,6 +12,7 @@ import ReactCarousel from 'components/ReactCarousel';
 import Reacts from 'containers/Reacts';
 import ReportContentButton from 'components/ReportContentButton';
 import DeleteContentButton from 'components/DeleteContentButton';
+import Image from 'components/Image';
 
 
 
@@ -25,6 +26,8 @@ class Replies extends React.Component {
       open: false,
     };
   }
+
+  mediaRef = React.createRef();
 
   handleChangeReply = (event, id) => {
     var newReply = {
@@ -42,12 +45,14 @@ class Replies extends React.Component {
     this.props.postReply({
       text: this.state.reply[comment_id],
       comment_id: comment_id,
+      attachment: this.mediaRef.current.files[0]
     })
     var newReply = {
       ...this.state.reply
     };
     newReply[comment_id] = '';
     this.setState({reply: newReply});
+    this.mediaRef.current.value = null;
   }
 
   replies() {
@@ -60,6 +65,11 @@ class Replies extends React.Component {
             <UserSummary user={this.props.users[reply.user_id]} className="smallName"/>
             <div className="reply-text-container">
             <p className="reply-text">{reply.text}</p>
+            {this.props.reply_attachments[reply.id] ? (
+              <Image source={`http://127.0.0.1:8081/reply/${reply.id}/${this.props.reply_attachments[reply.id].filename}`} />
+            ) : (
+              null
+            )}
             <Reacts item={reply} item_type={'reply'} className='reply'/>
             </div>
           </div>
@@ -67,7 +77,7 @@ class Replies extends React.Component {
             <ReactCarousel item_id={reply.id} type="reply" className="comment"/>
           </div>
           <ReportContentButton item_id={reply.id} item_type={'reply'} user_id={reply.user_id} className="reply"/>
-          <DeleteContentButton item_id={reply.id} item_type={'reply'} user_id={reply.user_id} className="reply"/>
+          <DeleteContentButton item_id={reply.id} item_type={'reply'} user_id={reply.user_id} parent_id={comment_id} className="reply"/>
         </div>
       );
     });
@@ -77,8 +87,9 @@ class Replies extends React.Component {
     const { comment_id } = this.props;
     return (
       <div className="reply-input-container">
-        <ExpandingTextInput
+        <MultiMediaInput
           value={this.state.reply[comment_id]}
+          ref={this.mediaRef}
           handleChange={this.handleChangeReply}
           handleSubmit={this.handleReply}
           id={comment_id}
@@ -117,6 +128,7 @@ const actionsMapper = getRdxActionMapper([
 
 const stateMapper = getRdxSelectionMapper({
   replies: 'getReplies',
+  reply_attachments: 'getReplyAttachments',
   users: 'getUsers',
 });
 

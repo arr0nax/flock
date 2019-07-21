@@ -56,11 +56,11 @@ class LoginForm extends React.Component {
     return (
       <div className="login-form-rct-component">
         <img id="main-logo" src={sheepfault} style={{backgroundColor: '#9ff'}}/>
-        <div>
+        <div className="input-row">
           <input placeholder="first name" value={this.state.first_name} onChange={(e) => this.handleChangeFirstName(e)}/>
           <input placeholder="last name" value={this.state.last_name} onChange={(e) => this.handleChangeLastName(e)}/>
         </div>
-        <div style={{display: 'flex', flexDirection: 'row'}}>
+        <div className="input-row">
           <input placeholder="email" value={this.state.email} onChange={(e) => this.handleChangeEmail(e)}/>
           <form onSubmit={this.handleLogin}>
           <input placeholder="password" type="password" value={this.state.password} onChange={(e) => this.handleChangePassword(e)}/>
@@ -68,6 +68,9 @@ class LoginForm extends React.Component {
         </div>
         <div className='errors'>
           <p>{this.props.error ? this.props.error.text : ''}</p>
+        </div>
+        <div className='successes'>
+          <p>{this.props.regerror ? this.props.regerror.text : ''}</p>
         </div>
         <div>
           <button onClick={(e) => this.handleLogin(e)}>login</button>
@@ -93,6 +96,7 @@ const actionsMapper = getRdxActionMapper([
 
 const stateMapper = getRdxSelectionMapper({
   error: 'getLoginError',
+  regerror: 'getRegisterError',
 });
 
 export default connect(stateMapper, actionsMapper)(LoginForm);

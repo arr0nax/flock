@@ -24,7 +24,7 @@ class Reports extends React.Component {
   }
 
   viewOriginal(report) {
-    this.props.navigate(`/details/${report.item_type}/${report.item_id}`);
+    this.props.navigate(`/reports/${report.item_type}/${report.item_id}`);
   }
 
   sendVote(vote, existingVote, report_id) {
