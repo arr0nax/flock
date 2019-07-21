@@ -13,9 +13,10 @@ import Replies from 'containers/Replies';
 import ReportContentButton from 'components/ReportContentButton';
 import DeleteContentButton from 'components/DeleteContentButton';
 import Image from 'components/Image';
-
-
 import './index.css';
+
+const FILES_ENDPOINT = process.env.REACT_APP_FILES_ENDPOINT;
+
 
 class Comments extends React.Component {
   constructor(props) {
@@ -63,7 +64,7 @@ class Comments extends React.Component {
             <div className="comment-text-container">
               <p className="comment-text">{comment.text}</p>
               {this.props.comment_attachments[comment.id] ? (
-                <Image source={`http://127.0.0.1:8081/comment/${comment.id}/${this.props.comment_attachments[comment.id].filename}`} />
+                <Image source={`${FILES_ENDPOINT}/comment/${comment.id}/${this.props.comment_attachments[comment.id].filename}`} />
               ) : (
                 null
               )}

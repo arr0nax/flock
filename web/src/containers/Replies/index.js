@@ -13,10 +13,11 @@ import Reacts from 'containers/Reacts';
 import ReportContentButton from 'components/ReportContentButton';
 import DeleteContentButton from 'components/DeleteContentButton';
 import Image from 'components/Image';
-
-
-
 import './index.css';
+const FILES_ENDPOINT = process.env.REACT_APP_FILES_ENDPOINT;
+
+
+
 
 class Replies extends React.Component {
   constructor(props) {
@@ -66,7 +67,7 @@ class Replies extends React.Component {
             <div className="reply-text-container">
             <p className="reply-text">{reply.text}</p>
             {this.props.reply_attachments[reply.id] ? (
-              <Image source={`http://127.0.0.1:8081/reply/${reply.id}/${this.props.reply_attachments[reply.id].filename}`} />
+              <Image source={`${FILES_ENDPOINT}/reply/${reply.id}/${this.props.reply_attachments[reply.id].filename}`} />
             ) : (
               null
             )}
