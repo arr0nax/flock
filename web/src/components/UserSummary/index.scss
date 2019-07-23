@@ -26,7 +26,8 @@
   }
 
   &.white {
-    background-color: white;
+    position: relative;
+    pointer-events: none;
   }
 
   &.smallName {

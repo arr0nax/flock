@@ -12,6 +12,11 @@ export default {
         errors: state.errors,
       };
     },
+    [types.ADD_NOTIFICATION](state, action) {
+      let newState = cloneDeep(state);
+      newState.data.unshift(action.payload);
+      return newState;
+    },
     [types.GET_NOTIFICATIONS_REQUEST](state, action) {
       return {
         ...state,
@@ -27,7 +32,7 @@ export default {
     },
     [types.GET_NOTIFICATIONS_FAILURE](state, action) {
       return {
-        data: {...state.data},
+        data: [...state.data],
         action: action.payload,
         requested: false,
       };

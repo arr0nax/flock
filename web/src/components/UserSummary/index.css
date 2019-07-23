@@ -18,7 +18,8 @@
     top: 0px;
     left: 32px; }
   .user-summary.white {
-    background-color: white; }
+    position: relative;
+    pointer-events: none; }
   .user-summary.smallName {
     padding: 0px;
     position: relative;
