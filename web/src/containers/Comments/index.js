@@ -1,5 +1,7 @@
 import React from 'react';
 import MultiMediaInput from 'components/MultiMediaInput';
+import LinkPreviewText from 'components/LinkPreviewText';
+
 // import PropTypes from 'prop-types';
 // import customPropTypes from 'lib/customPropTypes';
 // import classNames from 'classnames';
@@ -39,18 +41,20 @@ class Comments extends React.Component {
 
   handleComment = (post_id) => {
     console.log(this.mediaRef);
-    this.props.postComment({
-      text: this.state.comment[post_id],
-      post_id: post_id,
-      attachment: this.mediaRef.current.files[0]
-    })
-    var newComment = {
-      ...this.state.comment
-    };
-    newComment[post_id] = '';
-    this.setState({comment: newComment});
-    console.log(this.mediaRef);
-    this.mediaRef.current.value = null;
+    if (this.state.comment[post_id] || this.mediaRef.current.files[0]) {
+      this.props.postComment({
+        text: this.state.comment[post_id],
+        post_id: post_id,
+        attachment: this.mediaRef.current.files[0]
+      })
+      var newComment = {
+        ...this.state.comment
+      };
+      newComment[post_id] = '';
+      this.setState({comment: newComment});
+      console.log(this.mediaRef);
+      this.mediaRef.current.value = null;
+    }
   }
 
   comments() {
@@ -62,7 +66,7 @@ class Comments extends React.Component {
           <div className="comment">
             <UserSummary user={this.props.users[comment.user_id]} className='smallName'/>
             <div className="comment-text-container">
-              <p className="comment-text">{comment.text}</p>
+              <LinkPreviewText className="comment" text={comment.text} />
               {this.props.comment_attachments[comment.id] ? (
                 <Image source={`${FILES_ENDPOINT}/comment/${comment.id}/${this.props.comment_attachments[comment.id].filename}`} />
               ) : (

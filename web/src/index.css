@@ -1,7 +1,9 @@
 html, body {
   height: 100%;
   position: fixed;
-  overflow: scroll;
+  /* overflow: scroll; */
+  overflow:auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 body {

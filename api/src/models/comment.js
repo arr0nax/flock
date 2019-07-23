@@ -9,7 +9,7 @@ const TABLE_NAME = 'comments';
 
 class Comment extends BaseModel {
   static validation = {
-    text: Joi.string().required(),
+    text: Joi.string().allow('').optional(),
   }
 
   static get TABLE_NAME() {

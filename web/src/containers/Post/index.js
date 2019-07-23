@@ -1,4 +1,5 @@
 import React from 'react';
+import LinkPreviewText from 'components/LinkPreviewText';
 // import PropTypes from 'prop-types';
 // import customPropTypes from 'lib/customPropTypes';
 // import classNames from 'classnames';
@@ -22,7 +23,7 @@ class Post extends React.Component {
         <DeleteContentButton item_id={post.id} item_type={'post'} user_id={post.user_id} className="post"/>
         <ReportContentButton item_id={post.id} item_type={'post'} user_id={post.user_id} className="post"/>
         <UserSummary user={this.props.users[post.user_id]} className="white"/>
-        <h3>{post.text}</h3>
+        <LinkPreviewText text={post.text} className='post'/>
         <div className="action-bar">
           {allowReact && <ReactCarousel item_id={post.id} type="post"/>}
         </div>

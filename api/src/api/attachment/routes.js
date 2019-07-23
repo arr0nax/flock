@@ -37,6 +37,9 @@ const Routes = {
           strategy: Constants.AUTH_STRATEGIES.SESSION,
           scope: false,
         },
+        plugins: {
+          policies: ['shouldSendUpdate'],
+        },
       },
     },
     {

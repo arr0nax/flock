@@ -9,7 +9,7 @@ import bookshelf from './db';
 
 class Reply extends BaseModel {
   static validation = {
-    text: Joi.string().required(),
+    text: Joi.string().allow('').optional(),
   }
 
   static get TABLE_NAME() {

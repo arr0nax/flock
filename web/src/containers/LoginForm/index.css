@@ -8,6 +8,22 @@
     width: 100px;
     margin: 25px;
     border-radius: 50%; }
+  .login-form-rct-component .main-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%; }
+  .login-form-rct-component .login-container, .login-form-rct-component .register-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%; }
+  .login-form-rct-component .divider {
+    margin: 0px 15px 0px 15px;
+    background-color: #99ffff;
+    width: 2px;
+    height: auto;
+    border-radius: 1px; }
   .login-form-rct-component form {
     display: flex; }
   .login-form-rct-component .errors p {
@@ -19,5 +35,13 @@
     display: flex;
     flex-direction: row; }
   @media (max-width: 400px) {
-    .login-form-rct-component .input-row {
-      flex-direction: column; } }
+    .login-form-rct-component .main-container {
+      flex-direction: column; }
+      .login-form-rct-component .main-container .login-container, .login-form-rct-component .main-container .register-container {
+        width: auto; }
+      .login-form-rct-component .main-container .divider {
+        margin: 15px 0px 15px 0px;
+        background-color: #99ffff;
+        width: 100%;
+        height: 2px;
+        border-radius: 1px; } }

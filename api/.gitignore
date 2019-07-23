@@ -1,6 +1,7 @@
 .idea
 .env
 config/
+knexfile.js
 
 # Logs
 logs

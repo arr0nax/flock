@@ -1,6 +1,8 @@
 import React from 'react';
 import Textarea from 'react-textarea-autosize';
 import MultiMediaInput from 'components/MultiMediaInput';
+import LinkPreviewText from 'components/LinkPreviewText';
+
 // import PropTypes from 'prop-types';
 // import customPropTypes from 'lib/customPropTypes';
 // import classNames from 'classnames';
@@ -30,6 +32,8 @@ class Replies extends React.Component {
 
   mediaRef = React.createRef();
 
+
+
   handleChangeReply = (event, id) => {
     var newReply = {
       ...this.state.reply
@@ -43,17 +47,19 @@ class Replies extends React.Component {
   }
 
   handleReply = (comment_id) => {
-    this.props.postReply({
-      text: this.state.reply[comment_id],
-      comment_id: comment_id,
-      attachment: this.mediaRef.current.files[0]
-    })
-    var newReply = {
-      ...this.state.reply
-    };
-    newReply[comment_id] = '';
-    this.setState({reply: newReply});
-    this.mediaRef.current.value = null;
+    if (this.state.reply[comment_id] || this.mediaRef.current.files[0]) {
+      this.props.postReply({
+        text: this.state.reply[comment_id],
+        comment_id: comment_id,
+        attachment: this.mediaRef.current.files[0]
+      })
+      var newReply = {
+        ...this.state.reply
+      };
+      newReply[comment_id] = '';
+      this.setState({reply: newReply});
+      this.mediaRef.current.value = null;
+    }
   }
 
   replies() {
@@ -65,7 +71,7 @@ class Replies extends React.Component {
           <div className="reply">
             <UserSummary user={this.props.users[reply.user_id]} className="smallName"/>
             <div className="reply-text-container">
-            <p className="reply-text">{reply.text}</p>
+            <LinkPreviewText className="reply" text={reply.text} />
             {this.props.reply_attachments[reply.id] ? (
               <Image source={`${FILES_ENDPOINT}/reply/${reply.id}/${this.props.reply_attachments[reply.id].filename}`} />
             ) : (

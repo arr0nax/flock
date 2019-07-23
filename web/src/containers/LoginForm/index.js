@@ -16,6 +16,8 @@ class LoginForm extends React.Component {
       last_name: '',
       email: '',
       password: '',
+      email2: '',
+      password2: '',
     }
   }
 
@@ -35,15 +37,24 @@ class LoginForm extends React.Component {
     this.setState({password: event.target.value});
   }
 
+  handleChangeEmail2(event) {
+    this.setState({email2: event.target.value});
+  }
+
+  handleChangePassword2(event) {
+    this.setState({password2: event.target.value});
+  }
+
   handleLogin = (e) => {
     e.preventDefault();
     this.props.requestLogin({
-      email: this.state.email,
-      password: this.state.password,
+      email: this.state.email2,
+      password: this.state.password2,
     });
   }
 
-  handleRegister() {
+  handleRegister = (e) => {
+    e.preventDefault();
     this.props.requestRegister({
       email: this.state.email,
       password: this.state.password,
@@ -56,25 +67,30 @@ class LoginForm extends React.Component {
     return (
       <div className="login-form-rct-component">
         <img id="main-logo" src={sheepfault} style={{backgroundColor: '#9ff'}}/>
-        <div className="input-row">
-          <input placeholder="first name" value={this.state.first_name} onChange={(e) => this.handleChangeFirstName(e)}/>
-          <input placeholder="last name" value={this.state.last_name} onChange={(e) => this.handleChangeLastName(e)}/>
-        </div>
-        <div className="input-row">
-          <input placeholder="email" value={this.state.email} onChange={(e) => this.handleChangeEmail(e)}/>
-          <form onSubmit={this.handleLogin}>
-          <input placeholder="password" type="password" value={this.state.password} onChange={(e) => this.handleChangePassword(e)}/>
-          </form>
-        </div>
-        <div className='errors'>
-          <p>{this.props.error ? this.props.error.text : ''}</p>
-        </div>
-        <div className='successes'>
-          <p>{this.props.regerror ? this.props.regerror.text : ''}</p>
-        </div>
-        <div>
-          <button onClick={(e) => this.handleLogin(e)}>login</button>
-          <button onClick={(e) => this.handleRegister(e)}>register</button>
+        <div className="main-container">
+          <div className="login-container">
+              <input placeholder="username" value={this.state.email2} onChange={(e) => this.handleChangeEmail2(e)}/>
+              <form onSubmit={this.handleLogin}>
+              <input placeholder="password" type="password" value={this.state.password2} onChange={(e) => this.handleChangePassword2(e)}/>
+              </form>
+            <div className='errors'>
+              <p>{this.props.error ? this.props.error.text : ''}</p>
+            </div>
+            <button onClick={(e) => this.handleLogin(e)}>login</button>
+          </div>
+          <div className="divider" />
+          <div className="register-container">
+              <input placeholder="first name" value={this.state.first_name} onChange={(e) => this.handleChangeFirstName(e)}/>
+              <input placeholder="last name" value={this.state.last_name} onChange={(e) => this.handleChangeLastName(e)}/>
+              <input placeholder="username" value={this.state.email} onChange={(e) => this.handleChangeEmail(e)}/>
+              <form onSubmit={this.handleRegister}>
+              <input placeholder="password" type="password" value={this.state.password} onChange={(e) => this.handleChangePassword(e)}/>
+              </form>
+            <div className='successes'>
+              <p>{this.props.regerror ? this.props.regerror.text : ''}</p>
+            </div>
+            <button onClick={(e) => this.handleRegister(e)}>register</button>
+          </div>
         </div>
       </div>
     );

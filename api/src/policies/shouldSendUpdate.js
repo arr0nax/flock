@@ -26,6 +26,11 @@ const shouldSendUpdate = async function(request, h) {
         request.server.plugins.hapio.io.emit('new_react', request.response.source);
         console.log('sent react');
         return h.continue;
+      case '/attachments':
+        console.log(request.response.source);
+        request.server.plugins.hapio.io.emit('new_attachment', request.response.source);
+        console.log('sent attachment');
+        return h.continue;
       default:
         return h.continue;
     }

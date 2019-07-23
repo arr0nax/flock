@@ -1,0 +1,13 @@
+@import 'src/styles/_index';
+
+.link-preview-text-rct-component {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  
+  .comment-text {
+    @include text;
+  }
+  .microlink {
+  }
+}
