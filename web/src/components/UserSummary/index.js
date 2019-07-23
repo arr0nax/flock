@@ -1,5 +1,7 @@
 import React from 'react';
 import sheepfault from 'lib/images/smallersheepboi.png'
+import gear from 'lib/images/gear.png'
+import ReadableTimestamp from 'components/ReadableTimestamp'
 
 import './index.css';
 
@@ -35,9 +37,10 @@ class UserSummary extends React.Component {
     return (
       <div className={`user-summary ${this.props.className}`}>
         <img src={this.props.user.image_url || sheepfault} onError={this.addDefaultSrc} style={{backgroundColor: this.state.color}}/>
+        {this.props.gear && <img className="gear" src={gear}/>}
         <div className='text'>
           <p>{this.props.user.first_name} {this.props.user.last_name}</p>
-          <p>{this.props.subtext}</p>
+          {this.props.timestamp ? <ReadableTimestamp timestamp={this.props.timestamp} /> : <p>{this.props.subtext}</p>}
         </div>
       </div>
     );

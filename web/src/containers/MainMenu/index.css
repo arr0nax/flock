@@ -1,6 +1,6 @@
-.profile {
+.main-menu {
   display: flex;
   flex-direction: column; }
-  .profile .details {
+  .main-menu .details {
     display: flex;
     flex-direction: column; }

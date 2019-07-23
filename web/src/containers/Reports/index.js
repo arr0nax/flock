@@ -12,7 +12,7 @@ class Reports extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      open: true
     }
     this.props.getReports();
     this.props.getReportVotes();
@@ -61,7 +61,7 @@ class Reports extends React.Component {
   render() {
     return (
       <div className="reports-rct-component">
-        <button onClick={this.toggleOpen}>reports</button>
+        {/*<button onClick={this.toggleOpen}>reports</button>*/}
         {this.state.open && (
           this.reports()
         )}

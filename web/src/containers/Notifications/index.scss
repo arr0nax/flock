@@ -1,13 +1,17 @@
 @import 'src/styles/_index';
 
 .notifications-rct-component {
+  display: flex;
+  flex-direction: column;
   .notification {
     display: flex;
     flex-direction: row;
-    p {
-      color: lightblue;
+    .action-link {
+      text-decoration: underline;
+      color: $action-link;
+      cursor: pointer;
     }
-    .new {
+    &.new {
       background-color: rgba(173,216,230,0.5);
     }
   }

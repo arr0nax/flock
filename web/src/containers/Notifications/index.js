@@ -4,6 +4,7 @@ import React from 'react';
 // import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { getRdxActionMapper, getRdxSelectionMapper } from 'rdx/utils/propsMapping';
+import ReadableTimestamp from 'components/ReadableTimestamp';
 
 import './index.css';
 
@@ -13,6 +14,7 @@ class Notifications extends React.Component {
     this.state = {
       open: true
     }
+
   }
 
   toggleOpen = () => {
@@ -31,14 +33,15 @@ class Notifications extends React.Component {
     if (!this.props.notifications || !this.props.notifications.length) return null;
     return this.props.notifications.map(notif => (
       <div className={`notification ${notif.new ? 'new' : ''}`} key={`notif${notif.id}`}>
-        <p onClick={() => this.goToDetails(notif)}>{notif.made_by} left a {notif.item_type} on your {notif.parent_type}</p>
+        <p onClick={() => this.goToDetails(notif)}>{notif.made_by} left a {notif.item_type} on your <span className="action-link">{notif.parent_type}</span></p>
+        <ReadableTimestamp timestamp={notif.created_at}/>
       </div>
     ));
   }
   render() {
     return (
       <div className="notifications-rct-component">
-        <button onClick={this.toggleOpen}>notifications</button>
+        {/*<button onClick={this.toggleOpen}>notifications</button>*/}
         {this.state.open && (
           this.notifications()
         )}
@@ -55,10 +58,12 @@ Notifications.defaultProps = {
 
 const actionsMapper = getRdxActionMapper([
   'navigate',
+  'getNotifications',
 ]);
 
 const stateMapper = getRdxSelectionMapper({
-  notifications: 'getNotifications'
+  notifications: 'getNotifications',
+  logged_in: 'getLoggedIn',
 });
 
 export default connect(stateMapper, actionsMapper)(Notifications);

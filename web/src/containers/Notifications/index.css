@@ -1,7 +1,12 @@
-.notifications-rct-component .notification {
+.notifications-rct-component {
   display: flex;
-  flex-direction: row; }
-  .notifications-rct-component .notification p {
-    color: lightblue; }
-  .notifications-rct-component .notification .new {
-    background-color: rgba(173, 216, 230, 0.5); }
+  flex-direction: column; }
+  .notifications-rct-component .notification {
+    display: flex;
+    flex-direction: row; }
+    .notifications-rct-component .notification .action-link {
+      text-decoration: underline;
+      color: #075ed4;
+      cursor: pointer; }
+    .notifications-rct-component .notification.new {
+      background-color: rgba(173, 216, 230, 0.5); }

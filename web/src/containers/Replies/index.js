@@ -69,7 +69,7 @@ class Replies extends React.Component {
       return (
         <div className="reply-container" key={`reply${reply.id}`}>
           <div className="reply">
-            <UserSummary user={this.props.users[reply.user_id]} className="smallName"/>
+            <UserSummary user={this.props.users[reply.user_id]} timestamp={reply.created_at} className="smallName"/>
             <div className="reply-text-container">
             <LinkPreviewText className="reply" text={reply.text} />
             {this.props.reply_attachments[reply.id] ? (

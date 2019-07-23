@@ -5,7 +5,7 @@
   .react-carousel-container .react-button {
     position: relative;
     display: inline-block;
-    color: lightblue;
+    color: #075ed4;
     font-size: .8em;
     margin: 0px 6px 0px 0px; }
   .react-carousel-container .react-carousel {
@@ -14,7 +14,7 @@
     position: absolute;
     left: 0px;
     background: white;
-    width: 170px;
+    width: 180px;
     display: flex;
     flex-direction: row;
     padding: 0px 0px 0px 8px;
@@ -41,7 +41,7 @@
       border-color: black;
       font-size: 1.8em; }
     .react-carousel-container .react-carousel.open {
-      height: 25px;
+      height: 30px;
       padding: 2px 0px 1px 8px;
       border-radius: 50px;
       border: 1px solid lightgrey; }

@@ -1,6 +1,26 @@
 .profile {
   display: flex;
-  flex-direction: row; }
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 6px; }
+  .profile .user-summary-container {
+    cursor: pointer; }
+  .profile .reports-button-container, .profile .notifications-button-container {
+    position: relative; }
+    .profile .reports-button-container .reports-alert-icon, .profile .reports-button-container .notifications-alert-icon, .profile .notifications-button-container .reports-alert-icon, .profile .notifications-button-container .notifications-alert-icon {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background-color: red;
+      height: 16px;
+      width: 16px;
+      color: white;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%; }
   .profile img {
     height: 40px;
     width: 40px; }

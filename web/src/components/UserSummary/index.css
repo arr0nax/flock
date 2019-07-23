@@ -3,13 +3,20 @@
   flex-direction: row;
   align-items: center;
   padding: 0px 8px 0px 0px;
-  border-radius: 20px; }
+  border-radius: 20px;
+  position: relative; }
   .user-summary .text {
     padding: 0px 0px 0px 8px; }
   .user-summary img {
     height: 35px;
     width: 35px;
     border-radius: 50%; }
+  .user-summary .gear {
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    top: 0px;
+    left: 32px; }
   .user-summary.white {
     background-color: white; }
   .user-summary.smallName {
@@ -19,7 +26,11 @@
     .user-summary.smallName .text {
       position: absolute;
       top: 0px;
-      width: 100px;
+      width: 200px;
       left: 38px;
       color: grey;
-      font-size: .8em; }
+      font-size: .8em;
+      display: flex;
+      flex-direction: row; }
+      .user-summary.smallName .text p {
+        margin-right: 5px; }

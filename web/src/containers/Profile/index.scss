@@ -3,6 +3,31 @@
 .profile {
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 6px;
+
+   .user-summary-container {
+     cursor: pointer;
+   }
+
+   .reports-button-container, .notifications-button-container {
+     position: relative;
+     .reports-alert-icon, .notifications-alert-icon {
+       position: absolute;
+       top: -8px;
+       right: -8px;
+       background-color: red;
+       height: 16px;
+       width: 16px;
+       color: white;
+       font-size: 12px;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       border-radius: 50%;
+     }
+   }
 
   img {
     height: 40px;

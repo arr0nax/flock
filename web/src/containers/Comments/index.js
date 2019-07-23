@@ -64,7 +64,7 @@ class Comments extends React.Component {
       return (
         <div className="comment-container" key={`comment${comment.id}`}>
           <div className="comment">
-            <UserSummary user={this.props.users[comment.user_id]} className='smallName'/>
+            <UserSummary user={this.props.users[comment.user_id]} className='smallName' timestamp={comment.created_at}/>
             <div className="comment-text-container">
               <LinkPreviewText className="comment" text={comment.text} />
               {this.props.comment_attachments[comment.id] ? (

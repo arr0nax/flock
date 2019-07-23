@@ -8,5 +8,5 @@
     margin: 0px; }
 
 .reacts-rct-component.comment p, .reacts-rct-component.reply p {
-  bottom: -4px;
+  bottom: 0px;
   font-size: 12px; }
