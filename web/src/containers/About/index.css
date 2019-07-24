@@ -1,0 +1,14 @@
+.about-rct-component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; }
+  .about-rct-component #main-logo-2 {
+    height: 80px;
+    width: 80px;
+    margin: 25px;
+    border-radius: 50%; }
+  .about-rct-component p {
+    margin-bottom: 12px; }
+  .about-rct-component .section {
+    width: 80%; }

@@ -1,4 +1,4 @@
-// @import 'src/styles/_index';
+@import 'src/styles/_index';
 
 .main-menu {
   display: flex;
@@ -7,5 +7,22 @@
     display: flex;
     flex-direction: column;
 
+  }
+  .more-info {
+    margin-top: 20px;
+    p {
+      color: $action-link;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+
+  .back-button {
+    margin-bottom: 20px;
+    p {
+      color: $action-link;
+      text-decoration: underline;
+      cursor: pointer;
+    }
   }
 }

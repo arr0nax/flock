@@ -19,6 +19,7 @@ class LoginForm extends React.Component {
       email2: '',
       password2: '',
     }
+    if (props.logged_in) props.navigate('/');
   }
 
   handleChangeFirstName(event) {
@@ -43,6 +44,10 @@ class LoginForm extends React.Component {
 
   handleChangePassword2(event) {
     this.setState({password2: event.target.value});
+  }
+
+  viewAbout = () => {
+    this.props.navigate(`/about`);
   }
 
   handleLogin = (e) => {
@@ -92,6 +97,9 @@ class LoginForm extends React.Component {
             <button onClick={(e) => this.handleRegister(e)}>register</button>
           </div>
         </div>
+        <div className="more-info" onClick={this.viewAbout}>
+          <p>about flock</p>
+        </div>
       </div>
     );
   }
@@ -107,12 +115,14 @@ LoginForm.defaultProps = {
 
 const actionsMapper = getRdxActionMapper([
   'requestLogin',
-  'requestRegister'
+  'requestRegister',
+  'navigate',
 ]);
 
 const stateMapper = getRdxSelectionMapper({
   error: 'getLoginError',
   regerror: 'getRegisterError',
+  logged_in: 'getLoggedIn',
 });
 
 export default connect(stateMapper, actionsMapper)(LoginForm);

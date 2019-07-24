@@ -1,6 +1,7 @@
 @import 'src/styles/_index';
 
 .delete-content-button-rct-component {
+  cursor: pointer;
   p {
     @include small-clickable;
     color: lightblue;

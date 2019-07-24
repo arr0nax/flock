@@ -4,3 +4,15 @@
   .main-menu .details {
     display: flex;
     flex-direction: column; }
+  .main-menu .more-info {
+    margin-top: 20px; }
+    .main-menu .more-info p {
+      color: #075ed4;
+      text-decoration: underline;
+      cursor: pointer; }
+  .main-menu .back-button {
+    margin-bottom: 20px; }
+    .main-menu .back-button p {
+      color: #075ed4;
+      text-decoration: underline;
+      cursor: pointer; }

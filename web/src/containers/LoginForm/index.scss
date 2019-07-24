@@ -56,6 +56,15 @@
      flex-direction: row;
    }
 
+   .more-info {
+     margin-top: 20px;
+     p {
+       color: $action-link;
+       text-decoration: underline;
+       cursor: pointer;
+     }
+   }
+
    @media (max-width: 400px) {
      .main-container {
        flex-direction: column;

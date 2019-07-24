@@ -19,13 +19,27 @@ class MainMenu extends Component {
     this.props.requestLogout();
   }
 
+  viewAbout = () => {
+    this.props.navigate(`/about`);
+  }
+
+  goHome = () => {
+    this.props.navigate(`/`);
+  }
+
   render() {
     return (
       <div className='main-menu'>
+        <div className='back-button' onClick={this.goHome}>
+          <p>return</p>
+        </div>
         <UserSummary user={this.props.user}/>
         <div className="details">
           <button onClick={() => this.handleLogout()}>logout</button>
           {/*<UpdateGroup />*/}
+        </div>
+        <div className="more-info" onClick={this.viewAbout}>
+          <p>about flock</p>
         </div>
       </div>
     );
@@ -48,10 +62,11 @@ MainMenu.defaultProps = {
 
 const actionsMapper = getRdxActionMapper([
   'requestLogout',
+  'navigate',
 ]);
 
 const stateMapper = getRdxSelectionMapper({
-
+  user: 'getUser',
 });
 
 export default connect(stateMapper, actionsMapper)(MainMenu);

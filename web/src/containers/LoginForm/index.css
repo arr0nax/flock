@@ -34,6 +34,12 @@
   .login-form-rct-component .input-row {
     display: flex;
     flex-direction: row; }
+  .login-form-rct-component .more-info {
+    margin-top: 20px; }
+    .login-form-rct-component .more-info p {
+      color: #075ed4;
+      text-decoration: underline;
+      cursor: pointer; }
   @media (max-width: 400px) {
     .login-form-rct-component .main-container {
       flex-direction: column; }

@@ -1,4 +1,6 @@
-.delete-content-button-rct-component p {
-  color: #075ed4;
-  font-size: .8em;
-  color: lightblue; }
+.delete-content-button-rct-component {
+  cursor: pointer; }
+  .delete-content-button-rct-component p {
+    color: #075ed4;
+    font-size: .8em;
+    color: lightblue; }

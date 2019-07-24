@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import customPropTypes from 'lib/customPropTypes';
+// import customPropTypes from 'lib/customPropTypes';
 // import classNames from 'classnames';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
@@ -8,19 +8,20 @@ import { getRdxActionMapper, getRdxSelectionMapper } from 'rdx/utils/propsMappin
 
 import './index.css';
 
+export default function (ComposedComponent) {
 class AuthGuard extends React.Component {
   render() {
-    const { authToken, children } = this.props;
-    if (!authToken) {
+    const { logged_in } = this.props;
+    if (!logged_in) {
       return <Redirect to="/login" />;
     }
-    return children;
+    return <ComposedComponent {...this.props} />;
   }
 }
 
 AuthGuard.propTypes = {
   authToken: PropTypes.string,
-  children: customPropTypes.children,
+  // children: customPropTypes.children,
 };
 
 AuthGuard.defaultProps = {
@@ -29,10 +30,12 @@ AuthGuard.defaultProps = {
 };
 
 const actionsMapper = getRdxActionMapper([
+  'navigate'
 ]);
 
 const stateMapper = getRdxSelectionMapper({
-  authToken: 'getAuthToken',
+  logged_in: 'getLoggedIn',
 });
 
-export default connect(stateMapper, actionsMapper)(AuthGuard);
+return connect(stateMapper, actionsMapper)(AuthGuard);
+}
