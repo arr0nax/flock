@@ -3,7 +3,6 @@ import actions from 'rdx/actions';
 //
 export default {
   newReact: (store, data) => {
-    console.log(data);
     switch (data.item_type) {
       case 'post':
         store.dispatch(actions.addPostReact(data))

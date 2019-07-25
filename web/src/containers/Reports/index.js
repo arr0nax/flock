@@ -27,6 +27,10 @@ class Reports extends React.Component {
     this.props.navigate(`/reports/${report.item_type}/${report.item_id}`);
   }
 
+  goHome() {
+    this.props.navigate('/');
+  }
+
   sendVote(vote, existingVote, report_id) {
     if (existingVote && (existingVote.vote === vote) ) {
       this.props.deleteReportVote(existingVote.id)
@@ -44,10 +48,9 @@ class Reports extends React.Component {
   }
 
   reports = () => {
-    if (!this.props.reports || !this.props.reports.length) return null;
+    if (!this.props.reports || !this.props.reports.length) return <div className="no-reports"><p>no reports!</p><button onClick={() => this.goHome()}>home</button></div>;
     return this.props.reports.map(report => {
       const vote = this.props.reportVotes.find(vote => vote.report_id === report.id);
-      console.log(report, vote);
       return (
         <div className={`report ${report.new ? 'new' : ''}`} key={`report${report.id}`}>
           <p>{report.item_text}</p>

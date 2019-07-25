@@ -10,6 +10,7 @@ import watchNotificationsSagas from 'rdx/modules/notifications/sagas';
 import watchAttachmentsSagas from 'rdx/modules/attachments/sagas';
 import watchReportsSagas from 'rdx/modules/reports/sagas';
 import watchReportvotesSagas from 'rdx/modules/reportVotes/sagas';
+import watchAnnouncementsSagas from 'rdx/modules/announcements/sagas';
 // IMPORT_PT (for script -- do not remove!)
 
 function* rootSaga() {
@@ -24,6 +25,7 @@ function* rootSaga() {
     watchAttachmentsSagas(),
     watchReportsSagas(),
     watchReportvotesSagas(),
+    watchAnnouncementsSagas(),
     // INSERTION_PT (for script -- do not remove!)
   ]);
 }

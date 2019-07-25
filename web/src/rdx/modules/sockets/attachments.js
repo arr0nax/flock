@@ -3,7 +3,6 @@ import actions from 'rdx/actions';
 //
 export default {
   newAttachment: (store, data) => {
-    console.log(data);
     switch (data.data.item_type) {
       case 'post':
         store.dispatch(actions.addPostAttachment(data.data))

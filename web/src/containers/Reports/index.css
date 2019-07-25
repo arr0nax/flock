@@ -4,3 +4,13 @@
 .reports-rct-component .highlight {
   border-color: blue;
   background-color: lightblue; }
+
+.reports-rct-component .no-reports {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  height: 200px; }
+  .reports-rct-component .no-reports p {
+    font-style: italic;
+    color: grey; }

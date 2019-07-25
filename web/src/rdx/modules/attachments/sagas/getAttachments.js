@@ -8,7 +8,6 @@ function* getAttachments(action) {
   const { success, data, error } = yield* makeRequest.get(`/${action.payload.type}/${action.payload.item_id}/attachments`);
   if (success) {
     yield put(actions.getAttachmentsSuccess());
-    console.log(data);
     if (data.length > 0) {
       switch (action.payload.type) {
         case 'posts':

@@ -1,19 +1,21 @@
-// @import 'src/styles/_index';
+@import 'src/styles/_index';
 
-.profile {
+.profile-rct-component {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
   margin-bottom: 6px;
 
+
+
    .user-summary-container {
      cursor: pointer;
    }
 
-   .reports-button-container, .notifications-button-container {
+   .button-container {
      position: relative;
-     .reports-alert-icon, .notifications-alert-icon {
+     .alert-icon {
        position: absolute;
        top: -8px;
        right: -8px;

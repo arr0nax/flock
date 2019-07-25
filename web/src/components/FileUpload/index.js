@@ -28,8 +28,6 @@ class FileUpload extends React.Component {
       success: false,
     });
 
-    console.log(this.fileInput.files[0]);
-
     fetch(`${API_ENDPOINT}/attachments`, {
       method: 'POST',
       body: data,

@@ -45,7 +45,6 @@ export default {
     },
     [types.GET_MORE_POSTS_SUCCESS](state, action) {
       const posts = state.data.concat(action.payload.posts);
-      console.log(posts);
       return {
         ...state,
         requested: false,

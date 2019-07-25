@@ -23,7 +23,6 @@ class MultiMediaInput extends React.Component {
   }
 
   clearInput = () => {
-    console.log(this.props.innerRef);
     this.props.innerRef.current.value = null;
     this.setState({show_preview: false, file: null})
   }

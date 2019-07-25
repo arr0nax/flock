@@ -9,4 +9,17 @@
     border-color: blue;
     background-color: lightblue;
   }
+
+  .no-reports {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    height: 200px;
+
+    p {
+      font-style: italic;
+      color: grey;
+    }
+  }
 }

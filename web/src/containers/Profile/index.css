@@ -1,14 +1,14 @@
-.profile {
+.profile-rct-component {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
   margin-bottom: 6px; }
-  .profile .user-summary-container {
+  .profile-rct-component .user-summary-container {
     cursor: pointer; }
-  .profile .reports-button-container, .profile .notifications-button-container {
+  .profile-rct-component .button-container {
     position: relative; }
-    .profile .reports-button-container .reports-alert-icon, .profile .reports-button-container .notifications-alert-icon, .profile .notifications-button-container .reports-alert-icon, .profile .notifications-button-container .notifications-alert-icon {
+    .profile-rct-component .button-container .alert-icon {
       position: absolute;
       top: -8px;
       right: -8px;
@@ -21,6 +21,6 @@
       align-items: center;
       justify-content: center;
       border-radius: 50%; }
-  .profile img {
+  .profile-rct-component img {
     height: 40px;
     width: 40px; }

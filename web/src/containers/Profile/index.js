@@ -22,6 +22,8 @@ class Profile extends Component {
     if (this.props.logged_in) {
       this.props.getNotifications();
       this.props.getReports();
+      this.props.getReportVotes();
+      this.props.getAnnouncements();
     }
 
   }
@@ -38,24 +40,30 @@ class Profile extends Component {
     this.props.navigate(`/reports`);
   }
 
+  viewAnnouncements = () => {
+    this.props.navigate(`/announcements`);
+  }
+
   render() {
     const newNotifs = this.props.notifications.reduce((acc, curr) => {
-      console.log(curr, acc);
       return curr.new ? acc+=1 : acc
     }, 0);
-    console.log(newNotifs);
     return (
-      <div className='profile'>
+      <div className='profile-rct-component'>
         <div className='user-summary-container' onClick={this.viewMenu}>
           <UserSummary user={this.props.user} className="profile" gear/>
         </div>
-        <div className='reports-button-container'>
+        <div className='button-container'>
           <button onClick={this.viewReports}>reports</button>
-          {this.props.reports.length ? <div className='reports-alert-icon'>{this.props.reports.length}</div> : null}
+          {this.props.reports ? <div className='alert-icon'>{this.props.reports}</div> : null}
         </div>
-        <div className='notifications-button-container'>
+        <div className='button-container'>
           <button onClick={this.viewNotifications}>notifications</button>
-          {newNotifs ? <div className='notifications-alert-icon'>{newNotifs}</div> : null}
+          {newNotifs ? <div className='alert-icon'>{newNotifs}</div> : null}
+        </div>
+        <div className='button-container'>
+          <button onClick={this.viewAnnouncements}>announcements</button>
+          {this.props.announcements.length ? <div className='alert-icon'>{this.props.announcements.length}</div> : null}
         </div>
       </div>
     );
@@ -76,14 +84,17 @@ Profile.defaultProps = {
 const actionsMapper = getRdxActionMapper([
   'navigate',
   'getNotifications',
-  'getReports'
+  'getAnnouncements',
+  'getReports',
+  'getReportVotes'
 ]);
 
 const stateMapper = getRdxSelectionMapper({
   user: 'getUser',
   logged_in: 'getLoggedIn',
-  reports: 'getReports',
+  reports: 'getNewReportsCount',
   notifications: 'getNotifications',
+  announcements: 'getNewAnnouncements'
 });
 
 export default connect(stateMapper, actionsMapper)(Profile);

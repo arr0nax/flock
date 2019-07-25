@@ -3,6 +3,7 @@ import Post from '../models/post';
 import Reply from '../models/reply';
 import Comment from '../models/comment';
 import ReportVote from '../models/report_vote';
+import Announcement from '../models/announcement';
 import React from '../models/react';
 import Boom from 'boom';
 
@@ -39,6 +40,11 @@ const isOwner = async function(request, h) {
       case 'votes':
         const vote = await ReportVote.findByID(id);
         if (vote && vote.attributes.user_id === request.auth.credentials.user_id) {
+          return h.continue;
+        }
+      case 'announcements':
+        const announcement = await Announcement.findByID(id);
+        if (announcement && announcement.attributes.user_id === request.auth.credentials.user_id) {
           return h.continue;
         }
     }

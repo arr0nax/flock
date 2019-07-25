@@ -40,7 +40,6 @@ class Comments extends React.Component {
   }
 
   handleComment = (post_id) => {
-    console.log(this.mediaRef);
     if (this.state.comment[post_id] || this.mediaRef.current.files[0]) {
       this.props.postComment({
         text: this.state.comment[post_id],
@@ -52,7 +51,6 @@ class Comments extends React.Component {
       };
       newComment[post_id] = '';
       this.setState({comment: newComment});
-      console.log(this.mediaRef);
       this.mediaRef.current.value = null;
     }
   }

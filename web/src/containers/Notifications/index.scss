@@ -15,4 +15,17 @@
       background-color: rgba(173,216,230,0.5);
     }
   }
+
+  .no-notifications {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    height: 200px;
+
+    p {
+      font-style: italic;
+      color: grey;
+    }
+  }
 }

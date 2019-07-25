@@ -26,6 +26,7 @@ const seedUsers = (knex, Promise) => Promise.all([
     password: password.generatePassword('string'),
     image_url: 'string',
     role_id: 2,
+    group_id: 1,
   }).returning('id'),
   knex('users').insert({
     first_name: 'danger',

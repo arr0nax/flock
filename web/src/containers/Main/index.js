@@ -13,6 +13,7 @@ import Post from 'containers/Post';
 import Profile from 'containers/Profile';
 import Reports from 'containers/Reports';
 import NewPost from 'containers/NewPost';
+import UnseenAnnouncements from 'containers/UnseenAnnouncements';
 
 
 class Main extends Component {
@@ -54,6 +55,7 @@ class Main extends Component {
         <div className="new-post">
           <NewPost />
         </div>
+        <UnseenAnnouncements />
         <div className="posts">
           <InfiniteScroll
               pageStart={0}

@@ -23,7 +23,6 @@ function* postAttachment(action) {
     })
     .then(res => res.json())
     .then(images => {
-      console.log(images);
       afterAttachment(action.payload.item_type, action.payload.item_id);
     })
     .catch( error => {

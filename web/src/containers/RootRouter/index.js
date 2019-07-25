@@ -9,6 +9,7 @@ import DetailsPage from 'containers/DetailsPage';
 import ReportedDetailsPage from 'containers/ReportedDetailsPage';
 import About from 'containers/About';
 import Login from 'containers/LoginForm';
+import Announcements from 'containers/Announcements';
 // import NotFound from 'components/NotFound';
 import guard from 'components/AuthGuard';
 
@@ -22,6 +23,7 @@ const RootRouter = () => (
       <Route path="/menu" component={guard(MainMenu)}/>
       <Route path="/notifications" component={guard(Notifications)}/>
       <Route path="/reports" component={guard(Reports)}/>
+      <Route exact path="/announcements" component={guard(Announcements)} />
       <Route exact path="/" component={guard(Main)} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/about" component={About} />

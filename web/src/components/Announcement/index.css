@@ -1,0 +1,19 @@
+.announcement {
+  border-radius: 8px;
+  padding: 4px;
+  display: flex;
+  position: relative;
+  border: 1px solid lightgrey;
+  flex-direction: column;
+  padding-right: 16px;
+  margin-bottom: 8px;
+  background-color: white; }
+  .announcement p {
+    word-wrap: break-word; }
+  .announcement.new {
+    background-color: rgba(173, 216, 230, 0.5);
+    border-color: lightblue; }
+  .announcement .delete-announcement-button {
+    position: absolute;
+    right: 4px;
+    top: 4px; }

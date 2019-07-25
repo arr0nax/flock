@@ -29,8 +29,12 @@ class Notifications extends React.Component {
     }
   }
 
+  goHome() {
+    this.props.navigate('/');
+  }
+
   notifications = () => {
-    if (!this.props.notifications || !this.props.notifications.length) return null;
+    if (!this.props.notifications || !this.props.notifications.length) return <div className="no-notifications"><p>no notifications!</p><button onClick={() => this.goHome()}>home</button></div>;
     return this.props.notifications.map(notif => (
       <div className={`notification ${notif.new ? 'new' : ''}`} key={`notif${notif.id}`}>
         <p onClick={() => this.goToDetails(notif)}>{notif.made_by} left a {notif.item_type} on your <span className="action-link">{notif.parent_type}</span></p>

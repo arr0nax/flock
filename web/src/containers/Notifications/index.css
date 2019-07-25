@@ -10,3 +10,12 @@
       cursor: pointer; }
     .notifications-rct-component .notification.new {
       background-color: rgba(173, 216, 230, 0.5); }
+  .notifications-rct-component .no-notifications {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    height: 200px; }
+    .notifications-rct-component .no-notifications p {
+      font-style: italic;
+      color: grey; }

@@ -17,7 +17,6 @@ class ReportedDetailsPage extends React.Component {
     // props.getPost(props.match.params.item_id);
     const item_id = props.match.params.item_id;
     const item_type = props.match.params.item_type;
-    console.log(item_type);
     switch (item_type) {
       case 'post':
         props.getReportedPost(item_id);

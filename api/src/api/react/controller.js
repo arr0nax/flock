@@ -16,8 +16,6 @@ class ReactController {
         item_id: request.payload.item_id
       }).fetch();
 
-      console.log('19', react);
-
       if (react && (react.attributes.react === request.payload.react)) {
         react.destroy();
       } else if (react) {

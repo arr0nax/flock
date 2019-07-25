@@ -9,6 +9,7 @@ import notificationsTypes from 'rdx/modules/notifications/types';
 import attachmentsTypes from 'rdx/modules/attachments/types';
 import reportsTypes from 'rdx/modules/reports/types';
 import reportvotesTypes from 'rdx/modules/reportVotes/types';
+import announcementsTypes from 'rdx/modules/announcements/types';
 // IMPORT_PT (for script -- do not remove!)
 
 const types = {
@@ -23,6 +24,7 @@ const types = {
   ...attachmentsTypes,
   ...reportsTypes,
   ...reportvotesTypes,
+  ...announcementsTypes,
 // INSERTION_PT (for script -- do not remove!)
 };
 
