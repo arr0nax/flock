@@ -41,7 +41,7 @@ class MultiMediaInput extends React.Component {
       )}>
         <div className="input-row-container">
           <ExpandingTextInput className={className} value={value} handleChange={handleChange} id={id} handleSubmit={this.handleSubmit} placeholder={placeholder} rows={rows} noReturn={noReturn}/>
-          <input className={'add-image-input'} type="file" name={`${className}${id}`} id={`${className}${id}`} accept="image" encType="multipart/form-data" ref={innerRef} onChange={this.displayPreview}/>
+          <input className={'add-image-input'} type="file" name={`${className}${id}`} id={`${className}${id}`} accept="image/*" encType="multipart/form-data" ref={innerRef} onChange={this.displayPreview}/>
           <label className={'add-image-label'} htmlFor={`${className}${id}`}></label>
           <button className={'submit-button'} onClick={() => {handleSubmit(id);this.clearInput();}}>send</button>
         </div>

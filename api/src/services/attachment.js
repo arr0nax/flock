@@ -1,4 +1,5 @@
 import Path from 'path';
+import Boom from 'boom';
 
 // import Log from '../utils/log';
 import BindAll from '../utils/bind-all';
@@ -38,7 +39,7 @@ class AttachmentService {
     const filePath = `${Config.get('files.path')}/${item_type}/${item_id}`;
 
     Jimp.read(file.path, (err, image) => {
-      if (err) throw err;
+      if (err) return Boom.forbidden(err);
       var w = image.bitmap.width; // the width of the image
       var h = image.bitmap.height; // the height of the image
       if (w > 700 || h > 700) {
