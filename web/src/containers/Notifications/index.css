@@ -19,3 +19,9 @@
     .notifications-rct-component .no-notifications p {
       font-style: italic;
       color: grey; }
+  .notifications-rct-component .home-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    padding-bottom: 20px; }

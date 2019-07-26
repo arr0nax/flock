@@ -1,6 +1,14 @@
 // @import 'src/styles/_index';
 
 .reports-rct-component {
+  .home-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    padding-bottom: 20px;
+  }
+  
   .new {
     background-color: rgba(173,216,230,0.5);
   }

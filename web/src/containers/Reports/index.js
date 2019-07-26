@@ -48,7 +48,7 @@ class Reports extends React.Component {
   }
 
   reports = () => {
-    if (!this.props.reports || !this.props.reports.length) return <div className="no-reports"><p>no reports!</p><button onClick={() => this.goHome()}>home</button></div>;
+    if (!this.props.reports || !this.props.reports.length) return <div className="no-reports"><p>no reports!</p></div>;
     return this.props.reports.map(report => {
       const vote = this.props.reportVotes.find(vote => vote.report_id === report.id);
       return (
@@ -65,6 +65,9 @@ class Reports extends React.Component {
     return (
       <div className="reports-rct-component">
         {/*<button onClick={this.toggleOpen}>reports</button>*/}
+        <div className="home-button-container">
+          <button onClick={() => this.goHome()}>home</button>
+        </div>
         {this.state.open && (
           this.reports()
         )}

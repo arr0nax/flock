@@ -25,4 +25,12 @@
       cursor: pointer;
     }
   }
+
+  .home-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    padding-bottom: 20px;
+  }
 }

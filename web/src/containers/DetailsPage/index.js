@@ -15,6 +15,7 @@ class DetailsPage extends React.Component {
     super(props);
     this.state = {};
     // props.getPost(props.match.params.item_id);
+    console.log(props.match);
     const item_id = props.match.params.item_id;
     const item_type = props.match.params.item_type;
     switch (item_type) {

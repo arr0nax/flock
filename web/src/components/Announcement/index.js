@@ -23,7 +23,7 @@ class ReactCarousel extends React.Component {
     return (
       <div className={`announcement ${announcement.new ? 'new' : ''}`} key={`announcement${announcement.id}`}>
         <p>{announcement.text}</p>
-        <div className="delete-announcement-button" onClick={() => this.markAsSeen(announcement.id)}>x</div>
+        {announcement.new && <div className="delete-announcement-button" onClick={() => this.markAsSeen(announcement.id)}>x</div>}
       </div>
     );
   }

@@ -18,10 +18,12 @@ class Reports extends React.Component {
 
   }
 
-
+  goHome() {
+    this.props.navigate('/');
+  }
 
   announcements = () => {
-    if (!this.props.announcements || !this.props.announcements.length) return null;
+    if (!this.props.announcements || !this.props.announcements.length) return <div className="no-announcements"><p>no announcements!</p><button onClick={() => this.goHome()}>home</button></div>;
     return this.props.announcements.map(announcement => {
       return (
         <Announcement announcement={announcement} />
@@ -32,6 +34,9 @@ class Reports extends React.Component {
     return (
       <div className="announcements-rct-component">
         {/*<button onClick={this.toggleOpen}>reports</button>*/}
+        <div className="home-button-container">
+          <button onClick={() => this.goHome()}>home</button>
+        </div>
         {this.announcements()}
       </div>
     )

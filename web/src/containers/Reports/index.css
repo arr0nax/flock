@@ -1,3 +1,10 @@
+.reports-rct-component .home-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  padding-bottom: 20px; }
+
 .reports-rct-component .new {
   background-color: rgba(173, 216, 230, 0.5); }
 

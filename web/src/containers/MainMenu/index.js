@@ -30,8 +30,8 @@ class MainMenu extends Component {
   render() {
     return (
       <div className='main-menu'>
-        <div className='back-button' onClick={this.goHome}>
-          <p>return</p>
+        <div className="home-button-container">
+          <button onClick={() => this.goHome()}>home</button>
         </div>
         <UserSummary user={this.props.user}/>
         <div className="details">

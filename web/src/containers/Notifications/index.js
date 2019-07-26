@@ -25,7 +25,7 @@ class Notifications extends React.Component {
     if (notif.item_type === 'report') {
       this.props.navigate(`reports/${notif.parent_type}/${notif.parent_id}`);
     } else {
-      this.props.navigate(`details/${notif.item_type}/${notif.item_id}`);
+      this.props.navigate(`details/${notif.parent_type}/${notif.parent_id}`);
     }
   }
 
@@ -33,11 +33,17 @@ class Notifications extends React.Component {
     this.props.navigate('/');
   }
 
+  getUserByID(id) {
+    console.log(this.props.users);
+    if (this.props.users[id]) return `${this.props.users[id].first_name} ${this.props.users[id].last_name}`;
+    return id;
+  }
+
   notifications = () => {
-    if (!this.props.notifications || !this.props.notifications.length) return <div className="no-notifications"><p>no notifications!</p><button onClick={() => this.goHome()}>home</button></div>;
+    if (!this.props.notifications || !this.props.notifications.length) return <div className="no-notifications"><p>no notifications!</p></div>;
     return this.props.notifications.map(notif => (
       <div className={`notification ${notif.new ? 'new' : ''}`} key={`notif${notif.id}`}>
-        <p onClick={() => this.goToDetails(notif)}>{notif.made_by} left a {notif.item_type} on your <span className="action-link">{notif.parent_type}</span></p>
+        <p onClick={() => this.goToDetails(notif)}>{this.getUserByID(notif.made_by)} left a {notif.item_type} on your <span className="action-link">{notif.parent_type}</span></p>
         <ReadableTimestamp timestamp={notif.created_at}/>
       </div>
     ));
@@ -46,6 +52,9 @@ class Notifications extends React.Component {
     return (
       <div className="notifications-rct-component">
         {/*<button onClick={this.toggleOpen}>notifications</button>*/}
+        <div className="home-button-container">
+          <button onClick={() => this.goHome()}>home</button>
+        </div>
         {this.state.open && (
           this.notifications()
         )}
@@ -68,6 +77,7 @@ const actionsMapper = getRdxActionMapper([
 const stateMapper = getRdxSelectionMapper({
   notifications: 'getNotifications',
   logged_in: 'getLoggedIn',
+  users: 'getUsers',
 });
 
 export default connect(stateMapper, actionsMapper)(Notifications);

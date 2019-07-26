@@ -16,3 +16,9 @@
       color: #075ed4;
       text-decoration: underline;
       cursor: pointer; }
+  .main-menu .home-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    padding-bottom: 20px; }

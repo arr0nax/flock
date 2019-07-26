@@ -25,7 +25,7 @@ class About extends React.Component {
           <p>Flock is a love letter to social media, designed and run by Clayton Online.</p>
           <p>Social media today has many problems, including a focus on advertising, unfair collection of sensitive data, and design that is intentionally addictive.</p>
           <p>Flock is attempting to address these issues by focusing on creating a more human experience. There are no profiles, DMs, or moderators, only group conversations where everyone can contribute and chat.</p>
-          <p>On Flock, you will be able to talk to friends and strangers from all over the world. Be nice! You only get to be in one group, and your words will have affect how people perceive you.</p>
+          <p>On Flock, you will be able to talk to friends and strangers from all over the world. Be nice! You only get to be in one group, and your words will affect how people perceive you.</p>
           <p style={{fontStyle: 'italic'}}>Flock is run entirely out of pocket by Clayton Online. Thats why you will never see an ad or have your data sold. If you want to donate, please visit his <a href="https://www.patreon.com/claytononline" target='_blank'>patreon</a> or venmo @Clayton-Online.</p>
         </div>
       </div>
