@@ -34,7 +34,6 @@ class Notifications extends React.Component {
   }
 
   getUserByID(id) {
-    console.log(this.props.users);
     if (this.props.users[id]) return `${this.props.users[id].first_name} ${this.props.users[id].last_name}`;
     return id;
   }

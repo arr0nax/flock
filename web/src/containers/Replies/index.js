@@ -30,35 +30,35 @@ class Replies extends React.Component {
     };
   }
 
-  mediaRef = React.createRef();
+  // mediaRef = React.createRef();
 
 
 
-  handleChangeReply = (event, id) => {
-    var newReply = {
-      ...this.state.reply
-    };
-    newReply[id] = event.target.value;
-    this.setState({reply: newReply});
-  }
+  // handleChangeReply = (event, id) => {
+  //   var newReply = {
+  //     ...this.state.reply
+  //   };
+  //   newReply[id] = event.target.value;
+  //   this.setState({reply: newReply});
+  // }
 
   toggleOpen = () => {
     this.setState({open: !this.state.open})
   }
 
-  handleReply = (comment_id) => {
-    if (this.state.reply[comment_id] || this.mediaRef.current.files[0]) {
+  handleReply = (comment_id, text, file) => {
+    if (text || file) {
       this.props.postReply({
-        text: this.state.reply[comment_id],
+        text: text,
         comment_id: comment_id,
-        attachment: this.mediaRef.current.files[0]
+        attachment: file,
       })
-      var newReply = {
-        ...this.state.reply
-      };
-      newReply[comment_id] = '';
-      this.setState({reply: newReply});
-      this.mediaRef.current.value = null;
+      // var newReply = {
+      //   ...this.state.reply
+      // };
+      // newReply[comment_id] = '';
+      // this.setState({reply: newReply});
+      // this.mediaRef.current.value = null;
     }
   }
 
@@ -95,8 +95,6 @@ class Replies extends React.Component {
     return (
       <div className="reply-input-container">
         <MultiMediaInput
-          value={this.state.reply[comment_id]}
-          ref={this.mediaRef}
           handleChange={this.handleChangeReply}
           handleSubmit={this.handleReply}
           id={comment_id}

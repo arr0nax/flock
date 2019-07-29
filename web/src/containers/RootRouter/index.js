@@ -10,8 +10,10 @@ import ReportedDetailsPage from 'containers/ReportedDetailsPage';
 import About from 'containers/About';
 import Login from 'containers/LoginForm';
 import Announcements from 'containers/Announcements';
+import NewAnnouncement from 'components/NewAnnouncement';
 // import NotFound from 'components/NotFound';
 import guard from 'components/AuthGuard';
+import adminGuard from 'components/AdminGuard';
 
 import './index.css';
 
@@ -24,6 +26,7 @@ const RootRouter = () => (
       <Route path="/notifications" component={guard(Notifications)}/>
       <Route path="/reports" component={guard(Reports)}/>
       <Route exact path="/announcements" component={guard(Announcements)} />
+      <Route exact path="/newannouncement" component={guard(NewAnnouncement)} />
       <Route exact path="/" component={guard(Main)} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/about" component={About} />

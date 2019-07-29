@@ -12,8 +12,11 @@ class MultiMediaInput extends React.Component {
     this.state = {
       file: null,
       show_preview: false,
+      text: '',
     }
   }
+
+  mediaRef = React.createRef();
 
   displayPreview = (event) => {
     this.setState({
@@ -23,27 +26,34 @@ class MultiMediaInput extends React.Component {
   }
 
   clearInput = () => {
-    this.props.innerRef.current.value = null;
-    this.setState({show_preview: false, file: null})
+    this.mediaRef.current.value = null;
+    this.setState({show_preview: false, file: null, text: ''})
+  }
+
+  handleChange = (event) => {
+    this.setState({text: event.target.value});
   }
 
   handleSubmit = () => {
-    this.props.handleSubmit(this.props.id);
+    this.props.handleSubmit(this.props.id, this.state.text, this.mediaRef.current.files[0]);
     this.clearInput();
   }
 
   render() {
-    const { className, value, handleChange, handleSubmit, id, placeholder, rows, noReturn, innerRef } = this.props;
+    const { className, value, handleSubmit, id, placeholder, rows, noReturn } = this.props;
     return (
       <div className={classNames(
         "multimedia-input-rct-component",
         className,
       )}>
         <div className="input-row-container">
-          <ExpandingTextInput className={className} value={value} handleChange={handleChange} id={id} handleSubmit={this.handleSubmit} placeholder={placeholder} rows={rows} noReturn={noReturn}/>
-          <input className={'add-image-input'} type="file" name={`${className}${id}`} id={`${className}${id}`} accept="image/*" encType="multipart/form-data" ref={innerRef} onChange={this.displayPreview}/>
+          <ExpandingTextInput className={className} value={this.state.text} handleChange={this.handleChange} id={id} handleSubmit={this.handleSubmit} placeholder={placeholder} rows={rows} noReturn={noReturn}/>
+          <input className={'add-image-input'} type="file" name={`${className}${id}`} id={`${className}${id}`} accept="image/*" encType="multipart/form-data" ref={this.mediaRef} onChange={this.displayPreview}/>
           <label className={'add-image-label'} htmlFor={`${className}${id}`}></label>
-          <button className={'submit-button'} onClick={() => {handleSubmit(id);this.clearInput();}}>send</button>
+          <button className={'submit-button'} onClick={() => {
+            handleSubmit(id, this.state.text, this.mediaRef.current.files[0]);
+            this.clearInput();
+          }}>send</button>
         </div>
         <div className={`image-preview ${this.state.show_preview && 'show-preview'}`}>
           <img className={'image-preview-image'} src={this.state.file}/>
@@ -64,4 +74,4 @@ MultiMediaInput.defaultProps = {
   className: '',
 };
 
-export default React.forwardRef((props, ref) => <MultiMediaInput innerRef={ref} {...props} />);
+export default MultiMediaInput;

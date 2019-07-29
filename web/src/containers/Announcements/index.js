@@ -37,6 +37,7 @@ class Reports extends React.Component {
         <div className="home-button-container">
           <button onClick={() => this.goHome()}>home</button>
         </div>
+        {}
         {this.announcements()}
       </div>
     )

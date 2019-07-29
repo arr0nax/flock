@@ -46,6 +46,14 @@ class Main extends Component {
     }
   }
 
+  checkMorePosts = () => {
+    if (this.props.postsPagination.page < this.props.postsPagination.pageCount) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   render() {
     return (
       <div className="main-rct-component">
@@ -60,7 +68,8 @@ class Main extends Component {
           <InfiniteScroll
               pageStart={0}
               loadMore={this.loadFunc}
-              hasMore={(this.props.postsPagination.page < this.props.postsPagination.pageCount)}
+              // hasMore={true}
+              hasMore={this.checkMorePosts()}
               loader={<div className="loader" key={0}>Loading ...</div>}
               style={{width: '100%'}}
           >

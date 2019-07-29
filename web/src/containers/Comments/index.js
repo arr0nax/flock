@@ -24,34 +24,34 @@ class Comments extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      comment: {},
+      // comment: {},
     };
   }
 
 
-  mediaRef = React.createRef();
+  // mediaRef = React.createRef();
 
-  handleChangeComment = (event, post_id) => {
-    var newComment = {
-      ...this.state.comment
-    };
-    newComment[post_id] = event.target.value;
-    this.setState({comment: newComment});
-  }
+  // handleChangeComment = (event, post_id) => {
+  //   var newComment = {
+  //     ...this.state.comment
+  //   };
+  //   newComment[post_id] = event.target.value;
+  //   this.setState({comment: newComment});
+  // }
 
-  handleComment = (post_id) => {
-    if (this.state.comment[post_id] || this.mediaRef.current.files[0]) {
+  handleComment = (post_id, text, file) => {
+    if (text || file) {
       this.props.postComment({
-        text: this.state.comment[post_id],
+        text: text,
         post_id: post_id,
-        attachment: this.mediaRef.current.files[0]
+        attachment: file
       })
-      var newComment = {
-        ...this.state.comment
-      };
-      newComment[post_id] = '';
-      this.setState({comment: newComment});
-      this.mediaRef.current.value = null;
+      // var newComment = {
+      //   ...this.state.comment
+      // };
+      // newComment[post_id] = '';
+      // this.setState({comment: newComment});
+      // this.mediaRef.current.value = null;
     }
   }
 
@@ -93,8 +93,6 @@ class Comments extends React.Component {
     return (
       <div className="new-comment">
         <MultiMediaInput
-          value={this.state.comment[post_id]}
-          ref={this.mediaRef}
           handleChange={this.handleChangeComment}
           handleSubmit={this.handleComment}
           id={post_id}

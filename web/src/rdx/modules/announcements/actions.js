@@ -9,4 +9,8 @@ export default {
   postAnnouncementSeen: payload => createAction(types.POST_ANNOUNCEMENT_SEEN_REQUEST, payload),
   postAnnouncementSeenSuccess: payload => createAction(types.POST_ANNOUNCEMENT_SEEN_SUCCESS, payload),
   postAnnouncementSeenFailure: payload => createAction(types.POST_ANNOUNCEMENT_SEEN_FAILURE, payload),
+
+  postAnnouncement: payload => createAction(types.POST_ANNOUNCEMENT_REQUEST, payload),
+  postAnnouncementSuccess: payload => createAction(types.POST_ANNOUNCEMENT_SUCCESS, payload),
+  postAnnouncementFailure: payload => createAction(types.POST_ANNOUNCEMENT_FAILURE, payload),
 };
