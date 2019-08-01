@@ -13,6 +13,7 @@ import Post from 'containers/Post';
 import Profile from 'containers/Profile';
 import Reports from 'containers/Reports';
 import NewPost from 'containers/NewPost';
+import Topic from 'containers/Topic';
 import UnseenAnnouncements from 'containers/UnseenAnnouncements';
 
 
@@ -64,6 +65,7 @@ class Main extends Component {
           <NewPost />
         </div>
         <UnseenAnnouncements />
+        <Topic />
         <div className="posts">
           <InfiniteScroll
               pageStart={0}

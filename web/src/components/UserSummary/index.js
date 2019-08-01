@@ -5,11 +5,26 @@ import ReadableTimestamp from 'components/ReadableTimestamp'
 
 import './index.css';
 
+const FILES_ENDPOINT = process.env.REACT_APP_FILES_ENDPOINT;
+
 class UserSummary extends React.Component {
   constructor(props) {
     super(props);
     const color = this.getColor(props.user.first_name)
-    this.state = {color};
+    this.state = {
+      color,
+      open: false
+    };
+  }
+
+  openModal = () => {
+    console.log('hello');
+    !this.state.open && this.setState({open: true})
+  }
+
+  closeModal = () => {
+    console.log('hello close');
+    this.state.open && this.setState({open: false})
   }
 
   getColor(name) {
@@ -34,12 +49,13 @@ class UserSummary extends React.Component {
   }
 
   render() {
+    const { user } = this.props;
     return (
-      <div className={`user-summary ${this.props.className}`}>
-        <img src={this.props.user.image_url || sheepfault} onError={this.addDefaultSrc} style={{backgroundColor: this.state.color}}/>
+      <div className={`user-summary ${this.props.className} modal-${this.state.open ? 'open' : 'closed'}`} onClick={this.closeModal}>
+        <img src={`${FILES_ENDPOINT}/profile_picture/${user.id}/${user.image_url}`} onError={this.addDefaultSrc} style={{backgroundColor: this.state.color}} onClick={this.openModal}/>
         {this.props.gear && <img className="gear" src={gear}/>}
         <div className='text'>
-          <p>{this.props.user.first_name} {this.props.user.last_name}</p>
+          <p>{user.first_name} {user.last_name}</p>
           {this.props.timestamp ? <ReadableTimestamp timestamp={this.props.timestamp} /> : <p>{this.props.subtext}</p>}
         </div>
       </div>

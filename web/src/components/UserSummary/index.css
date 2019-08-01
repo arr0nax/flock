@@ -18,8 +18,7 @@
     top: 0px;
     left: 32px; }
   .user-summary.white {
-    position: relative;
-    pointer-events: none; }
+    position: relative; }
   .user-summary.smallName {
     padding: 0px;
     position: relative;
@@ -35,3 +34,31 @@
       flex-direction: row; }
       .user-summary.smallName .text p {
         margin-right: 5px; }
+
+.user-summary.modal-open {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  flex-direction: column;
+  border-radius: 0; }
+  .user-summary.modal-open .text {
+    position: absolute;
+    top: 8px;
+    left: 0;
+    color: white;
+    font-size: 22px; }
+    .user-summary.modal-open .text .readable-timestamp-rct-component {
+      display: none; }
+  .user-summary.modal-open img {
+    max-width: 100vw;
+    max-height: 100vh;
+    height: auto;
+    width: auto;
+    border-radius: 0; }

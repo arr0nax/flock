@@ -15,6 +15,8 @@ class MainMenu extends Component {
     this.state = {}
   }
 
+  mediaRef = React.createRef();
+
   handleLogout() {
     this.props.requestLogout();
   }
@@ -27,6 +29,15 @@ class MainMenu extends Component {
     this.props.navigate(`/`);
   }
 
+  handleSubmit = () => {
+    this.props.postAttachment({
+      item_id: this.props.user.id,
+      item_type: 'profile_picture',
+      attachment: this.mediaRef.current.files[0]
+    });
+    this.mediaRef.current.value = null;
+  }
+
   render() {
     return (
       <div className='main-menu'>
@@ -34,6 +45,8 @@ class MainMenu extends Component {
           <button onClick={() => this.goHome()}>home</button>
         </div>
         <UserSummary user={this.props.user}/>
+        <input className={'add-image-input'} type="file" name={`profpicupload${this.props.user.id}`} id={`profpicupload${this.props.user.id}`} accept="image/*" encType="multipart/form-data" ref={this.mediaRef} onChange={this.handleSubmit}/>
+        <label className={'add-image-label'} htmlFor={`profpicupload${this.props.user.id}`}></label>
         <div className="details">
           <button onClick={() => this.handleLogout()}>logout</button>
           {/*<UpdateGroup />*/}
@@ -63,6 +76,7 @@ MainMenu.defaultProps = {
 const actionsMapper = getRdxActionMapper([
   'requestLogout',
   'navigate',
+  'postAttachment'
 ]);
 
 const stateMapper = getRdxSelectionMapper({

@@ -77,6 +77,31 @@ const Routes = {
     },
   },
   {
+    method: 'GET',
+    path: '/groups/{id}',
+    handler: Controller.fetchOne,
+    config: {
+      description: 'Get a  group',
+      notes: 'Get a  group',
+      tags: ['api'],
+      validate: {
+      //   headers: Joi.object({
+      //     authorization: Joi.string().required(),
+      //   }).unknown(),
+        params: {
+          id: Joi.number().min(1),
+        },
+      },
+      auth: {
+        strategy: Constants.AUTH_STRATEGIES.SESSION,
+        scope: false,
+      },
+      // plugins: {
+      //   policies: ['is-logged-in'],
+      // },
+    },
+  },
+  {
     method: 'PATCH',
     path: '/groups/{id}',
     handler: Controller.update,

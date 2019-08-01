@@ -11,6 +11,8 @@ import reportsActions from 'rdx/modules/reports/actions';
 import routerActions from 'rdx/modules/router/actions';
 import reportvotesActions from 'rdx/modules/reportVotes/actions';
 import announcementsActions from 'rdx/modules/announcements/actions';
+import groupActions from 'rdx/modules/group/actions';
+import topicActions from 'rdx/modules/topic/actions';
 // IMPORT_PT (for script -- do not remove!)
 
 const actions = {
@@ -27,6 +29,8 @@ const actions = {
   ...routerActions,
   ...reportvotesActions,
   ...announcementsActions,
+  ...groupActions,
+  ...topicActions,
 // INSERTION_PT (for script -- do not remove!)
 };
 

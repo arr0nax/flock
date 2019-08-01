@@ -14,7 +14,7 @@ function* postAttachment(action) {
   formData.append('filename', 'test');
   formData.append('item_id', action.payload.item_id);
   formData.append('item_type', action.payload.item_type);
-  fetch(`${API_ENDPOINT}/attachments`, {
+  const stuff = yield fetch(`${API_ENDPOINT}/attachments`, {
       method: 'POST',
       headers: {
         'Authorization': authToken
@@ -23,21 +23,22 @@ function* postAttachment(action) {
     })
     .then(res => res.json())
     .then(images => {
-      afterAttachment(action.payload.item_type, action.payload.item_id);
+      console.log('hello');
+      return images;
     })
     .catch( error => {
       return getErrorActions({ error });
     })
+  console.log(stuff);
+  if (action.payload.item_type === "profile_picture") {
+    yield put(actions.setUser(stuff.data))
+  }
   // const { success, data, error } = yield* makeRequest.post(`/attachments`, action.payload);
   // if (success && data) {
   //
   // } else {
   // }
   return null;
-}
-
-function* afterAttachment(type, item_id) {
-  yield put(actions.getAttachments({type, item_id}));
 }
 
 export default postAttachment;

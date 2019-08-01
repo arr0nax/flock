@@ -11,6 +11,8 @@ import reportsSelectors from 'rdx/modules/reports/selectors';
 import routerSelectors from 'rdx/modules/router/selectors';
 import reportvotesSelectors from 'rdx/modules/reportVotes/selectors';
 import announcementsSelectors from 'rdx/modules/announcements/selectors';
+import groupSelectors from 'rdx/modules/group/selectors';
+import topicSelectors from 'rdx/modules/topic/selectors';
 // IMPORT_PT (for script -- do not remove!)
 
 const selectors = {
@@ -27,6 +29,8 @@ const selectors = {
   ...routerSelectors,
   ...reportvotesSelectors,
   ...announcementsSelectors,
+  ...groupSelectors,
+  ...topicSelectors,
 // INSERTION_PT (for script -- do not remove!)
 };
 

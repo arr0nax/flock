@@ -3,6 +3,7 @@ import User from './user';
 import Post from './post';
 import Report from './report';
 import Announcement from './announcement';
+import Topic from './topic';
 import Joi from 'joi';
 
 const TABLE_NAME = 'groups';
@@ -42,6 +43,10 @@ class Group extends BaseModel {
     return this.hasMany('Announcement')
   }
 
+  topics() {
+    return this.hasMany('Topic')
+  }
+
   static size(group_id) {
     let qb = BaseModel.query();
     return qb.select().from('users').where({group_id}).count('id');
@@ -53,6 +58,10 @@ class Group extends BaseModel {
 
   getAnnouncements() {
     return this.announcements().fetch();
+  }
+
+  getTopics() {
+    return this.topics().fetch();
   }
 
   async fetchAllPosts(pagination = {}) {

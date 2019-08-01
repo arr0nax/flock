@@ -1,7 +1,7 @@
 import Glue from 'glue';
 import Manifest from '../config/manifest';
 import Config from '../config/config';
-
+import startTopicCron from './crons/topics'
 
 const composeOptions = {
   relativeTo: __dirname,
@@ -18,6 +18,7 @@ const startServer = async () => {
     io.on('connection', function(socket) {
         console.log(`${socket.id} connected !`);
     });
+    startTopicCron();
     return server;
   } catch (err) {
     console.error(err);

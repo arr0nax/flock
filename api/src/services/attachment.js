@@ -68,6 +68,14 @@ class AttachmentService {
       item_id,
     })
 
+    if (item_type === 'profile_picture') {
+      const luser = await User.updateById(user_id, {
+        image_url: file.filename,
+      });
+      const user = await User.getInfo(user_id);
+      return user;
+    }
+
     return attachment;
   }
 

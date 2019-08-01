@@ -27,7 +27,7 @@
 
   &.white {
     position: relative;
-    pointer-events: none;
+    // pointer-events: none;
   }
 
   &.smallName {
@@ -46,5 +46,39 @@
         margin-right: 5px;
       }
     }
+  }
+}
+
+.user-summary.modal-open {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,.8);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  flex-direction: column;
+  border-radius: 0;
+  .text {
+    position: absolute;
+    top: 8px;
+    left: 0;
+    color: white;
+    font-size: 22px;
+
+    .readable-timestamp-rct-component {
+      display: none;
+    }
+  }
+
+  img {
+    max-width: 100vw;
+    max-height: 100vh;
+    height: auto;
+    width: auto;
+    border-radius: 0;
   }
 }

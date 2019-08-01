@@ -43,6 +43,10 @@ class GroupController {
     }
   }
 
+  async fetchOne(request)  {
+    return Group.findByID(request.params.id)
+  }
+
   async fetchUsers(request) {
     try {
       const group = await Group.findByID(request.params.id);
