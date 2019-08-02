@@ -44,11 +44,10 @@ class TopicService {
 
     const newgroup = await Group.updateById(1, {
       topic_chosen: false,
-      topic_id: topic.id,
       topic_choser_id: user.id
     });
     console.log(newgroup);
-
+    return topic;
   }
 }
 

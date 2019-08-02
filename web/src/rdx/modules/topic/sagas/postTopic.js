@@ -9,7 +9,8 @@ function* getTopic(action) {
     text: action.payload
   });
   if (success && data) {
-    yield put(actions.postTopicSuccess(data));
+    yield put(actions.postTopicSuccess(data.topic));
+    yield put(actions.getUserGroupSuccess(data.group));
   } else {
     yield put(actions.postTopicFailure({ error }));
   }

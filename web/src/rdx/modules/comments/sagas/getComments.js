@@ -18,9 +18,6 @@ function* getComments(action) {
     yield all(data.map(post => {
       return put(actions.getAttachments({item_id: post.id, type: 'comments'}))
     }))
-    yield all(data.map(post => {
-      return put(actions.getUser(post.user_id))
-    }))
   } else {
     yield put(actions.getCommentsFailure({ error }));
   }

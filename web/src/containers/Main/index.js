@@ -22,6 +22,7 @@ class Main extends Component {
     super(props);
     this.state = {}
     this.props.getPosts({page: 1});
+    this.props.getGroupUsers(props.user.group_id);
   }
 
 
@@ -116,7 +117,8 @@ const actionsMapper = getRdxActionMapper([
   'postReact',
   'getNotifications',
   'requestRegister',
-  'composePost'
+  'composePost',
+  'getGroupUsers'
 ]);
 
 const stateMapper = getRdxSelectionMapper({

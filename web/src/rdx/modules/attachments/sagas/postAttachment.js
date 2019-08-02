@@ -23,13 +23,11 @@ function* postAttachment(action) {
     })
     .then(res => res.json())
     .then(images => {
-      console.log('hello');
       return images;
     })
     .catch( error => {
       return getErrorActions({ error });
     })
-  console.log(stuff);
   if (action.payload.item_type === "profile_picture") {
     yield put(actions.setUser(stuff.data))
   }

@@ -10,6 +10,15 @@ export default {
       newState.data[action.payload.id] = action.payload;
       return newState;
     },
+    [types.GET_GROUP_USERS_SUCCESS](state, action) {
+      const userObj = {};
+      action.payload.forEach(user => userObj[user.id] = user);
+      return {
+        ...state,
+        data: userObj,
+        requested: false,
+      };
+    },
     [types.GET_USER_REQUEST](state, action) {
       return {
         ...state,

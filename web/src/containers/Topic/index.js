@@ -22,7 +22,7 @@ class Topic extends React.Component {
       <div className="topic-rct-component">
         {group.topic_chosen ? (
           <div>
-            <h2> Todays topic is: <i>{topic.text}</i></h2>
+            <h2> Today's topic is: <i>{topic.text}</i></h2>
             {users[topic.user_id] &&
               <h4>Chosen by {users[topic.user_id].first_name} {users[topic.user_id].last_name}</h4>
             }

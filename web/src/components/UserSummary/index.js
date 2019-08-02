@@ -18,12 +18,10 @@ class UserSummary extends React.Component {
   }
 
   openModal = () => {
-    console.log('hello');
     !this.state.open && this.setState({open: true})
   }
 
   closeModal = () => {
-    console.log('hello close');
     this.state.open && this.setState({open: false})
   }
 

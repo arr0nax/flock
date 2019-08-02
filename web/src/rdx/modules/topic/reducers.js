@@ -10,5 +10,11 @@ export default {
         data: action.payload
       };
     },
+    [types.POST_TOPIC_SUCCESS](state, action) {
+      return {
+        ...state,
+        data: action.payload
+      };
+    },
   }),
 };

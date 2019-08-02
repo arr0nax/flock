@@ -15,9 +15,6 @@ function* getReplies(action) {
     yield all(data.map(post => {
       return put(actions.getAttachments({item_id: post.id, type: 'replies'}))
     }))
-    yield all(data.map(reply => {
-      return put(actions.getUser(reply.user_id))
-    }))
   } else {
     yield put(actions.getRepliesFailure(error));
   }

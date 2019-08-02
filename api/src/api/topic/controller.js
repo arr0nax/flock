@@ -22,7 +22,10 @@ class TopicController {
           topic_id: topic.attributes.id,
           topic_choser_id: user.id
         });
-        return topic;
+        return {
+          topic,
+          group: newgroup
+        };
 
       }
       return Boom.forbidden('You are not the topic chooser today')
