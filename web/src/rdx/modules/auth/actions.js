@@ -4,7 +4,8 @@ import createAction from 'rdx/utils/createAction';
 export default {
   setAuthToken: authToken => createAction(types.SET_AUTH_TOKEN, authToken),
   setUser: payload => createAction(types.SET_USER, payload),
-  
+  setUserPicture: payload => createAction(types.SET_USER_PICTURE, payload),
+
   requestLogin: payload => createAction(types.LOGIN_REQUEST, payload),
   loginSuccess: payload => createAction(types.LOGIN_SUCCESS, payload),
   loginFailure: payload => createAction(types.LOGIN_FAILURE, payload),

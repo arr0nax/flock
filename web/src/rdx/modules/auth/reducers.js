@@ -25,6 +25,16 @@ export default {
         requested: false,
       };
     },
+    [types.SET_USER_PICTURE](state, action) {
+      return {
+        data: {
+          ...state.data,
+          ...action.payload
+        },
+        errors: state.errors,
+        requested: false,
+      };
+    },
     [types.LOGIN_REQUEST](state, action) {
       var newState = cloneDeep(state);
       return {

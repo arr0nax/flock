@@ -29,7 +29,7 @@ function* postAttachment(action) {
       return getErrorActions({ error });
     })
   if (action.payload.item_type === "profile_picture") {
-    yield put(actions.setUser(stuff.data))
+    yield put(actions.setUserPicture(stuff.data))
   }
   // const { success, data, error } = yield* makeRequest.post(`/attachments`, action.payload);
   // if (success && data) {
