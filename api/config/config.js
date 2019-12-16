@@ -134,59 +134,6 @@ const config = convict({
     },
   },
 
-  // AWS
-  AWS: {
-    accessKeyId: {
-      doc: 'The accessKeyId.',
-      format: String,
-      default: 'XXX',
-      env: 'AWS_ACCESS_KEY',
-    },
-    secretAccessKey: {
-      doc: 'The secretAccessKey.',
-      format: String,
-      default: 'XXX',
-      env: 'AWS_SECRET_ACCESS_KEY',
-    },
-  },
-  S3: {
-    bucketName: {
-      doc: 'The S3 bucket.',
-      format: String,
-      default: 'flock-api-public',
-      env: 'S3_BUCKET',
-    },
-    publicBucketName: {
-      doc: 'The S3 public bucket.',
-      format: String,
-      default: 'flock-api-public',
-      env: 'S3_PUBLIC_BUCKET',
-    },
-  },
-  SQS: {
-    enabled: {
-      doc: 'Queue scheduler.',
-      format: Boolean,
-      default: true,
-      env: 'SQS_ENABLED',
-    },
-    queues: {
-      doc: 'The SQS List of queues',
-      format: Array,
-      default: [{
-        name: 'import-filemaker',
-        queueUrl: 'https://sqs.us-west-2.amazonaws.com/344472078918/import-filemaker',
-      }],
-      env: 'SQS_QUEUE_URLS',
-    },
-    region: {
-      doc: 'The SQS region bucket.',
-      format: String,
-      default: 'us-west-2',
-      env: 'SQS_REGION',
-    },
-  },
-
 });
 
 // Load environment dependent configuration

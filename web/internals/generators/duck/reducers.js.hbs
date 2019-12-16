@@ -1,11 +1,29 @@
-// import createReducer from 'rdx/utils/createReducer';
-// import types from 'rdx/modules/{{ camelCase name }}/types';
-// import states from 'rdx/modules/{{ camelCase name }}/states';
+import createReducer from 'rdx/utils/createReducer';
+import types from 'rdx/modules/{{ camelCase name }}/types';
+import states from 'rdx/modules/{{ camelCase name }}/states';
 
 export default {
-  // {{ camelCase name }}: createReducer(states.EXAMPLE_DEFAULT_STATE, {
-  //   [types.EXAMPLE_ACTION_TYPE](state, action) {
-  //     return state;
-  //   },
-  // }),
+    {{ camelCase name }}: createReducer(states.DEFAULT_{{constantCase  name}}_STATE, {
+        [types.GET_{{constantCase name}}_SUCCESS](state, action) {
+            return {
+                ...state,
+                requested: false,
+                error: {},
+                data: action.payload
+            };
+        },
+        [types.GET_{{constantCase name}}_REQUEST](state, action) {
+            return {
+                ...state,
+                requested: true,
+            };
+        },
+        [types.GET_{{constantCase name}}_FAILURE](state, action) {
+            return {
+                ...state,
+                requested: false,
+                error: action.payload
+            };
+        },
+    }),
 };

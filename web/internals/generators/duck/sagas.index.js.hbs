@@ -1,11 +1,10 @@
-// import { takeEvery } from 'redux-saga/effects';
-// import trackRequests from 'rdx/utils/trackRequests';
+import { takeEvery } from 'redux-saga/effects';
 
 import types from 'rdx/modules/{{ camelCase name }}/types';
-// import get{{ pascalCase name }} from 'rdx/modules/{{ camelCase name }}/sagas/get{{ pascalCase name }}';
+import get{{ pascalCase name }} from 'rdx/modules/{{ camelCase name }}/sagas/get{{ pascalCase name }}';
 
 function* watch{{ pascalCase name }}Sagas() {
-  // yield trackRequests(takeEvery, types.REQUEST_GET_EXAMPLE, get{{ pascalCase name }});
+  yield takeEvery(types.GET_{{constantCase name}}_REQUEST, get{{ pascalCase name }});
 }
 
 export default watch{{ pascalCase name }}Sagas;

@@ -134,6 +134,21 @@ const Routes = {
     },
   },
   {
+    method: 'POST',
+    path: '/reset_password',
+    handler: UserController.resetPassword,
+    config: {
+      description: 'Send an email with a link to reset password',
+      notes: 'Does not reset password, only sends link',
+      tags: ['api'],
+      validate: {
+        payload: {
+          email: Joi.string().required(),
+        },
+      },
+    },
+  },
+  {
     method: 'GET',
     path: '/users/{id}/all',
     handler: UserController.getPosts,

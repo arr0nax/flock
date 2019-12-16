@@ -1,4 +1,5 @@
-import { all, call, select } from 'redux-saga/effects';
+import { all, call, select, put } from 'redux-saga/effects';
+import actions from 'rdx/actions'
 import Api from 'rdx/utils/Api';
 
 import authSelectors from 'rdx/modules/auth/selectors';
@@ -27,6 +28,10 @@ const composeRequestManager = (verb) => {
     const authToken = yield select(authSelectors.getAuthToken);
     try {
       const response = yield call(Api.xhr, url, verb, params, authToken);
+      if (response.message === "Expired token") {
+          yield put(actions.setUser({}));
+          yield put(actions.setAuthToken(''));
+      }
       return formatResponse(response);
     } catch (e) {
       return formatServerConnectionError(e);
