@@ -13,6 +13,7 @@ import reportvotesActions from 'rdx/modules/reportVotes/actions';
 import announcementsActions from 'rdx/modules/announcements/actions';
 import groupActions from 'rdx/modules/group/actions';
 import topicActions from 'rdx/modules/topic/actions';
+import metaActions from 'rdx/modules/meta/actions';
 // IMPORT_PT (for script -- do not remove!)
 
 const actions = {
@@ -31,6 +32,7 @@ const actions = {
   ...announcementsActions,
   ...groupActions,
   ...topicActions,
+  ...metaActions,
 // INSERTION_PT (for script -- do not remove!)
 };
 

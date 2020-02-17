@@ -10,6 +10,15 @@ export default {
       newState.data[action.payload.parent_id] = action.payload.data;
       return newState;
     },
+    [types.INIT_SET_REPLIES](state, action) {
+        return {
+            ...state,
+            data: {
+                ...action.payload
+            },
+            requested: false
+        }
+    },
     [types.ADD_REPLY](state, action) {
       var newState = cloneDeep(state);
       newState.data[action.payload.comment_id] ? newState.data[action.payload.comment_id].push(action.payload) :

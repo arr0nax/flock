@@ -50,7 +50,7 @@ class UserSummary extends React.Component {
     const { user } = this.props;
     return (
       <div className={`user-summary ${this.props.className} modal-${this.state.open ? 'open' : 'closed'}`} onClick={this.closeModal}>
-        <img src={`${FILES_ENDPOINT}/profile_picture/${user.id}/${user.image_url}`} onError={this.addDefaultSrc} style={{backgroundColor: this.state.color}} onClick={this.openModal}/>
+        <img src={(user.id && user.image_url && user.image_url !== 'string') ? `${FILES_ENDPOINT}/profile_picture/${user.id}/${user.image_url}` : ''} onError={this.addDefaultSrc} style={{backgroundColor: this.state.color}} onClick={this.openModal}/>
         {this.props.gear && <img className="gear" src={gear}/>}
         <div className='text'>
           <p>{user.first_name} {user.last_name}</p>

@@ -6,6 +6,7 @@ export default {
   getRepliesSuccess: payload => createAction(types.GET_REPLIES_SUCCESS, payload),
   getRepliesFailure: payload => createAction(types.GET_REPLIES_FAILURE, payload),
   setReplies: payload => createAction(types.SET_REPLIES, payload),
+  initSetReplies: payload => createAction(types.INIT_SET_REPLIES, payload),
 
   getAllReplies: payload => createAction(types.GET_ALL_REPLIES_REQUEST, payload),
   getAllRepliesSuccess: payload => createAction(types.GET_ALL_REPLIES_SUCCESS, payload),

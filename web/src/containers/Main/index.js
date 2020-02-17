@@ -21,8 +21,9 @@ class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {}
-    this.props.getPosts({page: 1});
-    this.props.getGroupUsers(props.user.group_id);
+    // this.props.getPosts({page: 1});
+    // this.props.getGroupUsers(props.user.group_id);
+    this.props.getInit();
   }
 
 
@@ -118,7 +119,8 @@ const actionsMapper = getRdxActionMapper([
   'getNotifications',
   'requestRegister',
   'composePost',
-  'getGroupUsers'
+  'getGroupUsers',
+  'getInit',
 ]);
 
 const stateMapper = getRdxSelectionMapper({

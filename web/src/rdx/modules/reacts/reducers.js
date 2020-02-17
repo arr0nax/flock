@@ -10,6 +10,13 @@ export default {
       newState.data[action.payload.parent_id] = action.payload.data;
       return newState;
     },
+    [types.INIT_SET_POST_REACTS](state, action) {
+        return {
+          ...state,
+          data: action.payload,
+          requested: false,
+        };
+    },
     [types.ADD_POST_REACT](state, action) {
       let newState = cloneDeep(state)
       if (newState.data[action.payload.item_id]) {
@@ -61,6 +68,13 @@ export default {
       newState.data[action.payload.parent_id] = action.payload.data;
       return newState;
     },
+    [types.INIT_SET_COMMENT_REACTS](state, action) {
+        return {
+          ...state,
+          data: action.payload,
+          requested: false,
+        };
+    },
     [types.ADD_COMMENT_REACT](state, action) {
       let newState = cloneDeep(state)
       if (newState.data[action.payload.item_id]) {
@@ -103,6 +117,13 @@ export default {
       var newState = cloneDeep(state);
       newState.data[action.payload.parent_id] = action.payload.data;
       return newState;
+    },
+    [types.INIT_SET_REPLY_REACTS](state, action) {
+        return {
+          ...state,
+          data: action.payload,
+          requested: false,
+        };
     },
     [types.ADD_REPLY_REACT](state, action) {
       let newState = cloneDeep(state)

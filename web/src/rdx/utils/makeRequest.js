@@ -28,7 +28,7 @@ const composeRequestManager = (verb) => {
     const authToken = yield select(authSelectors.getAuthToken);
     try {
       const response = yield call(Api.xhr, url, verb, params, authToken);
-      if (response.message === "Expired token") {
+      if (response.message === "Expired token" || response.message === "Invalid credentials") {
           yield put(actions.setUser({}));
           yield put(actions.setAuthToken(''));
       }

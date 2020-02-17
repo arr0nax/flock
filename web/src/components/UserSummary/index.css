@@ -4,7 +4,8 @@
   align-items: center;
   padding: 0px 8px 0px 0px;
   border-radius: 20px;
-  position: relative; }
+  position: relative;
+  max-width: 90%; }
   .user-summary .text {
     padding: 0px 0px 0px 8px; }
   .user-summary img {
