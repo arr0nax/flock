@@ -18,6 +18,10 @@ function* getMeta(action) {
       yield put(actions.initSetCommentAttachments(data.comment_attachments))
       yield put(actions.initSetReplyReacts(data.reply_reacts))
       yield put(actions.initSetReplyAttachments(data.reply_attachments))
+      yield put(actions.getNotificationsSuccess(data.notifications))
+      yield put(actions.getReportsSuccess(data.reports))
+      yield put(actions.getReportVotesSuccess(data.votes))
+      yield put(actions.getAnnouncementsSuccess(data.announcements))
     } else {
       yield put(actions.getInitFailure(error));
     }

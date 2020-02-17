@@ -14,7 +14,7 @@ class Topic extends React.Component {
       text: ''
     }
 
-    props.getUserGroup(props.user.group_id);
+    // props.getUserGroup(props.user.group_id);
   }
   render() {
     const {group, user, topic, users} = this.props;

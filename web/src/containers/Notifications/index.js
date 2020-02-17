@@ -14,7 +14,7 @@ class Notifications extends React.Component {
     this.state = {
       open: true
     }
-    if (props.logged_in) props.getNotifications();
+    // if (props.logged_in) props.getNotifications();
   }
 
   toggleOpen = () => {

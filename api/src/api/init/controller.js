@@ -6,6 +6,8 @@ import Post from '../../models/post';
 import React from '../../models/react';
 import Attachment from '../../models/attachment';
 import Topic from '../../models/topic';
+import Notification from '../../models/notification';
+import Report from '../../models/report';
 
 const CONTROLLER = 'InitController';
 
@@ -17,6 +19,10 @@ class InitController {
       const group = await Group.findByID(user.attributes.group_id);
       const users = await group.getUsers();
       const topic = await Topic.findByID(group.attributes.topic_id)
+      const notifications = await Notification.byUser(request.auth.credentials.user_id)
+      const reports = await Report.byGroup(user.attributes.group_id)
+      const votes = await user.getReportVotes();
+      const announcements = await group.getAnnouncements();
 
       // const count = await Group.size(1);
       // console.log(group);
@@ -34,6 +40,7 @@ class InitController {
       let replies = {};
       let reply_reacts = {};
       let reply_attachments = {};
+
 
 
       const nestedComments = await Promise.all(posts.map(post => {
@@ -140,7 +147,7 @@ class InitController {
       // const comments = await user.getComments();
       // const replies = await user.getReplies();
 
-      return { group, users, topic, posts: posts.models, comments, replies, pagination: posts.pagination, post_reacts, comment_reacts, reply_reacts, comment_attachments, reply_attachments };
+      return { group, users, topic, notifications, reports, votes, announcements, posts: posts.models, comments, replies, pagination: posts.pagination, post_reacts, comment_reacts, reply_reacts, comment_attachments, reply_attachments };
     } catch (err) {
       return Boom.forbidden(err.message);
     }
