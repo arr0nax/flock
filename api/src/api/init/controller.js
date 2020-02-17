@@ -19,7 +19,9 @@ class InitController {
       const topic = await Topic.findByID(group.attributes.topic_id)
 
       // const count = await Group.size(1);
+      // console.log(group);
       const posts = await group.fetchAllPosts();
+      // console.log(posts);
       // let comments = [];
       let post_reacts = {};
 
@@ -43,6 +45,9 @@ class InitController {
           post_reacts[post.id] = [];
           return React.byPost(post.id)
       }))
+      // console.log('---------------nestedPostReacts----------------');
+      // console.log(nestedPostReacts);
+      // console.log('---------------nestedPostReacts----------------');
 
       nestedPostReacts.forEach(reactGroup => {
           if (reactGroup.length) {
@@ -50,9 +55,13 @@ class InitController {
           }
       })
 
+      // console.log('---------------post_reacts----------------');
+      // console.log(post_reacts);
+      // console.log('---------------post_reacts----------------');
 
       nestedComments.forEach(commentGroup => {
           // comments[comment]
+          // console.log('commnetgroup', commentGroup);
           commentGroup.forEach(comment => {
 
               comments[comment.attributes.post_id].push(comment)
@@ -84,6 +93,7 @@ class InitController {
 
       nestedCommentAttachments.forEach(attachmentGroup => {
           if (attachmentGroup[0] && attachmentGroup[0].item_id) {
+              comment_attachments[attachmentGroup[0].item_id] = attachmentGroup[0]; // uses first attachment, but maybe there is a way to not do this as an array? console.log("clayton 2/16/2020, 8:42:12 PM", )
           }
       })
 
@@ -100,6 +110,9 @@ class InitController {
           reply_reacts[reply.id] = [];
           return React.byReply(reply.id)
       }))
+      // console.log('---------------nestedReplyReacts----------------');
+      // console.log(nestedReplyReacts);
+      // console.log('---------------nestedReplyReacts----------------');
 
       nestedReplyReacts.forEach(reactGroup => {
           if (reactGroup.length) {
@@ -107,6 +120,9 @@ class InitController {
           }
       })
 
+      // console.log('---------------reply_reacts----------------');
+      // console.log(reply_reacts);
+      // console.log('---------------reply_reacts----------------');
 
       //////////// comment attachments
       const nestedReplyAttachments = await Promise.all(replies_array.map(reply => {
@@ -116,6 +132,7 @@ class InitController {
 
       nestedReplyAttachments.forEach(attachmentGroup => {
           if (attachmentGroup[0] && attachmentGroup[0].item_id) {
+              reply_attachments[attachmentGroup[0].item_id] = attachmentGroup[0]; // uses first attachment, but maybe there is a way to not do this as an array? console.log("clayton 2/16/2020, 8:42:12 PM", )
           }
       })
 
