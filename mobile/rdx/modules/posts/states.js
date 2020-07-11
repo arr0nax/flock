@@ -1,6 +1,6 @@
 export default {
   posts: {
-    data: [],
+    data: [{}],
     errors: {},
     requested: false,
     pagination: {

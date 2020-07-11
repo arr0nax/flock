@@ -1,9 +1,9 @@
 import { takeEvery } from 'redux-saga/effects';
 import trackRequests from '../../../utils/trackRequests';
 
-import types from '../types';
-import getReacts from './getReacts';
-import postReact from './postReact';
+import types from '../../reacts/types';
+import getReacts from '../../reacts/sagas/getReacts';
+import postReact from '../../reacts/sagas/postReact';
 
 function* watchReactsSagas() {
   yield trackRequests(takeEvery, types.GET_REACTS_REQUEST, getReacts);

@@ -1,6 +1,6 @@
 import createReducer from '../../utils/createReducer';
-import types from '../users/types';
-import states from '../users/states';
+import types from '../../modules/users/types';
+import states from '../../modules/users/states';
 import cloneDeep from 'lodash/cloneDeep';
 
 export default {
@@ -9,6 +9,15 @@ export default {
       const newState = cloneDeep(state);
       newState.data[action.payload.id] = action.payload;
       return newState;
+    },
+    [types.GET_GROUP_USERS_SUCCESS](state, action) {
+      const userObj = {};
+      action.payload.forEach(user => userObj[user.id] = user);
+      return {
+        ...state,
+        data: userObj,
+        requested: false,
+      };
     },
     [types.GET_USER_REQUEST](state, action) {
       return {

@@ -15,10 +15,10 @@ function* getPosts(action) {
       return put(actions.getComments(post.id))
     }))
     yield all(posts.map(post => {
-      return put(actions.getUser(post.user_id))
+      return put(actions.getReacts({item_id: post.id, type: 'posts'}))
     }))
     yield all(posts.map(post => {
-      return put(actions.getReacts({item_id: post.id, type: 'posts'}))
+      return put(actions.getAttachments({item_id: post.id, type: 'posts'}))
     }))
   } else {
     yield put(actions.getPostsFailure({ error }));

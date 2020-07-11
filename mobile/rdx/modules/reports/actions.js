@@ -1,4 +1,4 @@
-import types from '../reports/types';
+import types from '../../modules/reports/types';
 import createAction from '../../utils/createAction';
 
 export default {

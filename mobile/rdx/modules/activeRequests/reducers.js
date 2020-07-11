@@ -1,6 +1,6 @@
 import createReducer from '../../utils/createReducer';
-import types from '../activeRequests/types';
-import states from '../activeRequests/states';
+import types from '../../modules/activeRequests/types';
+import states from '../../modules/activeRequests/states';
 import cloneDeep from 'lodash/cloneDeep';
 
 export default {

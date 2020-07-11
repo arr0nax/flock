@@ -5,10 +5,14 @@ import getErrorActions from '../../../utils/getErrorActions';
 import actions from '../../../actions';
 
 function* getCommentPost(action) {
-  const { success, data, error } = yield* makeRequest.get(`/comments/${action.payload}`);
+  const { success, data, error } = yield* makeRequest.get(`/comments/${action.payload.item_id}`);
   if (success && data) {
     yield put(actions.getCommentPostSuccess(data));
-    yield put(actions.getPost(data.post_id));
+    if (action.payload.reported) {
+      yield put(actions.getReportedPost(data.post_id));
+    } else {
+      yield put(actions.getPost(data.post_id));
+    }
   } else {
     yield put(actions.getCommentPostFailure({ error }));
   }

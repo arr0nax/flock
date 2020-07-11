@@ -10,6 +10,13 @@ function* postReplies(action) {
   });
   if (success && data) {
     // yield put(actions.addReply({data, parent_id: action.payload.comment_id}));
+    if (action.payload.attachment) {
+      yield put(actions.postAttachment({
+        attachment: action.payload.attachment,
+        item_id: data.id,
+        item_type: 'reply',
+      }))
+    }
   } else {
     yield put(actions.postReplyFailure(error));
   }

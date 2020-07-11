@@ -1,4 +1,4 @@
-import types from '../reacts/types';
+import types from '../../modules/reacts/types';
 import createAction from '../../utils/createAction';
 
 export default {

@@ -1,4 +1,4 @@
-import types from '../reportVotes/types';
+import types from '../../modules/reportVotes/types';
 import createAction from '../../utils/createAction';
 
 export default {

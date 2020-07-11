@@ -11,8 +11,8 @@ function* logout() {
     yield put(actions.setAuthToken(''));
     yield put(actions.logoutSuccess());
   } else {
+    yield put(actions.setUser({}));
     yield put(actions.setAuthToken(''));
-    yield put(actions.logoutSuccess());
     yield put(actions.logoutFailure(error));
     return getErrorActions({ error });
   }

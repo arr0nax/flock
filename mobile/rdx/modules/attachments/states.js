@@ -1,5 +1,17 @@
 export default {
-  EXAMPLE_DEFAULT_STATE: {
-
+  DEFAULT_POST_ATTACHMENTS_STATE: {
+    data: {},
+    errors: {},
+    requested: false,
+  },
+  DEFAULT_COMMENT_ATTACHMENTS_STATE: {
+    data: {},
+    errors: {},
+    requested: false,
+  },
+  DEFAULT_REPLY_ATTACHMENTS_STATE: {
+    data: {},
+    errors: {},
+    requested: false,
   },
 }

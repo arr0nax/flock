@@ -1,6 +1,6 @@
 import createReducer from '../../utils/createReducer';
-import types from '../reportVotes/types';
-import states from '../reportVotes/states';
+import types from '../../modules/reportVotes/types';
+import states from '../../modules/reportVotes/states';
 import cloneDeep from 'lodash/cloneDeep';
 
 export default {
