@@ -56,6 +56,10 @@ class Group extends BaseModel {
     return this.users().fetch({columns: ['first_name', 'last_name', 'image_url', 'id']})
   }
 
+  getUsersWhoLoggedInToday() {
+      return this.users().query('where', 'logged_in_today', '=', 'true').fetch({columns: ['first_name', 'last_name', 'image_url', 'id']});
+  }
+
   getAnnouncements() {
     return this.announcements().fetch();
   }

@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 // import customPropTypes from 'lib/customPropTypes';
 // import classNames from 'classnames';
 import { connect } from 'react-redux';
@@ -18,6 +18,7 @@ class Topic extends React.Component {
   }
   render() {
     const {group, user, topic, users} = this.props;
+    console.log(topic);
     return (
       <div className="topic-rct-component">
         {group.topic_chosen ? (
@@ -30,7 +31,7 @@ class Topic extends React.Component {
         ) : (
           <div>
           {group.topic_choser_id === user.id ? (
-            <div>
+            <div className='choosing-topic'>
               <h2>you get to choose the topic today!</h2>
               <input value={this.state.text} onChange={(e) => this.setState({text: e.target.value})}/>
               <button onClick={() => this.props.postTopic(this.state.text)}>set topic</button>
@@ -48,9 +49,11 @@ class Topic extends React.Component {
 }
 
 Topic.propTypes = {
+    topic: PropTypes.object,
 };
 
 Topic.defaultProps = {
+    topic: {}
 };
 
 const actionsMapper = getRdxActionMapper([

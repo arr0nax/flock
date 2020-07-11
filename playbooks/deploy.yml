@@ -1,0 +1,12 @@
+---
+- name: deploy flock
+  hosts: flock
+  become: true
+  
+  tasks:
+  - set_fact:
+      ansible_port: "2222"
+      ansible_user: "flock"
+  - name: test script
+    shell: 
+      cmd: 'touch test.txt; echo "hello world" > test.txt'

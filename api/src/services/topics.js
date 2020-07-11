@@ -6,14 +6,6 @@ import BindAll from '../utils/bind-all';
 import Attachment from '../models/attachment';
 import User from '../models/user';
 import Group from '../models/group';
-// import S3API from '../integrations/s3';
-import Config from '../../config/config';
-const fs = require('fs');
-var Jimp = require('jimp');
-
-const S3_REGION = 'us-west-2';
-
-
 
 const LOG_NAME = 'TopicService';
 
@@ -30,23 +22,25 @@ class TopicService {
     BindAll(this);
   }
 
-  // static getUploadKey(type, filePath) {
-  //   const key = `${type}/${Date.now()}_${Path.basename(filePath)}`;
-  //   return key;
-  // }
-
   async chooseTopic() {
     const group = await Group.findByID(1);
     const topics = await group.getTopics();
-    const users = await group.getUsers();
+
+    const users = await group.getUsersWhoLoggedInToday();
+    // const users = await group.getUsers();
+    // console.log('---------------------users-------------------');
+    // console.log(users);
+    // console.log('---------------------users-------------------');
+
     var topic = topics.models[Math.floor(Math.random()*topics.length)];
     var user = users.models[Math.floor(Math.random()*users.length)];
-
+    console.log(user);
     const newgroup = await Group.updateById(1, {
       topic_chosen: false,
       topic_choser_id: user.id
     });
     console.log(newgroup);
+    await User.where({logged_in_today: true}).save({logged_in_today: false}, {method: 'update', patch:true})
     return topic;
   }
 }

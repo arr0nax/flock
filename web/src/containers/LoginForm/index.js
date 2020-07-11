@@ -74,7 +74,7 @@ class LoginForm extends React.Component {
         <img id="main-logo" src={sheepfault} style={{backgroundColor: '#9ff'}}/>
         <div className="main-container">
           <div className="login-container">
-              <input placeholder="username" value={this.state.email2} onChange={(e) => this.handleChangeEmail2(e)}/>
+              <input placeholder="email" value={this.state.email2} onChange={(e) => this.handleChangeEmail2(e)}/>
               <form onSubmit={this.handleLogin}>
               <input placeholder="password" type="password" value={this.state.password2} onChange={(e) => this.handleChangePassword2(e)}/>
               </form>
@@ -85,12 +85,16 @@ class LoginForm extends React.Component {
           </div>
           <div className="divider" />
           <div className="register-container">
+
               <input placeholder="first name" value={this.state.first_name} onChange={(e) => this.handleChangeFirstName(e)}/>
               <input placeholder="last name" value={this.state.last_name} onChange={(e) => this.handleChangeLastName(e)}/>
-              <input placeholder="username" value={this.state.email} onChange={(e) => this.handleChangeEmail(e)}/>
+              <input placeholder="email" value={this.state.email} onChange={(e) => this.handleChangeEmail(e)}/>
               <form onSubmit={this.handleRegister}>
               <input placeholder="password" type="password" value={this.state.password} onChange={(e) => this.handleChangePassword(e)}/>
               </form>
+              <p className='info'>
+                  Your first and last name will be displayed in the app. Your email will only be used to recover your password - we will never email you directly.
+              </p>
             <div className='successes'>
               <p>{this.props.regerror ? this.props.regerror.text : ''}</p>
             </div>

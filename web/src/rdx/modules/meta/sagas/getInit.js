@@ -9,6 +9,7 @@ function* getMeta(action) {
     if (success && data) {
       yield put(actions.getInitSuccess(data));
       yield put(actions.getPostsSuccess(data));
+      yield put(actions.getUserGroupSuccess(data.group))
       yield put(actions.getTopicSuccess(data.topic));
       yield put(actions.getGroupUsersSuccess(data.users))
       yield put(actions.initSetComments(data.comments));

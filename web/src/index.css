@@ -27,3 +27,7 @@ h3 {
 div {
   box-sizing: border-box;
 }
+
+body textarea {
+    font-family: sans-serif;
+}

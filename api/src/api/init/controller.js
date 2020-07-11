@@ -6,6 +6,7 @@ import Post from '../../models/post';
 import React from '../../models/react';
 import Attachment from '../../models/attachment';
 import Topic from '../../models/topic';
+import TopicService from '../../services/topics'
 import Notification from '../../models/notification';
 import Report from '../../models/report';
 
@@ -15,7 +16,12 @@ class InitController {
 
   async init(request) {
     try {
-      const user = await User.findByID(request.auth.credentials.user_id);
+        const user = await User.findByID(request.auth.credentials.user_id);
+      await User.updateById(request.auth.credentials.user_id, {logged_in_today: true})
+      // TopicService.chooseTopic();
+      // console.log('------------user');
+      // console.log(user);
+      // console.log('------------user');
       const group = await Group.findByID(user.attributes.group_id);
       const users = await group.getUsers();
       const topic = await Topic.findByID(group.attributes.topic_id)

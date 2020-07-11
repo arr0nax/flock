@@ -1,0 +1,101 @@
+.loading-rct-component {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #99ffff;
+  -webkit-animation: backgroundColor 5s linear 2s infinite;
+  animation: backgroundColor 5s linear 2s infinite;
+  transition: background-color 1.25s; }
+  .loading-rct-component .circle-container {
+    height: 150px;
+    width: 150px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #99ffff;
+    -webkit-animation: color 5s linear 2s infinite alternate;
+    animation: color 5s linear 2s infinite alternate;
+    transition: background-color 1.25s; }
+  .loading-rct-component img {
+    height: 100px;
+    width: 100px; }
+  .loading-rct-component .loading-text {
+    font-size: 64px;
+    font-weight: bold;
+    font-style: italic;
+    -webkit-animation: textColor 5s linear 2s infinite alternate;
+    animation: textColor 5s linear 2s infinite alternate;
+    transition: color 1.25s; }
+  .loading-rct-component .fun-text {
+    color: white; }
+
+@-webkit-keyframes color {
+  0% {
+    background-color: #020024; }
+  25% {
+    background-color: #99ffff; }
+  50% {
+    background-color: #ffe099; }
+  100% {
+    background-color: #ff99d3; } }
+
+@keyframes color {
+  0% {
+    background-color: #020024; }
+  25% {
+    background-color: #99ffff; }
+  50% {
+    background-color: #ffe099; }
+  100% {
+    background-color: #ff99d3; } }
+
+@-webkit-keyframes backgroundColor {
+  0% {
+    background-color: #99ffff; }
+  25% {
+    background-color: #ffe099; }
+  50% {
+    background-color: #ff99d3; }
+  75% {
+    background-color: #020024; }
+  100% {
+    background-color: #99ffff; } }
+
+@keyframes backgroundColor {
+  0% {
+    background-color: #99ffff; }
+  25% {
+    background-color: #ffe099; }
+  50% {
+    background-color: #ff99d3; }
+  75% {
+    background-color: #020024; }
+  100% {
+    background-color: #99ffff; } }
+
+@-webkit-keyframes textColor {
+  0% {
+    color: #020024; }
+  25% {
+    color: #99ffff; }
+  50% {
+    color: #ffe099; }
+  100% {
+    color: #ff99d3; } }
+
+@keyframes textColor {
+  0% {
+    color: #020024; }
+  25% {
+    color: #99ffff; }
+  50% {
+    color: #ffe099; }
+  100% {
+    color: #ff99d3; } }

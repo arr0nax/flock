@@ -1,0 +1,146 @@
+@import 'src/styles/_index';
+
+.loading-rct-component {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: $primary;
+            -webkit-animation: backgroundColor 5s linear 2s infinite;
+                    animation: backgroundColor 5s linear 2s infinite;
+    transition: background-color 1.25s;
+
+    .circle-container {
+        height: 150px;
+        width: 150px;
+        border-radius: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $primary;
+        -webkit-animation: color 5s linear 2s infinite alternate;
+                animation: color 5s linear 2s infinite alternate;
+        transition: background-color 1.25s;
+    }
+
+    img {
+        height: 100px;
+        width: 100px;
+
+    }
+
+    .loading-text {
+        font-size: 64px;
+        font-weight: bold;
+        font-style: italic;
+        // background-color: $primary;
+                -webkit-animation: textColor 5s linear 2s infinite alternate;
+                        animation: textColor 5s linear 2s infinite alternate;
+        transition: color 1.25s;
+    }
+
+    .fun-text {
+        color: white;
+    }
+}
+
+@-webkit-keyframes color {
+    0%   {
+        background-color: rgb(2,0,36);
+    }
+    25%  {
+        background-color: rgb(153,255,255);
+    }
+    50%  {
+        background-color: rgb(255,224,153);
+    }
+    100% {
+        background-color: rgb(255,153,211);
+    }
+}
+
+@keyframes color {
+    0%   {
+        background-color: rgb(2,0,36);
+    }
+    25%  {
+        background-color: rgb(153,255,255);
+    }
+    50%  {
+        background-color: rgb(255,224,153);
+    }
+    100% {
+        background-color: rgb(255,153,211);
+    }
+}
+
+@-webkit-keyframes backgroundColor {
+    0%   {
+        background-color: rgb(153,255,255);
+    }
+    25%  {
+        background-color: rgb(255,224,153);
+    }
+    50%  {
+        background-color: rgb(255,153,211);
+    }
+    75% {
+        background-color: rgb(2,0,36);
+    }
+    100%   {
+        background-color: rgb(153,255,255);
+    }
+}
+
+@keyframes backgroundColor {
+    0%   {
+        background-color: rgb(153,255,255);
+    }
+    25%  {
+        background-color: rgb(255,224,153);
+    }
+    50%  {
+        background-color: rgb(255,153,211);
+    }
+    75% {
+        background-color: rgb(2,0,36);
+    }
+    100%   {
+        background-color: rgb(153,255,255);
+    }
+}
+
+@-webkit-keyframes textColor {
+    0%   {
+        color: rgb(2,0,36);
+    }
+    25%  {
+        color: rgb(153,255,255);
+    }
+    50%  {
+        color: rgb(255,224,153);
+    }
+    100% {
+        color: rgb(255,153,211);
+    }
+}
+
+@keyframes textColor {
+    0%   {
+        color: rgb(2,0,36);
+    }
+    25%  {
+        color: rgb(153,255,255);
+    }
+    50%  {
+        color: rgb(255,224,153);
+    }
+    100% {
+        color: rgb(255,153,211);
+    }
+}

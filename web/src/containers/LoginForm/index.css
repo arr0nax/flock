@@ -34,6 +34,10 @@
   .login-form-rct-component .input-row {
     display: flex;
     flex-direction: row; }
+  .login-form-rct-component .info {
+    font-style: italic;
+    font-size: 0.8em;
+    text-align: center; }
   .login-form-rct-component .more-info {
     margin-top: 20px; }
     .login-form-rct-component .more-info p {
