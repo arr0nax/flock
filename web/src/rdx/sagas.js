@@ -13,6 +13,7 @@ import watchReportvotesSagas from 'rdx/modules/reportVotes/sagas';
 import watchAnnouncementsSagas from 'rdx/modules/announcements/sagas';
 import watchGroupSagas from 'rdx/modules/group/sagas';
 import watchTopicSagas from 'rdx/modules/topic/sagas';
+import watchMetaSagas from 'rdx/modules/meta/sagas';
 // IMPORT_PT (for script -- do not remove!)
 
 function* rootSaga() {
@@ -30,6 +31,7 @@ function* rootSaga() {
     watchAnnouncementsSagas(),
     watchGroupSagas(),
     watchTopicSagas(),
+    watchMetaSagas(),
     // INSERTION_PT (for script -- do not remove!)
   ]);
 }

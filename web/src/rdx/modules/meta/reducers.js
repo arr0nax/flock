@@ -1,10 +1,10 @@
 import createReducer from 'rdx/utils/createReducer';
-import types from 'rdx/modules/{{ camelCase name }}/types';
-import states from 'rdx/modules/{{ camelCase name }}/states';
+import types from 'rdx/modules/meta/types';
+import states from 'rdx/modules/meta/states';
 
 export default {
-    {{ camelCase name }}: createReducer(states.DEFAULT_{{constantCase  name}}_STATE, {
-        [types.GET_{{constantCase name}}_SUCCESS](state, action) {
+    meta: createReducer(states.DEFAULT_META_STATE, {
+        [types.GET_INIT_SUCCESS](state, action) {
             return {
                 ...state,
                 requested: false,
@@ -12,13 +12,13 @@ export default {
                 data: action.payload
             };
         },
-        [types.GET_{{constantCase name}}_REQUEST](state, action) {
+        [types.GET_INIT_REQUEST](state, action) {
             return {
                 ...state,
                 requested: true,
             };
         },
-        [types.GET_{{constantCase name}}_FAILURE](state, action) {
+        [types.GET_INIT_FAILURE](state, action) {
             return {
                 ...state,
                 requested: false,

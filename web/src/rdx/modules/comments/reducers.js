@@ -29,6 +29,15 @@ export default {
       newState.data[action.payload.parent_id] = action.payload.data;
       return newState;
     },
+    [types.INIT_SET_COMMENTS](state, action) {
+        return {
+            ...state,
+            data: {
+                ...action.payload
+            },
+            requested: false
+        }
+    },
     [types.ADD_COMMENT](state, action) {
       var newState = cloneDeep(state);
       newState.data[action.payload.post_id] ? newState.data[action.payload.post_id].push(action.payload) : newState.data[action.payload.post_id] = [action.payload];

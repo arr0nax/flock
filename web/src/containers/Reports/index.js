@@ -14,8 +14,8 @@ class Reports extends React.Component {
     this.state = {
       open: true
     }
-    this.props.getReports();
-    this.props.getReportVotes();
+    // this.props.getReports();
+    // this.props.getReportVotes();
 
   }
 

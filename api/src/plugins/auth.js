@@ -16,7 +16,7 @@ class AuthPlugin {
   static applySessionStrategy(server) {
     server.ext('onPostHandler', (request, reply) => {
       const creds = request.auth.credentials;
-      // console.log('creds', creds);
+      console.log('creds', creds);
 
       if (creds && request.response.header) {
         // request.response.header(
@@ -32,7 +32,7 @@ class AuthPlugin {
               id: creds.sessionId,
               key: creds.sessionKey,
               passwordHash: creds.passwordHash,
-            }, creds.scope, Constants.EXPIRATION_PERIOD.MEDIUM),
+          }, creds.scope, Constants.EXPIRATION_PERIOD.LONG),
           );
         }
       }

@@ -1,6 +1,8 @@
-// import types from 'rdx/modules/{{ camelCase name }}/types';
-// import createAction from 'rdx/utils/createAction';
+import types from 'rdx/modules/{{ camelCase name }}/types';
+import createAction from 'rdx/utils/createAction';
 
 export default {
-  // exampleAction: payload => createAction(types.EXAMPLE_ACTION_TYPE, payload),
+    get{{ pascalCase name }}: payload => createAction(types.GET_{{ constantCase name}}_REQUEST, payload),
+    get{{ pascalCase name }}Success: payload => createAction(types.GET_{{ constantCase name}}_SUCCESS, payload),
+    get{{ pascalCase name }}Failure: payload => createAction(types.GET_{{ constantCase name}}_FAILURE, payload),
 };

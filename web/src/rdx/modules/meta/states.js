@@ -1,5 +1,5 @@
 export default {
-    DEFAULT_{{ constantCase name }}_STATE: {
+    DEFAULT_META_STATE: {
         data: {},
         error: {},
         requested: false,

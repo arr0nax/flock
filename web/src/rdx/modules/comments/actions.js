@@ -6,6 +6,7 @@ export default {
   getCommentsSuccess: payload => createAction(types.GET_COMMENTS_SUCCESS, payload),
   getCommentsFailure: payload => createAction(types.GET_COMMENTS_FAILURE, payload),
   setComments: payload => createAction(types.SET_COMMENTS, payload),
+  initSetComments: payload => createAction(types.INIT_SET_COMMENTS, payload),
   addComment: payload => createAction(types.ADD_COMMENT, payload),
 
   postComment: payload => createAction(types.POST_COMMENT_REQUEST, payload),

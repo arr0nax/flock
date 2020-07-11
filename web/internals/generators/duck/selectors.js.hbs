@@ -1,5 +1,7 @@
-// import { get } from 'lodash';
+import { get } from 'lodash';
 
 export default {
-  // get{{ pascalCase name }}: state => state['{{ camelCase name }}'],
+    get{{ pascalCase name }}: state => get(state, '{{camelCase name}}.data'),
+    get{{ pascalCase name }}Requested: state => get(state, '{{camelCase name}}.requested'),
+    get{{ pascalCase name }}Error: state => get(state, '{{camelCase name}}.error'),
 };

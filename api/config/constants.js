@@ -1,6 +1,7 @@
 
 const constants = {
   EXPIRATION_PERIOD: {
+    INSTANT: '20s',
     SHORT: '10m',
     MEDIUM: '4h',
     LONG: '730h',

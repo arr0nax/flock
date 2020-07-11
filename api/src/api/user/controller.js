@@ -17,7 +17,7 @@ class UserController {
         last_name: request.payload.last_name,
         email: request.payload.email,
         password: hash,
-        group_id: 1, // temporary until there are enough people 
+        group_id: 1, // temporary until there are enough people
       });
       return user;
     } catch (err) {
@@ -74,6 +74,14 @@ class UserController {
     } catch (err) {
       return Boom.forbidden(err.message);
     }
+  }
+
+  async resetPassword(request) {
+      try {
+          
+      } catch (err) {
+          return Boom.forbidden(err.message);
+      }
   }
 
 }

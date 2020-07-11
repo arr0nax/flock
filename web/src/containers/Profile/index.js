@@ -20,10 +20,10 @@ class Profile extends Component {
       open: false,
     }
     if (this.props.logged_in) {
-      this.props.getNotifications();
-      this.props.getReports();
-      this.props.getReportVotes();
-      this.props.getAnnouncements();
+      // this.props.getNotifications();
+      // this.props.getReports();
+      // this.props.getReportVotes();
+      // this.props.getAnnouncements();
     }
 
   }

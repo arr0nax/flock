@@ -5,7 +5,13 @@ import getErrorActions from 'rdx/utils/getErrorActions';
 import actions from 'rdx/actions';
 
 function* get{{ pascalCase name }}(action) {
-
+    const { success, data, error } = yield* makeRequest.get('{{pascalCase name}}/');
+    if (success && data) {
+      yield put(actions.get{{ pascalCase name }}Success(data));
+    } else {
+      yield put(actions.get{{ pascalCase name }}Failure(error));
+    }
+    return null;
 }
 
 export default get{{ pascalCase name }};

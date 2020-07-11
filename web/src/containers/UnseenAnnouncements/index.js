@@ -14,7 +14,7 @@ class Reports extends React.Component {
   constructor(props) {
     super(props);
     this.state = {}
-    this.props.getAnnouncements();
+    // this.props.getAnnouncements();
 
   }
 
