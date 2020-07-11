@@ -1,9 +1,8 @@
 import { put } from 'redux-saga/effects';
-import actions from '../../actions.js';
+import actions from '../../actions';
 //
 export default {
   newReact: (store, data) => {
-    console.log(data);
     switch (data.item_type) {
       case 'post':
         store.dispatch(actions.addPostReact(data))

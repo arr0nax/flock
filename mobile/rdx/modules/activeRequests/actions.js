@@ -1,4 +1,4 @@
-import types from '../activeRequests/types';
+import types from '../../modules/activeRequests/types';
 import createAction from '../../utils/createAction';
 
 export default {

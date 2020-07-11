@@ -1,6 +1,6 @@
 import { put } from 'redux-saga/effects';
-import actions from '../../actions.js';
+import actions from '../../actions';
 //
 export default {
-  newReply: (store, data) => { console.log(store); store.dispatch(actions.addReply(data)) }
+  newReply: (store, data) => { store.dispatch(actions.addReply(data)) }
 }

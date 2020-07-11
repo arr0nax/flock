@@ -1,6 +1,6 @@
 import { put } from 'redux-saga/effects';
-import actions from '../../actions.js';
+import actions from '../../actions';
 //
 export default {
-  newComment: (store, data) => { console.log(store); store.dispatch(actions.addComment(data)) }
+  newComment: (store, data) => { store.dispatch(actions.addComment(data)) }
 }

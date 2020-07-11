@@ -1,4 +1,4 @@
-import types from '../comments/types';
+import types from '../../modules/comments/types';
 import createAction from '../../utils/createAction';
 
 export default {
@@ -15,6 +15,14 @@ export default {
   getComment: payload => createAction(types.GET_COMMENT_REQUEST, payload),
   getCommentSuccess: payload => createAction(types.GET_COMMENT_SUCCESS, payload),
   getCommentFailure: payload => createAction(types.GET_COMMENT_FAILURE, payload),
+
+  getAllComments: payload => createAction(types.GET_ALL_COMMENTS_REQUEST, payload),
+  getAllCommentsSuccess: payload => createAction(types.GET_ALL_COMMENTS_SUCCESS, payload),
+  getAllCommentsFailure: payload => createAction(types.GET_ALL_COMMENTS_FAILURE, payload),
+
+  deleteComment: payload => createAction(types.DELETE_COMMENT_REQUEST, payload),
+  deleteCommentSuccess: payload => createAction(types.DELETE_COMMENT_SUCCESS, payload),
+  deleteCommentFailure: payload => createAction(types.DELETE_COMMENT_FAILURE, payload),
 
   getCommentPost: payload => createAction(types.GET_COMMENT_POST_REQUEST, payload),
   getCommentPostSuccess: payload => createAction(types.GET_COMMENT_POST_SUCCESS, payload),

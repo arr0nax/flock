@@ -1,6 +1,6 @@
 import createReducer from '../../utils/createReducer';
-import types from '../posts/types';
-import states from '../posts/states';
+import types from '../../modules/posts/types';
+import states from '../../modules/posts/states';
 import cloneDeep from 'lodash/cloneDeep';
 
 export default {
@@ -8,6 +8,12 @@ export default {
     [types.ADD_POST](state, action) {
       let newState = cloneDeep(state)
       newState.data.unshift(action.payload)
+      return newState;
+    },
+    [types.DELETE_POST_SUCCESS](state, action) {
+      let newState = cloneDeep(state)
+      const index = newState.data.findIndex(post => post.id === action.payload)
+      newState.data.splice(index, 1)
       return newState;
     },
     [types.GET_POSTS_REQUEST](state, action) {
@@ -20,12 +26,7 @@ export default {
       return {
         ...state,
         requested: false,
-        data: [
-          {
-            id: 0,
-          },
-          ...action.payload.posts
-        ],
+        data: action.payload.posts,
         pagination: action.payload.pagination,
       };
     },
@@ -44,7 +45,6 @@ export default {
     },
     [types.GET_MORE_POSTS_SUCCESS](state, action) {
       const posts = state.data.concat(action.payload.posts);
-      console.log(posts);
       return {
         ...state,
         requested: false,
@@ -68,6 +68,13 @@ export default {
       };
     },
     [types.GET_POST_SUCCESS](state, action) {
+      return {
+        ...state,
+        requested: false,
+        data: action.payload,
+      };
+    },
+    [types.GET_REPORTED_POST_SUCCESS](state, action) {
       return {
         ...state,
         requested: false,

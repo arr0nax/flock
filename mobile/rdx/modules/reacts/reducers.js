@@ -1,6 +1,6 @@
 import createReducer from '../../utils/createReducer';
-import types from '../reacts/types';
-import states from '../reacts/states';
+import types from '../../modules/reacts/types';
+import states from '../../modules/reacts/states';
 import cloneDeep from 'lodash/cloneDeep';
 
 export default {

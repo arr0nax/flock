@@ -1,6 +1,6 @@
 import createReducer from '../../utils/createReducer';
-import types from '../auth/types';
-import states from '../auth/states';
+import types from '../../modules/auth/types';
+import states from '../../modules/auth/states';
 import cloneDeep from 'lodash/cloneDeep';
 
 export default {
@@ -25,6 +25,16 @@ export default {
         requested: false,
       };
     },
+    [types.SET_USER_PICTURE](state, action) {
+      return {
+        data: {
+          ...state.data,
+          ...action.payload
+        },
+        errors: state.errors,
+        requested: false,
+      };
+    },
     [types.LOGIN_REQUEST](state, action) {
       var newState = cloneDeep(state);
       return {
@@ -36,7 +46,7 @@ export default {
       var newState = cloneDeep(state);
       return {
         data: action.payload,
-        errors: {...state.errors},
+        errors: {},
         requested: false,
       };
     },
@@ -44,7 +54,7 @@ export default {
       var newState = cloneDeep(state);
       return {
         data: {...state.data},
-        action: action.payload,
+        errors: action.payload,
         requested: false,
       };
     },
@@ -59,14 +69,14 @@ export default {
     [types.REGISTER_SUCCESS](state, action) {
       return {
         data: action.payload,
-        errors: {...state.errors},
+        errors: {text: 'registration success! please log in'},
         requested: false,
       };
     },
     [types.REGISTER_FAILURE](state, action) {
       return {
         data: {...state.data},
-        action: action.payload,
+        errors: action.payload,
         requested: false,
       };
     },

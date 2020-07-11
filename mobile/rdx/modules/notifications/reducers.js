@@ -1,6 +1,6 @@
 import createReducer from '../../utils/createReducer';
-import types from '../notifications/types';
-import states from '../notifications/states';
+import types from '../../modules/notifications/types';
+import states from '../../modules/notifications/states';
 import cloneDeep from 'lodash/cloneDeep';
 
 export default {
@@ -11,6 +11,11 @@ export default {
         requested: false,
         errors: state.errors,
       };
+    },
+    [types.ADD_NOTIFICATION](state, action) {
+      let newState = cloneDeep(state);
+      newState.data.unshift(action.payload);
+      return newState;
     },
     [types.GET_NOTIFICATIONS_REQUEST](state, action) {
       return {
@@ -27,7 +32,7 @@ export default {
     },
     [types.GET_NOTIFICATIONS_FAILURE](state, action) {
       return {
-        data: {...state.data},
+        data: [...state.data],
         action: action.payload,
         requested: false,
       };
