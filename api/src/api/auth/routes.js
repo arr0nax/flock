@@ -38,6 +38,15 @@ const Routes = {
       //   policies: [AuditLog.create({})],
       // },
     },
+  }, {
+    method: 'GET',
+    path: '/',
+    handler: AuthController.hello,
+    config: {
+      description: 'Say hello',
+      notes: ':)',
+      tags: ['api']
+    },
   }]
 }
 

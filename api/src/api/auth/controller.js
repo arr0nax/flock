@@ -48,6 +48,10 @@ class UserController {
     return Session.destroyById(creds.sessionId);
   }
 
+  hello(request) {
+    return 'world'
+  }
+
 }
 
 module.exports = new UserController();
