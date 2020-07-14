@@ -49,7 +49,7 @@ class UserController {
   }
 
   hello(request) {
-    return 'world'
+    return '<a href="https://www.flock.zone">almost there :)</a>'
   }
 
 }
