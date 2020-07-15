@@ -1,5 +1,5 @@
 import createReducer from 'rdx/utils/createReducer';
-import types from 'rdx/modules/reacts/types';
+import types from 'rdx/types';
 import states from 'rdx/modules/reacts/states';
 import cloneDeep from 'lodash/cloneDeep';
 
@@ -17,6 +17,16 @@ export default {
           requested: false,
         };
     },
+    [types.GET_MORE_POSTS_SUCCESS] (state, action) {
+      return {
+        ...state,
+        data: {
+            ...state.data,
+            ...action.payload.post_reacts
+        },
+        requested: false
+    }
+  },
     [types.ADD_POST_REACT](state, action) {
       let newState = cloneDeep(state)
       if (newState.data[action.payload.item_id]) {
@@ -75,6 +85,16 @@ export default {
           requested: false,
         };
     },
+    [types.GET_MORE_POSTS_SUCCESS] (state, action) {
+      return {
+        ...state,
+        data: {
+            ...state.data,
+            ...action.payload.comment_reacts
+        },
+        requested: false
+    }
+  },
     [types.ADD_COMMENT_REACT](state, action) {
       let newState = cloneDeep(state)
       if (newState.data[action.payload.item_id]) {
@@ -125,6 +145,16 @@ export default {
           requested: false,
         };
     },
+    [types.GET_MORE_POSTS_SUCCESS] (state, action) {
+      return {
+        ...state,
+        data: {
+            ...state.data,
+            ...action.payload.reply_reacts
+        },
+        requested: false
+    }
+  },
     [types.ADD_REPLY_REACT](state, action) {
       let newState = cloneDeep(state)
       if (newState.data[action.payload.item_id]) {

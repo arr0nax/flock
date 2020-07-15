@@ -24,20 +24,13 @@ class Comments extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // comment: {},
+      open: true,
     };
   }
 
-
-  // mediaRef = React.createRef();
-
-  // handleChangeComment = (event, post_id) => {
-  //   var newComment = {
-  //     ...this.state.comment
-  //   };
-  //   newComment[post_id] = event.target.value;
-  //   this.setState({comment: newComment});
-  // }
+  toggleOpen = () => {
+    this.setState({open: !this.state.open})
+  }
 
   handleComment = (post_id, text, file) => {
     if (text || file) {
@@ -46,12 +39,6 @@ class Comments extends React.Component {
         post_id: post_id,
         attachment: file
       })
-      // var newComment = {
-      //   ...this.state.comment
-      // };
-      // newComment[post_id] = '';
-      // this.setState({comment: newComment});
-      // this.mediaRef.current.value = null;
     }
   }
 
@@ -107,9 +94,10 @@ class Comments extends React.Component {
   render() {
     const {showComments, allowComment} = this.props;
     return (
-      <div className="comments-rct-component">
-        {showComments && this.comments()}
-        {allowComment && this.comment()}
+      <div className={`comments-rct-component ${this.state.open ? 'open' : ''}`}>
+        <p onClick={this.toggleOpen} className="show-comments">{`${this.state.open ? 'hide' : 'show'} comments`}</p>
+            {this.state.open && showComments && this.comments()}
+            {allowComment && this.comment()}
       </div>
     )
   }

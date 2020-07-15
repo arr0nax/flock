@@ -30,18 +30,6 @@ class Replies extends React.Component {
     };
   }
 
-  // mediaRef = React.createRef();
-
-
-
-  // handleChangeReply = (event, id) => {
-  //   var newReply = {
-  //     ...this.state.reply
-  //   };
-  //   newReply[id] = event.target.value;
-  //   this.setState({reply: newReply});
-  // }
-
   toggleOpen = () => {
     this.setState({open: !this.state.open})
   }
@@ -53,12 +41,6 @@ class Replies extends React.Component {
         comment_id: comment_id,
         attachment: file,
       })
-      // var newReply = {
-      //   ...this.state.reply
-      // };
-      // newReply[comment_id] = '';
-      // this.setState({reply: newReply});
-      // this.mediaRef.current.value = null;
     }
   }
 

@@ -1,5 +1,5 @@
 import createReducer from 'rdx/utils/createReducer';
-import types from 'rdx/modules/attachments/types';
+import types from 'rdx/types';
 import states from 'rdx/modules/attachments/states';
 import cloneDeep from 'lodash/cloneDeep';
 
@@ -66,6 +66,16 @@ export default {
             data: {...action.payload}
         }
     },
+    [types.GET_MORE_POSTS_SUCCESS] (state, action) {
+        return {
+          ...state,
+          data: {
+              ...state.data,
+              ...action.payload.comment_attachments
+          },
+          requested: false
+      }
+    },
     [types.ADD_COMMENT_ATTACHMENT](state, action) {
       let newState = cloneDeep(state)
       newState.data[action.payload.item_id] = action.payload;
@@ -107,6 +117,16 @@ export default {
             data: {...action.payload}
         }
     },
+    [types.GET_MORE_POSTS_SUCCESS] (state, action) {
+      return {
+        ...state,
+        data: {
+            ...state.data,
+            ...action.payload.reply_attachments
+        },
+        requested: false
+    }
+  },
     [types.ADD_REPLY_ATTACHMENT](state, action) {
       let newState = cloneDeep(state)
       newState.data[action.payload.item_id] = action.payload;

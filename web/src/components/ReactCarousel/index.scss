@@ -4,12 +4,14 @@
   position: relative;
   cursor: pointer;
   z-index: 10;
+  pointer-events: none;
 
   .react-button {
     position: relative;
     display: inline-block;
     @include small-clickable;
     margin: 0px 6px 0px 0px;
+    pointer-events: all;
 
   }
 
@@ -24,6 +26,8 @@
     flex-direction: row;
     padding: 0px 0px 0px 8px;
     transition: height 150ms, padding 150ms;
+    pointer-events: all;
+
     .react-container {
       width: 27px;
       height: 27px;

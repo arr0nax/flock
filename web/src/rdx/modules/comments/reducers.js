@@ -1,5 +1,5 @@
 import createReducer from 'rdx/utils/createReducer';
-import types from 'rdx/modules/comments/types';
+import types from 'rdx/types';
 import states from 'rdx/modules/comments/states';
 import cloneDeep from 'lodash/cloneDeep';
 
@@ -37,6 +37,16 @@ export default {
             },
             requested: false
         }
+    },
+    [types.GET_MORE_POSTS_SUCCESS](state, action) {
+        return {
+          ...state,
+          data: {
+              ...state.data,
+              ...action.payload.comments
+          },
+          requested: false
+      }
     },
     [types.ADD_COMMENT](state, action) {
       var newState = cloneDeep(state);

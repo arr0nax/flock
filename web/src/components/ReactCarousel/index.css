@@ -1,13 +1,15 @@
 .react-carousel-container {
   position: relative;
   cursor: pointer;
-  z-index: 10; }
+  z-index: 10;
+  pointer-events: none; }
   .react-carousel-container .react-button {
     position: relative;
     display: inline-block;
     color: #075ed4;
     font-size: .8em;
-    margin: 0px 6px 0px 0px; }
+    margin: 0px 6px 0px 0px;
+    pointer-events: all; }
   .react-carousel-container .react-carousel {
     height: 0px;
     overflow: hidden;
@@ -18,7 +20,8 @@
     display: flex;
     flex-direction: row;
     padding: 0px 0px 0px 8px;
-    transition: height 150ms, padding 150ms; }
+    transition: height 150ms, padding 150ms;
+    pointer-events: all; }
     .react-carousel-container .react-carousel .react-container {
       width: 27px;
       height: 27px;

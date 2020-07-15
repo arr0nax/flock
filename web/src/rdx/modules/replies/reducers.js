@@ -1,5 +1,5 @@
 import createReducer from 'rdx/utils/createReducer';
-import types from 'rdx/modules/replies/types';
+import types from 'rdx/types';
 import states from 'rdx/modules/replies/states';
 import cloneDeep from 'lodash/cloneDeep';
 
@@ -19,6 +19,16 @@ export default {
             requested: false
         }
     },
+    [types.GET_MORE_POSTS_SUCCESS] (state, action) {
+      return {
+        ...state,
+        data: {
+            ...state.data,
+            ...action.payload.replies
+        },
+        requested: false
+    }
+  },
     [types.ADD_REPLY](state, action) {
       var newState = cloneDeep(state);
       newState.data[action.payload.comment_id] ? newState.data[action.payload.comment_id].push(action.payload) :

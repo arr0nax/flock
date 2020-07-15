@@ -3,6 +3,14 @@
   padding-top: 10px;
   display: flex;
   flex-direction: column; }
+  .comments-rct-component .show-comments {
+    cursor: pointer;
+    position: relative;
+    top: -23.5px;
+    left: 20px;
+    color: #075ed4;
+    font-size: .8em;
+    width: 50%; }
   .comments-rct-component .comment-container {
     display: flex;
     flex-direction: column;

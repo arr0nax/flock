@@ -24,10 +24,10 @@ class Post extends React.Component {
         <ReportContentButton item_id={post.id} item_type={'post'} user_id={post.user_id} className="post"/>
         <UserSummary user={this.props.users[post.user_id]} className="white" timestamp={post.created_at}/>
         <LinkPreviewText text={post.text} className='post'/>
+        <Reacts item={post} item_type={'post'} />
         <div className="action-bar">
           {allowReact && <ReactCarousel item_id={post.id} type="post"/>}
         </div>
-        <Reacts item={post} item_type={'post'} />
         <Comments
           post_id={post.id}
           showComments

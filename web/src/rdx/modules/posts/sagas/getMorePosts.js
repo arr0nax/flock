@@ -11,12 +11,12 @@ function* getMorePosts(action) {
     const posts = data.posts;
     const pagination = data.pagination;
     yield put(actions.getMorePostsSuccess(data));
-    yield all(posts.map(post => {
-      return put(actions.getComments(post.id))
-    }))
-    yield all(posts.map(post => {
-      return put(actions.getReacts({item_id: post.id, type: 'posts'}))
-    }))
+    // yield all(posts.map(post => {
+    //   return put(actions.getComments(post.id))
+    // }))
+    // yield all(posts.map(post => {
+    //   return put(actions.getReacts({item_id: post.id, type: 'posts'}))
+    // }))
   } else {
     yield put(actions.getMorePostsFailure({ error }));
   }
