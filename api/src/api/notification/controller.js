@@ -6,7 +6,7 @@ const CONTROLLER = 'ReactController';
 class NotificationController {
   async fetchNotifications(request) {
     try {
-      const notifications = await Notification.byUser(request.auth.credentials.user_id);
+      const notifications = await Notification.byUser100(request.auth.credentials.user_id);
       const notificationsSeen = await Notification.markSeenByUser(request.auth.credentials.user_id);
       return notifications;
     } catch (err) {

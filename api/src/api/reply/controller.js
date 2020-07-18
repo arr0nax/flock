@@ -22,14 +22,16 @@ class ReplyController {
       Post.updateById(comment.attributes.post_id, {
         interactions: post.attributes.interactions + 1,
       });
-      Notification.create({
-        item_id: reply.attributes.id,
-        item_type: 'reply',
-        user_id: commentUser,
-        parent_id: request.params.id,
-        parent_type: 'comment',
-        made_by: request.auth.credentials.user_id,
-      })
+      if (request.auth.credentials.user_id != commentUser) {
+        Notification.create({
+          item_id: reply.attributes.id,
+          item_type: 'reply',
+          user_id: commentUser,
+          parent_id: request.params.id,
+          parent_type: 'comment',
+          made_by: request.auth.credentials.user_id,
+        })
+      }
       return reply;
     } catch (err) {
       return Boom.forbidden(err.message);

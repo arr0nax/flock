@@ -26,6 +26,10 @@ class Notification extends BaseModel {
     return this.query().where({user_id: id}).orderBy('id', 'DESC');
   }
 
+  static byUser100(id) {
+    return this.query().where({user_id: id}).orderBy('id', 'DESC').limit(100);
+  }
+
   static markSeenByUser(id) {
     return this.forge({
       'user_id': id,

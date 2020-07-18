@@ -25,7 +25,7 @@ class InitController {
       const group = await Group.findByID(user.attributes.group_id);
       const users = await group.getUsers();
       const topic = await Topic.findByID(group.attributes.topic_id)
-      const notifications = await Notification.byUser(request.auth.credentials.user_id)
+      const notifications = await Notification.byUser100(request.auth.credentials.user_id)
       const reports = await Report.byGroup(user.attributes.group_id)
       const votes = await user.getReportVotes();
       const announcements = await group.getAnnouncements();

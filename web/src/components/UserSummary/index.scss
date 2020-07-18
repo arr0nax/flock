@@ -38,7 +38,8 @@
     .text {
       position: absolute;
       top: 0px;
-      width: 200px;
+      width: 300px;
+      // width: 100%;
       left: 38px;
       @include small-grey;
       display: flex;

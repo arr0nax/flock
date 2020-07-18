@@ -18,15 +18,16 @@ class CommentController {
       Post.updateById(request.params.id, {
         interactions: post.attributes.interactions + 1,
       });
-
-      Notification.create({
-        item_id: comment.attributes.id,
-        item_type: 'comment',
-        parent_id: request.params.id,
-        parent_type: 'post',
-        user_id: postUser,
-        made_by: request.auth.credentials.user_id,
-      })
+      if (request.auth.credentials.user_id != postUser) {
+        Notification.create({
+          item_id: comment.attributes.id,
+          item_type: 'comment',
+          parent_id: request.params.id,
+          parent_type: 'post',
+          user_id: postUser,
+          made_by: request.auth.credentials.user_id,
+        })
+      }
       return comment;
     } catch (err) {
       return Boom.forbidden(err.message);

@@ -38,39 +38,45 @@ class ReactController {
           post.save({
             interactions: post.attributes.interactions + 1,
           }, {patch: true});
-          Notification.create({
-            item_id: react.attributes.id,
-            item_type: 'react',
-            user_id: postUser,
-            parent_id: post.attributes.id,
-            parent_type: request.payload.item_type,
-            made_by: request.auth.credentials.user_id,
-          });
+          if (request.auth.credentials.user_id != postUser) {
+            Notification.create({
+              item_id: react.attributes.id,
+              item_type: 'react',
+              user_id: postUser,
+              parent_id: post.attributes.id,
+              parent_type: request.payload.item_type,
+              made_by: request.auth.credentials.user_id,
+            });
+          }
           break;
         case 'comment':
           const comment = await Comment.findByID(request.payload.item_id);
           const commentUser = comment.attributes.user_id;
-          Notification.create({
-            item_id: react.attributes.id,
-            item_type: 'react',
-            user_id: commentUser,
-            parent_id: comment.attributes.id,
-            parent_type: request.payload.item_type,
-            made_by: request.auth.credentials.user_id,
-          });
+          if (request.auth.credentials.user_id != commentUser) {
+            Notification.create({
+              item_id: react.attributes.id,
+              item_type: 'react',
+              user_id: commentUser,
+              parent_id: comment.attributes.id,
+              parent_type: request.payload.item_type,
+              made_by: request.auth.credentials.user_id,
+            });
+          }
           break;
         case 'reply':
           const reply = await Reply.findByID(request.payload.item_id);
           const replyUser = reply.attributes.user_id;
-          Notification.create({
-            item_id: react.attributes.id,
-            item_type: 'react',
-            user_id: replyUser,
-            parent_id: reply.attributes.id,
-            parent_type: request.payload.item_type,
-            made_by: request.auth.credentials.user_id,
-          });
-          break;
+          if (request.auth.credentials.user_id != replyUser) {
+            Notification.create({
+              item_id: react.attributes.id,
+              item_type: 'react',
+              user_id: replyUser,
+              parent_id: reply.attributes.id,
+              parent_type: request.payload.item_type,
+              made_by: request.auth.credentials.user_id,
+            });
+            break;
+          }
       }
 
       return react;

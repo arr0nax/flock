@@ -40,16 +40,17 @@ class AttachmentService {
 
     Jimp.read(file.path, (err, image) => {
       if (err) return Boom.forbidden(err);
-      var w = image.bitmap.width; // the width of the image
-      var h = image.bitmap.height; // the height of the image
-      if (w > 700 || h > 700) {
-        image
-          .scaleToFit(700, 700) // resize
-          .write(`${filePath}/${file.filename}`);
-      } else {
-        image
-          .write(`${filePath}/${file.filename}`);
-      }
+      // var w = image.bitmap.width; // the width of the image
+      // var h = image.bitmap.height; // the height of the image
+      // if (w > 700 || h > 700) {
+      //   image
+      //     .scaleToFit(700, 700) // resize
+      //     .write(`${filePath}/${file.filename}`);
+      // } else {
+      //   image
+      //     .write(`${filePath}/${file.filename}`);
+      // }
+      image.write(`${filePath}/${file.filename}`);
     });
     // fs.mkdir(filePath, { recursive: true }, (err) => {
     //   if (err) throw err;
