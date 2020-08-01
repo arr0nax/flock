@@ -1,7 +1,6 @@
 @import 'src/styles/_index';
 
 .comments-rct-component {
-  padding-left: 20px;
   padding-top: 10px;
   display: flex;
   flex-direction: column;
@@ -9,7 +8,7 @@
     cursor: pointer;
     position: relative;
     top: -23.5px;
-    left: 20px;
+    left: 40px;
     @include small-clickable;
     width: 50%;
   }

@@ -23,9 +23,9 @@ const LinkPreviewText = (props) => {
   return (
     <div className="link-preview-text-rct-component">
       {className === 'post' ? (
-        <h3>{text1}<a href={url}>{url}</a>{text2}</h3>
+        <h3>{text1}<a href={url} target="_">{url}</a>{text2}</h3>
       ) : (
-        <p className="comment-text">{text1}<a href={url} className="link">{url}</a>{text2}</p>
+        <p className="comment-text">{text1}<a href={url} target="_" className="link">{url}</a>{text2}</p>
       )}
       {urls && <Microlink className="microlink" url={urls[0].url} />}
     </div>

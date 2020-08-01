@@ -2,6 +2,9 @@
   display: flex;
   flex-direction: column;
   width: 100%; }
+  .link-preview-text-rct-component h3 {
+    white-space: pre-line; }
   .link-preview-text-rct-component .comment-text {
     font-size: 1em;
-    word-wrap: break-word; }
+    word-wrap: break-word;
+    white-space: pre-line; }
