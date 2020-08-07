@@ -70,7 +70,7 @@ class LoginForm extends React.Component {
       password: this.state.password,
       first_name: this.state.first_name,
       last_name: this.state.last_name,
-      group_code: this.state.group_code
+      group_code: this.state.group_code.toLowerCase()
     })
   }
 
