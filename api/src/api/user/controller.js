@@ -12,12 +12,16 @@ class UserController {
     try {
       const salt = Bcrypt.genSaltSync();
       const hash = Bcrypt.hashSync(request.payload.password, salt);
+      let group = await Group.findByCode(request.payload.group_code);
+      if (!group) {
+        group = await Group.smallestGroup()
+      }
       const user = await User.create({
         first_name: request.payload.first_name,
         last_name: request.payload.last_name,
         email: request.payload.email,
         password: hash,
-        group_id: 1, // temporary until there are enough people
+        group_id: group.attributes.id, // defaults to smallest group
       });
       return user;
     } catch (err) {

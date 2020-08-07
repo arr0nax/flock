@@ -40,6 +40,10 @@ class Announcement extends BaseModel {
     return this.group().fetch();
   }
 
+  static getAll() {
+    return this.collection().fetch()
+  }
+
 }
 
 module.exports = bookshelf.model('Announcement', Announcement);

@@ -5,6 +5,7 @@ import Group from '../../models/group';
 import Post from '../../models/post';
 import React from '../../models/react';
 import Attachment from '../../models/attachment';
+import Announcement from '../../models/announcement';
 import Topic from '../../models/topic';
 import TopicService from '../../services/topics'
 import Notification from '../../models/notification';
@@ -28,7 +29,7 @@ class InitController {
       const notifications = await Notification.byUser100(request.auth.credentials.user_id)
       const reports = await Report.byGroup(user.attributes.group_id)
       const votes = await user.getReportVotes();
-      const announcements = await group.getAnnouncements();
+      const announcements = await Announcement.getAll();
 
       // const count = await Group.size(1);
       // console.log(group);
@@ -152,6 +153,7 @@ class InitController {
 
       // const comments = await user.getComments();
       // const replies = await user.getReplies();
+      console.log(announcements);
 
       return { group, users, topic, notifications, reports, votes, announcements, posts: posts.models, comments, replies, pagination: posts.pagination, post_reacts, comment_reacts, reply_reacts, comment_attachments, reply_attachments };
     } catch (err) {

@@ -10,6 +10,8 @@
       color: #075ed4;
       text-decoration: underline;
       cursor: pointer; }
+  .main-menu .code-text {
+    margin: 20px 0px; }
   .main-menu .back-button {
     margin-bottom: 20px; }
     .main-menu .back-button p {

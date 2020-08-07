@@ -16,6 +16,7 @@ class LoginForm extends React.Component {
       last_name: '',
       email: '',
       password: '',
+      group_code: '',
       email2: '',
       password2: '',
     }
@@ -36,6 +37,10 @@ class LoginForm extends React.Component {
 
   handleChangePassword(event) {
     this.setState({password: event.target.value});
+  }
+
+  handleChangeGroupCode(event) {
+    this.setState({group_code: event.target.value});
   }
 
   handleChangeEmail2(event) {
@@ -65,6 +70,7 @@ class LoginForm extends React.Component {
       password: this.state.password,
       first_name: this.state.first_name,
       last_name: this.state.last_name,
+      group_code: this.state.group_code
     })
   }
 
@@ -89,11 +95,15 @@ class LoginForm extends React.Component {
               <input placeholder="first name" value={this.state.first_name} onChange={(e) => this.handleChangeFirstName(e)}/>
               <input placeholder="last name" value={this.state.last_name} onChange={(e) => this.handleChangeLastName(e)}/>
               <input placeholder="email" value={this.state.email} onChange={(e) => this.handleChangeEmail(e)}/>
+              <input placeholder="group code" value={this.state.group_code} onChange={(e) => this.handleChangeGroupCode(e)}/>
+              <p className='info'>
+                  No group code? No Problem! Leave this blank and we will put you in a group automatically :)
+              </p>
               <form onSubmit={this.handleRegister}>
               <input placeholder="password" type="password" value={this.state.password} onChange={(e) => this.handleChangePassword(e)}/>
               </form>
               <p className='info'>
-                  Your first and last name will be displayed in the app. Your email will only be used to recover your password - we will never email you directly.
+                  Your first and last name will be displayed in the app. Your email will only be used to recover your password and let you know when you're picking the topic - we will never email you directly.
               </p>
             <div className='successes'>
               <p>{this.props.regerror ? this.props.regerror.text : ''}</p>

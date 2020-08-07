@@ -75,6 +75,33 @@ class Group extends BaseModel {
   static findByCode(code) {
     return this.forge({code}).fetch();
   }
+
+  static async smallestGroup() {
+    let groups = await this.collection().fetch();
+    console.log('--------------groups--------------');
+    console.log(groups);
+    console.log('--------------groups--------------');
+    
+    let sizes = await Promise.all(groups.models.map(model => this.size(model.id)));
+    console.log('--------------sizes-----------------')
+    console.log(sizes);
+    console.log('--------------sizes-----------------')
+    
+    let models = sizes.map((size, index) => {return {id: groups.models[index].id, size: parseInt(size[0].count, 10)}});
+
+    console.log('--------------models--------------');
+    console.log(models);
+    console.log('--------------models--------------');
+
+    models.sort((a, b) => a.size - b.size);
+    console.log('--------------models--------------');
+    console.log(models);
+    console.log('--------------models--------------');
+    
+    return this.forge({id: models[0].id});
+    return null;
+    return this.collection().orderBy('-created_at');
+  }
 }
 
 module.exports = bookshelf.model('Group', Group);

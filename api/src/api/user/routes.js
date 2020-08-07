@@ -118,6 +118,7 @@ const Routes = {
           last_name: Joi.string().required(),
           email: Joi.string().required(),
           password: Joi.string().required(),
+          group_code: Joi.string().allow(''),
         },
       //   headers: Joi.object({
       //     authorization: Joi.string().required(),

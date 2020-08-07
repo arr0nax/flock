@@ -31,7 +31,7 @@ class NewAnnouncement extends React.Component {
         "new-announcement-rct-component",
         className,
       )}>
-        <ExpandingTextInput value={this.state.text} handleChange={this.onChange} handleSubmit={this.onSubmit}/>
+        <ExpandingTextInput value={this.state.text} handleChange={this.onChange} handleSubmit={this.onSubmit} placeholder='new announcement to all groups'/>
         <button onClick={this.onSubmit}>post</button>
       </div>
     );

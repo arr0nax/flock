@@ -25,6 +25,7 @@ const persistConfig = {
     'authToken',
     'user',
     'logged_in',
+    'group'
   ],
 };
 

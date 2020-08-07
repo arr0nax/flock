@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import AdminGuard from 'components/AdminGuard';
+import NewAnnouncement from 'components/NewAnnouncement';
 
 import './index.css';
 
@@ -46,7 +48,11 @@ class MainMenu extends Component {
         </div>
         <UserSummary user={this.props.user}/>
         <input className={'add-image-input'} type="file" name={`profpicupload${this.props.user.id}`} id={`profpicupload${this.props.user.id}`} accept="image/*" encType="multipart/form-data" ref={this.mediaRef} onChange={this.handleSubmit}/>
-        <label className={'add-image-label'} htmlFor={`profpicupload${this.props.user.id}`}></label>
+        <label className={'add-image-label'} for={`profpicupload${this.props.user.id}`}>^change profile picture</label>
+        <div className='code-text'>
+          <p>Your group code is <b>{this.props.group.code}</b></p>
+          <p>To invite someone to your group, give them the code <b>{this.props.group.code}</b> for registration.</p>
+        </div>
         <div className="details">
           <button onClick={() => this.handleLogout()}>logout</button>
           {/*<UpdateGroup />*/}
@@ -54,6 +60,7 @@ class MainMenu extends Component {
         <div className="more-info" onClick={this.viewAbout}>
           <p>about flock</p>
         </div>
+        {(this.props.user.role_id == 2) && <NewAnnouncement />}
       </div>
     );
   }
@@ -71,6 +78,7 @@ MainMenu.propTypes = {
 
 MainMenu.defaultProps = {
   postLogout: () => {},
+  user: {role_id: null}
 };
 
 const actionsMapper = getRdxActionMapper([
@@ -81,6 +89,7 @@ const actionsMapper = getRdxActionMapper([
 
 const stateMapper = getRdxSelectionMapper({
   user: 'getUser',
+  group: 'getGroup',
 });
 
 export default connect(stateMapper, actionsMapper)(MainMenu);
