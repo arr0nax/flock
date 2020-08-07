@@ -17,7 +17,7 @@ class TopicController {
           user_id: request.auth.credentials.user_id,
           group_id: user.attributes.group_id,
         });
-        const newgroup = await Group.updateById(1, {
+        const newgroup = await Group.updateById(user.attributes.group_id, {
           topic_chosen: true,
           topic_id: topic.attributes.id,
           topic_choser_id: user.id
