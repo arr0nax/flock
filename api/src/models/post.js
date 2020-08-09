@@ -50,13 +50,13 @@ class Post extends BaseModel {
   }
 
   static async findForbidden(text) {
-    const words = text.split(' ');
-    const array = await Promise.all(words.map(word => Group.findByCode(word))).then(values => {
-      return values;
-    })
-    for(let i=0; i<array.length; i++) {
-      if (array[i] !== null) return true;
-    }
+    // const words = text.split(' ');
+    // const array = await Promise.all(words.map(word => Group.findByCode(word))).then(values => {
+    //   return values;
+    // })
+    // for(let i=0; i<array.length; i++) {
+    //   if (array[i] !== null) return true;
+    // }
     return false;
 
   }
