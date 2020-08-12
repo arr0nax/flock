@@ -1,9 +1,11 @@
 .link-preview-text-rct-component {
   display: flex;
   flex-direction: column;
-  width: 100%; }
-  .link-preview-text-rct-component h3 {
-    white-space: pre-line; }
+  width: 100%;
+  line-height: 1.1; }
+  .link-preview-text-rct-component h2 {
+    white-space: pre-line;
+    font-weight: lighter; }
   .link-preview-text-rct-component .comment-text {
     font-size: 1em;
     word-wrap: break-word;

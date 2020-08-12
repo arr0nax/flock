@@ -23,7 +23,7 @@ const LinkPreviewText = (props) => {
   return (
     <div className="link-preview-text-rct-component">
       {className === 'post' ? (
-        <h3>{text1}<a href={url} target="_">{url}</a>{text2}</h3>
+        <h2>{text1}<a href={url} target="_">{url}</a>{text2}</h2>
       ) : (
         <p className="comment-text">{text1}<a href={url} target="_" className="link">{url}</a>{text2}</p>
       )}
