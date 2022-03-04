@@ -8,6 +8,8 @@
     "test-seed-data": "./node_modules/.bin/cross-env NODE_ENV=test ./node_modules/.bin/knex seed:run",
     "test": "mocha test/**/*.js --timeout=10000 --exit --require babel-register",
     "start": "nodemon src/index.js --exec babel-node",
+    "build": "babel . -d dist",
+    "start-new": "npm run build && node dist/src/index.js",
     "reset": "./scripts/reset.sh",
     "migrate": "./scripts/migrate.sh"
   },

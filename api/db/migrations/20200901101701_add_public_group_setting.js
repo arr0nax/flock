@@ -1,7 +1,7 @@
-exports.up = knex => knex.schema.table('users', (table) => {
-    table.boolean('logged_in_today')
+exports.up = knex => knex.schema.table('groups', (table) => {
+    table.boolean('public')
       .notNull()
-      .defaultTo(false);
+      .defaultTo(true);
 });
 
 exports.down = knex => knex.schema.table('groups', (table) => {
